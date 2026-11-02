@@ -1,0 +1,50 @@
+/usr/local/lib/python3.12/site-packages/paramiko/pkey.py:82: CryptographyDeprecationWarning: TripleDES has been moved to cryptography.hazmat.decrepit.ciphers.algorithms.TripleDES and will be removed from cryptography.hazmat.primitives.ciphers.algorithms in 48.0.0.
+  "cipher": algorithms.TripleDES,
+/usr/local/lib/python3.12/site-packages/paramiko/transport.py:243: CryptographyDeprecationWarning: TripleDES has been moved to cryptography.hazmat.decrepit.ciphers.algorithms.TripleDES and will be removed from cryptography.hazmat.primitives.ciphers.algorithms in 48.0.0.
+  "class": algorithms.TripleDES,
+HTTP/2 200 
+access-control-allow-origin: *
+server: gunicorn
+cache-control: max-age=600, public
+referrer-policy: origin-when-cross-origin
+access-control-expose-headers: X-PyPI-Last-Serial
+access-control-max-age: 86400
+etag: "bV60C7dJpgLyKYpTgWXj/Q"
+access-control-allow-methods: GET
+x-pypi-last-serial: 42872345
+content-security-policy: default-src 'none'; sandbox allow-top-navigation
+access-control-allow-headers: Content-Type, If-Match, If-Modified-Since, If-None-Match, If-Unmodified-Since
+accept-ranges: bytes
+date: Fri, 30 Oct 2026 08:45:26 GMT
+x-served-by: cache-iad-kiad7000108-IAD, cache-iad-kiad7000108-IAD, cache-hkg-vhhh8650077-HKG
+x-cache: MISS, HIT, HIT
+x-cache-hits: 0, 8, 0
+x-timer: S1793349926.447306,VS0,VE1
+content-type: text/html
+vary: Accept, Accept-Encoding
+strict-transport-security: max-age=31536000; includeSubDomains; preload
+x-frame-options: deny
+x-xss-protection: 1; mode=block
+x-content-type-options: nosniff
+x-permitted-cross-domain-policies: none
+permissions-policy: publickey-credentials-create=(self),publickey-credentials-get=(self),accelerometer=(),ambient-light-sensor=(),autoplay=(),battery=(),camera=(),display-capture=(),document-domain=(),encrypted-media=(),execution-while-not-rendered=(),execution-while-out-of-viewport=(),fullscreen=(),gamepad=(),geolocation=(),gyroscope=(),hid=(),identity-credentials-get=(),idle-detection=(),local-fonts=(),magnetometer=(),microphone=(),midi=(),otp-credentials=(),payment=(),picture-in-picture=(),screen-wake-lock=(),serial=(),speaker-selection=(),storage-access=(),usb=(),web-share=(),xr-spatial-tracking=()
+content-length: 508292
+
+HTTP/2 200 
+content-type: text/html
+content-length: 79156
+server: AmazonS3
+last-modified: Fri, 30 Oct 2026 08:20:44 GMT
+x-amz-server-side-encryption: AES256
+x-amz-version-id: KnYiXxD0vpGcthhG9v5BLOb1JVyZXHa0
+accept-ranges: bytes
+date: Fri, 30 Oct 2026 08:44:06 GMT
+cache-control: max-age=600, public, must-revalidate
+etag: "7b7d69ea0a8bf7e4d14e8487085175ea"
+x-cache: Hit from cloudfront
+via: 1.1 12d8d1240d55c1d7f4f45d97bd159ce0.cloudfront.net (CloudFront)
+x-amz-cf-pop: SIN3-P1
+x-amz-cf-id: hgrdCRgR0zhgM1mmqFltLuXWm64AefG029QpJIx-KsAavqIyFGbprg==
+age: 99
+
+-rw-r--r-- 1 root root 784K Oct 30 16:45 /root/autodl-tmp/s60-reference/vllm-0.32.0+cu129-cp38-abi3-manylinux_2_28_x86_64.whl

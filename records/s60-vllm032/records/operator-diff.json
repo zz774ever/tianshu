@@ -1,0 +1,134 @@
+[
+  {
+    "op": "rms_norm",
+    "shape": [
+      1,
+      128
+    ],
+    "output": 0,
+    "max_abs": 0.015625,
+    "mean_abs": 0.0005627349019050598,
+    "ref_max": 4.09375
+  },
+  {
+    "op": "rms_norm",
+    "shape": [
+      13,
+      128
+    ],
+    "output": 0,
+    "max_abs": 0.03125,
+    "mean_abs": 0.0008199409930966794,
+    "ref_max": 7.4375
+  },
+  {
+    "op": "rms_norm",
+    "shape": [
+      13,
+      1024
+    ],
+    "output": 0,
+    "max_abs": 0.0625,
+    "mean_abs": 0.000881248211953789,
+    "ref_max": 10.4375
+  },
+  {
+    "op": "rms_norm",
+    "shape": [
+      32,
+      1024
+    ],
+    "output": 0,
+    "max_abs": 0.0625,
+    "mean_abs": 0.0008955198572948575,
+    "ref_max": 11.5625
+  },
+  {
+    "op": "fused_add_rms_norm",
+    "shape": [
+      1,
+      128
+    ],
+    "output": 0,
+    "max_abs": 0.015625,
+    "mean_abs": 0.0011851787567138672,
+    "ref_max": 4.46875
+  },
+  {
+    "op": "fused_add_rms_norm",
+    "shape": [
+      1,
+      128
+    ],
+    "output": 1,
+    "max_abs": 0.0,
+    "mean_abs": 0.0,
+    "ref_max": 3.328125
+  },
+  {
+    "op": "fused_add_rms_norm",
+    "shape": [
+      13,
+      128
+    ],
+    "output": 0,
+    "max_abs": 0.03125,
+    "mean_abs": 0.0008405286353081465,
+    "ref_max": 7.625
+  },
+  {
+    "op": "fused_add_rms_norm",
+    "shape": [
+      13,
+      128
+    ],
+    "output": 1,
+    "max_abs": 0.0,
+    "mean_abs": 0.0,
+    "ref_max": 4.71875
+  },
+  {
+    "op": "fused_add_rms_norm",
+    "shape": [
+      13,
+      1024
+    ],
+    "output": 0,
+    "max_abs": 0.03125,
+    "mean_abs": 0.0009086240897886455,
+    "ref_max": 7.40625
+  },
+  {
+    "op": "fused_add_rms_norm",
+    "shape": [
+      13,
+      1024
+    ],
+    "output": 1,
+    "max_abs": 0.0,
+    "mean_abs": 0.0,
+    "ref_max": 5.3125
+  },
+  {
+    "op": "fused_add_rms_norm",
+    "shape": [
+      32,
+      1024
+    ],
+    "output": 0,
+    "max_abs": 0.0625,
+    "mean_abs": 0.0008867753786034882,
+    "ref_max": 8.4375
+  },
+  {
+    "op": "fused_add_rms_norm",
+    "shape": [
+      32,
+      1024
+    ],
+    "output": 1,
+    "max_abs": 0.0,
+    "mean_abs": 0.0,
+    "ref_max": 6.0
+  }
+]

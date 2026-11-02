@@ -1,0 +1,254 @@
+{
+  "schema_version": 1,
+  "case": {
+    "scenario": "mixed_concurrent_8",
+    "model_path": "/models/Qwen3.6-27B",
+    "served_model_name": "/models/Qwen3.6-27B",
+    "port": "18100",
+    "concurrency": 8
+  },
+  "started_at": "2026-11-02T02:07:59.777934+00:00",
+  "finished_at": "2026-11-02T02:08:01.332978+00:00",
+  "input": [
+    {
+      "request_id": "text-01",
+      "kind": "text",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Compute 19 + 23. Reply with the number only."
+        }
+      ],
+      "required_terms": [
+        "42"
+      ]
+    },
+    {
+      "request_id": "text-02",
+      "kind": "text",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Name the capital of France. Reply with the city only."
+        }
+      ],
+      "required_terms": [
+        "paris"
+      ]
+    },
+    {
+      "request_id": "text-03",
+      "kind": "text",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Give the opposite of hot. Reply with one word."
+        }
+      ],
+      "required_terms": [
+        "cold"
+      ]
+    },
+    {
+      "request_id": "text-04",
+      "kind": "text",
+      "messages": [
+        {
+          "role": "user",
+          "content": "How many days are in one week? Reply with the number only."
+        }
+      ],
+      "required_terms": [
+        "7"
+      ]
+    },
+    {
+      "request_id": "image-01",
+      "kind": "image",
+      "messages": [
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Name the four quadrant colors in this order: top-left, top-right, bottom-left, bottom-right. Reply with color names only."
+            },
+            {
+              "type": "image_url",
+              "image_url": {
+                "url": "file:///workspace/vllm-plugin-FL/tools/adaptation-gate-cases/images/image_01.png"
+              }
+            }
+          ]
+        }
+      ],
+      "image_path": "/workspace/vllm-plugin-FL/tools/adaptation-gate-cases/images/image_01.png",
+      "required_terms": [
+        "red",
+        "green",
+        "blue",
+        "yellow"
+      ]
+    },
+    {
+      "request_id": "image-02",
+      "kind": "image",
+      "messages": [
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Name the four quadrant colors in this order: top-left, top-right, bottom-left, bottom-right. Reply with color names only."
+            },
+            {
+              "type": "image_url",
+              "image_url": {
+                "url": "file:///workspace/vllm-plugin-FL/tools/adaptation-gate-cases/images/image_02.png"
+              }
+            }
+          ]
+        }
+      ],
+      "image_path": "/workspace/vllm-plugin-FL/tools/adaptation-gate-cases/images/image_02.png",
+      "required_terms": [
+        "blue",
+        "yellow",
+        "red",
+        "green"
+      ]
+    },
+    {
+      "request_id": "image-03",
+      "kind": "image",
+      "messages": [
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Name the three shapes from left to right. Reply with shape names only."
+            },
+            {
+              "type": "image_url",
+              "image_url": {
+                "url": "file:///workspace/vllm-plugin-FL/tools/adaptation-gate-cases/images/image_03.png"
+              }
+            }
+          ]
+        }
+      ],
+      "image_path": "/workspace/vllm-plugin-FL/tools/adaptation-gate-cases/images/image_03.png",
+      "required_terms": [
+        "circle",
+        "square",
+        "triangle"
+      ]
+    },
+    {
+      "request_id": "image-04",
+      "kind": "image",
+      "messages": [
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "How many triangles are in the image? Reply with the number only."
+            },
+            {
+              "type": "image_url",
+              "image_url": {
+                "url": "file:///workspace/vllm-plugin-FL/tools/adaptation-gate-cases/images/image_04.png"
+              }
+            }
+          ]
+        }
+      ],
+      "image_path": "/workspace/vllm-plugin-FL/tools/adaptation-gate-cases/images/image_04.png",
+      "required_terms": [
+        "3"
+      ]
+    }
+  ],
+  "output": [
+    {
+      "request_id": "text-01",
+      "kind": "text",
+      "latency_seconds": 1.441,
+      "text": "",
+      "checks": {},
+      "passed": false,
+      "error": "APIConnectionError: Connection error."
+    },
+    {
+      "request_id": "text-02",
+      "kind": "text",
+      "latency_seconds": 1.334,
+      "text": "",
+      "checks": {},
+      "passed": false,
+      "error": "APIConnectionError: Connection error."
+    },
+    {
+      "request_id": "text-03",
+      "kind": "text",
+      "latency_seconds": 1.159,
+      "text": "",
+      "checks": {},
+      "passed": false,
+      "error": "APIConnectionError: Connection error."
+    },
+    {
+      "request_id": "text-04",
+      "kind": "text",
+      "latency_seconds": 1.447,
+      "text": "",
+      "checks": {},
+      "passed": false,
+      "error": "APIConnectionError: Connection error."
+    },
+    {
+      "request_id": "image-01",
+      "kind": "image",
+      "latency_seconds": 1.324,
+      "text": "",
+      "checks": {},
+      "passed": false,
+      "error": "APIConnectionError: Connection error."
+    },
+    {
+      "request_id": "image-02",
+      "kind": "image",
+      "latency_seconds": 1.251,
+      "text": "",
+      "checks": {},
+      "passed": false,
+      "error": "APIConnectionError: Connection error."
+    },
+    {
+      "request_id": "image-03",
+      "kind": "image",
+      "latency_seconds": 1.349,
+      "text": "",
+      "checks": {},
+      "passed": false,
+      "error": "APIConnectionError: Connection error."
+    },
+    {
+      "request_id": "image-04",
+      "kind": "image",
+      "latency_seconds": 1.433,
+      "text": "",
+      "checks": {},
+      "passed": false,
+      "error": "APIConnectionError: Connection error."
+    }
+  ],
+  "summary": {
+    "request_count": 8,
+    "passed_count": 0,
+    "failed_count": 8,
+    "passed": false
+  }
+}

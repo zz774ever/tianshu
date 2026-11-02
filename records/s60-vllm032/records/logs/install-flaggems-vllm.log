@@ -1,0 +1,26 @@
+Looking in indexes: https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
+Collecting flaggems-vllm @ git+https://github.com/flagos-ai/FlagGems-vllm.git@b5c2c2249319277ccda4d41aa0f65164bd9b2a19
+  Cloning https://github.com/flagos-ai/FlagGems-vllm.git (to revision b5c2c2249319277ccda4d41aa0f65164bd9b2a19) to /tmp/pip-install-vaulsxzz/flaggems-vllm_3d857eb06cfc4b7aa4a882979f990f4c
+  Running command git clone --filter=blob:none --quiet https://github.com/flagos-ai/FlagGems-vllm.git /tmp/pip-install-vaulsxzz/flaggems-vllm_3d857eb06cfc4b7aa4a882979f990f4c
+  fatal: unable to access 'https://github.com/flagos-ai/FlagGems-vllm.git/': GnuTLS recv error (-110): The TLS connection was non-properly terminated.
+  error: subprocess-exited-with-error
+  
+  × git clone --filter=blob:none --quiet https://github.com/flagos-ai/FlagGems-vllm.git /tmp/pip-install-vaulsxzz/flaggems-vllm_3d857eb06cfc4b7aa4a882979f990f4c did not run successfully.
+  │ exit code: 128
+  ╰─> No available output.
+  
+  note: This error originates from a subprocess, and is likely not a problem with pip.
+
+[notice] A new release of pip is available: 26.1.2 -> 26.2.2
+[notice] To update, run: pip install --upgrade pip
+ERROR: Failed to build 'flaggems-vllm' when git clone --filter=blob:none --quiet https://github.com/flagos-ai/flaggems-vllm.git /tmp/pip-install-vaulsxzz/flaggems-vllm_3d857eb06cfc4b7aa4a882979f990f4c
+Traceback (most recent call last):
+  File "/workspace/vllm-plugin-FL/.github/scripts/install_flaggems_vllm.py", line 67, in <module>
+    main()
+  File "/workspace/vllm-plugin-FL/.github/scripts/install_flaggems_vllm.py", line 49, in main
+    pip_install(
+  File "/workspace/vllm-plugin-FL/.github/scripts/install_flaggems_vllm.py", line 38, in pip_install
+    subprocess.run([sys.executable, "-m", "pip", "install", *args], env=env, check=True)
+  File "/usr/local/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/usr/local/bin/python3.12', '-m', 'pip', 'install', '--no-deps', '--no-build-isolation', '--force-reinstall', 'flaggems-vllm @ git+https://github.com/flagos-ai/FlagGems-vllm.git@b5c2c2249319277ccda4d41aa0f65164bd9b2a19']' returned non-zero exit status 1.

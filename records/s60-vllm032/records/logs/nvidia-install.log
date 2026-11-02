@@ -1,0 +1,14 @@
+/usr/local/lib/python3.12/site-packages/paramiko/pkey.py:82: CryptographyDeprecationWarning: TripleDES has been moved to cryptography.hazmat.decrepit.ciphers.algorithms.TripleDES and will be removed from cryptography.hazmat.primitives.ciphers.algorithms in 48.0.0.
+  "cipher": algorithms.TripleDES,
+/usr/local/lib/python3.12/site-packages/paramiko/transport.py:243: CryptographyDeprecationWarning: TripleDES has been moved to cryptography.hazmat.decrepit.ciphers.algorithms.TripleDES and will be removed from cryptography.hazmat.primitives.ciphers.algorithms in 48.0.0.
+  "class": algorithms.TripleDES,
+Looking in indexes: http://mirrors.aliyun.com/pypi/simple
+Collecting uv
+  Downloading http://mirrors.aliyun.com/pypi/packages/5c/43/0688ff5142934238f2812e348f4a24e09b57d48bfb38dd8f850325a0d9de/uv-0.13.6-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (17.3 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 17.3/17.3 MB 756.1 kB/s eta 0:00:00
+Installing collected packages: uv
+Successfully installed uv-0.13.6
+
+[notice] A new release of pip is available: 24.0 -> 26.2.2
+[notice] To update, run: /root/autodl-tmp/s60-reference/venv/bin/python -m pip install --upgrade pip
+Using Python 3.12.3 environment at: autodl-tmp/s60-reference/venv

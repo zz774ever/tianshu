@@ -1,0 +1,139 @@
+[
+  {
+    "prompt": "Paris is the capital of",
+    "exact": false,
+    "first_mismatch": 11,
+    "reference_token": 4126,
+    "candidate_token": 3283,
+    "reference": {
+      "4126": {
+        "logprob": -1.869774341583252,
+        "rank": 1,
+        "text": " center"
+      },
+      "3283": {
+        "logprob": -1.9089856147766113,
+        "rank": 2,
+        "text": " city"
+      },
+      "top5": [
+        [
+          "4126",
+          {
+            "logprob": -1.869774341583252,
+            "rank": 1,
+            "text": " center"
+          }
+        ],
+        [
+          "3283",
+          {
+            "logprob": -1.9089856147766113,
+            "rank": 2,
+            "text": " city"
+          }
+        ],
+        [
+          "6149",
+          {
+            "logprob": -2.323164463043213,
+            "rank": 3,
+            "text": " middle"
+          }
+        ],
+        [
+          "6722",
+          {
+            "logprob": -2.767326831817627,
+            "rank": 4,
+            "text": " capital"
+          }
+        ],
+        [
+          "18070",
+          {
+            "logprob": -3.641231060028076,
+            "rank": 5,
+            "text": " southern"
+          }
+        ]
+      ],
+      "reference_minus_candidate_logprob": 0.039211273193359375
+    },
+    "candidate": {
+      "4126": {
+        "logprob": -1.9195423126220703,
+        "rank": 2,
+        "text": " center"
+      },
+      "3283": {
+        "logprob": -1.889028549194336,
+        "rank": 1,
+        "text": " city"
+      },
+      "top5": [
+        [
+          "3283",
+          {
+            "logprob": -1.889028549194336,
+            "rank": 1,
+            "text": " city"
+          }
+        ],
+        [
+          "4126",
+          {
+            "logprob": -1.9195423126220703,
+            "rank": 2,
+            "text": " center"
+          }
+        ],
+        [
+          "6149",
+          {
+            "logprob": -2.29656982421875,
+            "rank": 3,
+            "text": " middle"
+          }
+        ],
+        [
+          "6722",
+          {
+            "logprob": -2.7729225158691406,
+            "rank": 4,
+            "text": " capital"
+          }
+        ],
+        [
+          "18070",
+          {
+            "logprob": -3.6613340377807617,
+            "rank": 5,
+            "text": " southern"
+          }
+        ]
+      ],
+      "reference_minus_candidate_logprob": -0.030513763427734375
+    }
+  },
+  {
+    "prompt": "The quick brown fox jumps over the",
+    "exact": true,
+    "first_mismatch": null
+  },
+  {
+    "prompt": "What is 17 + 25? Answer briefly.",
+    "exact": true,
+    "first_mismatch": null
+  },
+  {
+    "prompt": "请简要介绍机器学习。",
+    "exact": true,
+    "first_mismatch": null
+  },
+  {
+    "prompt": "Write a Python function to reverse a list.",
+    "exact": true,
+    "first_mismatch": null
+  }
+]

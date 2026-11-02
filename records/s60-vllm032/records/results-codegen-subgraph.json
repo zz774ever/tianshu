@@ -1,0 +1,46 @@
+[
+  {
+    "prompt": "Paris is the capital of",
+    "token_ids": [
+      9625,
+      13,
+      576,
+      6722,
+      315,
+      9625,
+      374,
+      7407,
+      304,
+      279,
+      4126,
+      315,
+      279,
+      23918,
+      13,
+      576
+    ],
+    "text": " France. The capital of France is located in the center of the globe. The"
+  },
+  {
+    "prompt": "The quick brown fox jumps over the",
+    "token_ids": [
+      15678,
+      5562,
+      13,
+      576,
+      3974,
+      13876,
+      38835,
+      374,
+      264,
+      3668,
+      304,
+      279,
+      3364,
+      13,
+      576,
+      3974
+    ],
+    "text": " lazy dog. The quick brown fox is a character in the story. The quick"
+  }
+]

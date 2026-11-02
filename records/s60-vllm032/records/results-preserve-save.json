@@ -1,0 +1,46 @@
+[
+  {
+    "prompt": "Paris is the capital of",
+    "token_ids": [
+      892,
+      3146,
+      30,
+      362,
+      13,
+      9625,
+      425,
+      13,
+      15344,
+      356,
+      13,
+      17689,
+      422,
+      13,
+      9856,
+      271
+    ],
+    "text": " which country? A. France B. Italy C. Spain D. Germany\n\n"
+  },
+  {
+    "prompt": "The quick brown fox jumps over the",
+    "token_ids": [
+      15678,
+      38835,
+      13,
+      576,
+      3974,
+      13876,
+      38835,
+      34208,
+      916,
+      279,
+      15678,
+      38835,
+      13,
+      576,
+      3974,
+      13876
+    ],
+    "text": " lazy fox. The quick brown fox jumps over the lazy fox. The quick brown"
+  }
+]

@@ -1,0 +1,27 @@
+[
+  {
+    "prompt": "Paris is the capital of",
+    "exact": true,
+    "first_mismatch": null
+  },
+  {
+    "prompt": "The quick brown fox jumps over the",
+    "exact": true,
+    "first_mismatch": null
+  },
+  {
+    "prompt": "What is 17 + 25? Answer briefly.",
+    "exact": true,
+    "first_mismatch": null
+  },
+  {
+    "prompt": "请简要介绍机器学习。",
+    "exact": true,
+    "first_mismatch": null
+  },
+  {
+    "prompt": "Write a Python function to reverse a list.",
+    "exact": true,
+    "first_mismatch": null
+  }
+]

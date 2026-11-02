@@ -1,0 +1,524 @@
+[W1030 07:53:53.391538540 gcu_caching_allocator.cpp:2976] Warning: [GCU Allocator] Static initialization: PYTORCH_GCU_ALLOC_CONF="(not set, using default)", selected_backend=native (function BackendStaticInitializer)
+/usr/local/lib/python3.12/site-packages/torch_gcu/transfer_to_gcu.py:443: ImportWarning: 
+    *************************************************************************************************************
+    The torch.Tensor.cuda and torch.nn.Module.cuda are replaced with torch.Tensor.gcu and torch.nn.Module.gcu now..
+    The backend in torch.distributed.init_process_group set to eccl now..
+    The torch.cuda.* and torch.cuda.amp.* are replaced with torch.gcu.* and torch.gcu.amp.* now..
+    The device parameters have been replaced with gcu in the function below:
+    torch.logspace, torch.randint, torch.hann_window, torch.rand, torch.full_like, torch.ones_like, torch.rand_like, torch.randperm, torch.arange, torch.frombuffer, torch.normal, torch._empty_per_channel_affine_quantized, torch.empty_strided, torch.empty_like, torch.scalar_tensor, torch.tril_indices, torch.bartlett_window, torch.ones, torch.sparse_coo_tensor, torch.randn, torch.kaiser_window, torch.tensor, torch.triu_indices, torch.as_tensor, torch.zeros, torch.randint_like, torch.full, torch.eye, torch._sparse_csr_tensor_unsafe, torch.empty, torch._sparse_coo_tensor_unsafe, torch.blackman_window, torch.zeros_like, torch.range, torch.sparse_csr_tensor, torch.randn_like, torch.from_file, torch._cudnn_init_dropout_state, torch._empty_affine_quantized, torch.linspace, torch.hamming_window, torch.empty_quantized, torch._pin_memory, torch.autocast, torch.load, torch.Tensor.new_empty, torch.Tensor.new_empty_strided, torch.Tensor.new_full, torch.Tensor.new_ones, torch.Tensor.new_tensor, torch.Tensor.new_zeros, torch.Tensor.to, torch.nn.Module.to, torch.nn.Module.to_empty
+    *************************************************************************************************************
+    
+  warnings.warn(msg, ImportWarning)
+Failed to load /usr/local/lib/python3.12/site-packages/torchao/_C_cutlass_90a.abi3.so: Could not load this library: /usr/local/lib/python3.12/site-packages/torchao/_C_cutlass_90a.abi3.so
+Failed to load /usr/local/lib/python3.12/site-packages/torchao/_C_mxfp8.cpython-310-x86_64-linux-gnu.so: Could not load this library: /usr/local/lib/python3.12/site-packages/torchao/_C_mxfp8.cpython-310-x86_64-linux-gnu.so
+/usr/local/lib/python3.12/site-packages/Cython/Distutils/old_build_ext.py:15: DeprecationWarning: dep_util is Deprecated. Use functions from setuptools instead.
+  from distutils.dep_util import newer, newer_group
+/usr/local/lib/python3.12/site-packages/torch/jit/_script.py:365: DeprecationWarning: `torch.jit.script_method` is deprecated. Please switch to `torch.compile` or `torch.export`.
+  warnings.warn(
+Failed to import from vllm._C: ModuleNotFoundError("No module named 'vllm._C'")
+/usr/local/lib/python3.12/site-packages/torch_gcu/transfer_to_gcu.py:443: ImportWarning: 
+    *************************************************************************************************************
+    The torch.Tensor.cuda and torch.nn.Module.cuda are replaced with torch.Tensor.gcu and torch.nn.Module.gcu now..
+    The backend in torch.distributed.init_process_group set to eccl now..
+    The torch.cuda.* and torch.cuda.amp.* are replaced with torch.gcu.* and torch.gcu.amp.* now..
+    The device parameters have been replaced with gcu in the function below:
+    torch.logspace, torch.randint, torch.hann_window, torch.rand, torch.full_like, torch.ones_like, torch.rand_like, torch.randperm, torch.arange, torch.frombuffer, torch.normal, torch._empty_per_channel_affine_quantized, torch.empty_strided, torch.empty_like, torch.scalar_tensor, torch.tril_indices, torch.bartlett_window, torch.ones, torch.sparse_coo_tensor, torch.randn, torch.kaiser_window, torch.tensor, torch.triu_indices, torch.as_tensor, torch.zeros, torch.randint_like, torch.full, torch.eye, torch._sparse_csr_tensor_unsafe, torch.empty, torch._sparse_coo_tensor_unsafe, torch.blackman_window, torch.zeros_like, torch.range, torch.sparse_csr_tensor, torch.randn_like, torch.from_file, torch._cudnn_init_dropout_state, torch._empty_affine_quantized, torch.linspace, torch.hamming_window, torch.empty_quantized, torch._pin_memory, torch.autocast, torch.load, torch.Tensor.new_empty, torch.Tensor.new_empty_strided, torch.Tensor.new_full, torch.Tensor.new_ones, torch.Tensor.new_tensor, torch.Tensor.new_zeros, torch.Tensor.to, torch.nn.Module.to, torch.nn.Module.to_empty
+    *************************************************************************************************************
+    
+  warnings.warn(msg, ImportWarning)
+(MainProcess pid=196328) INFO 10-30 07:54:05 [api_utils.py:286] non-default args: {'dtype': 'bfloat16', 'max_model_len': 512, 'gpu_memory_utilization': 0.35, 'max_num_seqs': 4, 'disable_log_stats': True, 'compilation_config': {'mode': None, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': [], 'ir_enable_torch_wrap': None, 'splitting_ops': None, 'compile_mm_encoder': False, 'cudagraph_mm_encoder': False, 'encoder_cudagraph_token_budgets': [], 'encoder_cudagraph_max_vision_items_per_batch': 0, 'encoder_cudagraph_max_frames_per_batch': None, 'cudagraph_decoder_replay': True, 'decoder_replay_cudagraph_capture_sizes': [], 'decoder_replay_trim_threshold': 768, 'compile_sizes': None, 'compile_ranges_endpoints': None, 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'size_asserts': False, 'alignment_asserts': False, 'scalar_asserts': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.NONE: 0>, 'cudagraph_num_of_warmups': 0, 'cudagraph_capture_sizes': None, 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': None, 'pass_config': {}, 'max_cudagraph_capture_size': None, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': None, 'static_all_moe_layers': []}, 'model': '/models/Qwen3-0.6B'}
+(MainProcess pid=196328) INFO 10-30 07:54:05 [model.py:733] Resolved architecture: Qwen3ForCausalLM
+(MainProcess pid=196328) INFO 10-30 07:54:05 [model.py:2152] Using max model len 512
+(MainProcess pid=196328) INFO 10-30 07:54:05 [scheduler.py:307] Chunked prefill is enabled with max_num_batched_tokens=2048.
+(MainProcess pid=196328) INFO 10-30 07:54:05 [kernel.py:467] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native'], gelu_and_mul_sparse=['native'])
+[W1030 07:54:10.379454317 gcu_caching_allocator.cpp:2976] Warning: [GCU Allocator] Static initialization: PYTORCH_GCU_ALLOC_CONF="(not set, using default)", selected_backend=native (function BackendStaticInitializer)
+/usr/local/lib/python3.12/site-packages/torch_gcu/transfer_to_gcu.py:443: ImportWarning: 
+    *************************************************************************************************************
+    The torch.Tensor.cuda and torch.nn.Module.cuda are replaced with torch.Tensor.gcu and torch.nn.Module.gcu now..
+    The backend in torch.distributed.init_process_group set to eccl now..
+    The torch.cuda.* and torch.cuda.amp.* are replaced with torch.gcu.* and torch.gcu.amp.* now..
+    The device parameters have been replaced with gcu in the function below:
+    torch.logspace, torch.randint, torch.hann_window, torch.rand, torch.full_like, torch.ones_like, torch.rand_like, torch.randperm, torch.arange, torch.frombuffer, torch.normal, torch._empty_per_channel_affine_quantized, torch.empty_strided, torch.empty_like, torch.scalar_tensor, torch.tril_indices, torch.bartlett_window, torch.ones, torch.sparse_coo_tensor, torch.randn, torch.kaiser_window, torch.tensor, torch.triu_indices, torch.as_tensor, torch.zeros, torch.randint_like, torch.full, torch.eye, torch._sparse_csr_tensor_unsafe, torch.empty, torch._sparse_coo_tensor_unsafe, torch.blackman_window, torch.zeros_like, torch.range, torch.sparse_csr_tensor, torch.randn_like, torch.from_file, torch._cudnn_init_dropout_state, torch._empty_affine_quantized, torch.linspace, torch.hamming_window, torch.empty_quantized, torch._pin_memory, torch.autocast, torch.load, torch.Tensor.new_empty, torch.Tensor.new_empty_strided, torch.Tensor.new_full, torch.Tensor.new_ones, torch.Tensor.new_tensor, torch.Tensor.new_zeros, torch.Tensor.to, torch.nn.Module.to, torch.nn.Module.to_empty
+    *************************************************************************************************************
+    
+  warnings.warn(msg, ImportWarning)
+Failed to load /usr/local/lib/python3.12/site-packages/torchao/_C_cutlass_90a.abi3.so: Could not load this library: /usr/local/lib/python3.12/site-packages/torchao/_C_cutlass_90a.abi3.so
+Failed to load /usr/local/lib/python3.12/site-packages/torchao/_C_mxfp8.cpython-310-x86_64-linux-gnu.so: Could not load this library: /usr/local/lib/python3.12/site-packages/torchao/_C_mxfp8.cpython-310-x86_64-linux-gnu.so
+/usr/local/lib/python3.12/site-packages/Cython/Distutils/old_build_ext.py:15: DeprecationWarning: dep_util is Deprecated. Use functions from setuptools instead.
+  from distutils.dep_util import newer, newer_group
+/usr/local/lib/python3.12/site-packages/torch/jit/_script.py:365: DeprecationWarning: `torch.jit.script_method` is deprecated. Please switch to `torch.compile` or `torch.export`.
+  warnings.warn(
+(EngineCore pid=196598) WARNING 10-30 07:54:23 [interface.py:371] Failed to import from vllm._C: ModuleNotFoundError("No module named 'vllm._C'")
+/usr/local/lib/python3.12/site-packages/torch_gcu/transfer_to_gcu.py:443: ImportWarning: 
+    *************************************************************************************************************
+    The torch.Tensor.cuda and torch.nn.Module.cuda are replaced with torch.Tensor.gcu and torch.nn.Module.gcu now..
+    The backend in torch.distributed.init_process_group set to eccl now..
+    The torch.cuda.* and torch.cuda.amp.* are replaced with torch.gcu.* and torch.gcu.amp.* now..
+    The device parameters have been replaced with gcu in the function below:
+    torch.logspace, torch.randint, torch.hann_window, torch.rand, torch.full_like, torch.ones_like, torch.rand_like, torch.randperm, torch.arange, torch.frombuffer, torch.normal, torch._empty_per_channel_affine_quantized, torch.empty_strided, torch.empty_like, torch.scalar_tensor, torch.tril_indices, torch.bartlett_window, torch.ones, torch.sparse_coo_tensor, torch.randn, torch.kaiser_window, torch.tensor, torch.triu_indices, torch.as_tensor, torch.zeros, torch.randint_like, torch.full, torch.eye, torch._sparse_csr_tensor_unsafe, torch.empty, torch._sparse_coo_tensor_unsafe, torch.blackman_window, torch.zeros_like, torch.range, torch.sparse_csr_tensor, torch.randn_like, torch.from_file, torch._cudnn_init_dropout_state, torch._empty_affine_quantized, torch.linspace, torch.hamming_window, torch.empty_quantized, torch._pin_memory, torch.autocast, torch.load, torch.Tensor.new_empty, torch.Tensor.new_empty_strided, torch.Tensor.new_full, torch.Tensor.new_ones, torch.Tensor.new_tensor, torch.Tensor.new_zeros, torch.Tensor.to, torch.nn.Module.to, torch.nn.Module.to_empty
+    *************************************************************************************************************
+    
+  warnings.warn(msg, ImportWarning)
+(EngineCore pid=196598) INFO 10-30 07:54:24 [core.py:133] Initializing a V1 LLM engine (v0.32.0) with config: model='/models/Qwen3-0.6B', speculative_config=None, tokenizer='/models/Qwen3-0.6B', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=512, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=True, quantization=None, quantization_config=None, enforce_eager=False, aux_output_config=AuxOutputConfig(enable_return_routed_experts=False, max_bytes=None), kv_cache_dtype=auto, device_config=gcu, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, per_request_spec_decode_metrics='none', kv_cache_metrics=False, kv_cache_metrics_sample=0.01, custom_histogram_buckets=None, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False, jit_monitor_mode='warn', jit_monitor_verbose=False), seed=0, served_model_name=/models/Qwen3-0.6B, enable_prefix_caching=True, enable_chunked_prefill=True, pooler_config=None, compilation_config={'mode': <CompilationMode.VLLM_COMPILE: 3>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': ['none'], 'ir_enable_torch_wrap': True, 'splitting_ops': ['vllm::unified_attention_with_output', 'vllm::unified_mla_attention_with_output', 'vllm::mamba_mixer2', 'vllm::mamba_mixer', 'vllm::short_conv', 'vllm::qwen4_exp_ple_short_conv', 'vllm::qwen4_exp_qsa_with_output', 'vllm::qwen4_exp_qsa_prepare_with_output', 'vllm::linear_attention', 'vllm::qwen_gdn_attention_core', 'vllm::qwen_gdn_attention_core_fused_norm_packed', 'vllm::gdn_attention_core_xpu', 'vllm::olmo_hybrid_gdn_full_forward', 'vllm::sparse_attn_indexer', 'vllm::rocm_aiter_sparse_attn_indexer', 'vllm::deepseek_v4_attention', 'vllm::hpc_rope_norm_forward', 'vllm::unified_kv_cache_update', 'vllm::unified_mla_kv_cache_update'], 'compile_mm_encoder': False, 'cudagraph_mm_encoder': False, 'encoder_cudagraph_token_budgets': [], 'encoder_cudagraph_max_vision_items_per_batch': 0, 'encoder_cudagraph_max_frames_per_batch': None, 'cudagraph_decoder_replay': True, 'decoder_replay_cudagraph_capture_sizes': [], 'decoder_replay_trim_threshold': 768, 'compile_sizes': [], 'compile_ranges_endpoints': [2048], 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'size_asserts': False, 'alignment_asserts': False, 'scalar_asserts': False, 'combo_kernels': False, 'benchmark_combo_kernel': False}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.NONE: 0>, 'cudagraph_num_of_warmups': 1, 'cudagraph_capture_sizes': [], 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': False, 'pass_config': {'fuse_norm_quant': False, 'fuse_act_quant': False, 'fuse_attn_quant': False, 'fuse_allreduce_rms': False, 'enable_qk_norm_rope_fusion': False, 'fuse_rope_kvcache_cat_mla': False, 'fuse_act_padding': False, 'fuse_qk_norm_rope_kvcache': False}, 'max_cudagraph_capture_size': 0, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': False, 'static_all_moe_layers': []}, kernel_config=KernelConfig(ir_op_priority=IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native'], gelu_and_mul_sparse=['native']), enable_flashinfer_autotune=True, enable_rocm_segmented_attn_autotune=False, enable_cutedsl_warmup=True, enable_jit_warmup=True, moe_backend='auto', sparse_indexer_topk_backend='auto', linear_backend='auto', linear_backend_per_quant=None)
+[2026-10-30 07:54:25] [INFO] [vllm_fl.dispatch.backends.vendor.gcu.impl.bilinear_pos_embed] Patched Qwen3-VL bilinear pos embed for GCU (grid.x <= 65535)
+[2026-10-30 07:54:25] [INFO] [vllm_fl.dispatch.backends.vendor.gcu.impl.causal_conv1d] Patched causal-conv launch configs for GCU (prefill={'BLOCK_N': 2048, 'num_stages': 2}, decode={'BLOCK_N': 1024})
+[2026-10-30 07:54:25] [INFO] [vllm_fl.dispatch.backends.vendor.gcu.impl.chunk_delta_h] Patched chunk_gated_delta_rule_fwd_h for GCU (grid.x <= 65535, grid.y <= 255)
+[2026-10-30 07:54:25] [INFO] [vllm_fl.dispatch.backends.vendor.gcu.impl.sampler] Enabled GCU CPU detour for top-k/top-p sampling
+[2026-10-30 07:54:25] [INFO] [vllm_fl.dispatch.backends.vendor.gcu.impl.fused_recurrent_packed_decode] Patched fused_recurrent_gated_delta_rule_packed_decode for GCU (grid.x <= 65535, grid.y <= 255)
+[2026-10-30 07:54:25] [INFO] [vllm_fl.dispatch.backends.vendor.gcu.impl.kv_zeroer] Installed Enflame KV zeroer with device addresses and a bounded grid
+WARNING:root:Skipped registering operator: This is not allowed since there's already a kernel registered from python overriding ne_.Scalar's behavior for PrivateUse1 dispatch key and aten namespace.
+WARNING:root:Skipped registering operator: This is not allowed since there's already a kernel registered from python overriding ne_.Tensor's behavior for PrivateUse1 dispatch key and aten namespace.
+(EngineCore pid=196598) INFO 10-30 07:54:25 [parallel_state.py:1906] world_size=1 rank=0 local_rank=0 distributed_init_method=file:///tmp/vllm_dist_aca107d754b04ca9b3d736233c0e7b35 backend=eccl
+(EngineCore pid=196598) INFO 10-30 07:54:25 [parallel_state.py:2350] rank 0 in world size 1 is assigned as DP rank 0, PP rank 0, PCP rank 0, TP rank 0, ETP rank 0, EP rank N/A, EPLB rank N/A
+[2026-10-30 07:54:28] [INFO] [vllm_fl.dispatch.policy] Using custom config from '/workspace/vllm-plugin-FL/vllm_fl/dispatch/config/enflame.yaml'
+[Note] No specialized fused operators were found for the enflame, generic fused operators will be used by default.
+[2026-10-30 07:54:29] [INFO] [vllm_fl.dispatch.backends.flaggems.register_ops] FlagGems-vllm integration activated: package=/usr/local/lib/python3.12/site-packages/flaggems_vllm/__init__.py
+[2026-10-30 07:54:29] [INFO] [vllm_fl.dispatch] Registering vendor backends for current platform: gcu
+[2026-10-30 07:54:29] [INFO] [vllm_fl.dispatch.backends.vendor.gcu.register_ops] Registered _C::apply_repetition_penalties_ for PrivateUse1
+[2026-10-30 07:54:29] [INFO] [vllm_fl.dispatch.manager] OpManager initialized: 12 ops with 25 implementations
+[2026-10-30 07:54:29] [INFO] [vllm_fl.dispatch.manager] Op 'attention_backend' using 'vendor.gcu' (kind=vendor, vendor=gcu)
+(EngineCore pid=196598) INFO 10-30 07:54:30 [base_loader.py:82] Initializing model took 1.601335 seconds
+(EngineCore pid=196598) INFO 10-30 07:54:30 [weight_utils.py:1108] Filesystem type for checkpoints: LUSTRE. Checkpoint size: 1.40 GiB. Available RAM: 724.28 GiB.
+(EngineCore pid=196598) INFO 10-30 07:54:30 [weight_utils.py:1070] Prefetching checkpoint files into page cache started (in background, num_threads=8, block_size=16777216 bytes)
+Loading safetensors checkpoint shards:   0% Completed | 0/1 [00:00<?, ?it/s]
+(EngineCore pid=196598) INFO 10-30 07:54:30 [weight_utils.py:1042] Prefetching checkpoint files: 10% (1/1)
+(EngineCore pid=196598) INFO 10-30 07:54:30 [weight_utils.py:1065] Prefetching checkpoint files into page cache finished in 0.16s
+Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:00<00:00,  3.50it/s]
+Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:00<00:00,  3.49it/s]
+
+(EngineCore pid=196598) INFO 10-30 07:54:30 [default_loader.py:501] Loading weights took 0.31 seconds
+[2026-10-30 07:54:32] [INFO] [vllm_fl.dispatch.manager] Op 'silu_and_mul' using 'default.flagos' (kind=flagos, vendor=None)
+[2026-10-30 07:54:32] [INFO] [vllm_fl.dispatch.manager] Op 'rotary_embedding' using 'default.flagos' (kind=flagos, vendor=None)
+[2026-10-30 07:54:32] [INFO] [vllm_fl.dispatch.manager] Op 'gelu_and_mul' using 'default.flagos' (kind=flagos, vendor=None)
+[2026-10-30 07:54:32] [INFO] [vllm_fl.dispatch.manager] Op 'rms_norm' using 'default.flagos' (kind=flagos, vendor=None)
+[2026-10-30 07:54:32] [INFO] [vllm_fl.dispatch.manager] Op 'moe_align_block_size' using 'default.flagos' (kind=flagos, vendor=None)
+[2026-10-30 07:54:32] [INFO] [vllm_fl.dispatch.manager] Op 'grouped_topk' using 'default.flagos' (kind=flagos, vendor=None)
+[2026-10-30 07:54:32] [INFO] [vllm_fl.dispatch.manager] Op 'topk_softmax' using 'default.flagos' (kind=flagos, vendor=None)
+[2026-10-30 07:54:32] [INFO] [vllm_fl.dispatch.manager] Op 'invoke_fused_moe_triton_kernel' using 'default.flagos' (kind=flagos, vendor=None)
+[2026-10-30 07:54:32] [INFO] [vllm_fl.dispatch.manager] Op 'moe_sum' using 'default.flagos' (kind=flagos, vendor=None)
+(EngineCore pid=196598) INFO 10-30 07:54:32 [torch_utils.py:295] Reducing Torch threads from 128 to 1 for serving. Set OMP_NUM_THREADS in the external environment to override.
+(EngineCore pid=196598) INFO 10-30 07:54:32 [utils.py:347] Using LBNHC KV cache layout.
+(EngineCore pid=196598) INFO 10-30 07:54:32 [monitor.py:40] [backbone] Starting torch.compile
+(EngineCore pid=196598) INFO 10-30 07:54:38 [backends.py:1102] [backbone] vLLM's torch.compile cache is disabled.
+(EngineCore pid=196598) INFO 10-30 07:54:38 [backends.py:1166] [backbone] Dynamo bytecode transform time: 5.35 s
+(EngineCore pid=196598) INFO 10-30 07:54:40 [backends.py:398] [backbone] Compiling a graph for compile range (1, 2048) takes 1.65 s
+SUBGRAPH_DIFF 0 1 0 [2048, 16, 128] max 0.125 mean 0.0038448008708655834 refmax 28.75
+SUBGRAPH_DIFF 0 1 1 [2048, 8, 128] max 2.0 mean 0.008106288500130177 refmax 284.0
+SUBGRAPH_DIFF 0 1 2 [2048, 8, 128] max 0.001953125 mean 0.0003467993810772896 refmax 0.73046875
+SUBGRAPH_DIFF 0 1 3 [2048, 16, 128] max 3.2433163097151947e+38 mean inf refmax 3.2433163097151947e+38
+SUBGRAPH_DIFF 0 1 4 [2048, 1024] max 0.0 mean 0.0 refmax 0.1181640625
+SUBGRAPH_DIFF 1 1 0 [2048, 16, 128] max 0.0625 mean 0.007642402313649654 refmax 12.0625
+SUBGRAPH_DIFF 1 1 1 [2048, 8, 128] max 0.5 mean 0.011647410690784454 refmax 125.0
+SUBGRAPH_DIFF 1 1 2 [2048, 8, 128] max 0.00390625 mean 0.0007200590334832668 refmax 0.462890625
+SUBGRAPH_DIFF 1 1 3 [2048, 16, 128] max nan mean nan refmax nan
+SUBGRAPH_DIFF 1 1 4 [2048, 1024] max 0.0078125 mean 0.0010343492031097412 refmax 0.6953125
+SUBGRAPH_DIFF 1 2 0 [2048, 16, 128] max 0.05859375 mean 0.007112602237612009 refmax 9.125
+SUBGRAPH_DIFF 1 2 1 [2048, 8, 128] max 0.5 mean 0.013911319896578789 refmax 80.0
+SUBGRAPH_DIFF 1 2 2 [2048, 8, 128] max 0.0048828125 mean 0.0009170393459498882 refmax 0.71484375
+SUBGRAPH_DIFF 1 2 3 [2048, 16, 128] max nan mean nan refmax nan
+SUBGRAPH_DIFF 1 2 4 [2048, 1024] max 0.01171875 mean 0.002424299716949463 refmax 1.9375
+SUBGRAPH_DIFF 1 3 0 [2048, 16, 128] max 0.078125 mean 0.0076555609703063965 refmax 13.375
+SUBGRAPH_DIFF 1 3 1 [2048, 8, 128] max 0.15625 mean 0.007812603376805782 refmax 26.625
+SUBGRAPH_DIFF 1 3 2 [2048, 8, 128] max 0.01171875 mean 0.002234932966530323 refmax 1.6484375
+SUBGRAPH_DIFF 1 3 3 [2048, 16, 128] max 15.1796875 mean 1.5289472341537476 refmax 13.375
+SUBGRAPH_DIFF 1 3 4 [2048, 1024] max 0.01171875 mean 0.002247631549835205 refmax 2.15625
+SUBGRAPH_DIFF 1 4 0 [2048, 16, 128] max 0.03125 mean 0.00462065264582634 refmax 6.71875
+SUBGRAPH_DIFF 1 4 1 [2048, 8, 128] max 0.5 mean 0.01349732093513012 refmax 57.5
+SUBGRAPH_DIFF 1 4 2 [2048, 8, 128] max 0.0078125 mean 0.0020540114492177963 refmax 2.046875
+SUBGRAPH_DIFF 1 4 3 [2048, 16, 128] max nan mean nan refmax 6.71875
+SUBGRAPH_DIFF 1 4 4 [2048, 1024] max 0.015625 mean 0.003658890724182129 refmax 3.96875
+SUBGRAPH_DIFF 1 5 0 [2048, 16, 128] max 0.0625 mean 0.005626403260976076 refmax 13.8125
+SUBGRAPH_DIFF 1 5 1 [2048, 8, 128] max 0.25 mean 0.010159755125641823 refmax 55.5
+SUBGRAPH_DIFF 1 5 2 [2048, 8, 128] max 0.01171875 mean 0.00213005393743515 refmax 2.4375
+SUBGRAPH_DIFF 1 5 3 [2048, 16, 128] max 14.69140625 mean 1.4613912105560303 refmax 13.8125
+SUBGRAPH_DIFF 1 5 4 [2048, 1024] max 0.01953125 mean 0.0037696361541748047 refmax 4.53125
+SUBGRAPH_DIFF 1 6 0 [2048, 16, 128] max 0.0625 mean 0.006017306353896856 refmax 8.6875
+SUBGRAPH_DIFF 1 6 1 [2048, 8, 128] max 0.125 mean 0.008689134381711483 refmax 36.25
+SUBGRAPH_DIFF 1 6 2 [2048, 8, 128] max 0.0078125 mean 0.0017332881689071655 refmax 1.9375
+SUBGRAPH_DIFF 1 6 3 [2048, 16, 128] max nan mean nan refmax 8.6875
+SUBGRAPH_DIFF 1 6 4 [2048, 1024] max 0.03125 mean 0.004364609718322754 refmax 6.15625
+SUBGRAPH_DIFF 1 7 0 [2048, 16, 128] max 0.125 mean 0.00602411525323987 refmax 18.625
+SUBGRAPH_DIFF 1 7 1 [2048, 8, 128] max 0.1015625 mean 0.006365628447383642 refmax 16.5
+SUBGRAPH_DIFF 1 7 2 [2048, 8, 128] max 0.015625 mean 0.0026207678020000458 refmax 3.28125
+SUBGRAPH_DIFF 1 7 3 [2048, 16, 128] max 18.74609375 mean 1.4790107011795044 refmax 18.625
+SUBGRAPH_DIFF 1 7 4 [2048, 1024] max 0.03125 mean 0.005231380462646484 refmax 8.875
+SUBGRAPH_DIFF 1 8 0 [2048, 16, 128] max 0.03125 mean 0.004234813153743744 refmax 5.8125
+SUBGRAPH_DIFF 1 8 1 [2048, 8, 128] max 0.0625 mean 0.005541772115975618 refmax 8.75
+SUBGRAPH_DIFF 1 8 2 [2048, 8, 128] max 0.015625 mean 0.0024401769042015076 refmax 2.96875
+SUBGRAPH_DIFF 1 8 3 [2048, 16, 128] max 2.020426553593072e+38 mean inf refmax 5.8125
+SUBGRAPH_DIFF 1 8 4 [2048, 1024] max 0.03125 mean 0.0063245296478271484 refmax 12.25
+SUBGRAPH_DIFF 1 9 0 [2048, 16, 128] max 0.125 mean 0.004914160817861557 refmax 13.5
+SUBGRAPH_DIFF 1 9 1 [2048, 8, 128] max 0.0625 mean 0.005751059390604496 refmax 14.3125
+SUBGRAPH_DIFF 1 9 2 [2048, 8, 128] max 0.015625 mean 0.002907857298851013 refmax 4.90625
+SUBGRAPH_DIFF 1 9 3 [2048, 16, 128] max 15.0625 mean 1.522343635559082 refmax 13.5
+SUBGRAPH_DIFF 1 9 4 [2048, 1024] max 0.0625 mean 0.006295680999755859 refmax 15.375
+SUBGRAPH_DIFF 1 10 0 [2048, 16, 128] max 0.125 mean 0.00529814325273037 refmax 18.375
+SUBGRAPH_DIFF 1 10 1 [2048, 8, 128] max 0.0625 mean 0.005791973788291216 refmax 26.25
+SUBGRAPH_DIFF 1 10 2 [2048, 8, 128] max 0.015625 mean 0.002851344645023346 refmax 3.9375
+SUBGRAPH_DIFF 1 10 3 [2048, 16, 128] max nan mean nan refmax 18.375
+SUBGRAPH_DIFF 1 10 4 [2048, 1024] max 0.0625 mean 0.006339550018310547 refmax 18.25
+SUBGRAPH_DIFF 1 11 0 [2048, 16, 128] max 0.0625 mean 0.00510810362175107 refmax 7.8125
+SUBGRAPH_DIFF 1 11 1 [2048, 8, 128] max 0.0625 mean 0.006240974646061659 refmax 13.0
+SUBGRAPH_DIFF 1 11 2 [2048, 8, 128] max 0.015625 mean 0.0031173769384622574 refmax 5.25
+SUBGRAPH_DIFF 1 11 3 [2048, 16, 128] max 10.265625 mean 1.6643720865249634 refmax 7.8125
+SUBGRAPH_DIFF 1 11 4 [2048, 1024] max 0.0625 mean 0.00604248046875 refmax 18.5
+SUBGRAPH_DIFF 1 12 0 [2048, 16, 128] max 0.0625 mean 0.004696105606853962 refmax 10.9375
+SUBGRAPH_DIFF 1 12 1 [2048, 8, 128] max 0.0625 mean 0.0045692892745137215 refmax 20.375
+SUBGRAPH_DIFF 1 12 2 [2048, 8, 128] max 0.03125 mean 0.004187334328889847 refmax 5.8125
+SUBGRAPH_DIFF 1 12 3 [2048, 16, 128] max nan mean nan refmax 10.9375
+SUBGRAPH_DIFF 1 12 4 [2048, 1024] max 0.0625 mean 0.008838653564453125 refmax 32.25
+SUBGRAPH_DIFF 1 13 0 [2048, 16, 128] max 0.0625 mean 0.004777425900101662 refmax 15.4375
+SUBGRAPH_DIFF 1 13 1 [2048, 8, 128] max 0.0625 mean 0.004804512485861778 refmax 9.25
+SUBGRAPH_DIFF 1 13 2 [2048, 8, 128] max 0.03125 mean 0.0038410350680351257 refmax 6.125
+SUBGRAPH_DIFF 1 13 3 [2048, 16, 128] max 15.328125 mean 1.5772879123687744 refmax 15.4375
+SUBGRAPH_DIFF 1 13 4 [2048, 1024] max 0.0625 mean 0.0056819915771484375 refmax 39.25
+SUBGRAPH_DIFF 1 14 0 [2048, 16, 128] max 0.125 mean 0.004430340602993965 refmax 25.0
+SUBGRAPH_DIFF 1 14 1 [2048, 8, 128] max 0.0625 mean 0.005230660084635019 refmax 22.375
+SUBGRAPH_DIFF 1 14 2 [2048, 8, 128] max 0.03125 mean 0.004105954430997372 refmax 7.40625
+SUBGRAPH_DIFF 1 14 3 [2048, 16, 128] max nan mean nan refmax 25.0
+SUBGRAPH_DIFF 1 14 4 [2048, 1024] max 0.0625 mean 0.005619525909423828 refmax 48.0
+SUBGRAPH_DIFF 1 15 0 [2048, 16, 128] max 0.0625 mean 0.004479123745113611 refmax 6.625
+SUBGRAPH_DIFF 1 15 1 [2048, 8, 128] max 0.125 mean 0.0066097937524318695 refmax 20.375
+SUBGRAPH_DIFF 1 15 2 [2048, 8, 128] max 0.03125 mean 0.006530970335006714 refmax 9.25
+SUBGRAPH_DIFF 1 15 3 [2048, 16, 128] max 9.53125 mean 1.4566397666931152 refmax 6.625
+SUBGRAPH_DIFF 1 15 4 [2048, 1024] max 0.0625 mean 0.006122112274169922 refmax 54.0
+SUBGRAPH_DIFF 1 16 0 [2048, 16, 128] max 0.046875 mean 0.003937307745218277 refmax 6.4375
+SUBGRAPH_DIFF 1 16 1 [2048, 8, 128] max 0.125 mean 0.005480445455759764 refmax 16.0
+SUBGRAPH_DIFF 1 16 2 [2048, 8, 128] max 0.0625 mean 0.00553018506616354 refmax 8.1875
+SUBGRAPH_DIFF 1 16 3 [2048, 16, 128] max nan mean nan refmax 6.4375
+SUBGRAPH_DIFF 1 16 4 [2048, 1024] max 0.0625 mean 0.0047473907470703125 refmax 50.5
+SUBGRAPH_DIFF 1 17 0 [2048, 16, 128] max 0.125 mean 0.003916105255484581 refmax 22.375
+SUBGRAPH_DIFF 1 17 1 [2048, 8, 128] max 0.0625 mean 0.005226827226579189 refmax 17.875
+SUBGRAPH_DIFF 1 17 2 [2048, 8, 128] max 0.0625 mean 0.00798681378364563 refmax 11.5
+SUBGRAPH_DIFF 1 17 3 [2048, 16, 128] max 22.1513671875 mean 1.4348104000091553 refmax 22.375
+SUBGRAPH_DIFF 1 17 4 [2048, 1024] max 0.0625 mean 0.0037804245948791504 refmax 51.0
+SUBGRAPH_DIFF 1 18 0 [2048, 16, 128] max 0.03125 mean 0.003923681564629078 refmax 5.4375
+SUBGRAPH_DIFF 1 18 1 [2048, 8, 128] max 0.0625 mean 0.005936410278081894 refmax 8.25
+SUBGRAPH_DIFF 1 18 2 [2048, 8, 128] max 0.0625 mean 0.007433876395225525 refmax 10.0
+SUBGRAPH_DIFF 1 18 3 [2048, 16, 128] max nan mean nan refmax 5.4375
+SUBGRAPH_DIFF 1 18 4 [2048, 1024] max 0.0625 mean 0.006780147552490234 refmax 51.75
+SUBGRAPH_DIFF 1 19 0 [2048, 16, 128] max 0.0625 mean 0.004258007742464542 refmax 8.6875
+SUBGRAPH_DIFF 1 19 1 [2048, 8, 128] max 0.0625 mean 0.006391342729330063 refmax 9.25
+SUBGRAPH_DIFF 1 19 2 [2048, 8, 128] max 0.078125 mean 0.010720944032073021 refmax 14.0
+SUBGRAPH_DIFF 1 19 3 [2048, 16, 128] max 11.4375 mean 1.5537853240966797 refmax 8.6875
+SUBGRAPH_DIFF 1 19 4 [2048, 1024] max 0.0625 mean 0.009811878204345703 refmax 44.25
+SUBGRAPH_DIFF 1 20 0 [2048, 16, 128] max 0.0625 mean 0.004232038278132677 refmax 10.25
+SUBGRAPH_DIFF 1 20 1 [2048, 8, 128] max 0.0625 mean 0.005926381330937147 refmax 11.8125
+SUBGRAPH_DIFF 1 20 2 [2048, 8, 128] max 0.0625 mean 0.01144668459892273 refmax 13.0625
+SUBGRAPH_DIFF 1 20 3 [2048, 16, 128] max nan mean nan refmax 10.25
+SUBGRAPH_DIFF 1 20 4 [2048, 1024] max 0.125 mean 0.010845661163330078 refmax 40.0
+SUBGRAPH_DIFF 1 21 0 [2048, 16, 128] max 0.03125 mean 0.004080288112163544 refmax 5.625
+SUBGRAPH_DIFF 1 21 1 [2048, 8, 128] max 0.0625 mean 0.004935845732688904 refmax 12.5625
+SUBGRAPH_DIFF 1 21 2 [2048, 8, 128] max 0.125 mean 0.013935267925262451 refmax 24.125
+SUBGRAPH_DIFF 1 21 3 [2048, 16, 128] max 9.7421875 mean 1.7150753736495972 refmax 5.625
+SUBGRAPH_DIFF 1 21 4 [2048, 1024] max 0.125 mean 0.009242534637451172 refmax 28.0
+SUBGRAPH_DIFF 1 22 0 [2048, 16, 128] max 0.0625 mean 0.0044491044245660305 refmax 11.6875
+SUBGRAPH_DIFF 1 22 1 [2048, 8, 128] max 0.03515625 mean 0.005020600743591785 refmax 7.25
+SUBGRAPH_DIFF 1 22 2 [2048, 8, 128] max 0.09375 mean 0.018373578786849976 refmax 20.375
+SUBGRAPH_DIFF 1 22 3 [2048, 16, 128] max nan mean nan refmax 11.6875
+SUBGRAPH_DIFF 1 22 4 [2048, 1024] max 0.125 mean 0.014054298400878906 refmax 21.25
+SUBGRAPH_DIFF 1 23 0 [2048, 16, 128] max 0.03125 mean 0.005141737870872021 refmax 6.53125
+SUBGRAPH_DIFF 1 23 1 [2048, 8, 128] max 0.125 mean 0.0072058383375406265 refmax 20.75
+SUBGRAPH_DIFF 1 23 2 [2048, 8, 128] max 0.125 mean 0.02300448715686798 refmax 25.125
+SUBGRAPH_DIFF 1 23 3 [2048, 16, 128] max 9.78125 mean 2.0759243965148926 refmax 6.53125
+SUBGRAPH_DIFF 1 23 4 [2048, 1024] max 0.125 mean 0.017258644104003906 refmax 22.875
+SUBGRAPH_DIFF 1 24 0 [2048, 16, 128] max 0.03125 mean 0.004751048982143402 refmax 7.4375
+SUBGRAPH_DIFF 1 24 1 [2048, 8, 128] max 0.125 mean 0.007783964276313782 refmax 17.125
+SUBGRAPH_DIFF 1 24 2 [2048, 8, 128] max 0.15625 mean 0.029655516147613525 refmax 32.5
+SUBGRAPH_DIFF 1 24 3 [2048, 16, 128] max nan mean nan refmax 7.4375
+SUBGRAPH_DIFF 1 24 4 [2048, 1024] max 0.125 mean 0.02347564697265625 refmax 27.375
+SUBGRAPH_DIFF 1 25 0 [2048, 16, 128] max 0.0322265625 mean 0.004784052725881338 refmax 6.6875
+SUBGRAPH_DIFF 1 25 1 [2048, 8, 128] max 0.09375 mean 0.006972861476242542 refmax 15.625
+SUBGRAPH_DIFF 1 25 2 [2048, 8, 128] max 0.25 mean 0.0438193678855896 refmax 42.5
+SUBGRAPH_DIFF 1 25 3 [2048, 16, 128] max 13.40625 mean 2.185760021209717 refmax 6.6875
+SUBGRAPH_DIFF 1 25 4 [2048, 1024] max 0.125 mean 0.027052879333496094 refmax 31.875
+SUBGRAPH_DIFF 1 26 0 [2048, 16, 128] max 0.046875 mean 0.004206170327961445 refmax 6.34375
+SUBGRAPH_DIFF 1 26 1 [2048, 8, 128] max 0.0625 mean 0.0070130592212080956 refmax 11.25
+SUBGRAPH_DIFF 1 26 2 [2048, 8, 128] max 0.25 mean 0.061991140246391296 refmax 47.5
+SUBGRAPH_DIFF 1 26 3 [2048, 16, 128] max nan mean nan refmax 6.34375
+SUBGRAPH_DIFF 1 26 4 [2048, 1024] max 0.1875 mean 0.03672218322753906 refmax 35.0
+SUBGRAPH_DIFF 1 27 0 [2048, 16, 128] max 0.0625 mean 0.006210618652403355 refmax 11.75
+SUBGRAPH_DIFF 1 27 1 [2048, 8, 128] max 0.125 mean 0.007504066918045282 refmax 20.125
+SUBGRAPH_DIFF 1 27 2 [2048, 8, 128] max 0.25 mean 0.05285823345184326 refmax 43.5
+SUBGRAPH_DIFF 1 27 3 [2048, 16, 128] max 25.640625 mean 2.5725626945495605 refmax 11.75
+SUBGRAPH_DIFF 1 27 4 [2048, 1024] max 0.125 mean 0.03381156921386719 refmax 52.0
+SUBGRAPH_DIFF 28 1 0 [2048, 1024] max 0.1875 mean 0.018123134970664978 refmax 16.25
+(EngineCore pid=196598) INFO 10-30 07:54:46 [monitor.py:62] [backbone] torch.compile and initial profiling/warmup run together took 14.01 s in total
+WARNING:vllm_fl.patches.exponential_compat:exponential_ on this stack ignores the generator argument (vendor kernel lacks support); per-request seeded sampling falls back to the global RNG.
+(EngineCore pid=196598) INFO 10-30 07:54:47 [kv_cache_utils.py:2327] GCU KV cache size: 115,968 tokens, Maximum concurrency for 512 tokens per request: 226.50x
+SUBGRAPH_DIFF 0 2 0 [2048, 16, 128] max 0.125 mean 0.0038448008708655834 refmax 28.75
+SUBGRAPH_DIFF 0 2 1 [2048, 8, 128] max 2.0 mean 0.008106288500130177 refmax 284.0
+SUBGRAPH_DIFF 0 2 2 [2048, 8, 128] max 0.001953125 mean 0.0003467993810772896 refmax 0.73046875
+SUBGRAPH_DIFF 0 2 3 [2048, 16, 128] max 0.0 mean 0.0 refmax 28.75
+SUBGRAPH_DIFF 0 2 4 [2048, 1024] max 0.0 mean 0.0 refmax 0.1181640625
+SUBGRAPH_DIFF 1 28 0 [2048, 16, 128] max 0.0625 mean 0.007642402313649654 refmax 12.0625
+SUBGRAPH_DIFF 1 28 1 [2048, 8, 128] max 0.5 mean 0.011647410690784454 refmax 125.0
+SUBGRAPH_DIFF 1 28 2 [2048, 8, 128] max 0.00390625 mean 0.0007200590334832668 refmax 0.462890625
+SUBGRAPH_DIFF 1 28 3 [2048, 16, 128] max 12.58984375 mean 1.1603693962097168 refmax 12.0625
+SUBGRAPH_DIFF 1 28 4 [2048, 1024] max 0.0078125 mean 0.0010343492031097412 refmax 0.6953125
+SUBGRAPH_DIFF 1 29 0 [2048, 16, 128] max 0.05859375 mean 0.007112602237612009 refmax 9.125
+SUBGRAPH_DIFF 1 29 1 [2048, 8, 128] max 0.5 mean 0.013911319896578789 refmax 80.0
+SUBGRAPH_DIFF 1 29 2 [2048, 8, 128] max 0.0048828125 mean 0.0009170393459498882 refmax 0.71484375
+SUBGRAPH_DIFF 1 29 3 [2048, 16, 128] max 4.96875 mean 0.8362530469894409 refmax 1.0703125
+SUBGRAPH_DIFF 1 29 4 [2048, 1024] max 0.01171875 mean 0.002424299716949463 refmax 1.9375
+SUBGRAPH_DIFF 1 30 0 [2048, 16, 128] max 0.078125 mean 0.0076555609703063965 refmax 13.375
+SUBGRAPH_DIFF 1 30 1 [2048, 8, 128] max 0.15625 mean 0.007812603376805782 refmax 26.625
+SUBGRAPH_DIFF 1 30 2 [2048, 8, 128] max 0.01171875 mean 0.002234932966530323 refmax 1.6484375
+SUBGRAPH_DIFF 1 30 3 [2048, 16, 128] max 14.59375 mean 1.5339083671569824 refmax 13.375
+SUBGRAPH_DIFF 1 30 4 [2048, 1024] max 0.01171875 mean 0.002247631549835205 refmax 2.15625
+SUBGRAPH_DIFF 28 2 0 [2048, 1024] max 0.1875 mean 0.018123134970664978 refmax 16.25
+(EngineCore pid=196598) INFO 10-30 07:54:50 [kernel_warmup.py:176] JIT kernel warmup starting.
+JIT kernel warmup (41 compile keys):   0%|          | 0/5 [00:00<?, ?kernel/s]JIT kernel warmup (41 compile keys):  80%|████████  | 4/5 [00:00<00:00, 38.90kernel/s, _DecoratedTritonJitKernel (8 keys)]JIT kernel warmup (41 compile keys): 100%|██████████| 5/5 [00:00<00:00, 46.35kernel/s, ComputeSlotMappingKernel (1 keys)] 
+(EngineCore pid=196598) INFO 10-30 07:54:50 [kernel_warmup.py:189] JIT kernel warmup finished in 0.16s.
+WARNING:vllm_fl.worker.model_runner:Skipping CUDA graph capture. To turn on CUDA graph capture, ensure `cudagraph_mode` was not manually set to `NONE`
+SUBGRAPH_DIFF 0 3 0 [4, 16, 128] max 0.125 mean 0.0038448008708655834 refmax 28.75
+SUBGRAPH_DIFF 0 3 1 [4, 8, 128] max 2.0 mean 0.008106288500130177 refmax 284.0
+SUBGRAPH_DIFF 0 3 2 [4, 8, 128] max 0.001953125 mean 0.0003467993810772896 refmax 0.73046875
+SUBGRAPH_DIFF 0 3 3 [4, 16, 128] max nan mean nan refmax nan
+SUBGRAPH_DIFF 0 3 4 [4, 1024] max 0.0 mean 0.0 refmax 0.1181640625
+SUBGRAPH_DIFF 1 56 0 [4, 16, 128] max 0.05859375 mean 0.007112602703273296 refmax 9.125
+SUBGRAPH_DIFF 1 56 1 [4, 8, 128] max 0.5 mean 0.013911319896578789 refmax 80.0
+SUBGRAPH_DIFF 1 56 2 [4, 8, 128] max 0.0048828125 mean 0.0009170393459498882 refmax 0.71484375
+SUBGRAPH_DIFF 1 56 3 [4, 16, 128] max 2.6916866914644546e+37 mean inf refmax 80.0
+SUBGRAPH_DIFF 1 56 4 [4, 1024] max 0.01171875 mean 0.002424299716949463 refmax 1.9375
+SUBGRAPH_DIFF 28 3 0 [4, 1024] max 0.1875 mean 0.018123134970664978 refmax 16.25
+[WARNING] Field "span" in type "ir.TupleType" duplicates an ancestor field in "ir.Type". Child types should not re-register inherited fields.
+[WARNING] Field "span" in type "ir.FuncType" duplicates an ancestor field in "ir.Type". Child types should not re-register inherited fields.
+[WARNING] Field "span" in type "ir.TensorMapType" duplicates an ancestor field in "ir.Type". Child types should not re-register inherited fields.
+[WARNING] Field "binding_blocks" in type "script.ir_builder.relax.FunctionFrame" duplicates an ancestor field in "script.ir_builder.relax.SeqExprFrame". Child types should not re-register inherited fields.
+[WARNING] Field "output" in type "script.ir_builder.relax.FunctionFrame" duplicates an ancestor field in "script.ir_builder.relax.SeqExprFrame". Child types should not re-register inherited fields.
+(EngineCore pid=196598) INFO 10-30 07:54:51 [jit_monitor.py:84] Kernel JIT monitor activated; monitored JIT compilations during inference will use mode=warn.
+(EngineCore pid=196598) INFO 10-30 07:54:51 [core.py:395] init engine (profile, create kv cache, warmup model) took 19.47 s (compilation: 14.01 s)
+(EngineCore pid=196598) INFO 10-30 07:54:52 [kernel.py:467] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native'], gelu_and_mul_sparse=['native'])
+/usr/local/lib/python3.12/contextlib.py:144: ResourceWarning: Unclosed context <zmq.Context() at 0x77a395784290>
+  next(self.gen)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+(MainProcess pid=196328) INFO 10-30 07:54:52 [hf.py:648] Detected the chat template content format to be 'string'. You can set `--chat-template-content-format` to override this.
+Rendering prompts:   0%|          | 0/2 [00:00<?, ?it/s]Rendering prompts: 100%|██████████| 2/2 [00:00<00:00, 100.11it/s]
+Processed prompts:   0%|          | 0/2 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s](EngineCore pid=196598) WARNING 10-30 07:54:52 [jit_monitor.py:140] Triton kernel JIT compilation during inference: _index_jit_function. This causes a latency spike; consider extending warmup to cover this shape/config.
+(EngineCore pid=196598) WARNING 10-30 07:54:52 [jit_monitor.py:140] Triton kernel JIT compilation during inference: add_func_no_alpha_kernel_rank_1. This causes a latency spike; consider extending warmup to cover this shape/config.
+(EngineCore pid=196598) WARNING 10-30 07:54:52 [jit_monitor.py:140] Triton kernel JIT compilation during inference: fill_scalar_func_kernel_rank_1. This causes a latency spike; consider extending warmup to cover this shape/config.
+(EngineCore pid=196598) WARNING 10-30 07:54:52 [jit_monitor.py:140] Triton kernel JIT compilation during inference: sub_func_tensor_scalar_kernel_rank_1. This causes a latency spike; consider extending warmup to cover this shape/config.
+(EngineCore pid=196598) WARNING 10-30 07:54:52 [jit_monitor.py:140] Triton kernel JIT compilation during inference: mean_kernel_dim_low. This causes a latency spike; consider extending warmup to cover this shape/config.
+(EngineCore pid=196598) WARNING 10-30 07:54:52 [jit_monitor.py:140] Triton kernel JIT compilation during inference: add_func_tensor_scalar_kernel_rank_1. This causes a latency spike; consider extending warmup to cover this shape/config.
+(EngineCore pid=196598) WARNING 10-30 07:54:52 [jit_monitor.py:140] Triton kernel JIT compilation during inference: rsqrt_func_kernel_rank_1. This causes a latency spike; consider extending warmup to cover this shape/config.
+(EngineCore pid=196598) WARNING 10-30 07:54:52 [jit_monitor.py:140] Triton kernel JIT compilation during inference: mul_func_kernel_rank_2_stride_constexpr. This causes a latency spike; consider extending warmup to cover this shape/config.
+(EngineCore pid=196598) WARNING 10-30 07:54:52 [jit_monitor.py:140] Triton kernel JIT compilation during inference: linear_kernel. This causes a latency spike; consider extending warmup to cover this shape/config.
+(EngineCore pid=196598) WARNING 10-30 07:54:52 [jit_monitor.py:140] Triton kernel JIT compilation during inference: pow_func_tensor_scalar_kernel_rank_1. This causes a latency spike; consider extending warmup to cover this shape/config.
+(EngineCore pid=196598) WARNING 10-30 07:54:52 [jit_monitor.py:140] Triton kernel JIT compilation during inference: mul_func_kernel_rank_3_stride_constexpr. This causes a latency spike; consider extending warmup to cover this shape/config.
+(EngineCore pid=196598) WARNING 10-30 07:54:52 [jit_monitor.py:140] Triton kernel JIT compilation during inference: sub_func_no_alpha_kernel_rank_1. This causes a latency spike; consider extending warmup to cover this shape/config.
+SUBGRAPH_DIFF 0 4 0 [5, 16, 128] max 0.125 mean 0.00399070093408227 refmax 28.75
+SUBGRAPH_DIFF 0 4 1 [5, 8, 128] max 2.0 mean 0.007490007672458887 refmax 408.0
+SUBGRAPH_DIFF 0 4 2 [5, 8, 128] max 0.00390625 mean 0.0003234718751627952 refmax 1.34375
+SUBGRAPH_DIFF 0 4 3 [5, 16, 128] max nan mean nan refmax 408.0
+SUBGRAPH_DIFF 0 4 4 [5, 1024] max 0.0 mean 0.0 refmax 0.09228515625
+(EngineCore pid=196598) WARNING 10-30 07:54:52 [jit_monitor.py:140] Triton kernel JIT compilation during inference: lt_func_scalar_kernel_rank_1. This causes a latency spike; consider extending warmup to cover this shape/config.
+(EngineCore pid=196598) WARNING 10-30 07:54:52 [jit_monitor.py:140] Triton kernel JIT compilation during inference: where_inner_kernel_rank_1_stride_constexpr. This causes a latency spike; consider extending warmup to cover this shape/config.
+(EngineCore pid=196598) WARNING 10-30 07:54:52 [jit_monitor.py:140] Triton kernel JIT compilation during inference: _strided_cache_kernel. This causes a latency spike; consider extending warmup to cover this shape/config.
+(EngineCore pid=196598) WARNING 10-30 07:54:52 [jit_monitor.py:140] Triton kernel JIT compilation during inference: silu_forward_kernel_rank_2. This causes a latency spike; consider extending warmup to cover this shape/config.
+(EngineCore pid=196598) WARNING 10-30 07:54:52 [jit_monitor.py:140] Triton kernel JIT compilation during inference: mul_func_kernel_rank_2. This causes a latency spike; consider extending warmup to cover this shape/config.
+SUBGRAPH_DIFF 1 84 0 [5, 16, 128] max 0.125 mean 0.005076061002910137 refmax 20.875
+SUBGRAPH_DIFF 1 84 1 [5, 8, 128] max 0.25 mean 0.004903863649815321 refmax 83.5
+SUBGRAPH_DIFF 1 84 2 [5, 8, 128] max 0.015625 mean 0.0011921277036890388 refmax 2.1875
+SUBGRAPH_DIFF 1 84 3 [5, 16, 128] max nan mean nan refmax nan
+SUBGRAPH_DIFF 1 84 4 [5, 1024] max 0.125 mean 0.0011989265913143754 refmax 6944.0
+SUBGRAPH_DIFF 28 4 0 [5, 1024] max 0.25 mean 0.005948912352323532 refmax 63.5
+(EngineCore pid=196598) WARNING 10-30 07:54:53 [jit_monitor.py:140] Triton kernel JIT compilation during inference: argmax_kernel. This causes a latency spike; consider extending warmup to cover this shape/config.
+SUBGRAPH_DIFF 0 5 0 [8, 16, 128] max 0.125 mean 0.004463440738618374 refmax 32.25
+SUBGRAPH_DIFF 0 5 1 [8, 8, 128] max 2.0 mean 0.007836909033358097 refmax 420.0
+SUBGRAPH_DIFF 0 5 2 [8, 8, 128] max 0.00390625 mean 0.0003335119690746069 refmax 1.34375
+SUBGRAPH_DIFF 0 5 3 [8, 16, 128] max 149.0 mean 3.535369873046875 refmax 143.0
+SUBGRAPH_DIFF 0 5 4 [8, 1024] max 0.0 mean 0.0 refmax 0.09033203125
+SUBGRAPH_DIFF 1 112 0 [8, 16, 128] max 0.0625 mean 0.0029928176663815975 refmax 15.75
+SUBGRAPH_DIFF 1 112 1 [8, 8, 128] max 0.5 mean 0.009547383524477482 refmax 88.5
+SUBGRAPH_DIFF 1 112 2 [8, 8, 128] max 0.0078125 mean 0.001302338787354529 refmax 1.8828125
+SUBGRAPH_DIFF 1 112 3 [8, 16, 128] max 88.5556640625 mean 2.0589396953582764 refmax 88.5
+SUBGRAPH_DIFF 1 112 4 [8, 1024] max 0.0625 mean 0.001302102580666542 refmax 6528.0
+SUBGRAPH_DIFF 28 5 0 [8, 1024] max 0.375 mean 0.007816184312105179 refmax 60.0
+SUBGRAPH_DIFF 0 6 0 [2, 16, 128] max 0.125 mean 0.004200531169772148 refmax 30.5
+SUBGRAPH_DIFF 0 6 1 [2, 8, 128] max 2.0 mean 0.009872201830148697 refmax 396.0
+SUBGRAPH_DIFF 0 6 2 [2, 8, 128] max 0.00390625 mean 0.0003588693216443062 refmax 1.1328125
+SUBGRAPH_DIFF 0 6 3 [2, 16, 128] max 395.9988708496094 mean 3.338623523712158 refmax 396.0
+SUBGRAPH_DIFF 0 6 4 [2, 1024] max 0.0 mean 0.0 refmax 0.0888671875
+SUBGRAPH_DIFF 1 140 0 [2, 16, 128] max 0.125 mean 0.004664418287575245 refmax 20.0
+SUBGRAPH_DIFF 1 140 1 [2, 8, 128] max 0.5 mean 0.009659312665462494 refmax 111.5
+SUBGRAPH_DIFF 1 140 2 [2, 8, 128] max 0.015625 mean 0.00162098603323102 refmax 2.453125
+SUBGRAPH_DIFF 1 140 3 [2, 16, 128] max 111.765625 mean 2.3304476737976074 refmax 111.5
+SUBGRAPH_DIFF 1 140 4 [2, 1024] max 0.015625 mean 0.0011762604117393494 refmax 9.5
+SUBGRAPH_DIFF 28 6 0 [2, 1024] max 0.25 mean 0.006808754056692123 refmax 47.5
+SUBGRAPH_DIFF 0 7 0 [2, 16, 128] max 0.125 mean 0.004683308303356171 refmax 26.25
+SUBGRAPH_DIFF 0 7 1 [2, 8, 128] max 2.0 mean 0.009000405669212341 refmax 416.0
+SUBGRAPH_DIFF 0 7 2 [2, 8, 128] max 0.00390625 mean 0.0003695187624543905 refmax 0.87109375
+SUBGRAPH_DIFF 0 7 3 [2, 16, 128] max 416.0 mean 1.7730664014816284 refmax 416.0
+SUBGRAPH_DIFF 0 7 4 [2, 1024] max 0.0 mean 0.0 refmax 0.0849609375
+SUBGRAPH_DIFF 1 168 0 [2, 16, 128] max 0.0625 mean 0.0043578976765275 refmax 15.4375
+SUBGRAPH_DIFF 1 168 1 [2, 8, 128] max 0.5 mean 0.008079756051301956 refmax 74.5
+SUBGRAPH_DIFF 1 168 2 [2, 8, 128] max 0.0078125 mean 0.0013100551441311836 refmax 2.296875
+SUBGRAPH_DIFF 1 168 3 [2, 16, 128] max 74.5966796875 mean 2.2595324516296387 refmax 74.5
+SUBGRAPH_DIFF 1 168 4 [2, 1024] max 0.015625 mean 0.0012031979858875275 refmax 10.625
+SUBGRAPH_DIFF 28 7 0 [2, 1024] max 0.125 mean 0.004756659269332886 refmax 68.5
+SUBGRAPH_DIFF 0 8 0 [2, 16, 128] max 0.125 mean 0.004137169104069471 refmax 30.5
+SUBGRAPH_DIFF 0 8 1 [2, 8, 128] max 2.0 mean 0.009094029664993286 refmax 408.0
+SUBGRAPH_DIFF 0 8 2 [2, 8, 128] max 0.00390625 mean 0.00033812306355684996 refmax 1.1328125
+SUBGRAPH_DIFF 0 8 3 [2, 16, 128] max 408.0 mean 1.741241455078125 refmax 408.0
+SUBGRAPH_DIFF 0 8 4 [2, 1024] max 0.0 mean 0.0 refmax 0.09130859375
+SUBGRAPH_DIFF 1 196 0 [2, 16, 128] max 0.0625 mean 0.004964292515069246 refmax 20.5
+SUBGRAPH_DIFF 1 196 1 [2, 8, 128] max 0.25 mean 0.006707671098411083 refmax 57.0
+SUBGRAPH_DIFF 1 196 2 [2, 8, 128] max 0.015625 mean 0.0022572220768779516 refmax 2.671875
+SUBGRAPH_DIFF 1 196 3 [2, 16, 128] max 57.1572265625 mean 1.9686970710754395 refmax 57.0
+SUBGRAPH_DIFF 1 196 4 [2, 1024] max 0.03125 mean 0.0016236603260040283 refmax 12.4375
+SUBGRAPH_DIFF 28 8 0 [2, 1024] max 0.25 mean 0.005081400275230408 refmax 47.75
+SUBGRAPH_DIFF 0 9 0 [2, 16, 128] max 0.125 mean 0.003909784369170666 refmax 28.75
+SUBGRAPH_DIFF 0 9 1 [2, 8, 128] max 1.0 mean 0.00557878240942955 refmax 237.0
+SUBGRAPH_DIFF 0 9 2 [2, 8, 128] max 0.00390625 mean 0.0003398909466341138 refmax 1.1796875
+SUBGRAPH_DIFF 0 9 3 [2, 16, 128] max 237.0 mean 1.4365936517715454 refmax 237.0
+SUBGRAPH_DIFF 0 9 4 [2, 1024] max 0.0 mean 0.0 refmax 0.076171875
+SUBGRAPH_DIFF 1 224 0 [2, 16, 128] max 0.0625 mean 0.0037091057747602463 refmax 16.375
+SUBGRAPH_DIFF 1 224 1 [2, 8, 128] max 0.125 mean 0.0056366268545389175 refmax 24.75
+SUBGRAPH_DIFF 1 224 2 [2, 8, 128] max 0.015625 mean 0.001988575328141451 refmax 2.421875
+SUBGRAPH_DIFF 1 224 3 [2, 16, 128] max 25.4296875 mean 1.5768035650253296 refmax 24.75
+SUBGRAPH_DIFF 1 224 4 [2, 1024] max 0.015625 mean 0.001406446099281311 refmax 13.25
+SUBGRAPH_DIFF 28 9 0 [2, 1024] max 0.125 mean 0.004889532923698425 refmax 65.0
+SUBGRAPH_DIFF 0 10 0 [2, 16, 128] max 0.125 mean 0.004576566629111767 refmax 32.25
+SUBGRAPH_DIFF 0 10 1 [2, 8, 128] max 2.0 mean 0.006684239953756332 refmax 420.0
+SUBGRAPH_DIFF 0 10 2 [2, 8, 128] max 0.00390625 mean 0.0003224159881938249 refmax 0.73046875
+SUBGRAPH_DIFF 0 10 3 [2, 16, 128] max 420.0 mean 1.9656469821929932 refmax 420.0
+SUBGRAPH_DIFF 0 10 4 [2, 1024] max 0.0 mean 0.0 refmax 0.09033203125
+SUBGRAPH_DIFF 1 252 0 [2, 16, 128] max 0.125 mean 0.004469837062060833 refmax 17.625
+SUBGRAPH_DIFF 1 252 1 [2, 8, 128] max 0.25 mean 0.006468251347541809 refmax 35.5
+SUBGRAPH_DIFF 1 252 2 [2, 8, 128] max 0.03125 mean 0.002834304701536894 refmax 5.5
+SUBGRAPH_DIFF 1 252 3 [2, 16, 128] max 36.984375 mean 1.9264106750488281 refmax 35.5
+SUBGRAPH_DIFF 1 252 4 [2, 1024] max 0.015625 mean 0.001625359058380127 refmax 11.3125
+SUBGRAPH_DIFF 28 10 0 [2, 1024] max 0.125 mean 0.0048304349184036255 refmax 36.0
+SUBGRAPH_DIFF 0 11 0 [2, 16, 128] max 0.125 mean 0.004370625596493483 refmax 28.25
+SUBGRAPH_DIFF 0 11 1 [2, 8, 128] max 2.0 mean 0.008233452215790749 refmax 376.0
+SUBGRAPH_DIFF 0 11 2 [2, 8, 128] max 0.00390625 mean 0.00036139655276201665 refmax 1.0
+SUBGRAPH_DIFF 0 11 3 [2, 16, 128] max 376.0 mean 1.7871829271316528 refmax 376.0
+SUBGRAPH_DIFF 0 11 4 [2, 1024] max 0.0 mean 0.0 refmax 0.0859375
+SUBGRAPH_DIFF 1 280 0 [2, 16, 128] max 0.125 mean 0.005161024630069733 refmax 20.0
+SUBGRAPH_DIFF 1 280 1 [2, 8, 128] max 0.5 mean 0.007825726643204689 refmax 61.25
+SUBGRAPH_DIFF 1 280 2 [2, 8, 128] max 0.015625 mean 0.0027011102065443993 refmax 3.203125
+SUBGRAPH_DIFF 1 280 3 [2, 16, 128] max 60.59375 mean 2.04238224029541 refmax 61.25
+SUBGRAPH_DIFF 1 280 4 [2, 1024] max 0.03125 mean 0.0019672438502311707 refmax 15.625
+SUBGRAPH_DIFF 28 11 0 [2, 1024] max 0.25 mean 0.0058252811431884766 refmax 51.5
+SUBGRAPH_DIFF 0 12 0 [2, 16, 128] max 0.125 mean 0.004610557109117508 refmax 30.5
+SUBGRAPH_DIFF 0 12 1 [2, 8, 128] max 2.0 mean 0.008266650140285492 refmax 396.0
+SUBGRAPH_DIFF 0 12 2 [2, 8, 128] max 0.00390625 mean 0.0003351522027514875 refmax 0.6640625
+SUBGRAPH_DIFF 0 12 3 [2, 16, 128] max 396.0 mean 1.8602712154388428 refmax 396.0
+SUBGRAPH_DIFF 0 12 4 [2, 1024] max 0.0 mean 0.0 refmax 0.0947265625
+SUBGRAPH_DIFF 1 308 0 [2, 16, 128] max 0.0390625 mean 0.003735498059540987 refmax 7.71875
+SUBGRAPH_DIFF 1 308 1 [2, 8, 128] max 0.125 mean 0.006254933774471283 refmax 20.375
+SUBGRAPH_DIFF 1 308 2 [2, 8, 128] max 0.017578125 mean 0.002872011624276638 refmax 6.5
+SUBGRAPH_DIFF 1 308 3 [2, 16, 128] max 21.3515625 mean 1.7618343830108643 refmax 20.375
+SUBGRAPH_DIFF 1 308 4 [2, 1024] max 0.015625 mean 0.0018362700939178467 refmax 21.0
+SUBGRAPH_DIFF 28 12 0 [2, 1024] max 0.25 mean 0.004837248474359512 refmax 34.75
+SUBGRAPH_DIFF 0 13 0 [2, 16, 128] max 0.125 mean 0.0036407727748155594 refmax 27.0
+SUBGRAPH_DIFF 0 13 1 [2, 8, 128] max 1.0 mean 0.005559174343943596 refmax 382.0
+SUBGRAPH_DIFF 0 13 2 [2, 8, 128] max 0.00390625 mean 0.000322533305734396 refmax 1.1875
+SUBGRAPH_DIFF 0 13 3 [2, 16, 128] max 382.0 mean 1.490053415298462 refmax 382.0
+SUBGRAPH_DIFF 0 13 4 [2, 1024] max 0.0 mean 0.0 refmax 0.06982421875
+SUBGRAPH_DIFF 1 336 0 [2, 16, 128] max 0.03125 mean 0.0037061222828924656 refmax 7.15625
+SUBGRAPH_DIFF 1 336 1 [2, 8, 128] max 0.25 mean 0.005531057249754667 refmax 42.25
+SUBGRAPH_DIFF 1 336 2 [2, 8, 128] max 0.015625 mean 0.00272190198302269 refmax 4.59375
+SUBGRAPH_DIFF 1 336 3 [2, 16, 128] max 44.8125 mean 1.5164895057678223 refmax 42.25
+SUBGRAPH_DIFF 1 336 4 [2, 1024] max 0.125 mean 0.0019300878047943115 refmax 25.5
+SUBGRAPH_DIFF 28 13 0 [2, 1024] max 0.25 mean 0.006443127989768982 refmax 60.25
+SUBGRAPH_DIFF 0 14 0 [2, 16, 128] max 0.25 mean 0.004320208914577961 refmax 28.25
+SUBGRAPH_DIFF 0 14 1 [2, 8, 128] max 2.0 mean 0.00927369762212038 refmax 314.0
+SUBGRAPH_DIFF 0 14 2 [2, 8, 128] max 0.00390625 mean 0.00032808471587486565 refmax 1.34375
+SUBGRAPH_DIFF 0 14 3 [2, 16, 128] max 314.0 mean 1.5510917901992798 refmax 314.0
+SUBGRAPH_DIFF 0 14 4 [2, 1024] max 0.0 mean 0.0 refmax 0.07421875
+SUBGRAPH_DIFF 1 364 0 [2, 16, 128] max 0.0703125 mean 0.0057252501137554646 refmax 15.9375
+SUBGRAPH_DIFF 1 364 1 [2, 8, 128] max 0.078125 mean 0.003963393624871969 refmax 13.375
+SUBGRAPH_DIFF 1 364 2 [2, 8, 128] max 0.125 mean 0.003699870780110359 refmax 36.0
+SUBGRAPH_DIFF 1 364 3 [2, 16, 128] max 13.56640625 mean 1.2708485126495361 refmax 13.375
+SUBGRAPH_DIFF 1 364 4 [2, 1024] max 0.03125 mean 0.0023426711559295654 refmax 25.5
+SUBGRAPH_DIFF 28 14 0 [2, 1024] max 0.5 mean 0.006164398044347763 refmax 74.0
+SUBGRAPH_DIFF 0 15 0 [2, 16, 128] max 0.25 mean 0.004464888945221901 refmax 32.75
+SUBGRAPH_DIFF 0 15 1 [2, 8, 128] max 2.0 mean 0.00952829048037529 refmax 398.0
+SUBGRAPH_DIFF 0 15 2 [2, 8, 128] max 0.00390625 mean 0.000320770894177258 refmax 0.6640625
+SUBGRAPH_DIFF 0 15 3 [2, 16, 128] max 398.0 mean 1.9680061340332031 refmax 398.0
+SUBGRAPH_DIFF 0 15 4 [2, 1024] max 0.0 mean 0.0 refmax 0.09423828125
+SUBGRAPH_DIFF 1 392 0 [2, 16, 128] max 0.125 mean 0.004731920547783375 refmax 23.375
+SUBGRAPH_DIFF 1 392 1 [2, 8, 128] max 0.125 mean 0.005988810211420059 refmax 19.375
+SUBGRAPH_DIFF 1 392 2 [2, 8, 128] max 0.03125 mean 0.003238257486373186 refmax 4.21875
+SUBGRAPH_DIFF 1 392 3 [2, 16, 128] max 20.484375 mean 1.5025252103805542 refmax 19.375
+SUBGRAPH_DIFF 1 392 4 [2, 1024] max 0.03125 mean 0.0021615326404571533 refmax 28.375
+SUBGRAPH_DIFF 28 15 0 [2, 1024] max 0.25 mean 0.005032878369092941 refmax 40.75
+SUBGRAPH_DIFF 0 16 0 [2, 16, 128] max 0.125 mean 0.0037181361112743616 refmax 28.75
+SUBGRAPH_DIFF 0 16 1 [2, 8, 128] max 1.0 mean 0.005352206993848085 refmax 382.0
+SUBGRAPH_DIFF 0 16 2 [2, 8, 128] max 0.00390625 mean 0.0003048883518204093 refmax 1.1875
+SUBGRAPH_DIFF 0 16 3 [2, 16, 128] max 382.0 mean 1.4643497467041016 refmax 382.0
+SUBGRAPH_DIFF 0 16 4 [2, 1024] max 0.0 mean 0.0 refmax 0.0673828125
+SUBGRAPH_DIFF 1 420 0 [2, 16, 128] max 0.0390625 mean 0.0039335256442427635 refmax 7.5
+SUBGRAPH_DIFF 1 420 1 [2, 8, 128] max 0.25 mean 0.008627202361822128 refmax 62.0
+SUBGRAPH_DIFF 1 420 2 [2, 8, 128] max 0.03125 mean 0.00461573526263237 refmax 5.75
+SUBGRAPH_DIFF 1 420 3 [2, 16, 128] max 62.0908203125 mean 2.1788113117218018 refmax 62.0
+SUBGRAPH_DIFF 1 420 4 [2, 1024] max 0.25 mean 0.0025933384895324707 refmax 32.75
+SUBGRAPH_DIFF 28 16 0 [2, 1024] max 0.25 mean 0.0056939274072647095 refmax 67.5
+SUBGRAPH_DIFF 0 17 0 [2, 16, 128] max 0.25 mean 0.004758867435157299 refmax 26.0
+SUBGRAPH_DIFF 0 17 1 [2, 8, 128] max 2.0 mean 0.009357728064060211 refmax 304.0
+SUBGRAPH_DIFF 0 17 2 [2, 8, 128] max 0.00390625 mean 0.0003225589753128588 refmax 1.34375
+SUBGRAPH_DIFF 0 17 3 [2, 16, 128] max 304.0 mean 1.5864877700805664 refmax 304.0
+SUBGRAPH_DIFF 0 17 4 [2, 1024] max 0.0 mean 0.0 refmax 0.055908203125
+SUBGRAPH_DIFF 1 448 0 [2, 16, 128] max 0.0625 mean 0.003155793296173215 refmax 7.5625
+SUBGRAPH_DIFF 1 448 1 [2, 8, 128] max 0.0625 mean 0.005617732182145119 refmax 16.625
+SUBGRAPH_DIFF 1 448 2 [2, 8, 128] max 0.03125 mean 0.004258163273334503 refmax 6.5625
+SUBGRAPH_DIFF 1 448 3 [2, 16, 128] max 17.61328125 mean 1.6703579425811768 refmax 16.625
+SUBGRAPH_DIFF 1 448 4 [2, 1024] max 0.125 mean 0.0025075674057006836 refmax 31.375
+SUBGRAPH_DIFF 28 17 0 [2, 1024] max 0.25 mean 0.006858572363853455 refmax 83.0
+SUBGRAPH_DIFF 0 18 0 [2, 16, 128] max 0.125 mean 0.004638445097953081 refmax 27.0
+SUBGRAPH_DIFF 0 18 1 [2, 8, 128] max 2.0 mean 0.00867709144949913 refmax 402.0
+SUBGRAPH_DIFF 0 18 2 [2, 8, 128] max 0.00390625 mean 0.0003131633857265115 refmax 0.71875
+SUBGRAPH_DIFF 0 18 3 [2, 16, 128] max 402.0 mean 1.9410349130630493 refmax 402.0
+SUBGRAPH_DIFF 0 18 4 [2, 1024] max 0.0 mean 0.0 refmax 0.09814453125
+SUBGRAPH_DIFF 1 476 0 [2, 16, 128] max 0.0625 mean 0.0035102502442896366 refmax 11.5
+SUBGRAPH_DIFF 1 476 1 [2, 8, 128] max 0.125 mean 0.004698658362030983 refmax 36.0
+SUBGRAPH_DIFF 1 476 2 [2, 8, 128] max 0.0625 mean 0.006747789680957794 refmax 11.5625
+SUBGRAPH_DIFF 1 476 3 [2, 16, 128] max 36.6015625 mean 1.6294074058532715 refmax 36.0
+SUBGRAPH_DIFF 1 476 4 [2, 1024] max 0.0625 mean 0.003770098090171814 refmax 39.25
+SUBGRAPH_DIFF 28 18 0 [2, 1024] max 0.25 mean 0.0058020129799842834 refmax 46.75
+SUBGRAPH_DIFF 0 19 0 [2, 16, 128] max 0.125 mean 0.004237014800310135 refmax 30.5
+SUBGRAPH_DIFF 0 19 1 [2, 8, 128] max 1.0 mean 0.009538108482956886 refmax 223.0
+SUBGRAPH_DIFF 0 19 2 [2, 8, 128] max 0.00390625 mean 0.0003708314325194806 refmax 1.1328125
+SUBGRAPH_DIFF 0 19 3 [2, 16, 128] max 223.0 mean 1.2782025337219238 refmax 223.0
+SUBGRAPH_DIFF 0 19 4 [2, 1024] max 0.0 mean 0.0 refmax 0.068359375
+SUBGRAPH_DIFF 1 504 0 [2, 16, 128] max 0.0625 mean 0.0032348637469112873 refmax 9.6875
+SUBGRAPH_DIFF 1 504 1 [2, 8, 128] max 0.0625 mean 0.005308723077178001 refmax 14.125
+SUBGRAPH_DIFF 1 504 2 [2, 8, 128] max 0.0625 mean 0.0062890853732824326 refmax 12.375
+SUBGRAPH_DIFF 1 504 3 [2, 16, 128] max 14.9375 mean 1.869020700454712 refmax 14.125
+SUBGRAPH_DIFF 1 504 4 [2, 1024] max 0.0625 mean 0.0037981271743774414 refmax 56.25
+SUBGRAPH_DIFF 28 19 0 [2, 1024] max 0.25 mean 0.0061538852751255035 refmax 60.25
+(EngineCore pid=196598) WARNING 10-30 07:54:55 [jit_monitor.py:140] Triton kernel JIT compilation during inference: _scatter_jit_function. This causes a latency spike; consider extending warmup to cover this shape/config.
+(EngineCore pid=196598) WARNING 10-30 07:54:56 [jit_monitor.py:140] Triton kernel JIT compilation during inference: index_select_kernel. This causes a latency spike; consider extending warmup to cover this shape/config.
+SUBGRAPH_DIFF 0 20 0 [1, 16, 128] max 0.125 mean 0.004290684126317501 refmax 26.25
+SUBGRAPH_DIFF 0 20 1 [1, 8, 128] max 1.0 mean 0.007091939449310303 refmax 237.0
+SUBGRAPH_DIFF 0 20 2 [1, 8, 128] max 0.00390625 mean 0.0003848387859761715 refmax 0.87109375
+SUBGRAPH_DIFF 0 20 3 [1, 16, 128] max nan mean nan refmax 237.0
+SUBGRAPH_DIFF 0 20 4 [1, 1024] max 0.0 mean 0.0 refmax 0.076171875
+(EngineCore pid=196598) WARNING 10-30 07:54:56 [jit_monitor.py:140] Triton kernel JIT compilation during inference: silu_forward_kernel_rank_1. This causes a latency spike; consider extending warmup to cover this shape/config.
+(EngineCore pid=196598) WARNING 10-30 07:54:56 [jit_monitor.py:140] Triton kernel JIT compilation during inference: mul_func_kernel_rank_1. This causes a latency spike; consider extending warmup to cover this shape/config.
+SUBGRAPH_DIFF 1 532 0 [1, 16, 128] max 0.046875 mean 0.003151489421725273 refmax 8.375
+SUBGRAPH_DIFF 1 532 1 [1, 8, 128] max 0.0625 mean 0.0050735026597976685 refmax 21.125
+SUBGRAPH_DIFF 1 532 2 [1, 8, 128] max 0.0625 mean 0.008965387009084225 refmax 11.5
+SUBGRAPH_DIFF 1 532 3 [1, 16, 128] max 89.13671875 mean 1.6944682598114014 refmax 8.375
+SUBGRAPH_DIFF 1 532 4 [1, 1024] max 0.5 mean 0.0051615238189697266 refmax 66.5
+SUBGRAPH_DIFF 28 20 0 [1, 1024] max 0.25 mean 0.00615750253200531 refmax 74.5
+Processed prompts:  50%|█████     | 1/2 [00:03<00:03,  3.47s/it, est. speed input: 1.44 toks/s, output: 4.61 toks/s]Processed prompts: 100%|██████████| 2/2 [00:03<00:00,  3.47s/it, est. speed input: 3.46 toks/s, output: 9.22 toks/s]Processed prompts: 100%|██████████| 2/2 [00:03<00:00,  1.74s/it, est. speed input: 3.46 toks/s, output: 9.22 toks/s]
+[{'prompt': 'Paris is the capital of', 'token_ids': [9625, 13, 576, 6722, 315, 9625, 374, 7407, 304, 279, 4126, 315, 279, 23918, 13, 576], 'text': ' France. The capital of France is located in the center of the globe. The'}, {'prompt': 'The quick brown fox jumps over the', 'token_ids': [15678, 5562, 13, 576, 3974, 13876, 38835, 374, 264, 3668, 304, 279, 3364, 13, 576, 3974], 'text': ' lazy dog. The quick brown fox is a character in the story. The quick'}]
+(MainProcess pid=196328) INFO 10-30 07:54:56 [core_client.py:770] [shutdown] MPClient: start timeout=default
+(MainProcess pid=196328) INFO 10-30 07:54:56 [core_client.py:772] [shutdown] MPClient: stopping engine manager
+(MainProcess pid=196328) INFO 10-30 07:54:56 [utils.py:628] [shutdown] Process manager: send sigterm to process EngineCore
+(EngineCore pid=196598) INFO 10-30 07:54:56 [core.py:1454] [shutdown] EngineCore: trigger received signal=SIGTERM
+(EngineCore pid=196598) INFO 10-30 07:54:56 [core.py:1635] [shutdown] EngineCore: start mode=abort timeout=0s
+(EngineCore pid=196598) INFO 10-30 07:54:56 [core.py:1666] [shutdown] EngineCore: request processing complete; starting resource teardown
+(EngineCore pid=196598) INFO 10-30 07:54:56 [core.py:1499] [shutdown] EngineCore: exiting busy loop
+(EngineCore pid=196598) WARNING 10-30 07:54:57 [parallel_state.py:2557] torch.accelerator.empty_host_cache() only available in Pytorch >=2.9
+(MainProcess pid=196328) WARNING 10-30 07:55:01 [utils.py:648] [shutdown] Process manager: force killing remaining processes count=1
+(MainProcess pid=196328) WARNING 10-30 07:55:01 [utils.py:653] [shutdown] Process manager: force killing remaining process EngineCore pid 196598
+(MainProcess pid=196328) INFO 10-30 07:55:01 [core_client.py:774] [shutdown] MPClient: engine manager stopped
+(MainProcess pid=196328) INFO 10-30 07:55:01 [core_client.py:775] [shutdown] MPClient: cleaning up background resources
+(MainProcess pid=196328) INFO 10-30 07:55:01 [core_client.py:777] [shutdown] MPClient: complete
+/usr/local/lib/python3.12/threading.py:1016: ResourceWarning: Unclosed context <zmq.Context() at 0x7f33f0eb7290>
+  del self._target, self._args, self._kwargs
+ResourceWarning: Enable tracemalloc to get the object allocation traceback

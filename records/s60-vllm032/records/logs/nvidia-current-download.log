@@ -1,0 +1,26 @@
+/usr/local/lib/python3.12/site-packages/paramiko/pkey.py:82: CryptographyDeprecationWarning: TripleDES has been moved to cryptography.hazmat.decrepit.ciphers.algorithms.TripleDES and will be removed from cryptography.hazmat.primitives.ciphers.algorithms in 48.0.0.
+  "cipher": algorithms.TripleDES,
+/usr/local/lib/python3.12/site-packages/paramiko/transport.py:243: CryptographyDeprecationWarning: TripleDES has been moved to cryptography.hazmat.decrepit.ciphers.algorithms.TripleDES and will be removed from cryptography.hazmat.primitives.ciphers.algorithms in 48.0.0.
+  "class": algorithms.TripleDES,
+DEBUG Transient request failure for `https://github.com/vllm-project/vllm/releases/download/v0.32.0/vllm-0.32.0%2Bcu129-cp38-abi3-manylinux_2_28_x86_64.whl`, retrying: error sending request for url (https://github.com/vllm-project/vllm/releases/download/v0.32.0/vllm-0.32.0%2Bcu129-cp38-abi3-manylinux_2_28_x86_64.whl)
+  Caused by: client error (Connect)
+  Caused by: operation timed out
+DEBUG Transient request failure for `https://github.com/vllm-project/vllm/releases/download/v0.32.0/vllm-0.32.0%2Bcu129-cp38-abi3-manylinux_2_28_x86_64.whl`, retrying: error sending request for url (https://github.com/vllm-project/vllm/releases/download/v0.32.0/vllm-0.32.0%2Bcu129-cp38-abi3-manylinux_2_28_x86_64.whl)
+  Caused by: client error (Connect)
+  Caused by: operation timed out
+DEBUG Transient request failure for `https://github.com/vllm-project/vllm/releases/download/v0.32.0/vllm-0.32.0%2Bcu129-cp38-abi3-manylinux_2_28_x86_64.whl`, retrying: error sending request for url (https://github.com/vllm-project/vllm/releases/download/v0.32.0/vllm-0.32.0%2Bcu129-cp38-abi3-manylinux_2_28_x86_64.whl)
+  Caused by: client error (Connect)
+  Caused by: operation timed out
+DEBUG Transient request failure for `https://github.com/vllm-project/vllm/releases/download/v0.32.0/vllm-0.32.0%2Bcu129-cp38-abi3-manylinux_2_28_x86_64.whl`, retrying: error sending request for url (https://github.com/vllm-project/vllm/releases/download/v0.32.0/vllm-0.32.0%2Bcu129-cp38-abi3-manylinux_2_28_x86_64.whl)
+  Caused by: client error (Connect)
+  Caused by: operation timed out
+error: Failed to download `vllm @ https://github.com/vllm-project/vllm/releases/download/v0.32.0/vllm-0.32.0%2Bcu129-cp38-abi3-manylinux_2_28_x86_64.whl`
+  cause: Request failed after 3 retries in 51.5s
+  cause: Failed to fetch: https://github.com/vllm-project/vllm/releases/download/v0.32.0/vllm-0.32.0%2Bcu129-cp38-abi3-manylinux_2_28_x86_64.whl
+  cause: error sending request for url (https://github.com/vllm-project/vllm/releases/download/v0.32.0/vllm-0.32.0%2Bcu129-cp38-abi3-manylinux_2_28_x86_64.whl)
+  cause: client error (Connect)
+  cause: operation timed out
+  2126       06:16 curl -fL --retry 2 --connect-timeout 10 --max-time 600 -o /root/autodl-tmp/s60-reference/vllm-0.32.0+cu129-cp38-abi3-manylinux_2_28_x86_64.whl https://github.com/vllm-project/vllm/releases/download/v0.32.0/vllm-0.32.0%2Bcu129-cp38-abi3-manylinux_2_28_x86_64.whl
+  2236       00:25 curl -fL --connect-timeout 10 --max-time 300 -o /root/autodl-tmp/s60-reference/cdn-vllm.whl -w http=%{http_code} bytes=%{size_download} speed=%{speed_download}\n https://wheels.vllm.ai/5df63a7203cdb9328d824a27b682e77c7b9928be/vllm-0.32.0%2Bcu129-cp38-abi3-manylinux_2_28_x86_64.whl
+-rw-r--r-- 1 root root 233M Oct 30 16:51 /root/autodl-tmp/s60-reference/cdn-vllm.whl
+-rw-r--r-- 1 root root 6.9M Oct 30 16:51 /root/autodl-tmp/s60-reference/vllm-0.32.0+cu129-cp38-abi3-manylinux_2_28_x86_64.whl

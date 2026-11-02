@@ -1,0 +1,222 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.8, pytest-8.4.1, pluggy-1.6.0
+rootdir: /workspace/vllm-plugin-FL
+configfile: pyproject.toml
+plugins: json-report-1.5.0, metadata-3.1.1, anyio-4.13.0, asyncio-0.24.0, cov-6.3.0, timeout-2.3.1, regex-0.2.0, hypothesis-6.31.6, repeat-0.9.1
+asyncio: mode=Mode.STRICT, default_loop_scope=None
+ pytest-regex selected 1368 tests to run for regex: .*
+collected 1368 items / 3 errors / 12 skipped
+
+tests/unit_tests/attention/test_hygon_sdpa_patch_contract.py sssssssssss [  0%]
+sssssssssssss                                                            [  1%]
+tests/unit_tests/compilation/test_break_graph.py ..................      [  3%]
+tests/unit_tests/compilation/test_graph.py .....s..ss...........         [  4%]
+tests/unit_tests/dispatch/test_ascend_rotary.py .........ssss.....       [  5%]
+tests/unit_tests/dispatch/test_builtin_ops.py .....                      [  6%]
+tests/unit_tests/dispatch/test_call_op.py ....................           [  7%]
+tests/unit_tests/dispatch/test_config_utils.py ......                    [  8%]
+tests/unit_tests/dispatch/test_cuda_backend.py ..                        [  8%]
+tests/unit_tests/dispatch/test_discovery.py ............                 [  9%]
+tests/unit_tests/dispatch/test_flaggems_attention.py ssssssssssssss      [ 10%]
+tests/unit_tests/dispatch/test_flaggems_rotary.py ................       [ 11%]
+tests/unit_tests/dispatch/test_flaggems_vllm_interface_parity.py sssssss [ 11%]
+sssssssssssssssssssss                                                    [ 13%]
+tests/unit_tests/dispatch/test_gcu_causal_conv1d.py ..                   [ 13%]
+tests/unit_tests/dispatch/test_gcu_fla.py ....                           [ 13%]
+tests/unit_tests/dispatch/test_gcu_index_fill.py ....................... [ 15%]
+............................                                             [ 17%]
+tests/unit_tests/dispatch/test_gcu_inductor.py ......................... [ 19%]
+...............................                                          [ 21%]
+tests/unit_tests/dispatch/test_gcu_kv_zeroer.py .............F..s        [ 22%]
+tests/unit_tests/dispatch/test_gcu_mamba_copy.py ....................... [ 24%]
+                                                                         [ 24%]
+tests/unit_tests/dispatch/test_gcu_moe_align.py ........................ [ 26%]
+.                                                                        [ 26%]
+tests/unit_tests/dispatch/test_gcu_moe_sum.py .......................... [ 28%]
+.......                                                                  [ 28%]
+tests/unit_tests/dispatch/test_gcu_reshape_and_cache.py ................ [ 30%]
+.                                                                        [ 30%]
+tests/unit_tests/dispatch/test_gcu_rotary.py .....................       [ 31%]
+tests/unit_tests/dispatch/test_gcu_sampler.py ...                        [ 31%]
+tests/unit_tests/dispatch/test_io_dumper.py ............................ [ 33%]
+........................................................................ [ 39%]
+........................................                                 [ 42%]
+tests/unit_tests/dispatch/test_manager.py .............................. [ 44%]
+........                                                                 [ 44%]
+tests/unit_tests/dispatch/test_nvidia_arange.py ssssssssss               [ 45%]
+tests/unit_tests/dispatch/test_nvidia_e8m0_storage.py ssssssssssssssssss [ 46%]
+ssssssssssssssss                                                         [ 48%]
+tests/unit_tests/dispatch/test_policy.py ...........................     [ 50%]
+tests/unit_tests/dispatch/test_registry.py ............                  [ 50%]
+tests/unit_tests/dispatch/test_thead_attention.py sssssssss              [ 51%]
+tests/unit_tests/dispatch/test_thead_cache.py ssssssssssssssssssssssssss [ 53%]
+ssssssssss............                                                   [ 55%]
+tests/unit_tests/dispatch/test_types.py ................                 [ 56%]
+tests/unit_tests/distributed/test_communicator.py ........               [ 56%]
+tests/unit_tests/flaggems/test_flaggems_get_ops.py .                     [ 56%]
+tests/unit_tests/flaggems/test_gems_whitelist.py .................       [ 58%]
+tests/unit_tests/models/test_glm_moe_dsa.py .......                      [ 58%]
+tests/unit_tests/ops/test_activation.py ..ss                             [ 58%]
+tests/unit_tests/ops/test_fused_moe_factory.py .........                 [ 59%]
+tests/unit_tests/ops/test_fused_moe_router.py .....                      [ 60%]
+tests/unit_tests/ops/test_layernorm.py ...s                              [ 60%]
+tests/unit_tests/ops/test_numerical.py ................................. [ 62%]
+..........                                                               [ 63%]
+tests/unit_tests/ops/test_rotary_embedding.py ....s                      [ 63%]
+tests/unit_tests/patches/test_arm_cpu_gdn.py ...                         [ 64%]
+tests/unit_tests/patches/test_minicpmo_audio.py ......                   [ 64%]
+tests/unit_tests/patches/test_qsa_cache_hint.py sssssssssssss            [ 65%]
+tests/unit_tests/quantization/test_arm_cpu_w4a8.py ssss                  [ 65%]
+tests/unit_tests/quantization/test_fused_moe_factory.py ..               [ 65%]
+tests/unit_tests/quantization/test_modelslim_w8a8.py ................... [ 67%]
+ss                                                                       [ 67%]
+tests/unit_tests/quantization/test_packed_int8.py .....                  [ 67%]
+tests/unit_tests/quantization/test_w8a8_linear.py ...........            [ 68%]
+tests/unit_tests/quantization/test_w8a8_moe.py .....                     [ 68%]
+tests/unit_tests/quantization/test_w8a8_moe_experts.py ..............ss. [ 70%]
+............                                                             [ 71%]
+tests/unit_tests/quantization/test_w8a8_quant_contract.py ..........     [ 71%]
+tests/unit_tests/quantization/test_w8a8_reference.py .....               [ 72%]
+tests/unit_tests/test_arm_cpu_registration.py .........                  [ 72%]
+tests/unit_tests/test_device_control_env_var.py ...................      [ 74%]
+tests/unit_tests/test_device_info.py ......                              [ 74%]
+tests/unit_tests/test_device_utils.py .............................      [ 76%]
+tests/unit_tests/test_enflame_compilation_config.py .......              [ 77%]
+tests/unit_tests/test_enflame_ir_priority.py ..                          [ 77%]
+tests/unit_tests/test_flaggems_vllm_provider.py .                        [ 77%]
+tests/unit_tests/test_flash_attn_import_patch.py ..ssssss                [ 78%]
+tests/unit_tests/test_gdn_packed_decode_patch.py ......                  [ 78%]
+tests/unit_tests/test_model_config.py ...                                [ 78%]
+tests/unit_tests/test_nvidia_native_ops.py ssssss                        [ 79%]
+tests/unit_tests/test_op_schema_generator.py ..                          [ 79%]
+tests/unit_tests/test_op_schema_registry.py ...                          [ 79%]
+tests/unit_tests/test_operator_profile_rules.py ........................ [ 81%]
+......................                                                   [ 82%]
+tests/unit_tests/test_operator_profile_tools.py ...........              [ 83%]
+tests/unit_tests/test_runner_selection.py .............................. [ 85%]
+..........................................                               [ 88%]
+tests/unit_tests/test_serving_server_logs.py ...........                 [ 89%]
+tests/unit_tests/test_version.py .                                       [ 89%]
+tests/unit_tests/worker/test_memory_pool_contract.py ................... [ 91%]
+...............................                                          [ 93%]
+tests/unit_tests/worker/test_model_imports.py ................           [ 94%]
+tests/unit_tests/worker/test_model_runner.py ..........EEEEEE
+
+==================================== ERRORS ====================================
+_ ERROR collecting tests/unit_tests/dispatch/test_ascend_vocab_parallel_embedding.py _
+ImportError while importing test module '/workspace/vllm-plugin-FL/tests/unit_tests/dispatch/test_ascend_vocab_parallel_embedding.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+vllm_fl/dispatch/backends/vendor/ascend/impl/attention.py:54: in <module>
+    import torch_npu
+E   ModuleNotFoundError: No module named 'torch_npu'
+
+The above exception was the direct cause of the following exception:
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/unit_tests/dispatch/test_ascend_vocab_parallel_embedding.py:18: in <module>
+    from vllm_fl.dispatch.backends.vendor.ascend.impl import (
+vllm_fl/dispatch/backends/vendor/ascend/impl/__init__.py:9: in <module>
+    from .attention import (
+vllm_fl/dispatch/backends/vendor/ascend/impl/attention.py:66: in <module>
+    raise ImportError(
+E   ImportError: torch_npu is required for Ascend attention backend. Please install torch_npu for NPU support.
+_______ ERROR collecting tests/unit_tests/dispatch/test_flaggems_moe.py ________
+ImportError while importing test module '/workspace/vllm-plugin-FL/tests/unit_tests/dispatch/test_flaggems_moe.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/unit_tests/dispatch/test_flaggems_moe.py:9: in <module>
+    from vllm_fl.dispatch.backends.flaggems.impl.fused_moe import (
+vllm_fl/dispatch/backends/flaggems/impl/__init__.py:10: in <module>
+    from .attention import (
+vllm_fl/dispatch/backends/flaggems/impl/attention.py:12: in <module>
+    from flaggems_vllm import flash_attn_varlen_func
+E   ModuleNotFoundError: No module named 'flaggems_vllm'
+___ ERROR collecting tests/unit_tests/dispatch/test_flaggems_quantization.py ___
+ImportError while importing test module '/workspace/vllm-plugin-FL/tests/unit_tests/dispatch/test_flaggems_quantization.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/unit_tests/dispatch/test_flaggems_quantization.py:9: in <module>
+    from vllm_fl.dispatch.backends.flaggems.impl.quantization import (
+vllm_fl/dispatch/backends/flaggems/impl/__init__.py:10: in <module>
+    from .attention import (
+vllm_fl/dispatch/backends/flaggems/impl/attention.py:12: in <module>
+    from flaggems_vllm import flash_attn_varlen_func
+E   ModuleNotFoundError: No module named 'flaggems_vllm'
+_ ERROR at setup of TestPadForSequenceParallelism.test_no_padding_when_sp_disabled _
+tests/unit_tests/worker/test_model_runner.py:245: in mock_model_runner
+    ModelRunnerFL._pad_for_sequence_parallelism.__get__(
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   AttributeError: type object 'ModelRunnerFL' has no attribute '_pad_for_sequence_parallelism'
+_ ERROR at setup of TestPadForSequenceParallelism.test_no_padding_when_tp_size_1 _
+tests/unit_tests/worker/test_model_runner.py:245: in mock_model_runner
+    ModelRunnerFL._pad_for_sequence_parallelism.__get__(
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   AttributeError: type object 'ModelRunnerFL' has no attribute '_pad_for_sequence_parallelism'
+_ ERROR at setup of TestPadForSequenceParallelism.test_padding_calculation[10-4-12] _
+tests/unit_tests/worker/test_model_runner.py:245: in mock_model_runner
+    ModelRunnerFL._pad_for_sequence_parallelism.__get__(
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   AttributeError: type object 'ModelRunnerFL' has no attribute '_pad_for_sequence_parallelism'
+_ ERROR at setup of TestPadForSequenceParallelism.test_padding_calculation[8-4-8] _
+tests/unit_tests/worker/test_model_runner.py:245: in mock_model_runner
+    ModelRunnerFL._pad_for_sequence_parallelism.__get__(
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   AttributeError: type object 'ModelRunnerFL' has no attribute '_pad_for_sequence_parallelism'
+_ ERROR at setup of TestPadForSequenceParallelism.test_padding_calculation[10-8-16] _
+tests/unit_tests/worker/test_model_runner.py:245: in mock_model_runner
+    ModelRunnerFL._pad_for_sequence_parallelism.__get__(
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   AttributeError: type object 'ModelRunnerFL' has no attribute '_pad_for_sequence_parallelism'
+_ ERROR at setup of TestPadForSequenceParallelism.test_padding_calculation[1-4-4] _
+tests/unit_tests/worker/test_model_runner.py:245: in mock_model_runner
+    ModelRunnerFL._pad_for_sequence_parallelism.__get__(
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   AttributeError: type object 'ModelRunnerFL' has no attribute '_pad_for_sequence_parallelism'
+=================================== FAILURES ===================================
+_________ test_original_builder_preserves_virtual_segments_and_aliases _________
+tests/unit_tests/dispatch/test_gcu_kv_zeroer.py:309: in test_original_builder_preserves_virtual_segments_and_aliases
+    kv_zeroer.init_kv_zeroer_gcu(
+vllm_fl/dispatch/backends/vendor/gcu/impl/kv_zeroer.py:78: in init_kv_zeroer_gcu
+    self._fl_gcu_original_init(*args, **kwargs)
+tests/unit_tests/dispatch/test_gcu_kv_zeroer.py:297: in _fl_gcu_original_init
+    original_init(self, *args, **kwargs)
+../s60-adaptation/src/vllm/vllm/v1/worker/utils.py:166: in __init__
+    kv = static_forward_context[layer_name].kv_cache
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   TypeError: string indices must be integers, not 'str'
+=============================== warnings summary ===============================
+../../usr/local/lib/python3.12/site-packages/torch_gcu/transfer_to_gcu.py:443
+../../usr/local/lib/python3.12/site-packages/torch_gcu/transfer_to_gcu.py:443
+  /usr/local/lib/python3.12/site-packages/torch_gcu/transfer_to_gcu.py:443: ImportWarning: 
+      *************************************************************************************************************
+      The torch.Tensor.cuda and torch.nn.Module.cuda are replaced with torch.Tensor.gcu and torch.nn.Module.gcu now..
+      The backend in torch.distributed.init_process_group set to eccl now..
+      The torch.cuda.* and torch.cuda.amp.* are replaced with torch.gcu.* and torch.gcu.amp.* now..
+      The device parameters have been replaced with gcu in the function below:
+      torch.logspace, torch.randint, torch.hann_window, torch.rand, torch.full_like, torch.ones_like, torch.rand_like, torch.randperm, torch.arange, torch.frombuffer, torch.normal, torch._empty_per_channel_affine_quantized, torch.empty_strided, torch.empty_like, torch.scalar_tensor, torch.tril_indices, torch.bartlett_window, torch.ones, torch.sparse_coo_tensor, torch.randn, torch.kaiser_window, torch.tensor, torch.triu_indices, torch.as_tensor, torch.zeros, torch.randint_like, torch.full, torch.eye, torch._sparse_csr_tensor_unsafe, torch.empty, torch._sparse_coo_tensor_unsafe, torch.blackman_window, torch.zeros_like, torch.range, torch.sparse_csr_tensor, torch.randn_like, torch.from_file, torch._cudnn_init_dropout_state, torch._empty_affine_quantized, torch.linspace, torch.hamming_window, torch.empty_quantized, torch._pin_memory, torch.autocast, torch.load, torch.Tensor.new_empty, torch.Tensor.new_empty_strided, torch.Tensor.new_full, torch.Tensor.new_ones, torch.Tensor.new_tensor, torch.Tensor.new_zeros, torch.Tensor.to, torch.nn.Module.to, torch.nn.Module.to_empty
+      *************************************************************************************************************
+      
+    warnings.warn(msg, ImportWarning)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/unit_tests/dispatch/test_gcu_kv_zeroer.py::test_original_builder_preserves_virtual_segments_and_aliases
+ERROR tests/unit_tests/dispatch/test_ascend_vocab_parallel_embedding.py
+ERROR tests/unit_tests/dispatch/test_flaggems_moe.py
+ERROR tests/unit_tests/dispatch/test_flaggems_quantization.py
+ERROR tests/unit_tests/worker/test_model_runner.py::TestPadForSequenceParallelism::test_no_padding_when_sp_disabled
+ERROR tests/unit_tests/worker/test_model_runner.py::TestPadForSequenceParallelism::test_no_padding_when_tp_size_1
+ERROR tests/unit_tests/worker/test_model_runner.py::TestPadForSequenceParallelism::test_padding_calculation[10-4-12]
+ERROR tests/unit_tests/worker/test_model_runner.py::TestPadForSequenceParallelism::test_padding_calculation[8-4-8]
+ERROR tests/unit_tests/worker/test_model_runner.py::TestPadForSequenceParallelism::test_padding_calculation[10-8-16]
+ERROR tests/unit_tests/worker/test_model_runner.py::TestPadForSequenceParallelism::test_padding_calculation[1-4-4]
+!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 10 failures !!!!!!!!!!!!!!!!!!!!!!!!!!
+====== 1 failed, 1104 passed, 212 skipped, 2 warnings, 9 errors in 19.40s ======

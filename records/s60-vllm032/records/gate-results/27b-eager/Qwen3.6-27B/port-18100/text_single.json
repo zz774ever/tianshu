@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "case": {
+    "scenario": "text_single",
+    "model_path": "/models/Qwen3.6-27B",
+    "served_model_name": "/models/Qwen3.6-27B",
+    "port": "18100",
+    "concurrency": 1
+  },
+  "started_at": "2026-11-02T02:07:38.165758+00:00",
+  "finished_at": "2026-11-02T02:07:52.377308+00:00",
+  "input": [
+    {
+      "request_id": "text-llm-details",
+      "kind": "text",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Introduce large language models (LLMs) in detail. Explain what they are, how training and inference work, typical capabilities, limitations, and responsible use. Write a coherent response of at least 256 characters. Do not repeat words or phrases unnecessarily."
+        }
+      ],
+      "required_terms": [
+        "large language model",
+        "training",
+        "inference",
+        "limitations"
+      ],
+      "min_length": 256,
+      "max_tokens": 512
+    }
+  ],
+  "output": [
+    {
+      "request_id": "text-llm-details",
+      "kind": "text",
+      "latency_seconds": 14.173,
+      "text": "",
+      "checks": {},
+      "passed": false,
+      "error": "APIConnectionError: Connection error."
+    }
+  ],
+  "summary": {
+    "request_count": 1,
+    "passed_count": 0,
+    "failed_count": 1,
+    "passed": false
+  }
+}

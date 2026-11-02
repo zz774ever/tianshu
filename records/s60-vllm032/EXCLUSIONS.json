@@ -1,0 +1,66 @@
+[
+  {
+    "path": "__pycache__",
+    "reason": "runtime/source/cache, not experiment record"
+  },
+  {
+    "path": "cache",
+    "reason": "runtime/source/cache, not experiment record"
+  },
+  {
+    "path": "cache-model-preserve",
+    "reason": "runtime/source/cache, not experiment record"
+  },
+  {
+    "path": "cache-preserve-codegen",
+    "reason": "runtime/source/cache, not experiment record"
+  },
+  {
+    "path": "docker",
+    "reason": "runtime/source/cache, not experiment record"
+  },
+  {
+    "path": "docker-28.5.2.tgz",
+    "reason": "downloaded dependency or transient process state"
+  },
+  {
+    "path": "docker-data",
+    "reason": "runtime/source/cache, not experiment record"
+  },
+  {
+    "path": "docker-exec",
+    "reason": "runtime/source/cache, not experiment record"
+  },
+  {
+    "path": "dockerd.pid",
+    "reason": "downloaded dependency or transient process state"
+  },
+  {
+    "path": "flagcx-runtime",
+    "reason": "runtime/source/cache, not experiment record"
+  },
+  {
+    "path": "flaggems-vllm-complete.tar.gz",
+    "reason": "downloaded dependency or transient process state"
+  },
+  {
+    "path": "flaggems-vllm.tar.gz",
+    "reason": "downloaded dependency or transient process state"
+  },
+  {
+    "path": "handoff/20261030T135753Z/conversation.json",
+    "reason": "downloaded dependency or transient process state"
+  },
+  {
+    "path": "handoff/20261030T135753Z/conversation_full.json",
+    "reason": "downloaded dependency or transient process state"
+  },
+  {
+    "path": "src",
+    "reason": "runtime/source/cache, not experiment record"
+  },
+  {
+    "path": "vllm-0.32.0+cu129-cp38-abi3-manylinux_2_28_x86_64.whl",
+    "reason": "downloaded dependency or transient process state"
+  }
+]

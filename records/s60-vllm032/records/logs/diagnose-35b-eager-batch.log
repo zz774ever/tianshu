@@ -1,0 +1,38 @@
+{
+  "output": "/workspace/s60-adaptation/diagnostics/35b-eager-batch-context.json",
+  "equal_to_baseline": [
+    false,
+    false
+  ],
+  "concurrent_texts_equal": true,
+  "checks": [
+    {
+      "non_empty": true,
+      "minimum_length": true,
+      "expected_semantics": true,
+      "expected_order": true,
+      "no_bang_triplet": true,
+      "no_mojibake": true,
+      "no_control_characters": true,
+      "no_long_character_run": true,
+      "no_repeated_word_run": true,
+      "no_repeated_phrase": true
+    },
+    {
+      "non_empty": true,
+      "minimum_length": true,
+      "expected_semantics": true,
+      "expected_order": true,
+      "no_bang_triplet": true,
+      "no_mojibake": true,
+      "no_control_characters": true,
+      "no_long_character_run": true,
+      "no_repeated_word_run": true,
+      "no_repeated_phrase": true
+    }
+  ],
+  "errors": [
+    null,
+    null
+  ]
+}

@@ -1,0 +1,302 @@
+{
+  "schema_version": 1,
+  "case": {
+    "scenario": "image_concurrent_8",
+    "model_path": "/models/Qwen3.6-27B",
+    "served_model_name": "/models/Qwen3.6-27B",
+    "port": "18100",
+    "concurrency": 8
+  },
+  "started_at": "2026-11-02T02:07:56.891864+00:00",
+  "finished_at": "2026-11-02T02:07:58.357090+00:00",
+  "input": [
+    {
+      "request_id": "image-01",
+      "kind": "image",
+      "messages": [
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Name the four quadrant colors in this order: top-left, top-right, bottom-left, bottom-right. Reply with color names only."
+            },
+            {
+              "type": "image_url",
+              "image_url": {
+                "url": "file:///workspace/vllm-plugin-FL/tools/adaptation-gate-cases/images/image_01.png"
+              }
+            }
+          ]
+        }
+      ],
+      "image_path": "/workspace/vllm-plugin-FL/tools/adaptation-gate-cases/images/image_01.png",
+      "required_terms": [
+        "red",
+        "green",
+        "blue",
+        "yellow"
+      ]
+    },
+    {
+      "request_id": "image-02",
+      "kind": "image",
+      "messages": [
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Name the four quadrant colors in this order: top-left, top-right, bottom-left, bottom-right. Reply with color names only."
+            },
+            {
+              "type": "image_url",
+              "image_url": {
+                "url": "file:///workspace/vllm-plugin-FL/tools/adaptation-gate-cases/images/image_02.png"
+              }
+            }
+          ]
+        }
+      ],
+      "image_path": "/workspace/vllm-plugin-FL/tools/adaptation-gate-cases/images/image_02.png",
+      "required_terms": [
+        "blue",
+        "yellow",
+        "red",
+        "green"
+      ]
+    },
+    {
+      "request_id": "image-03",
+      "kind": "image",
+      "messages": [
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Name the three shapes from left to right. Reply with shape names only."
+            },
+            {
+              "type": "image_url",
+              "image_url": {
+                "url": "file:///workspace/vllm-plugin-FL/tools/adaptation-gate-cases/images/image_03.png"
+              }
+            }
+          ]
+        }
+      ],
+      "image_path": "/workspace/vllm-plugin-FL/tools/adaptation-gate-cases/images/image_03.png",
+      "required_terms": [
+        "circle",
+        "square",
+        "triangle"
+      ]
+    },
+    {
+      "request_id": "image-04",
+      "kind": "image",
+      "messages": [
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "How many triangles are in the image? Reply with the number only."
+            },
+            {
+              "type": "image_url",
+              "image_url": {
+                "url": "file:///workspace/vllm-plugin-FL/tools/adaptation-gate-cases/images/image_04.png"
+              }
+            }
+          ]
+        }
+      ],
+      "image_path": "/workspace/vllm-plugin-FL/tools/adaptation-gate-cases/images/image_04.png",
+      "required_terms": [
+        "3"
+      ]
+    },
+    {
+      "request_id": "image-05",
+      "kind": "image",
+      "messages": [
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Does this image contain visible text? Reply yes or no."
+            },
+            {
+              "type": "image_url",
+              "image_url": {
+                "url": "file:///workspace/vllm-plugin-FL/tools/adaptation-gate-cases/images/image_05.png"
+              }
+            }
+          ]
+        }
+      ],
+      "image_path": "/workspace/vllm-plugin-FL/tools/adaptation-gate-cases/images/image_05.png",
+      "required_terms": [
+        "yes"
+      ]
+    },
+    {
+      "request_id": "image-06",
+      "kind": "image",
+      "messages": [
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "What shape is inside the red circle? Reply with the shape name only."
+            },
+            {
+              "type": "image_url",
+              "image_url": {
+                "url": "file:///workspace/vllm-plugin-FL/tools/adaptation-gate-cases/images/image_06.png"
+              }
+            }
+          ]
+        }
+      ],
+      "image_path": "/workspace/vllm-plugin-FL/tools/adaptation-gate-cases/images/image_06.png",
+      "required_terms": [
+        "square"
+      ]
+    },
+    {
+      "request_id": "image-07",
+      "kind": "image",
+      "messages": [
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "What color is the triangle? Reply with the color name only."
+            },
+            {
+              "type": "image_url",
+              "image_url": {
+                "url": "file:///workspace/vllm-plugin-FL/tools/adaptation-gate-cases/images/image_07.png"
+              }
+            }
+          ]
+        }
+      ],
+      "image_path": "/workspace/vllm-plugin-FL/tools/adaptation-gate-cases/images/image_07.png",
+      "required_terms": [
+        "yellow"
+      ]
+    },
+    {
+      "request_id": "image-08",
+      "kind": "image",
+      "messages": [
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "How many blue circles are in the image? Reply with the number only."
+            },
+            {
+              "type": "image_url",
+              "image_url": {
+                "url": "file:///workspace/vllm-plugin-FL/tools/adaptation-gate-cases/images/image_08.png"
+              }
+            }
+          ]
+        }
+      ],
+      "image_path": "/workspace/vllm-plugin-FL/tools/adaptation-gate-cases/images/image_08.png",
+      "required_terms": [
+        "4"
+      ]
+    }
+  ],
+  "output": [
+    {
+      "request_id": "image-01",
+      "kind": "image",
+      "latency_seconds": 1.463,
+      "text": "",
+      "checks": {},
+      "passed": false,
+      "error": "APIConnectionError: Connection error."
+    },
+    {
+      "request_id": "image-02",
+      "kind": "image",
+      "latency_seconds": 1.17,
+      "text": "",
+      "checks": {},
+      "passed": false,
+      "error": "APIConnectionError: Connection error."
+    },
+    {
+      "request_id": "image-03",
+      "kind": "image",
+      "latency_seconds": 1.251,
+      "text": "",
+      "checks": {},
+      "passed": false,
+      "error": "APIConnectionError: Connection error."
+    },
+    {
+      "request_id": "image-04",
+      "kind": "image",
+      "latency_seconds": 1.371,
+      "text": "",
+      "checks": {},
+      "passed": false,
+      "error": "APIConnectionError: Connection error."
+    },
+    {
+      "request_id": "image-05",
+      "kind": "image",
+      "latency_seconds": 1.354,
+      "text": "",
+      "checks": {},
+      "passed": false,
+      "error": "APIConnectionError: Connection error."
+    },
+    {
+      "request_id": "image-06",
+      "kind": "image",
+      "latency_seconds": 1.293,
+      "text": "",
+      "checks": {},
+      "passed": false,
+      "error": "APIConnectionError: Connection error."
+    },
+    {
+      "request_id": "image-07",
+      "kind": "image",
+      "latency_seconds": 1.327,
+      "text": "",
+      "checks": {},
+      "passed": false,
+      "error": "APIConnectionError: Connection error."
+    },
+    {
+      "request_id": "image-08",
+      "kind": "image",
+      "latency_seconds": 1.306,
+      "text": "",
+      "checks": {},
+      "passed": false,
+      "error": "APIConnectionError: Connection error."
+    }
+  ],
+  "summary": {
+    "request_count": 8,
+    "passed_count": 0,
+    "failed_count": 8,
+    "passed": false
+  }
+}

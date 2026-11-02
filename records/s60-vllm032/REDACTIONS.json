@@ -1,0 +1,17 @@
+[
+  "records/diagnose_35b_eager_batch.py",
+  "records/logs/gate-27b-eager-032.log",
+  "records/logs/gate-27b-eager-vocabfix.log",
+  "records/logs/gate-27b-graph-032.log",
+  "records/logs/gate-27b-graph-collectives.log",
+  "records/logs/gate-27b-graph-linkerfix.log",
+  "records/logs/gate-35b-eager-032.log",
+  "records/logs/gate-35b-eager-ci-dispatch.log",
+  "records/logs/gate-35b-eager-paddingfix.log",
+  "records/logs/gate-35b-graph-collectives.log",
+  "records/logs/gate-35b-graph-linkerfix.log",
+  "records/logs/gate-35b-graph-silu-dispatch.log",
+  "records/logs/nvidia-pending-downloads.log",
+  "records/logs/nvidia-reference-complete.log",
+  "records/logs/smoke-tp2-flagcx.log"
+]

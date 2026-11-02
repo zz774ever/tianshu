@@ -1,0 +1,40 @@
+[
+  {
+    "prompt": "What is 17 + 25? Answer briefly.",
+    "token_ids": [
+      576,
+      4226,
+      374,
+      220,
+      19,
+      17,
+      13,
+      6771,
+      752,
+      1744,
+      13,
+      576,
+      3405,
+      374,
+      10161,
+      369,
+      279,
+      2629,
+      315,
+      220,
+      16,
+      22,
+      323,
+      220,
+      17,
+      20,
+      13,
+      2014,
+      1477,
+      419,
+      11,
+      358
+    ],
+    "text": " The answer is 42. Let me think. The question is asking for the sum of 17 and 25. To find this, I"
+  }
+]

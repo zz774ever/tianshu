@@ -1,0 +1,9 @@
+[
+  {
+    "prompt": "What is the capital of Japan? Give a short answer.",
+    "exact": true,
+    "reference_tokens": 32,
+    "candidate_tokens": 32,
+    "first_mismatch": null
+  }
+]

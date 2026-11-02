@@ -1,0 +1,15 @@
+/workspace/s60-adaptation/handoff/20261102T042233Z
+{
+  "repository": "/workspace/vllm-plugin-FL",
+  "branch": "adapt/vllm032-from-050",
+  "head": "64c9d216ee6c66acb0b9fc8c097b6c1eab3a4ef4",
+  "vllm_target": "0.32.0",
+  "precision": "user accepted recorded differences; not a strict-match pass",
+  "files": {
+    "STATUS.md": "df35c847b5c18d93b029fe87a06257ffd3a6ccee9c67cf5ab4799ac108abba49",
+    "git-diff-stat.txt": "bed3067412ea2b3ba1223ca41a8702d1d0a5b7c851f07639f59811935b155630",
+    "git-status.txt": "943e136bcba8f5d89594909696029816c8fc4891260660120ab9c8cdb5c140ef",
+    "tracked-changes.patch": "b0a6974e3ad0354d69bdb716829b73652112e522aa9c04eaf80ce0aef7772536",
+    "untracked-files.tar.gz": "7eceb4286fb0bb5edcfbf546d1cfc152343315673bc84b46d445519982ef1a7b"
+  }
+}

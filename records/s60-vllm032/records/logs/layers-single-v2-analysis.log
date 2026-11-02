@@ -1,0 +1,190 @@
+[W1030 10:59:11.792050335 gcu_caching_allocator.cpp:2976] Warning: [GCU Allocator] Static initialization: PYTORCH_GCU_ALLOC_CONF="(not set, using default)", selected_backend=native (function BackendStaticInitializer)
+/usr/local/lib/python3.12/site-packages/torch_gcu/transfer_to_gcu.py:443: ImportWarning: 
+    *************************************************************************************************************
+    The torch.Tensor.cuda and torch.nn.Module.cuda are replaced with torch.Tensor.gcu and torch.nn.Module.gcu now..
+    The backend in torch.distributed.init_process_group set to eccl now..
+    The torch.cuda.* and torch.cuda.amp.* are replaced with torch.gcu.* and torch.gcu.amp.* now..
+    The device parameters have been replaced with gcu in the function below:
+    torch.logspace, torch.randint, torch.hann_window, torch.rand, torch.full_like, torch.ones_like, torch.rand_like, torch.randperm, torch.arange, torch.frombuffer, torch.normal, torch._empty_per_channel_affine_quantized, torch.empty_strided, torch.empty_like, torch.scalar_tensor, torch.tril_indices, torch.bartlett_window, torch.ones, torch.sparse_coo_tensor, torch.randn, torch.kaiser_window, torch.tensor, torch.triu_indices, torch.as_tensor, torch.zeros, torch.randint_like, torch.full, torch.eye, torch._sparse_csr_tensor_unsafe, torch.empty, torch._sparse_coo_tensor_unsafe, torch.blackman_window, torch.zeros_like, torch.range, torch.sparse_csr_tensor, torch.randn_like, torch.from_file, torch._cudnn_init_dropout_state, torch._empty_affine_quantized, torch.linspace, torch.hamming_window, torch.empty_quantized, torch._pin_memory, torch.autocast, torch.load, torch.Tensor.new_empty, torch.Tensor.new_empty_strided, torch.Tensor.new_full, torch.Tensor.new_ones, torch.Tensor.new_tensor, torch.Tensor.new_zeros, torch.Tensor.to, torch.nn.Module.to, torch.nn.Module.to_empty
+    *************************************************************************************************************
+    
+  warnings.warn(msg, ImportWarning)
+Aligned actual input IDs [3838, 374, 220, 16, 22, 488, 220, 17, 20, 30, 21806, 26753, 13]
+model.embed_tokens/input/0 shape (13,) exact True max 0.0 rms 0.0
+model.embed_tokens/output shape (13, 1024) exact True max 0.0 rms 0.0
+model.layers.0.input_layernorm/input/0 shape (13, 1024) exact True max 0.0 rms 0.0
+model.layers.0.input_layernorm/output shape (13, 1024) exact True max 0.0 rms 0.0
+model.layers.0.self_attn.qkv_proj/input/0 shape (13, 1024) exact True max 0.0 rms 0.0
+model.layers.0.self_attn.qkv_proj/output/0 shape (13, 4096) exact False max 0.00390625 rms 2.0001225493615493e-05
+model.layers.0.self_attn.q_norm/input/0 shape (13, 16, 128) exact False max 0.00390625 rms 2.5623287001508288e-05
+model.layers.0.self_attn.q_norm/output shape (13, 16, 128) exact False max 0.015625 rms 0.00026615156093612313
+model.layers.0.self_attn.k_norm/input/0 shape (13, 8, 128) exact False max 0.0009765625 rms 1.526122650830075e-05
+model.layers.0.self_attn.k_norm/output shape (13, 8, 128) exact False max 1.0 rms 0.00866758730262518
+model.layers.0.self_attn.rotary_emb/input/0 shape (13,) exact True max 0.0 rms 0.0
+model.layers.0.self_attn.rotary_emb/input/1 shape (13, 2048) exact False max 0.25 rms 0.019949281588196754
+model.layers.0.self_attn.rotary_emb/input/2 shape (13, 1024) exact False max 0.3125 rms 0.021305818110704422
+model.layers.0.self_attn.rotary_emb/output/0 shape (13, 2048) exact False max 0.25 rms 0.019949281588196754
+model.layers.0.self_attn.rotary_emb/output/1 shape (13, 1024) exact False max 0.3125 rms 0.021305818110704422
+model.layers.0.self_attn.attn/input/0 shape (13, 2048) exact False max 0.015625 rms 0.00029233962413854897
+model.layers.0.self_attn.attn/input/1 shape (13, 1024) exact False max 1.0 rms 0.00866758730262518
+model.layers.0.self_attn.attn/input/2 shape (13, 1024) exact False max 0.00048828125 rms 7.361066309385933e-06
+model.layers.0.self_attn.attn/output shape (13, 2048) exact False max 0.00390625 rms 6.29709247732535e-05
+model.layers.0.self_attn.o_proj/input/0 shape (13, 2048) exact False max 0.00390625 rms 6.29709247732535e-05
+model.layers.0.self_attn.o_proj/output/0 shape (13, 1024) exact False max 0.00390625 rms 0.00013204911374486983
+model.layers.0.self_attn/output shape (13, 1024) exact False max 0.00390625 rms 0.00013204911374486983
+model.layers.0.post_attention_layernorm/input/0 shape (13, 1024) exact False max 10.2109375 rms 0.3787150979042053
+model.layers.0.post_attention_layernorm/input/1 shape (13, 1024) exact False max 3.180908203125 rms 0.1747802048921585
+model.layers.0.post_attention_layernorm/output/0 shape (13, 1024) exact False max 0.0625 rms 0.001350828562863171
+model.layers.0.post_attention_layernorm/output/1 shape (13, 1024) exact False max 0.00390625 rms 0.0001490183494752273
+model.layers.0.mlp.gate_up_proj/input/0 shape (13, 1024) exact False max 0.0625 rms 0.001350828562863171
+model.layers.0.mlp.gate_up_proj/output/0 shape (13, 6144) exact False max 0.03125 rms 0.0020134004298597574
+model.layers.0.mlp.act_fn/input/0 shape (13, 6144) exact False max 0.03125 rms 0.0020134004298597574
+model.layers.0.mlp.act_fn/output shape (13, 3072) exact False max 0.015625 rms 0.00042411391041241586
+model.layers.0.mlp.down_proj/input/0 shape (13, 3072) exact False max 0.015625 rms 0.00042411391041241586
+model.layers.0.mlp.down_proj/output/0 shape (13, 1024) exact False max 0.0078125 rms 0.0007042541401460767
+model.layers.0.mlp/input/0 shape (13, 1024) exact False max 0.0625 rms 0.001350828562863171
+model.layers.0.mlp/output shape (13, 1024) exact False max 0.0078125 rms 0.0007042541401460767
+model.layers.0/input/0 shape (13,) exact True max 0.0 rms 0.0
+model.layers.0/input/1 shape (13, 1024) exact False max 3.180908203125 rms 0.1747802048921585
+model.layers.0/output/0 shape (13, 1024) exact False max 0.0078125 rms 0.0007042541401460767
+model.layers.0/output/1 shape (13, 1024) exact False max 0.00390625 rms 0.0001490183494752273
+model.layers.1/input/0 shape (13,) exact True max 0.0 rms 0.0
+model.layers.1/input/1 shape (13, 1024) exact False max 2.61328125 rms 0.16730956733226776
+model.layers.1/input/2 shape (13, 1024) exact False max 2.5078125 rms 0.17303209006786346
+model.layers.1/output/0 shape (13, 1024) exact False max 0.015625 rms 0.0014510927721858025
+model.layers.1/output/1 shape (13, 1024) exact False max 0.0234375 rms 0.001212932402268052
+model.layers.2/input/0 shape (13,) exact True max 0.0 rms 0.0
+model.layers.2/input/1 shape (13, 1024) exact False max 6.09375 rms 0.24526317417621613
+model.layers.2/input/2 shape (13, 1024) exact False max 4.9375 rms 0.31548354029655457
+model.layers.2/output/0 shape (13, 1024) exact False max 0.125 rms 0.0037494231946766376
+model.layers.2/output/1 shape (13, 1024) exact False max 0.03125 rms 0.002247886499390006
+model.layers.3/input/0 shape (13,) exact True max 0.0 rms 0.0
+model.layers.3/input/1 shape (13, 1024) exact False max 6468.0625 rms 56.48484802246094
+model.layers.3/input/2 shape (13, 1024) exact False max 6460.796875 rms 56.41949462890625
+model.layers.3/output/0 shape (13, 1024) exact False max 0.015625 rms 0.002624902641400695
+model.layers.3/output/1 shape (13, 1024) exact False max 0.125 rms 0.0051038796082139015
+model.layers.4/input/0 shape (13,) exact True max 0.0 rms 0.0
+model.layers.4/input/1 shape (13, 1024) exact False max 9.70556640625 rms 0.46110185980796814
+model.layers.4/input/2 shape (13, 1024) exact False max 2.9375 rms 0.22924722731113434
+model.layers.4/output/0 shape (13, 1024) exact False max 0.02099609375 rms 0.0032657410483807325
+model.layers.4/output/1 shape (13, 1024) exact False max 0.125 rms 0.005651862360537052
+model.layers.5/input/0 shape (13,) exact True max 0.0 rms 0.0
+model.layers.5/input/1 shape (13, 1024) exact False max 13.3125 rms 0.6061671376228333
+model.layers.5/input/2 shape (13, 1024) exact False max 3.03125 rms 0.2877116799354553
+model.layers.5/output/0 shape (13, 1024) exact False max 0.0234375 rms 0.004075667355209589
+model.layers.5/output/1 shape (13, 1024) exact False max 0.125 rms 0.006628013215959072
+model.layers.6/input/0 shape (13,) exact True max 0.0 rms 0.0
+model.layers.6/input/1 shape (13, 1024) exact False max 10.48828125 rms 0.48236361145973206
+model.layers.6/input/2 shape (13, 1024) exact False max 1.625 rms 0.27485403418540955
+model.layers.6/output/0 shape (13, 1024) exact False max 0.03515625 rms 0.004873715341091156
+model.layers.6/output/1 shape (13, 1024) exact False max 0.125 rms 0.007620429620146751
+model.layers.7/input/0 shape (13,) exact True max 0.0 rms 0.0
+model.layers.7/input/1 shape (13, 1024) exact False max 15.342041015625 rms 0.6906042695045471
+model.layers.7/input/2 shape (13, 1024) exact False max 2.21875 rms 0.29942962527275085
+model.layers.7/output/0 shape (13, 1024) exact False max 0.0859375 rms 0.006453062407672405
+model.layers.7/output/1 shape (13, 1024) exact False max 0.125 rms 0.008643947541713715
+model.layers.8/input/0 shape (13,) exact True max 0.0 rms 0.0
+model.layers.8/input/1 shape (13, 1024) exact False max 16.9609375 rms 0.6922471523284912
+model.layers.8/input/2 shape (13, 1024) exact False max 3.15625 rms 0.3805251717567444
+model.layers.8/output/0 shape (13, 1024) exact False max 0.04473876953125 rms 0.006557649467140436
+model.layers.8/output/1 shape (13, 1024) exact False max 0.125 rms 0.009870829991996288
+model.layers.9/input/0 shape (13,) exact True max 0.0 rms 0.0
+model.layers.9/input/1 shape (13, 1024) exact False max 24.12890625 rms 1.0307798385620117
+model.layers.9/input/2 shape (13, 1024) exact False max 3.875 rms 0.33907759189605713
+model.layers.9/output/0 shape (13, 1024) exact False max 0.15625 rms 0.007974634878337383
+model.layers.9/output/1 shape (13, 1024) exact False max 0.125 rms 0.011070134118199348
+model.layers.10/input/0 shape (13,) exact True max 0.0 rms 0.0
+model.layers.10/input/1 shape (13, 1024) exact False max 21.41796875 rms 1.0110549926757812
+model.layers.10/input/2 shape (13, 1024) exact False max 6.5 rms 0.37824514508247375
+model.layers.10/output/0 shape (13, 1024) exact False max 0.09375 rms 0.009706530719995499
+model.layers.10/output/1 shape (13, 1024) exact False max 0.1875 rms 0.012954110279679298
+model.layers.11/input/0 shape (13,) exact True max 0.0 rms 0.0
+model.layers.11/input/1 shape (13, 1024) exact False max 27.6328125 rms 1.2942026853561401
+model.layers.11/input/2 shape (13, 1024) exact False max 12.9375 rms 0.7042959928512573
+model.layers.11/output/0 shape (13, 1024) exact False max 0.087890625 rms 0.00890030525624752
+model.layers.11/output/1 shape (13, 1024) exact False max 0.375 rms 0.01700536534190178
+model.layers.12/input/0 shape (13,) exact True max 0.0 rms 0.0
+model.layers.12/input/1 shape (13, 1024) exact False max 27.10546875 rms 1.3855944871902466
+model.layers.12/input/2 shape (13, 1024) exact False max 3.3125 rms 0.41737765073776245
+model.layers.12/output/0 shape (13, 1024) exact False max 0.15625 rms 0.009360664524137974
+model.layers.12/output/1 shape (13, 1024) exact False max 0.4375 rms 0.018934449180960655
+model.layers.13/input/0 shape (13,) exact True max 0.0 rms 0.0
+model.layers.13/input/1 shape (13, 1024) exact False max 31.23828125 rms 1.5930789709091187
+model.layers.13/input/2 shape (13, 1024) exact False max 4.75 rms 0.3963744342327118
+model.layers.13/output/0 shape (13, 1024) exact False max 0.125 rms 0.00999548751860857
+model.layers.13/output/1 shape (13, 1024) exact False max 0.4375 rms 0.02044644206762314
+model.layers.14/input/0 shape (13,) exact True max 0.0 rms 0.0
+model.layers.14/input/1 shape (13, 1024) exact False max 36.9453125 rms 1.8277266025543213
+model.layers.14/input/2 shape (13, 1024) exact False max 16.75 rms 0.6828800439834595
+model.layers.14/output/0 shape (13, 1024) exact False max 0.203125 rms 0.01164020225405693
+model.layers.14/output/1 shape (13, 1024) exact False max 0.25 rms 0.021483037620782852
+model.layers.15/input/0 shape (13,) exact True max 0.0 rms 0.0
+model.layers.15/input/1 shape (13, 1024) exact False max 42.171875 rms 2.252725601196289
+model.layers.15/input/2 shape (13, 1024) exact False max 8.0625 rms 0.6138126850128174
+model.layers.15/output/0 shape (13, 1024) exact False max 0.125 rms 0.01307968981564045
+model.layers.15/output/1 shape (13, 1024) exact False max 0.5625 rms 0.025118671357631683
+model.layers.16/input/0 shape (13,) exact True max 0.0 rms 0.0
+model.layers.16/input/1 shape (13, 1024) exact False max 46.328125 rms 2.435990810394287
+model.layers.16/input/2 shape (13, 1024) exact False max 6.75 rms 0.6074801087379456
+model.layers.16/output/0 shape (13, 1024) exact False max 0.28125 rms 0.017445482313632965
+model.layers.16/output/1 shape (13, 1024) exact False max 0.625 rms 0.02831580862402916
+model.layers.17/input/0 shape (13,) exact True max 0.0 rms 0.0
+model.layers.17/input/1 shape (13, 1024) exact False max 95.47265625 rms 4.188108444213867
+model.layers.17/input/2 shape (13, 1024) exact False max 11.0 rms 0.9143911004066467
+model.layers.17/output/0 shape (13, 1024) exact False max 0.3125 rms 0.021264303475618362
+model.layers.17/output/1 shape (13, 1024) exact False max 0.875 rms 0.03561807796359062
+model.layers.18/input/0 shape (13,) exact True max 0.0 rms 0.0
+model.layers.18/input/1 shape (13, 1024) exact False max 83.048583984375 rms 4.065969467163086
+model.layers.18/input/2 shape (13, 1024) exact False max 15.0 rms 1.1686272621154785
+model.layers.18/output/0 shape (13, 1024) exact False max 0.203369140625 rms 0.02739277295768261
+model.layers.18/output/1 shape (13, 1024) exact False max 1.25 rms 0.04425971955060959
+model.layers.19/input/0 shape (13,) exact True max 0.0 rms 0.0
+model.layers.19/input/1 shape (13, 1024) exact False max 96.66796875 rms 4.999248027801514
+model.layers.19/input/2 shape (13, 1024) exact False max 15.5 rms 1.4996219873428345
+model.layers.19/output/0 shape (13, 1024) exact False max 0.375 rms 0.032846927642822266
+model.layers.19/output/1 shape (13, 1024) exact False max 1.5 rms 0.05400169640779495
+model.layers.20/input/0 shape (13,) exact True max 0.0 rms 0.0
+model.layers.20/input/1 shape (13, 1024) exact False max 91.7734375 rms 5.580131530761719
+model.layers.20/input/2 shape (13, 1024) exact False max 18.75 rms 1.8722116947174072
+model.layers.20/output/0 shape (13, 1024) exact False max 0.5 rms 0.04030262306332588
+model.layers.20/output/1 shape (13, 1024) exact False max 2.0 rms 0.06962478160858154
+model.layers.21/input/0 shape (13,) exact True max 0.0 rms 0.0
+model.layers.21/input/1 shape (13, 1024) exact False max 105.51953125 rms 6.954952239990234
+model.layers.21/input/2 shape (13, 1024) exact False max 34.5 rms 1.9226493835449219
+model.layers.21/output/0 shape (13, 1024) exact False max 0.5 rms 0.04912929609417915
+model.layers.21/output/1 shape (13, 1024) exact False max 2.5 rms 0.08422914147377014
+model.layers.22/input/0 shape (13,) exact True max 0.0 rms 0.0
+model.layers.22/input/1 shape (13, 1024) exact False max 115.625 rms 7.551066875457764
+model.layers.22/input/2 shape (13, 1024) exact False max 42.125 rms 2.443002939224243
+model.layers.22/output/0 shape (13, 1024) exact False max 0.875 rms 0.05405570939183235
+model.layers.22/output/1 shape (13, 1024) exact False max 2.5 rms 0.10127532482147217
+model.layers.23/input/0 shape (13,) exact True max 0.0 rms 0.0
+model.layers.23/input/1 shape (13, 1024) exact False max 137.8447265625 rms 8.618985176086426
+model.layers.23/input/2 shape (13, 1024) exact False max 40.25 rms 2.5268394947052
+model.layers.23/output/0 shape (13, 1024) exact False max 0.75 rms 0.04937471076846123
+model.layers.23/output/1 shape (13, 1024) exact False max 3.5 rms 0.12352997809648514
+model.layers.24/input/0 shape (13,) exact True max 0.0 rms 0.0
+model.layers.24/input/1 shape (13, 1024) exact False max 176.765625 rms 10.472563743591309
+model.layers.24/input/2 shape (13, 1024) exact False max 56.5 rms 3.020354747772217
+model.layers.24/output/0 shape (13, 1024) exact False max 0.5 rms 0.05447102338075638
+model.layers.24/output/1 shape (13, 1024) exact False max 4.0 rms 0.1443752497434616
+model.layers.25/input/0 shape (13,) exact True max 0.0 rms 0.0
+model.layers.25/input/1 shape (13, 1024) exact False max 179.5703125 rms 11.688612937927246
+model.layers.25/input/2 shape (13, 1024) exact False max 86.0 rms 3.9564712047576904
+model.layers.25/output/0 shape (13, 1024) exact False max 1.0 rms 0.059585247188806534
+model.layers.25/output/1 shape (13, 1024) exact False max 4.0 rms 0.17223268747329712
+model.layers.26/input/0 shape (13,) exact True max 0.0 rms 0.0
+model.layers.26/input/1 shape (13, 1024) exact False max 224.875 rms 11.508004188537598
+model.layers.26/input/2 shape (13, 1024) exact False max 83.0 rms 4.191618919372559
+model.layers.26/output/0 shape (13, 1024) exact False max 1.25 rms 0.06078524515032768
+model.layers.26/output/1 shape (13, 1024) exact False max 4.0 rms 0.190235435962677
+model.layers.27/input/0 shape (13,) exact True max 0.0 rms 0.0
+model.layers.27/input/1 shape (13, 1024) exact False max 319.0 rms 9.511868476867676
+model.layers.27/input/2 shape (13, 1024) exact False max 224.0 rms 4.889699459075928
+model.layers.27/output/0 shape (13, 1024) exact False max 32.0 rms 0.3117122948169708
+model.layers.27/output/1 shape (13, 1024) exact False max 4.0 rms 0.20480191707611084
+model.norm/input/0 shape (13, 1024) exact False max 4958.1640625 rms 44.90311050415039
+model.norm/input/1 shape (13, 1024) exact False max 4992.0 rms 45.52570343017578
+model.norm/output/0 shape (13, 1024) exact False max 1.0 rms 0.050624337047338486
+model.norm/output/1 shape (13, 1024) exact False max 32.0 rms 0.36919966340065
+result shape (13, 1024) exact False max 1.0 rms 0.050624337047338486

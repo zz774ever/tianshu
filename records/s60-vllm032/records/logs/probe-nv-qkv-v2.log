@@ -1,0 +1,12 @@
+/usr/local/lib/python3.12/site-packages/paramiko/pkey.py:82: CryptographyDeprecationWarning: TripleDES has been moved to cryptography.hazmat.decrepit.ciphers.algorithms.TripleDES and will be removed from cryptography.hazmat.primitives.ciphers.algorithms in 48.0.0.
+  "cipher": algorithms.TripleDES,
+/usr/local/lib/python3.12/site-packages/paramiko/transport.py:243: CryptographyDeprecationWarning: TripleDES has been moved to cryptography.hazmat.decrepit.ciphers.algorithms.TripleDES and will be removed from cryptography.hazmat.primitives.ciphers.algorithms in 48.0.0.
+  "class": algorithms.TripleDES,
+reduced True vs captured neq 0 max 0.0
+reduced True vs cpu64 neq 41 max 0.00390625
+reduced False vs captured neq 0 max 0.0
+reduced False vs cpu64 neq 41 max 0.00390625
+fp32 vs captured neq 43 max 0.00390625
+fp32 vs cpu64 neq 8 max 0.0001220703125
+separate_qkv vs captured neq 0 max 0.0
+separate_qkv vs cpu64 neq 41 max 0.00390625

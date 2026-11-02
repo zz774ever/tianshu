@@ -1,0 +1,22 @@
+Looking in indexes: https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
+Obtaining file:///workspace/s60-adaptation/src/vllm
+  Checking if build backend supports build_editable: started
+  Checking if build backend supports build_editable: finished with status 'done'
+  Preparing editable metadata (pyproject.toml): started
+  Preparing editable metadata (pyproject.toml): finished with status 'done'
+Building wheels for collected packages: vllm
+  Building editable for vllm (pyproject.toml): started
+  Building editable for vllm (pyproject.toml): finished with status 'done'
+  Created wheel for vllm: filename=vllm-0.32.0+empty-0.editable-cp312-cp312-linux_x86_64.whl size=11620 sha256=50d8afbe958da3c3f5cce7ba727699d6648c3df4eef9bb8c678a8d7c6f9bbab2
+  Stored in directory: /tmp/pip-ephem-wheel-cache-f47mlsi_/wheels/43/b7/15/191580e1ab43172ec48f85bea1ec6cf0e3d25fc69146d074e2
+Successfully built vllm
+Installing collected packages: vllm
+  Attempting uninstall: vllm
+    Found existing installation: vllm 0.28.0+empty
+    Uninstalling vllm-0.28.0+empty:
+      Successfully uninstalled vllm-0.28.0+empty
+Successfully installed vllm-0.32.0+empty
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+
+[notice] A new release of pip is available: 26.1.2 -> 26.2.2
+[notice] To update, run: pip install --upgrade pip

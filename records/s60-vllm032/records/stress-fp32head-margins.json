@@ -1,0 +1,276 @@
+[
+  {
+    "prompt": "Explain why the sky appears blue in two sentences.",
+    "exact": true,
+    "first_mismatch": null
+  },
+  {
+    "prompt": "计算 17 × 23，并说明计算步骤。",
+    "exact": true,
+    "first_mismatch": null
+  },
+  {
+    "prompt": "Write a Python function that checks whether a string is a palindrome.",
+    "exact": true,
+    "first_mismatch": null
+  },
+  {
+    "prompt": "Translate into French: The train will arrive tomorrow morning.",
+    "exact": true,
+    "first_mismatch": null
+  },
+  {
+    "prompt": "List three differences between TCP and UDP.",
+    "exact": true,
+    "first_mismatch": null
+  },
+  {
+    "prompt": "Continue this sequence and explain: 2, 4, 8, 16,",
+    "exact": true,
+    "first_mismatch": null
+  },
+  {
+    "prompt": "Summarize the following: A library extended its opening hours after residents requested evening access. Visitor numbers then increased.",
+    "exact": true,
+    "first_mismatch": null
+  },
+  {
+    "prompt": "What is the capital of Japan? Give a short answer.",
+    "exact": false,
+    "first_mismatch": 14,
+    "reference_token": 23085,
+    "candidate_token": 785,
+    "reference": {
+      "23085": {
+        "logprob": -1.9570555686950684,
+        "rank": 1,
+        "text": "Which"
+      },
+      "785": {
+        "logprob": -1.9969210624694824,
+        "rank": 2,
+        "text": "The"
+      },
+      "top5": [
+        [
+          "23085",
+          {
+            "logprob": -1.9570555686950684,
+            "rank": 1,
+            "text": "Which"
+          }
+        ],
+        [
+          "785",
+          {
+            "logprob": -1.9969210624694824,
+            "rank": 2,
+            "text": "The"
+          }
+        ],
+        [
+          "3838",
+          {
+            "logprob": -2.558772563934326,
+            "rank": 3,
+            "text": "What"
+          }
+        ],
+        [
+          "48752",
+          {
+            "logprob": -2.638986110687256,
+            "rank": 4,
+            "text": "Japan"
+          }
+        ],
+        [
+          "4498",
+          {
+            "logprob": -2.7126364707946777,
+            "rank": 5,
+            "text": "When"
+          }
+        ]
+      ],
+      "reference_minus_candidate_logprob": 0.03986549377441406
+    },
+    "candidate": {
+      "23085": {
+        "logprob": -1.9884262084960938,
+        "rank": 2,
+        "text": "Which"
+      },
+      "785": {
+        "logprob": -1.9787406921386719,
+        "rank": 1,
+        "text": "The"
+      },
+      "top5": [
+        [
+          "785",
+          {
+            "logprob": -1.9787406921386719,
+            "rank": 1,
+            "text": "The"
+          }
+        ],
+        [
+          "23085",
+          {
+            "logprob": -1.9884262084960938,
+            "rank": 2,
+            "text": "Which"
+          }
+        ],
+        [
+          "3838",
+          {
+            "logprob": -2.570993423461914,
+            "rank": 3,
+            "text": "What"
+          }
+        ],
+        [
+          "48752",
+          {
+            "logprob": -2.631307601928711,
+            "rank": 4,
+            "text": "Japan"
+          }
+        ],
+        [
+          "4498",
+          {
+            "logprob": -2.690216064453125,
+            "rank": 5,
+            "text": "When"
+          }
+        ]
+      ],
+      "reference_minus_candidate_logprob": -0.009685516357421875
+    }
+  },
+  {
+    "prompt": "Return a JSON object with two keys: name and count, using values apple and 3.",
+    "exact": false,
+    "first_mismatch": 16,
+    "reference_token": 7281,
+    "candidate_token": 576,
+    "reference": {
+      "7281": {
+        "logprob": -1.233532428741455,
+        "rank": 1,
+        "text": " Also"
+      },
+      "576": {
+        "logprob": -1.3133530616760254,
+        "rank": 2,
+        "text": " The"
+      },
+      "top5": [
+        [
+          "7281",
+          {
+            "logprob": -1.233532428741455,
+            "rank": 1,
+            "text": " Also"
+          }
+        ],
+        [
+          "576",
+          {
+            "logprob": -1.3133530616760254,
+            "rank": 2,
+            "text": " The"
+          }
+        ],
+        [
+          "1416",
+          {
+            "logprob": -2.906811237335205,
+            "rank": 3,
+            "text": " If"
+          }
+        ],
+        [
+          "481",
+          {
+            "logprob": -3.500980854034424,
+            "rank": 4,
+            "text": " -"
+          }
+        ],
+        [
+          "22406",
+          {
+            "logprob": -3.5914673805236816,
+            "rank": 5,
+            "text": " Additionally"
+          }
+        ]
+      ],
+      "reference_minus_candidate_logprob": 0.07982063293457031
+    },
+    "candidate": {
+      "7281": {
+        "logprob": -1.2760257720947266,
+        "rank": 2,
+        "text": " Also"
+      },
+      "576": {
+        "logprob": -1.2705459594726562,
+        "rank": 1,
+        "text": " The"
+      },
+      "top5": [
+        [
+          "576",
+          {
+            "logprob": -1.2705459594726562,
+            "rank": 1,
+            "text": " The"
+          }
+        ],
+        [
+          "7281",
+          {
+            "logprob": -1.2760257720947266,
+            "rank": 2,
+            "text": " Also"
+          }
+        ],
+        [
+          "1416",
+          {
+            "logprob": -2.8849830627441406,
+            "rank": 3,
+            "text": " If"
+          }
+        ],
+        [
+          "481",
+          {
+            "logprob": -3.370645523071289,
+            "rank": 4,
+            "text": " -"
+          }
+        ],
+        [
+          "22406",
+          {
+            "logprob": -3.566679000854492,
+            "rank": 5,
+            "text": " Additionally"
+          }
+        ]
+      ],
+      "reference_minus_candidate_logprob": -0.0054798126220703125
+    }
+  },
+  {
+    "prompt": "Explain the difference between a metaphor and a simile with examples.",
+    "exact": true,
+    "first_mismatch": null
+  }
+]

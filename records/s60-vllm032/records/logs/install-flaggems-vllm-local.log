@@ -1,0 +1,16 @@
+Looking in indexes: https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
+Processing /workspace/s60-adaptation/src/FlagGems-vllm-b5c2c2249319277ccda4d41aa0f65164bd9b2a19
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Building wheels for collected packages: flaggems_vllm
+  Building wheel for flaggems_vllm (pyproject.toml): started
+  Building wheel for flaggems_vllm (pyproject.toml): finished with status 'done'
+  Created wheel for flaggems_vllm: filename=flaggems_vllm-0.1.0-py3-none-any.whl size=1273154 sha256=4f09d3486d1adaffc2cb4cde730bff8e36fc67681e3760e9076495af094846a4
+  Stored in directory: /root/.cache/pip/wheels/e2/5f/71/fc3a9bad744cf2e64ec0294fe0ac1453a2a74568138dc9fc41
+Successfully built flaggems_vllm
+Installing collected packages: flaggems_vllm
+Successfully installed flaggems_vllm-0.1.0
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+
+[notice] A new release of pip is available: 26.1.2 -> 26.2.2
+[notice] To update, run: pip install --upgrade pip

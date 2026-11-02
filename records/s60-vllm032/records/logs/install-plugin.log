@@ -1,0 +1,18 @@
+Looking in indexes: https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
+Obtaining file:///workspace/vllm-plugin-FL
+  Checking if build backend supports build_editable: started
+  Checking if build backend supports build_editable: finished with status 'done'
+  Preparing editable metadata (pyproject.toml): started
+  Preparing editable metadata (pyproject.toml): finished with status 'done'
+Building wheels for collected packages: vllm-plugin-fl
+  Building editable for vllm-plugin-fl (pyproject.toml): started
+  Building editable for vllm-plugin-fl (pyproject.toml): finished with status 'done'
+  Created wheel for vllm-plugin-fl: filename=vllm_plugin_fl-0.3.0rc2.post1+g64c9d216e-0.editable-py3-none-any.whl size=11742 sha256=77022720688c977489d13b97af0d4821d2c043965e633a761c409efc043e6924
+  Stored in directory: /tmp/pip-ephem-wheel-cache-insnyhj6/wheels/ac/50/fc/f51ce227827571f49b29cc1b467964b1d08a080b4a762577a5
+Successfully built vllm-plugin-fl
+Installing collected packages: vllm-plugin-fl
+Successfully installed vllm-plugin-fl-0.3.0rc2.post1+g64c9d216e
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+
+[notice] A new release of pip is available: 26.1.2 -> 26.2.2
+[notice] To update, run: pip install --upgrade pip

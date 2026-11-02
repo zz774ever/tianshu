@@ -1,0 +1,37 @@
+## adapt/vllm032-from-050
+ M .github/scripts/enflame/setup.sh
+ M docker/build.sh
+ M docker/enflame/Dockerfile
+ M docker/enflame/README.md
+ M docs/usage/enflame.md
+ M tests/platforms/enflame.yaml
+ M tests/unit_tests/dispatch/test_gcu_inductor.py
+ M tests/unit_tests/dispatch/test_gcu_kv_zeroer.py
+ M tests/unit_tests/dispatch/test_gcu_reshape_and_cache.py
+ M tests/unit_tests/test_enflame_compilation_config.py
+ M tests/unit_tests/test_model_config.py
+ M tests/unit_tests/worker/test_model_runner.py
+ M tests/unit_tests/worker/test_worker.py
+ M tests/utils/model_config.py
+ M vllm_fl/dispatch/backends/flaggems/impl/normalization.py
+ M vllm_fl/dispatch/backends/vendor/gcu/impl/attention.py
+ M vllm_fl/dispatch/backends/vendor/gcu/impl/inductor.py
+ M vllm_fl/dispatch/backends/vendor/gcu/impl/normalization.py
+ M vllm_fl/dispatch/backends/vendor/gcu/impl/reshape_and_cache.py
+ M vllm_fl/dispatch/backends/vendor/gcu/patch.py
+ M vllm_fl/distributed/device_communicators/flagcx.py
+ M vllm_fl/ops/fused_moe/router.py
+ M vllm_fl/platform.py
+ M vllm_fl/worker/model_runner.py
+ M vllm_fl/worker/worker.py
+?? docs/usage/enflame-vllm032.md
+?? tests/unit_tests/dispatch/test_gcu_codegen.py
+?? tests/unit_tests/dispatch/test_gcu_normalization.py
+?? tests/unit_tests/dispatch/test_gcu_vocab_mask.py
+?? tests/unit_tests/distributed/test_flagcx_gcu.py
+?? tests/unit_tests/ops/test_fused_moe_router_padding.py
+?? tests/unit_tests/test_enflame_ci_version.py
+?? tests/unit_tests/test_enflame_collectives.py
+?? tests/unit_tests/test_enflame_ir_priority.py
+?? tests/unit_tests/worker/test_worker_v032.py
+?? vllm_fl/dispatch/backends/vendor/gcu/impl/vocab_mask.py

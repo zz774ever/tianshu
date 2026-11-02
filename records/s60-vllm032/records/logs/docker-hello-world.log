@@ -1,0 +1,4 @@
+Unable to find image 'hello-world:latest' locally
+docker: Error response from daemon: Get "https://registry-1.docker.io/v2/": context deadline exceeded
+
+Run 'docker run --help' for more information

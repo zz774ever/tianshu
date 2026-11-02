@@ -1,0 +1,31 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.8, pytest-8.4.1, pluggy-1.6.0 -- /usr/local/bin/python3.12
+cachedir: .pytest_cache
+metadata: {'Python': '3.12.8', 'Platform': 'Linux-6.8.0-117-generic-x86_64-with-glibc2.39', 'Packages': {'pytest': '8.4.1', 'pluggy': '1.6.0'}, 'Plugins': {'json-report': '1.5.0', 'metadata': '3.1.1', 'anyio': '4.13.0', 'asyncio': '0.24.0', 'cov': '6.3.0', 'timeout': '2.3.1', 'regex': '0.2.0', 'hypothesis': '6.31.6', 'repeat': '0.9.1'}, 'PLATFORM': 'x86_64'}
+hypothesis profile 'default' -> database=DirectoryBasedExampleDatabase('/workspace/vllm-plugin-FL/tools/adaptation-gate-cases/.hypothesis/examples')
+rootdir: /workspace/vllm-plugin-FL
+configfile: pyproject.toml
+plugins: json-report-1.5.0, metadata-3.1.1, anyio-4.13.0, asyncio-0.24.0, cov-6.3.0, timeout-2.3.1, regex-0.2.0, hypothesis-6.31.6, repeat-0.9.1
+asyncio: mode=Mode.STRICT, default_loop_scope=None
+collecting ...  pytest-regex selected 1 tests to run for regex: .*
+collected 1 item
+
+test_text.py::test_text_single Adaptation gate failed
+  Scenario: text_single
+  Model: /models/Qwen3.6-35B-A3B
+  Endpoint: http://127.0.0.1:18101/v1
+  Result: /workspace/s60-adaptation/gate-results/35b-eager-ci-dispatch-single/Qwen3.6-35B-A3B/port-18101/text_single.json
+  Failed requests: 1/1
+    - text-llm-details: failed checks: expected_semantics, expected_order; output: 'Large language models (LLMs) are advanced artificial intelligence systems designed to understand, generate, and manipulate human language with remarkable flu...'
+FAILED
+
+=================================== FAILURES ===================================
+_______________________________ test_text_single _______________________________
+test_text.py:7: in test_text_single
+    run_case("text_single")
+case_utils.py:406: in run_case
+    raise AssertionError(f"Quality gate failed; inspect {destination}")
+E   AssertionError: Quality gate failed; inspect /workspace/s60-adaptation/gate-results/35b-eager-ci-dispatch-single/Qwen3.6-35B-A3B/port-18101/text_single.json
+=========================== short test summary info ============================
+FAILED test_text.py::test_text_single - AssertionError: Quality gate failed; inspect /workspace/s60-adaptation/gate-results/35b-eager-ci-dispatch-single/Qwen3.6-35B-A3B/port-18101/text_single.json
+======================== 1 failed in 133.58s (0:02:13) =========================

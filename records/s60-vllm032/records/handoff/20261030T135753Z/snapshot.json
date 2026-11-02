@@ -1,0 +1,21 @@
+{
+  "created_at_utc": "2026-10-30T13:57:53.966815+00:00",
+  "session": "d08319f6",
+  "agent_pid": 432625,
+  "action": "SIGINT interrupted current turn; interactive prompt retained",
+  "user_instruction": "仅中止当前执行，后续用户接手",
+  "snapshot_directory": "/workspace/s60-adaptation/handoff/20261030T135753Z",
+  "source_session_directory": "/root/.flagscale/sessions/d08319f6",
+  "tracked_patch": "tracked-changes.patch",
+  "note": "Private session snapshots may contain credentials; do not publish raw snapshots.",
+  "conversation.json": {
+    "turn_count": 15,
+    "messages": 141,
+    "sha256": "b5f77afff59210ac54b082d1d380d45d7df7beda3b9d500ec10e87cd3d756938"
+  },
+  "conversation_full.json": {
+    "turn_count": 15,
+    "messages": 3797,
+    "sha256": "d43d86be160a56ecab5694346bbae554e54885e32fcf6a922a7dab21bf22e691"
+  }
+}

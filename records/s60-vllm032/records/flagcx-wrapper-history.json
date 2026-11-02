@@ -1,0 +1,166 @@
+[
+  {
+    "sha": "ff5f80c9fb23a2f6906fd6a8681e1fe4b7f26720",
+    "node_id": "C_kwDONfo8EdoAKGZmNWY4MGM5ZmIyM2EyZjY5MDZmZDZhODY4MWUxZmU0YjdmMjY3MjA",
+    "commit": {
+      "author": {
+        "name": "MC952-arch",
+        "email": "mc952-arch@qq.com",
+        "date": "2026-10-09T14:34:38Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2026-10-09T14:34:38Z"
+      },
+      "message": "[Others] Backport 0.14.0-rc2 packaging changes to main (#645)\n\n---------\n\nCo-authored-by: Qiming Teng <tengqm@outlook.com>\nCo-authored-by: flagos-ci <flagos-ci@users.noreply.github.com>",
+      "tree": {
+        "sha": "be8dd9d9f02681759c14beb80a49a81db31cd77e",
+        "url": "https://api.github.com/repos/flagos-ai/FlagCX/git/trees/be8dd9d9f02681759c14beb80a49a81db31cd77e"
+      },
+      "url": "https://api.github.com/repos/flagos-ai/FlagCX/git/commits/ff5f80c9fb23a2f6906fd6a8681e1fe4b7f26720",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsFcBAABCAAQBQJqyPt+CRC1aQ7uu5UhlAAA1NcQACKy1p4AfuWorqP3x3Qq/KId\nW8ch4rs1Ty9XDS3IMq7sf0Bbg3+kU68rSjn/JkQcMOfgKqHmH7LtC40XqdFzCD1C\n7p3oj0OG1idXDW5W1jbusJXMqon7MDSkU9ojBhD2Wbnr2vsqj1R9CWVbL6dcPNKl\nMkvQUSy/+H1XwfPc5pprNL1FQKM9x4XbTJen3+7RpK6W6RefQk/ZkBre4zlu+pey\nGJzFGqe8PrIFYlZekYV/XmAPGCUfEBHVX5A0M6gaUAeP2W03ODSHwC3fTPlziJts\nYTWCLggZ8dL+0MMP070wf/5dw0whtaq7+0wqTQLqXmjmBdVVcG5/LiydCUypB1oS\nyywxoIjbepbvGfLKNaPYPvo5LwwtVHwagyq6fkLF8aiaDImxg0O+5as7S7YXjJK3\n9APApsEOwLAQrA6UP8ufqG/zkOSNk6r/WRQFNcbEDkfNG5rJpSC7ZNYDb5At6XnI\nVSNtNhjHGd61Rrwq88kIl4UOfc7mF2VTubGxwy6/DHcUPtPIPCtUOS4rdtBQyYdV\n0EtISBWpdEGc4ScrcDY4csAk0PLJ2+FEDH0LxwvLraEnMgTUoGvGQUVM5jovs8Ba\niYdqm1m7c+McAm/1+6Z3J93WVM3X/TaWHwOJXFWH2yIVKNr/0SP/bAFe7vX8qAXg\nuwQhTGdLlQzThKIcAfB0\n=oz0y\n-----END PGP SIGNATURE-----\n",
+        "payload": "tree be8dd9d9f02681759c14beb80a49a81db31cd77e\nparent 84a317d26b2acce92b208d86dfb1b2e1420f63d4\nauthor MC952-arch <mc952-arch@qq.com> 1791556478 +0800\ncommitter GitHub <noreply@github.com> 1791556478 +0800\n\n[Others] Backport 0.14.0-rc2 packaging changes to main (#645)\n\n---------\n\nCo-authored-by: Qiming Teng <tengqm@outlook.com>\nCo-authored-by: flagos-ci <flagos-ci@users.noreply.github.com>",
+        "verified_at": "2026-10-09T14:34:38Z"
+      }
+    },
+    "url": "https://api.github.com/repos/flagos-ai/FlagCX/commits/ff5f80c9fb23a2f6906fd6a8681e1fe4b7f26720",
+    "html_url": "https://github.com/flagos-ai/FlagCX/commit/ff5f80c9fb23a2f6906fd6a8681e1fe4b7f26720",
+    "comments_url": "https://api.github.com/repos/flagos-ai/FlagCX/commits/ff5f80c9fb23a2f6906fd6a8681e1fe4b7f26720/comments",
+    "author": {
+      "login": "MC952-arch",
+      "id": 181436453,
+      "node_id": "U_kgDOCtCAJQ",
+      "avatar_url": "https://avatars.githubusercontent.com/u/181436453?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/MC952-arch",
+      "html_url": "https://github.com/MC952-arch",
+      "followers_url": "https://api.github.com/users/MC952-arch/followers",
+      "following_url": "https://api.github.com/users/MC952-arch/following{/other_user}",
+      "gists_url": "https://api.github.com/users/MC952-arch/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/MC952-arch/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/MC952-arch/subscriptions",
+      "organizations_url": "https://api.github.com/users/MC952-arch/orgs",
+      "repos_url": "https://api.github.com/users/MC952-arch/repos",
+      "events_url": "https://api.github.com/users/MC952-arch/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/MC952-arch/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "84a317d26b2acce92b208d86dfb1b2e1420f63d4",
+        "url": "https://api.github.com/repos/flagos-ai/FlagCX/commits/84a317d26b2acce92b208d86dfb1b2e1420f63d4",
+        "html_url": "https://github.com/flagos-ai/FlagCX/commit/84a317d26b2acce92b208d86dfb1b2e1420f63d4"
+      }
+    ]
+  },
+  {
+    "sha": "31b554c01d284fad85e74d5e9e8afc3cbbfc0952",
+    "node_id": "C_kwDONfo8EdoAKDMxYjU1NGMwMWQyODRmYWQ4NWU3NGQ1ZTllOGFmYzNjYmJmYzA5NTI",
+    "commit": {
+      "author": {
+        "name": "Qiming Teng",
+        "email": "tengqm@outlook.com",
+        "date": "2026-09-12T17:21:49Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2026-09-12T17:21:49Z"
+      },
+      "message": "[UIL] Fall back to a system FlagCX library instead of failing on FLAGCX_PATH (#586)",
+      "tree": {
+        "sha": "702d69b393b5b422fc32d26f54b6324ae9f9942c",
+        "url": "https://api.github.com/repos/flagos-ai/FlagCX/git/trees/702d69b393b5b422fc32d26f54b6324ae9f9942c"
+      },
+      "url": "https://api.github.com/repos/flagos-ai/FlagCX/git/commits/31b554c01d284fad85e74d5e9e8afc3cbbfc0952",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsFcBAABCAAQBQJqpYotCRC1aQ7uu5UhlAAAozIQAKzDVw9C8T2e/vtbM5TsxQA/\nNWdUarYvB8ZBDljHFxCwt5yVX0QHKRM5pvz5zBDSXgzmiMAdePdO2NfpQkLZE2lj\n4lHUv7jIgK5WnefBjhT2cu1Fffv+gMd3TQqqJR1/G2vjhTuIIVkKLBzXog3AFjsY\ndvnf8LwSQU26ZvryUJnQ3zR9bHjbSSL7gsd3fIAMdRYYBKMLmmAwMj6ht8OtQiov\nJG8V5fWMrg+Z74hUI80F1dYkVK17REbA8sog76FzVz4+ii5j3y0lXVwVf/DhQyac\nv/D0ZxfsSuU1iq0piRjnF3CaFkEEUaMA61cQrz/UoOtvZKBA0WyVdYcAoRo1P0KK\nHyorzhDJSU6qPV+/vWq0CFyVaBbrTnGT3NSs9XZ4QO05AyyYxgyykw0iiJ26iC5X\nCNP2B70kzFCMoimNOKt56YnUsjzj1ZjRFhUO6h6eh8uWIZ+TVWjpymsMOKqRt9g3\n4j9XJJ0HQ3UZs3jYSpfmuYdV9/g38t8T2j0imoJ5IFH27UJL9GWE9PHVqIXeokv9\nliKq4XBSV6Wz+hmj/F7ex/A+zPGDZgPJBu6yFqQFeG+F+NEVJRsPUzX2vCbXkBPU\nkHzSpIB7Q1tClPywKyCXv4ho4h8XBT/ss5jb0YYExizl1lQkWBzY4Iu/s8FvPbQE\nWwCOZgaSgwXIk/7ig30f\n=2SpG\n-----END PGP SIGNATURE-----\n",
+        "payload": "tree 702d69b393b5b422fc32d26f54b6324ae9f9942c\nparent ad74d5e824bd5a6489e42fdaddea7ec6695a7362\nauthor Qiming Teng <tengqm@outlook.com> 1789233709 +0800\ncommitter GitHub <noreply@github.com> 1789233709 +0800\n\n[UIL] Fall back to a system FlagCX library instead of failing on FLAGCX_PATH (#586)",
+        "verified_at": "2026-09-12T17:21:50Z"
+      }
+    },
+    "url": "https://api.github.com/repos/flagos-ai/FlagCX/commits/31b554c01d284fad85e74d5e9e8afc3cbbfc0952",
+    "html_url": "https://github.com/flagos-ai/FlagCX/commit/31b554c01d284fad85e74d5e9e8afc3cbbfc0952",
+    "comments_url": "https://api.github.com/repos/flagos-ai/FlagCX/commits/31b554c01d284fad85e74d5e9e8afc3cbbfc0952/comments",
+    "author": {
+      "login": "tengqm",
+      "id": 5094756,
+      "node_id": "MDQ6VXNlcjUwOTQ3NTY=",
+      "avatar_url": "https://avatars.githubusercontent.com/u/5094756?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/tengqm",
+      "html_url": "https://github.com/tengqm",
+      "followers_url": "https://api.github.com/users/tengqm/followers",
+      "following_url": "https://api.github.com/users/tengqm/following{/other_user}",
+      "gists_url": "https://api.github.com/users/tengqm/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/tengqm/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/tengqm/subscriptions",
+      "organizations_url": "https://api.github.com/users/tengqm/orgs",
+      "repos_url": "https://api.github.com/users/tengqm/repos",
+      "events_url": "https://api.github.com/users/tengqm/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/tengqm/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "ad74d5e824bd5a6489e42fdaddea7ec6695a7362",
+        "url": "https://api.github.com/repos/flagos-ai/FlagCX/commits/ad74d5e824bd5a6489e42fdaddea7ec6695a7362",
+        "html_url": "https://github.com/flagos-ai/FlagCX/commit/ad74d5e824bd5a6489e42fdaddea7ec6695a7362"
+      }
+    ]
+  }
+]

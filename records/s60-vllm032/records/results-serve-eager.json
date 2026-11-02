@@ -1,0 +1,70 @@
+{
+  "concurrent": [
+    {
+      "id": "cmpl-80a3dded11c2e3ed",
+      "object": "text_completion",
+      "created": 1793347408,
+      "model": "/models/Qwen3-0.6B",
+      "choices": [
+        {
+          "index": 0,
+          "text": " Paris. The capital of France is also the capital of the Republic of France.",
+          "logprobs": null,
+          "finish_reason": "length",
+          "stop_reason": null,
+          "token_ids": null,
+          "prompt_logprobs": null,
+          "prompt_token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "system_fingerprint": "vllm-0.32.0-0ba46ddf",
+      "usage": {
+        "prompt_tokens": 5,
+        "total_tokens": 21,
+        "completion_tokens": 16,
+        "prompt_tokens_details": null,
+        "completion_tokens_details": null
+      },
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null
+    },
+    {
+      "id": "cmpl-9457734fc82f7476",
+      "object": "text_completion",
+      "created": 1793347408,
+      "model": "/models/Qwen3-0.6B",
+      "choices": [
+        {
+          "index": 0,
+          "text": " lazy dog. The quick brown fox is a character in the story. The quick",
+          "logprobs": null,
+          "finish_reason": "length",
+          "stop_reason": null,
+          "token_ids": null,
+          "prompt_logprobs": null,
+          "prompt_token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "system_fingerprint": "vllm-0.32.0-0ba46ddf",
+      "usage": {
+        "prompt_tokens": 7,
+        "total_tokens": 23,
+        "completion_tokens": 16,
+        "prompt_tokens_details": null,
+        "completion_tokens_details": null
+      },
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null
+    }
+  ],
+  "stream": {
+    "stream_text": " Paris. The capital of France is also the capital of the Republic of France.",
+    "done": true
+  }
+}

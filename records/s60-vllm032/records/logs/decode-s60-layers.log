@@ -1,0 +1,214 @@
+[W1030 10:44:25.178336660 gcu_caching_allocator.cpp:2976] Warning: [GCU Allocator] Static initialization: PYTORCH_GCU_ALLOC_CONF="(not set, using default)", selected_backend=native (function BackendStaticInitializer)
+/usr/local/lib/python3.12/site-packages/torch_gcu/transfer_to_gcu.py:443: ImportWarning: 
+    *************************************************************************************************************
+    The torch.Tensor.cuda and torch.nn.Module.cuda are replaced with torch.Tensor.gcu and torch.nn.Module.gcu now..
+    The backend in torch.distributed.init_process_group set to eccl now..
+    The torch.cuda.* and torch.cuda.amp.* are replaced with torch.gcu.* and torch.gcu.amp.* now..
+    The device parameters have been replaced with gcu in the function below:
+    torch.logspace, torch.randint, torch.hann_window, torch.rand, torch.full_like, torch.ones_like, torch.rand_like, torch.randperm, torch.arange, torch.frombuffer, torch.normal, torch._empty_per_channel_affine_quantized, torch.empty_strided, torch.empty_like, torch.scalar_tensor, torch.tril_indices, torch.bartlett_window, torch.ones, torch.sparse_coo_tensor, torch.randn, torch.kaiser_window, torch.tensor, torch.triu_indices, torch.as_tensor, torch.zeros, torch.randint_like, torch.full, torch.eye, torch._sparse_csr_tensor_unsafe, torch.empty, torch._sparse_coo_tensor_unsafe, torch.blackman_window, torch.zeros_like, torch.range, torch.sparse_csr_tensor, torch.randn_like, torch.from_file, torch._cudnn_init_dropout_state, torch._empty_affine_quantized, torch.linspace, torch.hamming_window, torch.empty_quantized, torch._pin_memory, torch.autocast, torch.load, torch.Tensor.new_empty, torch.Tensor.new_empty_strided, torch.Tensor.new_full, torch.Tensor.new_ones, torch.Tensor.new_tensor, torch.Tensor.new_zeros, torch.Tensor.to, torch.nn.Module.to, torch.nn.Module.to_empty
+    *************************************************************************************************************
+    
+  warnings.warn(msg, ImportWarning)
+Failed to load /usr/local/lib/python3.12/site-packages/torchao/_C_cutlass_90a.abi3.so: Could not load this library: /usr/local/lib/python3.12/site-packages/torchao/_C_cutlass_90a.abi3.so
+Failed to load /usr/local/lib/python3.12/site-packages/torchao/_C_mxfp8.cpython-310-x86_64-linux-gnu.so: Could not load this library: /usr/local/lib/python3.12/site-packages/torchao/_C_mxfp8.cpython-310-x86_64-linux-gnu.so
+/usr/local/lib/python3.12/site-packages/Cython/Distutils/old_build_ext.py:15: DeprecationWarning: dep_util is Deprecated. Use functions from setuptools instead.
+  from distutils.dep_util import newer, newer_group
+/usr/local/lib/python3.12/site-packages/torch/jit/_script.py:365: DeprecationWarning: `torch.jit.script_method` is deprecated. Please switch to `torch.compile` or `torch.export`.
+  warnings.warn(
+Failed to import from vllm._C: ModuleNotFoundError("No module named 'vllm._C'")
+/usr/local/lib/python3.12/site-packages/torch_gcu/transfer_to_gcu.py:443: ImportWarning: 
+    *************************************************************************************************************
+    The torch.Tensor.cuda and torch.nn.Module.cuda are replaced with torch.Tensor.gcu and torch.nn.Module.gcu now..
+    The backend in torch.distributed.init_process_group set to eccl now..
+    The torch.cuda.* and torch.cuda.amp.* are replaced with torch.gcu.* and torch.gcu.amp.* now..
+    The device parameters have been replaced with gcu in the function below:
+    torch.logspace, torch.randint, torch.hann_window, torch.rand, torch.full_like, torch.ones_like, torch.rand_like, torch.randperm, torch.arange, torch.frombuffer, torch.normal, torch._empty_per_channel_affine_quantized, torch.empty_strided, torch.empty_like, torch.scalar_tensor, torch.tril_indices, torch.bartlett_window, torch.ones, torch.sparse_coo_tensor, torch.randn, torch.kaiser_window, torch.tensor, torch.triu_indices, torch.as_tensor, torch.zeros, torch.randint_like, torch.full, torch.eye, torch._sparse_csr_tensor_unsafe, torch.empty, torch._sparse_coo_tensor_unsafe, torch.blackman_window, torch.zeros_like, torch.range, torch.sparse_csr_tensor, torch.randn_like, torch.from_file, torch._cudnn_init_dropout_state, torch._empty_affine_quantized, torch.linspace, torch.hamming_window, torch.empty_quantized, torch._pin_memory, torch.autocast, torch.load, torch.Tensor.new_empty, torch.Tensor.new_empty_strided, torch.Tensor.new_full, torch.Tensor.new_ones, torch.Tensor.new_tensor, torch.Tensor.new_zeros, torch.Tensor.to, torch.nn.Module.to, torch.nn.Module.to_empty
+    *************************************************************************************************************
+    
+  warnings.warn(msg, ImportWarning)
+(MainProcess pid=446996) INFO 10-30 10:44:38 [api_utils.py:286] non-default args: {'dtype': 'bfloat16', 'max_model_len': 512, 'gpu_memory_utilization': 0.35, 'max_num_seqs': 4, 'disable_log_stats': True, 'enforce_eager': True, 'model': '/models/Qwen3-0.6B'}
+(MainProcess pid=446996) INFO 10-30 10:44:38 [model.py:733] Resolved architecture: Qwen3ForCausalLM
+(MainProcess pid=446996) INFO 10-30 10:44:38 [model.py:2152] Using max model len 512
+(MainProcess pid=446996) INFO 10-30 10:44:38 [scheduler.py:307] Chunked prefill is enabled with max_num_batched_tokens=2048.
+(MainProcess pid=446996) WARNING 10-30 10:44:38 [vllm.py:1703] Enforce eager set, disabling torch.compile, CUDAGraphs, and JIT kernel warmup. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none and --kernel_config.enable_jit_warmup=False
+(MainProcess pid=446996) WARNING 10-30 10:44:38 [vllm.py:1727] Inductor compilation was disabled by user settings, optimizations settings that are only active during inductor compilation will be ignored.
+(MainProcess pid=446996) INFO 10-30 10:44:38 [kernel.py:467] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native'], gelu_and_mul_sparse=['native'])
+(MainProcess pid=446996) INFO 10-30 10:44:38 [vllm.py:1929] Cudagraph is disabled under eager mode
+(MainProcess pid=446996) INFO 10-30 10:44:38 [compilation.py:317] Enabled custom fusions: norm_quant, act_quant
+[W1030 10:44:43.289766497 gcu_caching_allocator.cpp:2976] Warning: [GCU Allocator] Static initialization: PYTORCH_GCU_ALLOC_CONF="(not set, using default)", selected_backend=native (function BackendStaticInitializer)
+/usr/local/lib/python3.12/site-packages/torch_gcu/transfer_to_gcu.py:443: ImportWarning: 
+    *************************************************************************************************************
+    The torch.Tensor.cuda and torch.nn.Module.cuda are replaced with torch.Tensor.gcu and torch.nn.Module.gcu now..
+    The backend in torch.distributed.init_process_group set to eccl now..
+    The torch.cuda.* and torch.cuda.amp.* are replaced with torch.gcu.* and torch.gcu.amp.* now..
+    The device parameters have been replaced with gcu in the function below:
+    torch.logspace, torch.randint, torch.hann_window, torch.rand, torch.full_like, torch.ones_like, torch.rand_like, torch.randperm, torch.arange, torch.frombuffer, torch.normal, torch._empty_per_channel_affine_quantized, torch.empty_strided, torch.empty_like, torch.scalar_tensor, torch.tril_indices, torch.bartlett_window, torch.ones, torch.sparse_coo_tensor, torch.randn, torch.kaiser_window, torch.tensor, torch.triu_indices, torch.as_tensor, torch.zeros, torch.randint_like, torch.full, torch.eye, torch._sparse_csr_tensor_unsafe, torch.empty, torch._sparse_coo_tensor_unsafe, torch.blackman_window, torch.zeros_like, torch.range, torch.sparse_csr_tensor, torch.randn_like, torch.from_file, torch._cudnn_init_dropout_state, torch._empty_affine_quantized, torch.linspace, torch.hamming_window, torch.empty_quantized, torch._pin_memory, torch.autocast, torch.load, torch.Tensor.new_empty, torch.Tensor.new_empty_strided, torch.Tensor.new_full, torch.Tensor.new_ones, torch.Tensor.new_tensor, torch.Tensor.new_zeros, torch.Tensor.to, torch.nn.Module.to, torch.nn.Module.to_empty
+    *************************************************************************************************************
+    
+  warnings.warn(msg, ImportWarning)
+Failed to load /usr/local/lib/python3.12/site-packages/torchao/_C_cutlass_90a.abi3.so: Could not load this library: /usr/local/lib/python3.12/site-packages/torchao/_C_cutlass_90a.abi3.so
+Failed to load /usr/local/lib/python3.12/site-packages/torchao/_C_mxfp8.cpython-310-x86_64-linux-gnu.so: Could not load this library: /usr/local/lib/python3.12/site-packages/torchao/_C_mxfp8.cpython-310-x86_64-linux-gnu.so
+/usr/local/lib/python3.12/site-packages/Cython/Distutils/old_build_ext.py:15: DeprecationWarning: dep_util is Deprecated. Use functions from setuptools instead.
+  from distutils.dep_util import newer, newer_group
+/usr/local/lib/python3.12/site-packages/torch/jit/_script.py:365: DeprecationWarning: `torch.jit.script_method` is deprecated. Please switch to `torch.compile` or `torch.export`.
+  warnings.warn(
+Failed to import from vllm._C: ModuleNotFoundError("No module named 'vllm._C'")
+/usr/local/lib/python3.12/site-packages/torch_gcu/transfer_to_gcu.py:443: ImportWarning: 
+    *************************************************************************************************************
+    The torch.Tensor.cuda and torch.nn.Module.cuda are replaced with torch.Tensor.gcu and torch.nn.Module.gcu now..
+    The backend in torch.distributed.init_process_group set to eccl now..
+    The torch.cuda.* and torch.cuda.amp.* are replaced with torch.gcu.* and torch.gcu.amp.* now..
+    The device parameters have been replaced with gcu in the function below:
+    torch.logspace, torch.randint, torch.hann_window, torch.rand, torch.full_like, torch.ones_like, torch.rand_like, torch.randperm, torch.arange, torch.frombuffer, torch.normal, torch._empty_per_channel_affine_quantized, torch.empty_strided, torch.empty_like, torch.scalar_tensor, torch.tril_indices, torch.bartlett_window, torch.ones, torch.sparse_coo_tensor, torch.randn, torch.kaiser_window, torch.tensor, torch.triu_indices, torch.as_tensor, torch.zeros, torch.randint_like, torch.full, torch.eye, torch._sparse_csr_tensor_unsafe, torch.empty, torch._sparse_coo_tensor_unsafe, torch.blackman_window, torch.zeros_like, torch.range, torch.sparse_csr_tensor, torch.randn_like, torch.from_file, torch._cudnn_init_dropout_state, torch._empty_affine_quantized, torch.linspace, torch.hamming_window, torch.empty_quantized, torch._pin_memory, torch.autocast, torch.load, torch.Tensor.new_empty, torch.Tensor.new_empty_strided, torch.Tensor.new_full, torch.Tensor.new_ones, torch.Tensor.new_tensor, torch.Tensor.new_zeros, torch.Tensor.to, torch.nn.Module.to, torch.nn.Module.to_empty
+    *************************************************************************************************************
+    
+  warnings.warn(msg, ImportWarning)
+(EngineCore pid=447292) INFO 10-30 10:44:55 [core.py:133] Initializing a V1 LLM engine (v0.32.0) with config: model='/models/Qwen3-0.6B', speculative_config=None, tokenizer='/models/Qwen3-0.6B', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=512, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=True, quantization=None, quantization_config=None, enforce_eager=True, aux_output_config=AuxOutputConfig(enable_return_routed_experts=False, max_bytes=None), kv_cache_dtype=auto, device_config=gcu, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, per_request_spec_decode_metrics='none', kv_cache_metrics=False, kv_cache_metrics_sample=0.01, custom_histogram_buckets=None, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False, jit_monitor_mode='warn', jit_monitor_verbose=False), seed=0, served_model_name=/models/Qwen3-0.6B, enable_prefix_caching=True, enable_chunked_prefill=True, pooler_config=None, compilation_config={'mode': <CompilationMode.NONE: 0>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': ['all'], 'ir_enable_torch_wrap': False, 'splitting_ops': [], 'compile_mm_encoder': False, 'cudagraph_mm_encoder': False, 'encoder_cudagraph_token_budgets': [], 'encoder_cudagraph_max_vision_items_per_batch': 0, 'encoder_cudagraph_max_frames_per_batch': None, 'cudagraph_decoder_replay': True, 'decoder_replay_cudagraph_capture_sizes': [], 'decoder_replay_trim_threshold': 768, 'compile_sizes': [], 'compile_ranges_endpoints': [2048], 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'size_asserts': False, 'alignment_asserts': False, 'scalar_asserts': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.NONE: 0>, 'cudagraph_num_of_warmups': 0, 'cudagraph_capture_sizes': [], 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': False, 'pass_config': {'fuse_norm_quant': True, 'fuse_act_quant': True, 'fuse_attn_quant': False, 'fuse_allreduce_rms': False, 'enable_qk_norm_rope_fusion': False, 'fuse_rope_kvcache_cat_mla': False, 'fuse_act_padding': False, 'fuse_qk_norm_rope_kvcache': False}, 'max_cudagraph_capture_size': 0, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': False, 'static_all_moe_layers': []}, kernel_config=KernelConfig(ir_op_priority=IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native'], gelu_and_mul_sparse=['native']), enable_flashinfer_autotune=True, enable_rocm_segmented_attn_autotune=False, enable_cutedsl_warmup=True, enable_jit_warmup=False, moe_backend='auto', sparse_indexer_topk_backend='auto', linear_backend='auto', linear_backend_per_quant=None)
+[2026-10-30 10:44:56] [INFO] [vllm_fl.dispatch.backends.vendor.gcu.impl.bilinear_pos_embed] Patched Qwen3-VL bilinear pos embed for GCU (grid.x <= 65535)
+[2026-10-30 10:44:56] [INFO] [vllm_fl.dispatch.backends.vendor.gcu.impl.causal_conv1d] Patched causal-conv launch configs for GCU (prefill={'BLOCK_N': 2048, 'num_stages': 2}, decode={'BLOCK_N': 1024})
+[2026-10-30 10:44:56] [INFO] [vllm_fl.dispatch.backends.vendor.gcu.impl.chunk_delta_h] Patched chunk_gated_delta_rule_fwd_h for GCU (grid.x <= 65535, grid.y <= 255)
+[2026-10-30 10:44:56] [INFO] [vllm_fl.dispatch.backends.vendor.gcu.impl.sampler] Enabled GCU CPU detour for top-k/top-p sampling
+[2026-10-30 10:44:56] [INFO] [vllm_fl.dispatch.backends.vendor.gcu.impl.fused_recurrent_packed_decode] Patched fused_recurrent_gated_delta_rule_packed_decode for GCU (grid.x <= 65535, grid.y <= 255)
+[2026-10-30 10:44:56] [INFO] [vllm_fl.dispatch.backends.vendor.gcu.impl.kv_zeroer] Installed Enflame KV zeroer with device addresses and a bounded grid
+WARNING:root:Skipped registering operator: This is not allowed since there's already a kernel registered from python overriding ne_.Scalar's behavior for PrivateUse1 dispatch key and aten namespace.
+WARNING:root:Skipped registering operator: This is not allowed since there's already a kernel registered from python overriding ne_.Tensor's behavior for PrivateUse1 dispatch key and aten namespace.
+(EngineCore pid=447292) INFO 10-30 10:44:56 [parallel_state.py:1906] world_size=1 rank=0 local_rank=0 distributed_init_method=file:///tmp/vllm_dist_af7c601ef89749c8a1fe220f6de1cff2 backend=eccl
+(EngineCore pid=447292) INFO 10-30 10:44:56 [parallel_state.py:2350] rank 0 in world size 1 is assigned as DP rank 0, PP rank 0, PCP rank 0, TP rank 0, ETP rank 0, EP rank N/A, EPLB rank N/A
+/workspace/s60-adaptation/src/vllm/vllm/tracing/otel.py:175: DeprecationWarning: vLLM model class should accept `vllm_config` and `prefix` as input arguments. Possibly you have an old-style model class registered from out of tree and it is used for new vLLM version. Check https://docs.vllm.ai/en/latest/design/arch_overview.html for the design and update the model class accordingly.
+  return func(*args, **kwargs)
+(EngineCore pid=447292) WARNING 10-30 10:44:59 [utils.py:108] Trying to guess the arguments for old-style model class <class 'vllm.model_executor.models.qwen3.Qwen3ForCausalLM'>
+/usr/local/lib/python3.12/contextlib.py:191: ResourceWarning: Unclosed context <zmq.Context() at 0x776915374050>
+  exc.__traceback__ = traceback
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+(EngineCore pid=447292) ERROR 10-30 10:45:00 [core.py:1510] EngineCore failed to start.
+(EngineCore pid=447292) ERROR 10-30 10:45:00 [core.py:1510] Traceback (most recent call last):
+(EngineCore pid=447292) ERROR 10-30 10:45:00 [core.py:1510]   File "/workspace/s60-adaptation/src/vllm/vllm/v1/engine/core.py", line 1482, in run_engine_core
+(EngineCore pid=447292) ERROR 10-30 10:45:00 [core.py:1510]     engine_core = EngineCoreProc(*args, engine_index=dp_rank, **kwargs)
+(EngineCore pid=447292) ERROR 10-30 10:45:00 [core.py:1510]                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=447292) ERROR 10-30 10:45:00 [core.py:1510]   File "/workspace/s60-adaptation/src/vllm/vllm/tracing/otel.py", line 175, in sync_wrapper
+(EngineCore pid=447292) ERROR 10-30 10:45:00 [core.py:1510]     return func(*args, **kwargs)
+(EngineCore pid=447292) ERROR 10-30 10:45:00 [core.py:1510]            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=447292) ERROR 10-30 10:45:00 [core.py:1510]   File "/workspace/s60-adaptation/src/vllm/vllm/v1/engine/core.py", line 1194, in __init__
+(EngineCore pid=447292) ERROR 10-30 10:45:00 [core.py:1510]     super().__init__(
+(EngineCore pid=447292) ERROR 10-30 10:45:00 [core.py:1510]   File "/workspace/s60-adaptation/src/vllm/vllm/v1/engine/core.py", line 144, in __init__
+(EngineCore pid=447292) ERROR 10-30 10:45:00 [core.py:1510]     self.model_executor = executor_class(vllm_config)
+(EngineCore pid=447292) ERROR 10-30 10:45:00 [core.py:1510]                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=447292) ERROR 10-30 10:45:00 [core.py:1510]   File "/workspace/s60-adaptation/src/vllm/vllm/tracing/otel.py", line 175, in sync_wrapper
+(EngineCore pid=447292) ERROR 10-30 10:45:00 [core.py:1510]     return func(*args, **kwargs)
+(EngineCore pid=447292) ERROR 10-30 10:45:00 [core.py:1510]            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=447292) ERROR 10-30 10:45:00 [core.py:1510]   File "/workspace/s60-adaptation/src/vllm/vllm/v1/executor/abstract.py", line 126, in __init__
+(EngineCore pid=447292) ERROR 10-30 10:45:00 [core.py:1510]     self._init_executor()
+(EngineCore pid=447292) ERROR 10-30 10:45:00 [core.py:1510]   File "/workspace/s60-adaptation/src/vllm/vllm/v1/executor/uniproc_executor.py", line 74, in _init_executor
+(EngineCore pid=447292) ERROR 10-30 10:45:00 [core.py:1510]     self.driver_worker.load_model()
+(EngineCore pid=447292) ERROR 10-30 10:45:00 [core.py:1510]   File "/workspace/vllm-plugin-FL/vllm_fl/worker/worker.py", line 671, in load_model
+(EngineCore pid=447292) ERROR 10-30 10:45:00 [core.py:1510]     self.model_runner.load_model(load_dummy_weights=load_dummy_weights)
+(EngineCore pid=447292) ERROR 10-30 10:45:00 [core.py:1510]   File "/workspace/s60-adaptation/src/vllm/vllm/tracing/otel.py", line 175, in sync_wrapper
+(EngineCore pid=447292) ERROR 10-30 10:45:00 [core.py:1510]     return func(*args, **kwargs)
+(EngineCore pid=447292) ERROR 10-30 10:45:00 [core.py:1510]            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=447292) ERROR 10-30 10:45:00 [core.py:1510]   File "/workspace/vllm-plugin-FL/vllm_fl/worker/model_runner.py", line 5145, in load_model
+(EngineCore pid=447292) ERROR 10-30 10:45:00 [core.py:1510]     self.model = model or model_loader.load_model(
+(EngineCore pid=447292) ERROR 10-30 10:45:00 [core.py:1510]                           ^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=447292) ERROR 10-30 10:45:00 [core.py:1510]   File "/workspace/s60-adaptation/src/vllm/vllm/tracing/otel.py", line 175, in sync_wrapper
+(EngineCore pid=447292) ERROR 10-30 10:45:00 [core.py:1510]     return func(*args, **kwargs)
+(EngineCore pid=447292) ERROR 10-30 10:45:00 [core.py:1510]            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=447292) ERROR 10-30 10:45:00 [core.py:1510]   File "/workspace/s60-adaptation/src/vllm/vllm/model_executor/model_loader/base_loader.py", line 76, in load_model
+(EngineCore pid=447292) ERROR 10-30 10:45:00 [core.py:1510]     model = self.create_model(
+(EngineCore pid=447292) ERROR 10-30 10:45:00 [core.py:1510]             ^^^^^^^^^^^^^^^^^^
+(EngineCore pid=447292) ERROR 10-30 10:45:00 [core.py:1510]   File "/workspace/s60-adaptation/src/vllm/vllm/model_executor/model_loader/base_loader.py", line 53, in create_model
+(EngineCore pid=447292) ERROR 10-30 10:45:00 [core.py:1510]     model = initialize_model(
+(EngineCore pid=447292) ERROR 10-30 10:45:00 [core.py:1510]             ^^^^^^^^^^^^^^^^^
+(EngineCore pid=447292) ERROR 10-30 10:45:00 [core.py:1510]   File "/workspace/s60-adaptation/src/vllm/vllm/tracing/otel.py", line 175, in sync_wrapper
+(EngineCore pid=447292) ERROR 10-30 10:45:00 [core.py:1510]     return func(*args, **kwargs)
+(EngineCore pid=447292) ERROR 10-30 10:45:00 [core.py:1510]            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=447292) ERROR 10-30 10:45:00 [core.py:1510]   File "/workspace/s60-adaptation/src/vllm/vllm/model_executor/model_loader/utils.py", line 127, in initialize_model
+(EngineCore pid=447292) ERROR 10-30 10:45:00 [core.py:1510]     model = model_class(**kwargs)
+(EngineCore pid=447292) ERROR 10-30 10:45:00 [core.py:1510]             ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=447292) ERROR 10-30 10:45:00 [core.py:1510]   File "/workspace/s60-adaptation/capture_layers.py", line 23, in init
+(EngineCore pid=447292) ERROR 10-30 10:45:00 [core.py:1510]     _init(self, *args, **kwargs)
+(EngineCore pid=447292) ERROR 10-30 10:45:00 [core.py:1510] TypeError: Qwen3ForCausalLM.__init__() missing 1 required keyword-only argument: 'vllm_config'
+Process EngineCore:
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/usr/local/lib/python3.12/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/workspace/s60-adaptation/src/vllm/vllm/v1/engine/core.py", line 1514, in run_engine_core
+    raise e
+  File "/workspace/s60-adaptation/src/vllm/vllm/v1/engine/core.py", line 1482, in run_engine_core
+    engine_core = EngineCoreProc(*args, engine_index=dp_rank, **kwargs)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/s60-adaptation/src/vllm/vllm/tracing/otel.py", line 175, in sync_wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/s60-adaptation/src/vllm/vllm/v1/engine/core.py", line 1194, in __init__
+    super().__init__(
+  File "/workspace/s60-adaptation/src/vllm/vllm/v1/engine/core.py", line 144, in __init__
+    self.model_executor = executor_class(vllm_config)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/s60-adaptation/src/vllm/vllm/tracing/otel.py", line 175, in sync_wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/s60-adaptation/src/vllm/vllm/v1/executor/abstract.py", line 126, in __init__
+    self._init_executor()
+  File "/workspace/s60-adaptation/src/vllm/vllm/v1/executor/uniproc_executor.py", line 74, in _init_executor
+    self.driver_worker.load_model()
+  File "/workspace/vllm-plugin-FL/vllm_fl/worker/worker.py", line 671, in load_model
+    self.model_runner.load_model(load_dummy_weights=load_dummy_weights)
+  File "/workspace/s60-adaptation/src/vllm/vllm/tracing/otel.py", line 175, in sync_wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/vllm-plugin-FL/vllm_fl/worker/model_runner.py", line 5145, in load_model
+    self.model = model or model_loader.load_model(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/s60-adaptation/src/vllm/vllm/tracing/otel.py", line 175, in sync_wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/s60-adaptation/src/vllm/vllm/model_executor/model_loader/base_loader.py", line 76, in load_model
+    model = self.create_model(
+            ^^^^^^^^^^^^^^^^^^
+  File "/workspace/s60-adaptation/src/vllm/vllm/model_executor/model_loader/base_loader.py", line 53, in create_model
+    model = initialize_model(
+            ^^^^^^^^^^^^^^^^^
+  File "/workspace/s60-adaptation/src/vllm/vllm/tracing/otel.py", line 175, in sync_wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/s60-adaptation/src/vllm/vllm/model_executor/model_loader/utils.py", line 127, in initialize_model
+    model = model_class(**kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/s60-adaptation/capture_layers.py", line 23, in init
+    _init(self, *args, **kwargs)
+TypeError: Qwen3ForCausalLM.__init__() missing 1 required keyword-only argument: 'vllm_config'
+(MainProcess pid=446996) INFO 10-30 10:45:08 [utils.py:628] [shutdown] Process manager: send sigterm to process EngineCore
+Traceback (most recent call last):
+  File "/workspace/s60-adaptation/decode_precision.py", line 43, in <module>
+    main()
+  File "/workspace/s60-adaptation/decode_precision.py", line 24, in main
+    llm = LLM(model=a.model, tensor_parallel_size=1, enforce_eager=True,
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/s60-adaptation/src/vllm/vllm/entrypoints/llm.py", line 342, in __init__
+    self.llm_engine = LLMEngine.from_engine_args(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/s60-adaptation/src/vllm/vllm/v1/engine/llm_engine.py", line 191, in from_engine_args
+    return cls(
+           ^^^^
+  File "/workspace/s60-adaptation/src/vllm/vllm/v1/engine/llm_engine.py", line 116, in __init__
+    self.engine_core = EngineCoreClient.make_client(
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/s60-adaptation/src/vllm/vllm/v1/engine/core_client.py", line 126, in make_client
+    return SyncMPClient(
+           ^^^^^^^^^^^^^
+  File "/workspace/s60-adaptation/src/vllm/vllm/tracing/otel.py", line 175, in sync_wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/s60-adaptation/src/vllm/vllm/v1/engine/core_client.py", line 925, in __init__
+    super().__init__(
+  File "/workspace/s60-adaptation/src/vllm/vllm/v1/engine/core_client.py", line 682, in __init__
+    with launch_core_engines(
+         ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/contextlib.py", line 144, in __exit__
+    next(self.gen)
+  File "/workspace/s60-adaptation/src/vllm/vllm/v1/engine/utils.py", line 1351, in launch_core_engines
+    wait_for_engine_startup(
+  File "/workspace/s60-adaptation/src/vllm/vllm/v1/engine/utils.py", line 1431, in wait_for_engine_startup
+    raise RuntimeError(
+RuntimeError: Engine core initialization failed. See root cause above. Failed core proc(s): {}

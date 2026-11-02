@@ -1,0 +1,251 @@
+[
+  {
+    "prompt": "Paris is the capital of",
+    "exact": true,
+    "first_mismatch": null
+  },
+  {
+    "prompt": "The quick brown fox jumps over the",
+    "exact": true,
+    "first_mismatch": null
+  },
+  {
+    "prompt": "What is 17 + 25? Answer briefly.",
+    "exact": false,
+    "first_mismatch": 7,
+    "reference_token": 13,
+    "candidate_token": 382,
+    "reference": {
+      "13": {
+        "logprob": -1.095886468887329,
+        "rank": 1,
+        "text": "."
+      },
+      "382": {
+        "logprob": -1.095886468887329,
+        "rank": 2,
+        "text": ".\n\n"
+      },
+      "top5": [
+        [
+          "13",
+          {
+            "logprob": -1.095886468887329,
+            "rank": 1,
+            "text": "."
+          }
+        ],
+        [
+          "382",
+          {
+            "logprob": -1.095886468887329,
+            "rank": 2,
+            "text": ".\n\n"
+          }
+        ],
+        [
+          "624",
+          {
+            "logprob": -1.220886468887329,
+            "rank": 3,
+            "text": ".\n"
+          }
+        ],
+        [
+          "11",
+          {
+            "logprob": -4.59588623046875,
+            "rank": 4,
+            "text": ","
+          }
+        ],
+        [
+          "30",
+          {
+            "logprob": -4.97088623046875,
+            "rank": 5,
+            "text": "?"
+          }
+        ]
+      ],
+      "reference_minus_candidate_logprob": 0.0
+    },
+    "candidate": {
+      "13": {
+        "logprob": -1.1392784118652344,
+        "rank": 2,
+        "text": "."
+      },
+      "382": {
+        "logprob": -1.0142784118652344,
+        "rank": 1,
+        "text": ".\n\n"
+      },
+      "top5": [
+        [
+          "382",
+          {
+            "logprob": -1.0142784118652344,
+            "rank": 1,
+            "text": ".\n\n"
+          }
+        ],
+        [
+          "13",
+          {
+            "logprob": -1.1392784118652344,
+            "rank": 2,
+            "text": "."
+          }
+        ],
+        [
+          "624",
+          {
+            "logprob": -1.2642784118652344,
+            "rank": 3,
+            "text": ".\n"
+          }
+        ],
+        [
+          "11",
+          {
+            "logprob": -4.639278411865234,
+            "rank": 4,
+            "text": ","
+          }
+        ],
+        [
+          "30",
+          {
+            "logprob": -5.014278411865234,
+            "rank": 5,
+            "text": "?"
+          }
+        ]
+      ],
+      "reference_minus_candidate_logprob": -0.125
+    }
+  },
+  {
+    "prompt": "请简要介绍机器学习。",
+    "exact": true,
+    "first_mismatch": null
+  },
+  {
+    "prompt": "Write a Python function to reverse a list.",
+    "exact": false,
+    "first_mismatch": 13,
+    "reference_token": 50,
+    "candidate_token": 1336,
+    "reference": {
+      "50": {
+        "logprob": -2.0175652503967285,
+        "rank": 2,
+        "text": "S"
+      },
+      "1336": {
+        "logprob": -2.0175652503967285,
+        "rank": 1,
+        "text": "Pro"
+      },
+      "top5": [
+        [
+          "1336",
+          {
+            "logprob": -2.0175652503967285,
+            "rank": 1,
+            "text": "Pro"
+          }
+        ],
+        [
+          "50",
+          {
+            "logprob": -2.0175652503967285,
+            "rank": 2,
+            "text": "S"
+          }
+        ],
+        [
+          "2304",
+          {
+            "logprob": -2.6425652503967285,
+            "rank": 3,
+            "text": "Le"
+          }
+        ],
+        [
+          "88492",
+          {
+            "logprob": -2.8300652503967285,
+            "rank": 4,
+            "text": "Practice"
+          }
+        ],
+        [
+          "31198",
+          {
+            "logprob": -2.8925652503967285,
+            "rank": 5,
+            "text": "Problem"
+          }
+        ]
+      ],
+      "reference_minus_candidate_logprob": 0.0
+    },
+    "candidate": {
+      "50": {
+        "logprob": -2.0701732635498047,
+        "rank": 2,
+        "text": "S"
+      },
+      "1336": {
+        "logprob": -1.8826732635498047,
+        "rank": 1,
+        "text": "Pro"
+      },
+      "top5": [
+        [
+          "1336",
+          {
+            "logprob": -1.8826732635498047,
+            "rank": 1,
+            "text": "Pro"
+          }
+        ],
+        [
+          "50",
+          {
+            "logprob": -2.0701732635498047,
+            "rank": 2,
+            "text": "S"
+          }
+        ],
+        [
+          "2304",
+          {
+            "logprob": -2.6326732635498047,
+            "rank": 3,
+            "text": "Le"
+          }
+        ],
+        [
+          "88492",
+          {
+            "logprob": -2.8201732635498047,
+            "rank": 4,
+            "text": "Practice"
+          }
+        ],
+        [
+          "31198",
+          {
+            "logprob": -2.8826732635498047,
+            "rank": 5,
+            "text": "Problem"
+          }
+        ]
+      ],
+      "reference_minus_candidate_logprob": -0.1875
+    }
+  }
+]

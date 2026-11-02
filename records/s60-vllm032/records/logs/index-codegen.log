@@ -1,0 +1,185 @@
+[W1030 07:08:22.796305471 gcu_caching_allocator.cpp:2976] Warning: [GCU Allocator] Static initialization: PYTORCH_GCU_ALLOC_CONF="(not set, using default)", selected_backend=native (function BackendStaticInitializer)
+/usr/local/lib/python3.12/site-packages/torch_gcu/transfer_to_gcu.py:443: ImportWarning: 
+    *************************************************************************************************************
+    The torch.Tensor.cuda and torch.nn.Module.cuda are replaced with torch.Tensor.gcu and torch.nn.Module.gcu now..
+    The backend in torch.distributed.init_process_group set to eccl now..
+    The torch.cuda.* and torch.cuda.amp.* are replaced with torch.gcu.* and torch.gcu.amp.* now..
+    The device parameters have been replaced with gcu in the function below:
+    torch.logspace, torch.randint, torch.hann_window, torch.rand, torch.full_like, torch.ones_like, torch.rand_like, torch.randperm, torch.arange, torch.frombuffer, torch.normal, torch._empty_per_channel_affine_quantized, torch.empty_strided, torch.empty_like, torch.scalar_tensor, torch.tril_indices, torch.bartlett_window, torch.ones, torch.sparse_coo_tensor, torch.randn, torch.kaiser_window, torch.tensor, torch.triu_indices, torch.as_tensor, torch.zeros, torch.randint_like, torch.full, torch.eye, torch._sparse_csr_tensor_unsafe, torch.empty, torch._sparse_coo_tensor_unsafe, torch.blackman_window, torch.zeros_like, torch.range, torch.sparse_csr_tensor, torch.randn_like, torch.from_file, torch._cudnn_init_dropout_state, torch._empty_affine_quantized, torch.linspace, torch.hamming_window, torch.empty_quantized, torch._pin_memory, torch.autocast, torch.load, torch.Tensor.new_empty, torch.Tensor.new_empty_strided, torch.Tensor.new_full, torch.Tensor.new_ones, torch.Tensor.new_tensor, torch.Tensor.new_zeros, torch.Tensor.to, torch.nn.Module.to, torch.nn.Module.to_empty
+    *************************************************************************************************************
+    
+  warnings.warn(msg, ImportWarning)
+/usr/local/lib/python3.12/site-packages/torch_gcu/transfer_to_gcu.py:443: ImportWarning: 
+    *************************************************************************************************************
+    The torch.Tensor.cuda and torch.nn.Module.cuda are replaced with torch.Tensor.gcu and torch.nn.Module.gcu now..
+    The backend in torch.distributed.init_process_group set to eccl now..
+    The torch.cuda.* and torch.cuda.amp.* are replaced with torch.gcu.* and torch.gcu.amp.* now..
+    The device parameters have been replaced with gcu in the function below:
+    torch.logspace, torch.randint, torch.hann_window, torch.rand, torch.full_like, torch.ones_like, torch.rand_like, torch.randperm, torch.arange, torch.frombuffer, torch.normal, torch._empty_per_channel_affine_quantized, torch.empty_strided, torch.empty_like, torch.scalar_tensor, torch.tril_indices, torch.bartlett_window, torch.ones, torch.sparse_coo_tensor, torch.randn, torch.kaiser_window, torch.tensor, torch.triu_indices, torch.as_tensor, torch.zeros, torch.randint_like, torch.full, torch.eye, torch._sparse_csr_tensor_unsafe, torch.empty, torch._sparse_coo_tensor_unsafe, torch.blackman_window, torch.zeros_like, torch.range, torch.sparse_csr_tensor, torch.randn_like, torch.from_file, torch._cudnn_init_dropout_state, torch._empty_affine_quantized, torch.linspace, torch.hamming_window, torch.empty_quantized, torch._pin_memory, torch.autocast, torch.load, torch.Tensor.new_empty, torch.Tensor.new_empty_strided, torch.Tensor.new_full, torch.Tensor.new_ones, torch.Tensor.new_tensor, torch.Tensor.new_zeros, torch.Tensor.to, torch.nn.Module.to, torch.nn.Module.to_empty
+    *************************************************************************************************************
+    
+  warnings.warn(msg, ImportWarning)
+Failed to load /usr/local/lib/python3.12/site-packages/torchao/_C_cutlass_90a.abi3.so: Could not load this library: /usr/local/lib/python3.12/site-packages/torchao/_C_cutlass_90a.abi3.so
+Failed to load /usr/local/lib/python3.12/site-packages/torchao/_C_mxfp8.cpython-310-x86_64-linux-gnu.so: Could not load this library: /usr/local/lib/python3.12/site-packages/torchao/_C_mxfp8.cpython-310-x86_64-linux-gnu.so
+/usr/local/lib/python3.12/site-packages/torch/jit/_script.py:365: DeprecationWarning: `torch.jit.script_method` is deprecated. Please switch to `torch.compile` or `torch.export`.
+  warnings.warn(
+/usr/local/lib/python3.12/site-packages/Cython/Distutils/old_build_ext.py:15: DeprecationWarning: dep_util is Deprecated. Use functions from setuptools instead.
+  from distutils.dep_util import newer, newer_group
+Failed to import from vllm._C: ModuleNotFoundError("No module named 'vllm._C'")
+[2026-10-30 07:08:35] [INFO] [vllm_fl.dispatch.backends.vendor.gcu.impl.bilinear_pos_embed] Patched Qwen3-VL bilinear pos embed for GCU (grid.x <= 65535)
+[2026-10-30 07:08:35] [INFO] [vllm_fl.dispatch.backends.vendor.gcu.impl.causal_conv1d] Patched causal-conv launch configs for GCU (prefill={'BLOCK_N': 2048, 'num_stages': 2}, decode={'BLOCK_N': 1024})
+[2026-10-30 07:08:35] [INFO] [vllm_fl.dispatch.backends.vendor.gcu.impl.chunk_delta_h] Patched chunk_gated_delta_rule_fwd_h for GCU (grid.x <= 65535, grid.y <= 255)
+[2026-10-30 07:08:35] [INFO] [vllm_fl.dispatch.backends.vendor.gcu.impl.sampler] Enabled GCU CPU detour for top-k/top-p sampling
+[2026-10-30 07:08:36] [INFO] [vllm_fl.dispatch.backends.vendor.gcu.impl.fused_recurrent_packed_decode] Patched fused_recurrent_gated_delta_rule_packed_decode for GCU (grid.x <= 65535, grid.y <= 255)
+[2026-10-30 07:08:36] [INFO] [vllm_fl.dispatch.backends.vendor.gcu.impl.kv_zeroer] Installed Enflame KV zeroer with device addresses and a bounded grid
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] Output code: 
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] # AOT ID: ['0_inference']
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] from ctypes import c_void_p, c_long, c_int
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] import torch
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] import math
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] import random
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] import os
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] import tempfile
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] from math import inf, nan
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] from cmath import nanj
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] from torch._inductor.hooks import run_intermediate_hooks
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] from torch._inductor.utils import maybe_profile
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] from torch._inductor.codegen.memory_planning import _align as align
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] from torch import device, empty_strided
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] from torch._inductor.async_compile import AsyncCompile
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] from torch._inductor.select_algorithm import extern_kernels
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] import torch_gcu
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] import triton
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] import triton.language as tl
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] import triton_gcu.triton
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] from torch._inductor.runtime.triton_heuristics import start_graph, end_graph
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] from torch_gcu._C import _gcu_getCurrentRawStream as get_raw_stream
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] 
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] aten = torch.ops.aten
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] inductor_ops = torch.ops.inductor
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] _quantized = torch.ops._quantized
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] assert_size_stride = torch._C._dynamo.guards.assert_size_stride
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] assert_alignment = torch._C._dynamo.guards.assert_alignment
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] empty_strided_cpu = torch._C._dynamo.guards._empty_strided_cpu
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] empty_strided_cpu_pinned = torch._C._dynamo.guards._empty_strided_cpu_pinned
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] empty_strided_cuda = torch._C._dynamo.guards._empty_strided_cuda
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] empty_strided_xpu = torch._C._dynamo.guards._empty_strided_xpu
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] empty_strided_mtia = torch._C._dynamo.guards._empty_strided_mtia
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] reinterpret_tensor = torch._C._dynamo.guards._reinterpret_tensor
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] alloc_from_pool = torch.ops.inductor._alloc_from_pool
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] async_compile = AsyncCompile()
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] empty_strided_p2p = torch._C._distributed_c10d._SymmetricMemory.empty_strided_p2p
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] empty_strided_gcu = torch._C._dynamo.guards._empty_strided_gcu
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] 
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] 
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] # kernel path: /tmp/torchinductor_root/36/c36d7ocittcw4xcalemessb2zoxl4l4isg54q6azjbbumvyj3bfu.py
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] # Topologically Sorted Source Nodes: [to, index_select], Original ATen: [aten._to_copy, aten.index_select]
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] # Source node to ATen node mapping:
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] #   index_select => index
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] #   to => convert_element_type
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] # Graph fragment:
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] #   %arg1_1 : Tensor "i64[12][1]gcu:0" = PlaceHolder[target=arg1_1]
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] #   %arg0_1 : Tensor "f32[512, 128][128, 1]gcu:0" = PlaceHolder[target=arg0_1]
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] #   %convert_element_type : Tensor "i32[12][1]gcu:0"[num_users=1] = call_function[target=torch.ops.prims.convert_element_type.default](args = (%arg1_1, torch.int32), kwargs = {})
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] #   %index : Tensor "f32[12, 128][128, 1]gcu:0"[num_users=1] = call_function[target=torch.ops.aten.index.Tensor](args = (%arg0_1, [%convert_element_type]), kwargs = {})
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] #   return %index
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] triton_poi_fused__to_copy_index_select_0 = async_compile.triton('triton_poi_fused__to_copy_index_select_0', '''
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] import torch_gcu
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] import triton
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] import triton_gcu.triton
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] import triton.language as tl
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] 
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] from torch._inductor.runtime import triton_helpers, triton_heuristics
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] from torch._inductor.runtime.triton_helpers import libdevice, math as tl_math
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] from torch._inductor.runtime.hints import AutotuneHint, ReductionHint, TileHint, AttrsDescriptorWrapper, DeviceProperties
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] triton_helpers.set_driver_to_gpu()
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] 
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] @triton_heuristics.pointwise(
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code]     size_hints={'x': 2048}, 
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code]     filename=__file__,
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code]     triton_meta={'signature': {'in_ptr0': '*i64', 'in_ptr1': '*fp32', 'out_ptr0': '*fp32', 'xnumel': 'i32', 'XBLOCK': 'constexpr'}, 'device': DeviceProperties(type='gcu', index=0, multi_processor_count=2, cc=(3, 0), major=3, regs_per_multiprocessor=None, max_threads_per_multi_processor=12, max_threads_per_block=1024, warp_size=32), 'constants': {}, 'configs': [{(0,): [['tt.divisibility', 16]], (1,): [['tt.divisibility', 16]], (2,): [['tt.divisibility', 16]], (3,): [['tt.divisibility', 16]]}]},
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code]     inductor_meta={'grid_type': 'Grid1D', 'autotune_hints': set(), 'kernel_name': 'triton_poi_fused__to_copy_index_select_0', 'mutated_arg_names': [], 'optimize_mem': True, 'no_x_dim': False, 'num_load': 1, 'num_reduction': 0, 'backend_hash': '7E71EE64DD2332221458858AE5F3A173B878C91CD4D2DA35AE5B377E21551BC8', 'assert_indirect_indexing': True, 'autotune_local_cache': True, 'autotune_pointwise': True, 'autotune_remote_cache': None, 'force_disable_caches': False, 'dynamic_scale_rblock': True, 'max_autotune': False, 'max_autotune_pointwise': False, 'min_split_scan_rblock': 256, 'spill_threshold': 16, 'store_cubin': False, 'deterministic': False, 'force_filter_reduction_configs': False, 'mix_order_reduction_allow_multi_stages': False, 'are_deterministic_algorithms_enabled': False},
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code]     min_elem_per_thread=0
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] )
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] @triton.jit
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] def triton_poi_fused__to_copy_index_select_0(in_ptr0, in_ptr1, out_ptr0, xnumel, XBLOCK : tl.constexpr):
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code]     xnumel = 1536
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code]     # GCU loop support pointwise and persistent_reduction among XBLOCK
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code]     gridsize = tl.num_programs(0)
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code]     xloop_num = (xnumel + XBLOCK - 1) // XBLOCK
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code]     for xloop in range(tl.program_id(0), xloop_num, gridsize):
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code]         xoffset = xloop * XBLOCK
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code]         xindex = xoffset + tl.arange(0, XBLOCK)[:]
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code]         xmask = xindex < xnumel
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code]         x1 = xindex // 128
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code]         x0 = (xindex % 128)
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code]         x2 = xindex
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code]         tmp0 = tl.load(in_ptr0 + (x1), xmask, eviction_policy='evict_last')
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code]         tmp1 = tmp0.to(tl.int32)
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code]         tmp2 = tl.full([XBLOCK], 512, tl.int32)
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code]         tmp3 = tmp1 + tmp2
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code]         tmp4 = tmp1 < 0
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code]         tmp5 = tl.where(tmp4, tmp3, tmp1)
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code]         tl.device_assert(((0 <= tmp5) & (tmp5 < 512)) | ~(xmask), "index out of bounds: 0 <= tmp5 < 512")
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code]         tmp7 = tl.load(in_ptr1 + (x0 + 128*tmp5), xmask)
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code]         tl.store(out_ptr0 + (x2), tmp7, xmask)
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] ''', device_str='gcu')
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] 
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] 
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] async_compile.wait(globals())
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] del async_compile
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] 
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] class Runner:
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code]     def __init__(self, partitions):
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code]         self.partitions = partitions
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] 
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code]     def recursively_apply_fns(self, fns):
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code]         new_callables = []
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code]         for fn, c in zip(fns, self.partitions):
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code]             new_callables.append(fn(c))
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code]         self.partitions = new_callables
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] 
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code]     def call(self, args):
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code]         arg0_1, arg1_1 = args
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code]         args.clear()
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code]         assert_size_stride(arg0_1, (512, 128), (128, 1))
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code]         assert_size_stride(arg1_1, (12, ), (1, ))
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code]         with torch.gcu._DeviceGuard(0):
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code]             torch.gcu.set_device(0)
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code]             buf0 = empty_strided_gcu((12, 128), (128, 1), torch.float32)
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code]             # Topologically Sorted Source Nodes: [to, index_select], Original ATen: [aten._to_copy, aten.index_select]
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code]             stream0 = get_raw_stream(0)
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code]             triton_poi_fused__to_copy_index_select_0.run(arg1_1, arg0_1, buf0, 1536, stream=stream0)
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code]             del arg0_1
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code]             del arg1_1
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code]         return (buf0, )
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] 
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] runner = Runner(partitions=[])
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] call = runner.call
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] recursively_apply_fns = runner.recursively_apply_fns
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] 
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] 
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] def get_args():
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code]     from torch._dynamo.testing import rand_strided
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code]     arg0_1 = rand_strided((512, 128), (128, 1), device='gcu:0', dtype=torch.float32)
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code]     arg1_1 = rand_strided((12, ), (1, ), device='gcu:0', dtype=torch.int64)
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code]     return [arg0_1, arg1_1]
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] 
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] 
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] def benchmark_compiled_module(args, times=10, repeat=10):
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code]     from torch._inductor.utils import print_performance
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code]     fn = lambda: call(list(args))
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code]     return print_performance(fn, times=times, repeat=repeat)
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] 
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] 
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] if __name__ == "__main__":
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code]     from torch._inductor.wrapper_benchmark import compiled_module_main
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code]     args = get_args()
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code]     compiled_module_main('None', lambda times, repeat: benchmark_compiled_module(args, times=times, repeat=repeat))
+V1030 07:08:39.912000 146442 gcu/inductor/backend_register.py:1471] [0/0] [__output_code] 
+V1030 07:08:39.913000 146442 gcu/inductor/backend_register.py:1495] [0/0] [__output_code] Output code written to: /tmp/torchinductor_root/pw/cpwnd6oblbi46nn5fdz3txojadqhs2lyjluoixvyqg2s2agfxl4s.py
+
+
+I1030 07:08:41.130000 146442 gcu/inductor/backend_register.py:1529] [0/0] [__output_code] Output code written to: /tmp/torchinductor_root/pw/cpwnd6oblbi46nn5fdz3txojadqhs2lyjluoixvyqg2s2agfxl4s.py
+[896.0, 0.0, 1024.0, 0.0, 1152.0, 0.0, 1280.0, 0.0, 1408.0, 0.0, 1536.0, 0.0]
+[896.0, 1024.0, 1152.0, 1280.0, 1408.0, 1536.0, 1664.0, 1792.0, 1920.0, 2048.0, 2176.0, 2304.0]

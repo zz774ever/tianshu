@@ -1,0 +1,317 @@
+{
+  "observed_utc": "2026-11-02T05:28:21.242840+00:00",
+  "method": "offline comparison of saved outputs; no new inference",
+  "comparisons": [
+    {
+      "label": "original_bf16",
+      "reference": "decode-nvidia.json",
+      "target": "decode-s60.json",
+      "source_sha256": {
+        "decode-nvidia.json": "2c6a271e73baed3ab3df358d4c3c2af3fe4939eea7ddbf5b60f0dafe94ece2f3",
+        "decode-s60.json": "19daca5e92072834b57ea73e5679051f39ebd38503b69d747790249638ae7597"
+      },
+      "exact_prompts": 3,
+      "prompt_count": 5,
+      "rows": [
+        {
+          "prompt": "Paris is the capital of",
+          "reference_length": 32,
+          "target_length": 32,
+          "exact": true,
+          "first_mismatch_1based": null,
+          "first10_exact": true
+        },
+        {
+          "prompt": "The quick brown fox jumps over the",
+          "reference_length": 32,
+          "target_length": 32,
+          "exact": true,
+          "first_mismatch_1based": null,
+          "first10_exact": true
+        },
+        {
+          "prompt": "What is 17 + 25? Answer briefly.",
+          "reference_length": 32,
+          "target_length": 32,
+          "exact": false,
+          "first_mismatch_1based": 7,
+          "first10_exact": false,
+          "reference_token_rank_at_first_mismatch": 2
+        },
+        {
+          "prompt": "请简要介绍机器学习。",
+          "reference_length": 32,
+          "target_length": 32,
+          "exact": true,
+          "first_mismatch_1based": null,
+          "first10_exact": true
+        },
+        {
+          "prompt": "Write a Python function to reverse a list.",
+          "reference_length": 32,
+          "target_length": 32,
+          "exact": false,
+          "first_mismatch_1based": 13,
+          "first10_exact": true,
+          "reference_token_rank_at_first_mismatch": 2
+        }
+      ]
+    },
+    {
+      "label": "production_bf16",
+      "reference": "decode-nvidia.json",
+      "target": "decode-s60-bf16head-production.json",
+      "source_sha256": {
+        "decode-nvidia.json": "2c6a271e73baed3ab3df358d4c3c2af3fe4939eea7ddbf5b60f0dafe94ece2f3",
+        "decode-s60-bf16head-production.json": "c679f3424541c9f7ae7a44c684d7456d2a70051707ee3998bb011cb227e23534"
+      },
+      "exact_prompts": 3,
+      "prompt_count": 5,
+      "rows": [
+        {
+          "prompt": "Paris is the capital of",
+          "reference_length": 32,
+          "target_length": 32,
+          "exact": false,
+          "first_mismatch_1based": 11,
+          "first10_exact": true,
+          "reference_token_rank_at_first_mismatch": 2
+        },
+        {
+          "prompt": "The quick brown fox jumps over the",
+          "reference_length": 32,
+          "target_length": 32,
+          "exact": true,
+          "first_mismatch_1based": null,
+          "first10_exact": true
+        },
+        {
+          "prompt": "What is 17 + 25? Answer briefly.",
+          "reference_length": 32,
+          "target_length": 32,
+          "exact": false,
+          "first_mismatch_1based": 7,
+          "first10_exact": false,
+          "reference_token_rank_at_first_mismatch": 2
+        },
+        {
+          "prompt": "请简要介绍机器学习。",
+          "reference_length": 32,
+          "target_length": 32,
+          "exact": true,
+          "first_mismatch_1based": null,
+          "first10_exact": true
+        },
+        {
+          "prompt": "Write a Python function to reverse a list.",
+          "reference_length": 32,
+          "target_length": 32,
+          "exact": true,
+          "first_mismatch_1based": null,
+          "first10_exact": true
+        }
+      ]
+    },
+    {
+      "label": "production_fp32head",
+      "reference": "decode-nvidia-fp32head.json",
+      "target": "decode-s60-fp32head-production.json",
+      "source_sha256": {
+        "decode-nvidia-fp32head.json": "89093041a8eae2d3d371ce6eade45269d2989fc8d6313d1b61146779b00202bf",
+        "decode-s60-fp32head-production.json": "0b718c3e51b206f0fa081907f75e68380f412bb2788d9a999599d4b2249f908f"
+      },
+      "exact_prompts": 5,
+      "prompt_count": 5,
+      "rows": [
+        {
+          "prompt": "Paris is the capital of",
+          "reference_length": 32,
+          "target_length": 32,
+          "exact": true,
+          "first_mismatch_1based": null,
+          "first10_exact": true
+        },
+        {
+          "prompt": "The quick brown fox jumps over the",
+          "reference_length": 32,
+          "target_length": 32,
+          "exact": true,
+          "first_mismatch_1based": null,
+          "first10_exact": true
+        },
+        {
+          "prompt": "What is 17 + 25? Answer briefly.",
+          "reference_length": 32,
+          "target_length": 32,
+          "exact": true,
+          "first_mismatch_1based": null,
+          "first10_exact": true
+        },
+        {
+          "prompt": "请简要介绍机器学习。",
+          "reference_length": 32,
+          "target_length": 32,
+          "exact": true,
+          "first_mismatch_1based": null,
+          "first10_exact": true
+        },
+        {
+          "prompt": "Write a Python function to reverse a list.",
+          "reference_length": 32,
+          "target_length": 32,
+          "exact": true,
+          "first_mismatch_1based": null,
+          "first10_exact": true
+        }
+      ]
+    },
+    {
+      "label": "production_fp32head_stress",
+      "reference": "stress-nvidia-fp32head.json",
+      "target": "stress-s60-fp32head.json",
+      "source_sha256": {
+        "stress-nvidia-fp32head.json": "ebbe73d83eae1fb42c91e373089901ac0baa858148d2c1e686fb01e5d2cf7d8b",
+        "stress-s60-fp32head.json": "b28e9e2c6bc6a7e4bff71c694a866c95e4aace0601a3f6e3b13b2fc0c3c66076"
+      },
+      "exact_prompts": 8,
+      "prompt_count": 10,
+      "rows": [
+        {
+          "prompt": "Explain why the sky appears blue in two sentences.",
+          "reference_length": 32,
+          "target_length": 32,
+          "exact": true,
+          "first_mismatch_1based": null,
+          "first10_exact": true
+        },
+        {
+          "prompt": "计算 17 × 23，并说明计算步骤。",
+          "reference_length": 32,
+          "target_length": 32,
+          "exact": true,
+          "first_mismatch_1based": null,
+          "first10_exact": true
+        },
+        {
+          "prompt": "Write a Python function that checks whether a string is a palindrome.",
+          "reference_length": 32,
+          "target_length": 32,
+          "exact": true,
+          "first_mismatch_1based": null,
+          "first10_exact": true
+        },
+        {
+          "prompt": "Translate into French: The train will arrive tomorrow morning.",
+          "reference_length": 32,
+          "target_length": 32,
+          "exact": true,
+          "first_mismatch_1based": null,
+          "first10_exact": true
+        },
+        {
+          "prompt": "List three differences between TCP and UDP.",
+          "reference_length": 32,
+          "target_length": 32,
+          "exact": true,
+          "first_mismatch_1based": null,
+          "first10_exact": true
+        },
+        {
+          "prompt": "Continue this sequence and explain: 2, 4, 8, 16,",
+          "reference_length": 32,
+          "target_length": 32,
+          "exact": true,
+          "first_mismatch_1based": null,
+          "first10_exact": true
+        },
+        {
+          "prompt": "Summarize the following: A library extended its opening hours after residents requested evening access. Visitor numbers then increased.",
+          "reference_length": 32,
+          "target_length": 32,
+          "exact": true,
+          "first_mismatch_1based": null,
+          "first10_exact": true
+        },
+        {
+          "prompt": "What is the capital of Japan? Give a short answer.",
+          "reference_length": 32,
+          "target_length": 32,
+          "exact": false,
+          "first_mismatch_1based": 14,
+          "first10_exact": true,
+          "reference_token_rank_at_first_mismatch": 2
+        },
+        {
+          "prompt": "Return a JSON object with two keys: name and count, using values apple and 3.",
+          "reference_length": 32,
+          "target_length": 32,
+          "exact": false,
+          "first_mismatch_1based": 16,
+          "first10_exact": true,
+          "reference_token_rank_at_first_mismatch": 2
+        },
+        {
+          "prompt": "Explain the difference between a metaphor and a simile with examples.",
+          "reference_length": 32,
+          "target_length": 32,
+          "exact": true,
+          "first_mismatch_1based": null,
+          "first10_exact": true
+        }
+      ]
+    },
+    {
+      "label": "s60_eager_vs_graph",
+      "reference": "results-eager-extended.json",
+      "target": "results-graph-extended.json",
+      "source_sha256": {
+        "results-eager-extended.json": "9e780ccb720abc280474feb6869b7f14250882f18150f6e6b9666d08a6a52363",
+        "results-graph-extended.json": "9e780ccb720abc280474feb6869b7f14250882f18150f6e6b9666d08a6a52363"
+      },
+      "exact_prompts": 5,
+      "prompt_count": 5,
+      "rows": [
+        {
+          "prompt": "Paris is the capital of",
+          "reference_length": 32,
+          "target_length": 32,
+          "exact": true,
+          "first_mismatch_1based": null,
+          "first10_exact": true
+        },
+        {
+          "prompt": "The quick brown fox jumps over the",
+          "reference_length": 32,
+          "target_length": 32,
+          "exact": true,
+          "first_mismatch_1based": null,
+          "first10_exact": true
+        },
+        {
+          "prompt": "What is 17 + 25? Answer briefly.",
+          "reference_length": 32,
+          "target_length": 32,
+          "exact": true,
+          "first_mismatch_1based": null,
+          "first10_exact": true
+        },
+        {
+          "prompt": "请简要介绍机器学习。",
+          "reference_length": 32,
+          "target_length": 32,
+          "exact": true,
+          "first_mismatch_1based": null,
+          "first10_exact": true
+        },
+        {
+          "prompt": "Write a Python function to reverse a list.",
+          "reference_length": 32,
+          "target_length": 32,
+          "exact": true,
+          "first_mismatch_1based": null,
+          "first10_exact": true
+        }
+      ]
+    }
+  ]
+}

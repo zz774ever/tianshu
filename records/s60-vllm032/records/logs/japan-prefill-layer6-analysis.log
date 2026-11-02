@@ -1,0 +1,1155 @@
+[W1030 12:22:37.414473229 gcu_caching_allocator.cpp:2976] Warning: [GCU Allocator] Static initialization: PYTORCH_GCU_ALLOC_CONF="(not set, using default)", selected_backend=native (function BackendStaticInitializer)
+/usr/local/lib/python3.12/site-packages/torch_gcu/transfer_to_gcu.py:443: ImportWarning: 
+    *************************************************************************************************************
+    The torch.Tensor.cuda and torch.nn.Module.cuda are replaced with torch.Tensor.gcu and torch.nn.Module.gcu now..
+    The backend in torch.distributed.init_process_group set to eccl now..
+    The torch.cuda.* and torch.cuda.amp.* are replaced with torch.gcu.* and torch.gcu.amp.* now..
+    The device parameters have been replaced with gcu in the function below:
+    torch.logspace, torch.randint, torch.hann_window, torch.rand, torch.full_like, torch.ones_like, torch.rand_like, torch.randperm, torch.arange, torch.frombuffer, torch.normal, torch._empty_per_channel_affine_quantized, torch.empty_strided, torch.empty_like, torch.scalar_tensor, torch.tril_indices, torch.bartlett_window, torch.ones, torch.sparse_coo_tensor, torch.randn, torch.kaiser_window, torch.tensor, torch.triu_indices, torch.as_tensor, torch.zeros, torch.randint_like, torch.full, torch.eye, torch._sparse_csr_tensor_unsafe, torch.empty, torch._sparse_coo_tensor_unsafe, torch.blackman_window, torch.zeros_like, torch.range, torch.sparse_csr_tensor, torch.randn_like, torch.from_file, torch._cudnn_init_dropout_state, torch._empty_affine_quantized, torch.linspace, torch.hamming_window, torch.empty_quantized, torch._pin_memory, torch.autocast, torch.load, torch.Tensor.new_empty, torch.Tensor.new_empty_strided, torch.Tensor.new_full, torch.Tensor.new_ones, torch.Tensor.new_tensor, torch.Tensor.new_zeros, torch.Tensor.to, torch.nn.Module.to, torch.nn.Module.to_empty
+    *************************************************************************************************************
+    
+  warnings.warn(msg, ImportWarning)
+Aligned entire12tokenprompt start 43 batchtokens 55
+model.embed_tokens/input/0 exact True neq 0 max 0.0
+model.embed_tokens/output exact True neq 0 max 0.0
+model.layers.0/input/0 exact True neq 0 max 0.0
+model.layers.0/input/1 exact True neq 0 max 0.0
+model.layers.0/output/0 exact True neq 0 max 0.0
+model.layers.0/output/1 exact True neq 0 max 0.0
+model.layers.1/input/0 exact True neq 0 max 0.0
+model.layers.1/input/1 exact True neq 0 max 0.0
+model.layers.1/input/2 exact True neq 0 max 0.0
+model.layers.1/output/0 exact True neq 0 max 0.0
+model.layers.1/output/1 exact True neq 0 max 0.0
+model.layers.2/input/0 exact True neq 0 max 0.0
+model.layers.2/input/1 exact True neq 0 max 0.0
+model.layers.2/input/2 exact True neq 0 max 0.0
+model.layers.2/output/0 exact True neq 0 max 0.0
+model.layers.2/output/1 exact True neq 0 max 0.0
+model.layers.3/input/0 exact True neq 0 max 0.0
+model.layers.3/input/1 exact True neq 0 max 0.0
+model.layers.3/input/2 exact True neq 0 max 0.0
+model.layers.3/output/0 exact True neq 0 max 0.0
+model.layers.3/output/1 exact True neq 0 max 0.0
+model.layers.4/input/0 exact True neq 0 max 0.0
+model.layers.4/input/1 exact True neq 0 max 0.0
+model.layers.4/input/2 exact True neq 0 max 0.0
+model.layers.4/output/0 exact True neq 0 max 0.0
+model.layers.4/output/1 exact True neq 0 max 0.0
+model.layers.5/input/0 exact True neq 0 max 0.0
+model.layers.5/input/1 exact True neq 0 max 0.0
+model.layers.5/input/2 exact True neq 0 max 0.0
+model.layers.5/output/0 exact True neq 0 max 0.0
+model.layers.5/output/1 exact True neq 0 max 0.0
+model.layers.6/input/0 exact True neq 0 max 0.0
+model.layers.6/input/1 exact True neq 0 max 0.0
+model.layers.6/input/2 exact True neq 0 max 0.0
+model.layers.6/output/0 exact False neq 164 max 0.00390625
+  position 1 max 0.00390625
+model.layers.6/output/1 exact True neq 0 max 0.0
+model.layers.6.input_layernorm/input/0 exact True neq 0 max 0.0
+model.layers.6.input_layernorm/input/1 exact True neq 0 max 0.0
+model.layers.6.input_layernorm/output/0 exact True neq 0 max 0.0
+model.layers.6.input_layernorm/output/1 exact True neq 0 max 0.0
+model.layers.6.self_attn/output exact True neq 0 max 0.0
+model.layers.6.self_attn.qkv_proj/input/0 exact True neq 0 max 0.0
+model.layers.6.self_attn.qkv_proj/output/0 exact True neq 0 max 0.0
+model.layers.6.self_attn.q_norm/input/0 exact True neq 0 max 0.0
+model.layers.6.self_attn.q_norm/output exact True neq 0 max 0.0
+model.layers.6.self_attn.k_norm/input/0 exact True neq 0 max 0.0
+model.layers.6.self_attn.k_norm/output exact True neq 0 max 0.0
+model.layers.6.self_attn.attn/input/0 exact True neq 0 max 0.0
+model.layers.6.self_attn.attn/input/1 exact True neq 0 max 0.0
+model.layers.6.self_attn.attn/input/2 exact True neq 0 max 0.0
+model.layers.6.self_attn.attn/output exact True neq 0 max 0.0
+model.layers.6.self_attn.o_proj/input/0 exact True neq 0 max 0.0
+model.layers.6.self_attn.o_proj/output/0 exact True neq 0 max 0.0
+model.layers.6.post_attention_layernorm/input/0 exact True neq 0 max 0.0
+model.layers.6.post_attention_layernorm/input/1 exact True neq 0 max 0.0
+model.layers.6.post_attention_layernorm/output/0 exact False neq 1 max 0.0009765625
+  position 1 max 0.0009765625
+model.layers.6.post_attention_layernorm/output/1 exact True neq 0 max 0.0
+model.layers.6.mlp/input/0 exact False neq 1 max 0.0009765625
+  position 1 max 0.0009765625
+model.layers.6.mlp/output exact False neq 164 max 0.00390625
+  position 1 max 0.00390625
+model.layers.6.mlp.gate_up_proj/input/0 exact False neq 1 max 0.0009765625
+  position 1 max 0.0009765625
+model.layers.6.mlp.gate_up_proj/output/0 exact False neq 117 max 0.015625
+  position 1 max 0.015625
+model.layers.6.mlp.act_fn/input/0 exact False neq 117 max 0.015625
+  position 1 max 0.015625
+model.layers.6.mlp.act_fn/output exact False neq 100 max 0.001953125
+  position 1 max 0.001953125
+model.layers.6.mlp.down_proj/input/0 exact False neq 100 max 0.001953125
+  position 1 max 0.001953125
+model.layers.6.mlp.down_proj/output/0 exact False neq 164 max 0.00390625
+  position 1 max 0.00390625
+model.layers.7/input/0 exact True neq 0 max 0.0
+model.layers.7/input/1 exact False neq 164 max 0.00390625
+  position 1 max 0.00390625
+model.layers.7/input/2 exact True neq 0 max 0.0
+model.layers.7/output/0 exact False neq 5758 max 0.015625
+  position 1 max 0.015625
+  position 2 max 0.015625
+  position 3 max 0.0078125
+  position 4 max 0.0078125
+  position 5 max 0.00390625
+  position 6 max 0.00390625
+  position 7 max 0.00390625
+  position 8 max 0.00390625
+  position 9 max 0.00390625
+  position 10 max 0.00390625
+  position 11 max 0.00390625
+model.layers.7/output/1 exact False neq 1486 max 0.0078125
+  position 1 max 0.0078125
+  position 2 max 0.0078125
+  position 3 max 0.0078125
+  position 4 max 0.0078125
+  position 5 max 0.00390625
+  position 6 max 0.00390625
+  position 7 max 0.0078125
+  position 8 max 0.00390625
+  position 9 max 0.0078125
+  position 10 max 0.00390625
+  position 11 max 0.00390625
+model.layers.8/input/0 exact True neq 0 max 0.0
+model.layers.8/input/1 exact False neq 5758 max 0.015625
+  position 1 max 0.015625
+  position 2 max 0.015625
+  position 3 max 0.0078125
+  position 4 max 0.0078125
+  position 5 max 0.00390625
+  position 6 max 0.00390625
+  position 7 max 0.00390625
+  position 8 max 0.00390625
+  position 9 max 0.00390625
+  position 10 max 0.00390625
+  position 11 max 0.00390625
+model.layers.8/input/2 exact False neq 1486 max 0.0078125
+  position 1 max 0.0078125
+  position 2 max 0.0078125
+  position 3 max 0.0078125
+  position 4 max 0.0078125
+  position 5 max 0.00390625
+  position 6 max 0.00390625
+  position 7 max 0.0078125
+  position 8 max 0.00390625
+  position 9 max 0.0078125
+  position 10 max 0.00390625
+  position 11 max 0.00390625
+model.layers.8/output/0 exact False neq 8915 max 0.015625
+  position 1 max 0.015625
+  position 2 max 0.009765625
+  position 3 max 0.01171875
+  position 4 max 0.015625
+  position 5 max 0.015625
+  position 6 max 0.0068359375
+  position 7 max 0.01171875
+  position 8 max 0.015625
+  position 9 max 0.0078125
+  position 10 max 0.009765625
+  position 11 max 0.0068359375
+model.layers.8/output/1 exact False neq 5693 max 0.0625
+  position 1 max 0.03125
+  position 2 max 0.0625
+  position 3 max 0.015625
+  position 4 max 0.015625
+  position 5 max 0.015625
+  position 6 max 0.03125
+  position 7 max 0.0625
+  position 8 max 0.015625
+  position 9 max 0.0625
+  position 10 max 0.015625
+  position 11 max 0.015625
+model.layers.9/input/0 exact True neq 0 max 0.0
+model.layers.9/input/1 exact False neq 8915 max 0.015625
+  position 1 max 0.015625
+  position 2 max 0.009765625
+  position 3 max 0.01171875
+  position 4 max 0.015625
+  position 5 max 0.015625
+  position 6 max 0.0068359375
+  position 7 max 0.01171875
+  position 8 max 0.015625
+  position 9 max 0.0078125
+  position 10 max 0.009765625
+  position 11 max 0.0068359375
+model.layers.9/input/2 exact False neq 5693 max 0.0625
+  position 1 max 0.03125
+  position 2 max 0.0625
+  position 3 max 0.015625
+  position 4 max 0.015625
+  position 5 max 0.015625
+  position 6 max 0.03125
+  position 7 max 0.0625
+  position 8 max 0.015625
+  position 9 max 0.0625
+  position 10 max 0.015625
+  position 11 max 0.015625
+model.layers.9/output/0 exact False neq 9365 max 0.03125
+  position 1 max 0.03125
+  position 2 max 0.015625
+  position 3 max 0.015625
+  position 4 max 0.014892578125
+  position 5 max 0.015625
+  position 6 max 0.010986328125
+  position 7 max 0.0126953125
+  position 8 max 0.01171875
+  position 9 max 0.03125
+  position 10 max 0.03125
+  position 11 max 0.015625
+model.layers.9/output/1 exact False neq 7808 max 0.125
+  position 1 max 0.03125
+  position 2 max 0.125
+  position 3 max 0.03125
+  position 4 max 0.03125
+  position 5 max 0.015625
+  position 6 max 0.03125
+  position 7 max 0.03125
+  position 8 max 0.015625
+  position 9 max 0.0625
+  position 10 max 0.0625
+  position 11 max 0.03125
+model.layers.10/input/0 exact True neq 0 max 0.0
+model.layers.10/input/1 exact False neq 9365 max 0.03125
+  position 1 max 0.03125
+  position 2 max 0.015625
+  position 3 max 0.015625
+  position 4 max 0.014892578125
+  position 5 max 0.015625
+  position 6 max 0.010986328125
+  position 7 max 0.0126953125
+  position 8 max 0.01171875
+  position 9 max 0.03125
+  position 10 max 0.03125
+  position 11 max 0.015625
+model.layers.10/input/2 exact False neq 7808 max 0.125
+  position 1 max 0.03125
+  position 2 max 0.125
+  position 3 max 0.03125
+  position 4 max 0.03125
+  position 5 max 0.015625
+  position 6 max 0.03125
+  position 7 max 0.03125
+  position 8 max 0.015625
+  position 9 max 0.0625
+  position 10 max 0.0625
+  position 11 max 0.03125
+model.layers.10/output/0 exact False neq 8947 max 0.0625
+  position 1 max 0.03125
+  position 2 max 0.03125
+  position 3 max 0.01708984375
+  position 4 max 0.01953125
+  position 5 max 0.015625
+  position 6 max 0.01318359375
+  position 7 max 0.015625
+  position 8 max 0.03125
+  position 9 max 0.015625
+  position 10 max 0.0625
+  position 11 max 0.03125
+model.layers.10/output/1 exact False neq 8381 max 0.125
+  position 1 max 0.03125
+  position 2 max 0.125
+  position 3 max 0.0625
+  position 4 max 0.03125
+  position 5 max 0.03125
+  position 6 max 0.03125
+  position 7 max 0.0625
+  position 8 max 0.0234375
+  position 9 max 0.0625
+  position 10 max 0.03125
+  position 11 max 0.03125
+model.layers.11/input/0 exact True neq 0 max 0.0
+model.layers.11/input/1 exact False neq 8947 max 0.0625
+  position 1 max 0.03125
+  position 2 max 0.03125
+  position 3 max 0.01708984375
+  position 4 max 0.01953125
+  position 5 max 0.015625
+  position 6 max 0.01318359375
+  position 7 max 0.015625
+  position 8 max 0.03125
+  position 9 max 0.015625
+  position 10 max 0.0625
+  position 11 max 0.03125
+model.layers.11/input/2 exact False neq 8381 max 0.125
+  position 1 max 0.03125
+  position 2 max 0.125
+  position 3 max 0.0625
+  position 4 max 0.03125
+  position 5 max 0.03125
+  position 6 max 0.03125
+  position 7 max 0.0625
+  position 8 max 0.0234375
+  position 9 max 0.0625
+  position 10 max 0.03125
+  position 11 max 0.03125
+model.layers.11/output/0 exact False neq 9713 max 0.0703125
+  position 1 max 0.01171875
+  position 2 max 0.03125
+  position 3 max 0.021484375
+  position 4 max 0.03125
+  position 5 max 0.0166015625
+  position 6 max 0.012451171875
+  position 7 max 0.0703125
+  position 8 max 0.017578125
+  position 9 max 0.03125
+  position 10 max 0.03125
+  position 11 max 0.015625
+model.layers.11/output/1 exact False neq 8491 max 0.125
+  position 1 max 0.046875
+  position 2 max 0.09375
+  position 3 max 0.125
+  position 4 max 0.0390625
+  position 5 max 0.0625
+  position 6 max 0.03125
+  position 7 max 0.125
+  position 8 max 0.046875
+  position 9 max 0.125
+  position 10 max 0.125
+  position 11 max 0.03125
+model.layers.12/input/0 exact True neq 0 max 0.0
+model.layers.12/input/1 exact False neq 9713 max 0.0703125
+  position 1 max 0.01171875
+  position 2 max 0.03125
+  position 3 max 0.021484375
+  position 4 max 0.03125
+  position 5 max 0.0166015625
+  position 6 max 0.012451171875
+  position 7 max 0.0703125
+  position 8 max 0.017578125
+  position 9 max 0.03125
+  position 10 max 0.03125
+  position 11 max 0.015625
+model.layers.12/input/2 exact False neq 8491 max 0.125
+  position 1 max 0.046875
+  position 2 max 0.09375
+  position 3 max 0.125
+  position 4 max 0.0390625
+  position 5 max 0.0625
+  position 6 max 0.03125
+  position 7 max 0.125
+  position 8 max 0.046875
+  position 9 max 0.125
+  position 10 max 0.125
+  position 11 max 0.03125
+model.layers.12/output/0 exact False neq 9895 max 0.09375
+  position 1 max 0.01171875
+  position 2 max 0.01171875
+  position 3 max 0.09375
+  position 4 max 0.01953125
+  position 5 max 0.0166015625
+  position 6 max 0.03125
+  position 7 max 0.03125
+  position 8 max 0.046875
+  position 9 max 0.01953125
+  position 10 max 0.0234375
+  position 11 max 0.046875
+model.layers.12/output/1 exact False neq 8769 max 0.25
+  position 1 max 0.046875
+  position 2 max 0.109375
+  position 3 max 0.25
+  position 4 max 0.0625
+  position 5 max 0.0625
+  position 6 max 0.03125
+  position 7 max 0.125
+  position 8 max 0.046875
+  position 9 max 0.0625
+  position 10 max 0.125
+  position 11 max 0.125
+model.layers.13/input/0 exact True neq 0 max 0.0
+model.layers.13/input/1 exact False neq 9895 max 0.09375
+  position 1 max 0.01171875
+  position 2 max 0.01171875
+  position 3 max 0.09375
+  position 4 max 0.01953125
+  position 5 max 0.0166015625
+  position 6 max 0.03125
+  position 7 max 0.03125
+  position 8 max 0.046875
+  position 9 max 0.01953125
+  position 10 max 0.0234375
+  position 11 max 0.046875
+model.layers.13/input/2 exact False neq 8769 max 0.25
+  position 1 max 0.046875
+  position 2 max 0.109375
+  position 3 max 0.25
+  position 4 max 0.0625
+  position 5 max 0.0625
+  position 6 max 0.03125
+  position 7 max 0.125
+  position 8 max 0.046875
+  position 9 max 0.0625
+  position 10 max 0.125
+  position 11 max 0.125
+model.layers.13/output/0 exact False neq 10016 max 0.0625
+  position 1 max 0.0234375
+  position 2 max 0.01171875
+  position 3 max 0.03125
+  position 4 max 0.03125
+  position 5 max 0.01953125
+  position 6 max 0.015625
+  position 7 max 0.0234375
+  position 8 max 0.03125
+  position 9 max 0.0625
+  position 10 max 0.03125
+  position 11 max 0.0234375
+model.layers.13/output/1 exact False neq 9024 max 0.25
+  position 1 max 0.078125
+  position 2 max 0.09375
+  position 3 max 0.25
+  position 4 max 0.0625
+  position 5 max 0.125
+  position 6 max 0.0625
+  position 7 max 0.25
+  position 8 max 0.125
+  position 9 max 0.125
+  position 10 max 0.125
+  position 11 max 0.25
+model.layers.14/input/0 exact True neq 0 max 0.0
+model.layers.14/input/1 exact False neq 10016 max 0.0625
+  position 1 max 0.0234375
+  position 2 max 0.01171875
+  position 3 max 0.03125
+  position 4 max 0.03125
+  position 5 max 0.01953125
+  position 6 max 0.015625
+  position 7 max 0.0234375
+  position 8 max 0.03125
+  position 9 max 0.0625
+  position 10 max 0.03125
+  position 11 max 0.0234375
+model.layers.14/input/2 exact False neq 9024 max 0.25
+  position 1 max 0.078125
+  position 2 max 0.09375
+  position 3 max 0.25
+  position 4 max 0.0625
+  position 5 max 0.125
+  position 6 max 0.0625
+  position 7 max 0.25
+  position 8 max 0.125
+  position 9 max 0.125
+  position 10 max 0.125
+  position 11 max 0.25
+model.layers.14/output/0 exact False neq 9926 max 0.0625
+  position 1 max 0.03515625
+  position 2 max 0.03125
+  position 3 max 0.0390625
+  position 4 max 0.021484375
+  position 5 max 0.0625
+  position 6 max 0.01953125
+  position 7 max 0.046875
+  position 8 max 0.0546875
+  position 9 max 0.01953125
+  position 10 max 0.0234375
+  position 11 max 0.046875
+model.layers.14/output/1 exact False neq 9220 max 0.25
+  position 1 max 0.078125
+  position 2 max 0.0625
+  position 3 max 0.25
+  position 4 max 0.0625
+  position 5 max 0.125
+  position 6 max 0.0625
+  position 7 max 0.25
+  position 8 max 0.0625
+  position 9 max 0.0625
+  position 10 max 0.125
+  position 11 max 0.25
+model.layers.15/input/0 exact True neq 0 max 0.0
+model.layers.15/input/1 exact False neq 9926 max 0.0625
+  position 1 max 0.03515625
+  position 2 max 0.03125
+  position 3 max 0.0390625
+  position 4 max 0.021484375
+  position 5 max 0.0625
+  position 6 max 0.01953125
+  position 7 max 0.046875
+  position 8 max 0.0546875
+  position 9 max 0.01953125
+  position 10 max 0.0234375
+  position 11 max 0.046875
+model.layers.15/input/2 exact False neq 9220 max 0.25
+  position 1 max 0.078125
+  position 2 max 0.0625
+  position 3 max 0.25
+  position 4 max 0.0625
+  position 5 max 0.125
+  position 6 max 0.0625
+  position 7 max 0.25
+  position 8 max 0.0625
+  position 9 max 0.0625
+  position 10 max 0.125
+  position 11 max 0.25
+model.layers.15/output/0 exact False neq 10137 max 0.125
+  position 1 max 0.03515625
+  position 2 max 0.046875
+  position 3 max 0.037109375
+  position 4 max 0.03125
+  position 5 max 0.0625
+  position 6 max 0.0625
+  position 7 max 0.125
+  position 8 max 0.0625
+  position 9 max 0.03125
+  position 10 max 0.03076171875
+  position 11 max 0.046875
+model.layers.15/output/1 exact False neq 9517 max 0.25
+  position 1 max 0.125
+  position 2 max 0.125
+  position 3 max 0.25
+  position 4 max 0.0625
+  position 5 max 0.078125
+  position 6 max 0.09375
+  position 7 max 0.25
+  position 8 max 0.125
+  position 9 max 0.0625
+  position 10 max 0.25
+  position 11 max 0.25
+model.layers.16/input/0 exact True neq 0 max 0.0
+model.layers.16/input/1 exact False neq 10137 max 0.125
+  position 1 max 0.03515625
+  position 2 max 0.046875
+  position 3 max 0.037109375
+  position 4 max 0.03125
+  position 5 max 0.0625
+  position 6 max 0.0625
+  position 7 max 0.125
+  position 8 max 0.0625
+  position 9 max 0.03125
+  position 10 max 0.03076171875
+  position 11 max 0.046875
+model.layers.16/input/2 exact False neq 9517 max 0.25
+  position 1 max 0.125
+  position 2 max 0.125
+  position 3 max 0.25
+  position 4 max 0.0625
+  position 5 max 0.078125
+  position 6 max 0.09375
+  position 7 max 0.25
+  position 8 max 0.125
+  position 9 max 0.0625
+  position 10 max 0.25
+  position 11 max 0.25
+model.layers.16/output/0 exact False neq 10010 max 0.1796875
+  position 1 max 0.046875
+  position 2 max 0.046875
+  position 3 max 0.0625
+  position 4 max 0.0625
+  position 5 max 0.046875
+  position 6 max 0.046875
+  position 7 max 0.1796875
+  position 8 max 0.0625
+  position 9 max 0.046875
+  position 10 max 0.0625
+  position 11 max 0.04296875
+model.layers.16/output/1 exact False neq 9701 max 0.25
+  position 1 max 0.0703125
+  position 2 max 0.25
+  position 3 max 0.25
+  position 4 max 0.0625
+  position 5 max 0.078125
+  position 6 max 0.0625
+  position 7 max 0.125
+  position 8 max 0.25
+  position 9 max 0.078125
+  position 10 max 0.25
+  position 11 max 0.0703125
+model.layers.17/input/0 exact True neq 0 max 0.0
+model.layers.17/input/1 exact False neq 10010 max 0.1796875
+  position 1 max 0.046875
+  position 2 max 0.046875
+  position 3 max 0.0625
+  position 4 max 0.0625
+  position 5 max 0.046875
+  position 6 max 0.046875
+  position 7 max 0.1796875
+  position 8 max 0.0625
+  position 9 max 0.046875
+  position 10 max 0.0625
+  position 11 max 0.04296875
+model.layers.17/input/2 exact False neq 9701 max 0.25
+  position 1 max 0.0703125
+  position 2 max 0.25
+  position 3 max 0.25
+  position 4 max 0.0625
+  position 5 max 0.078125
+  position 6 max 0.0625
+  position 7 max 0.125
+  position 8 max 0.25
+  position 9 max 0.078125
+  position 10 max 0.25
+  position 11 max 0.0703125
+model.layers.17/output/0 exact False neq 9858 max 0.125
+  position 1 max 0.078125
+  position 2 max 0.0625
+  position 3 max 0.046875
+  position 4 max 0.0625
+  position 5 max 0.0390625
+  position 6 max 0.0546875
+  position 7 max 0.09375
+  position 8 max 0.125
+  position 9 max 0.0625
+  position 10 max 0.125
+  position 11 max 0.0546875
+model.layers.17/output/1 exact False neq 9761 max 0.25
+  position 1 max 0.09375
+  position 2 max 0.25
+  position 3 max 0.25
+  position 4 max 0.25
+  position 5 max 0.125
+  position 6 max 0.09375
+  position 7 max 0.125
+  position 8 max 0.25
+  position 9 max 0.125
+  position 10 max 0.25
+  position 11 max 0.09375
+model.layers.18/input/0 exact True neq 0 max 0.0
+model.layers.18/input/1 exact False neq 9858 max 0.125
+  position 1 max 0.078125
+  position 2 max 0.0625
+  position 3 max 0.046875
+  position 4 max 0.0625
+  position 5 max 0.0390625
+  position 6 max 0.0546875
+  position 7 max 0.09375
+  position 8 max 0.125
+  position 9 max 0.0625
+  position 10 max 0.125
+  position 11 max 0.0546875
+model.layers.18/input/2 exact False neq 9761 max 0.25
+  position 1 max 0.09375
+  position 2 max 0.25
+  position 3 max 0.25
+  position 4 max 0.25
+  position 5 max 0.125
+  position 6 max 0.09375
+  position 7 max 0.125
+  position 8 max 0.25
+  position 9 max 0.125
+  position 10 max 0.25
+  position 11 max 0.09375
+model.layers.18/output/0 exact False neq 10103 max 0.125
+  position 1 max 0.078125
+  position 2 max 0.0625
+  position 3 max 0.0625
+  position 4 max 0.125
+  position 5 max 0.046875
+  position 6 max 0.0703125
+  position 7 max 0.078125
+  position 8 max 0.078125
+  position 9 max 0.080078125
+  position 10 max 0.125
+  position 11 max 0.0859375
+model.layers.18/output/1 exact False neq 9666 max 0.25
+  position 1 max 0.125
+  position 2 max 0.25
+  position 3 max 0.25
+  position 4 max 0.25
+  position 5 max 0.25
+  position 6 max 0.125
+  position 7 max 0.25
+  position 8 max 0.25
+  position 9 max 0.25
+  position 10 max 0.25
+  position 11 max 0.140625
+model.layers.19/input/0 exact True neq 0 max 0.0
+model.layers.19/input/1 exact False neq 10103 max 0.125
+  position 1 max 0.078125
+  position 2 max 0.0625
+  position 3 max 0.0625
+  position 4 max 0.125
+  position 5 max 0.046875
+  position 6 max 0.0703125
+  position 7 max 0.078125
+  position 8 max 0.078125
+  position 9 max 0.080078125
+  position 10 max 0.125
+  position 11 max 0.0859375
+model.layers.19/input/2 exact False neq 9666 max 0.25
+  position 1 max 0.125
+  position 2 max 0.25
+  position 3 max 0.25
+  position 4 max 0.25
+  position 5 max 0.25
+  position 6 max 0.125
+  position 7 max 0.25
+  position 8 max 0.25
+  position 9 max 0.25
+  position 10 max 0.25
+  position 11 max 0.140625
+model.layers.19/output/0 exact False neq 10073 max 0.3125
+  position 1 max 0.125
+  position 2 max 0.25
+  position 3 max 0.09375
+  position 4 max 0.125
+  position 5 max 0.1015625
+  position 6 max 0.078125
+  position 7 max 0.3125
+  position 8 max 0.25
+  position 9 max 0.125
+  position 10 max 0.125
+  position 11 max 0.125
+model.layers.19/output/1 exact False neq 9809 max 1.0
+  position 1 max 0.375
+  position 2 max 0.5
+  position 3 max 0.25
+  position 4 max 0.25
+  position 5 max 0.5
+  position 6 max 0.125
+  position 7 max 0.25
+  position 8 max 1.0
+  position 9 max 0.375
+  position 10 max 0.25
+  position 11 max 0.25
+model.layers.20/input/0 exact True neq 0 max 0.0
+model.layers.20/input/1 exact False neq 10073 max 0.3125
+  position 1 max 0.125
+  position 2 max 0.25
+  position 3 max 0.09375
+  position 4 max 0.125
+  position 5 max 0.1015625
+  position 6 max 0.078125
+  position 7 max 0.3125
+  position 8 max 0.25
+  position 9 max 0.125
+  position 10 max 0.125
+  position 11 max 0.125
+model.layers.20/input/2 exact False neq 9809 max 1.0
+  position 1 max 0.375
+  position 2 max 0.5
+  position 3 max 0.25
+  position 4 max 0.25
+  position 5 max 0.5
+  position 6 max 0.125
+  position 7 max 0.25
+  position 8 max 1.0
+  position 9 max 0.375
+  position 10 max 0.25
+  position 11 max 0.25
+model.layers.20/output/0 exact False neq 10125 max 0.1875
+  position 1 max 0.09375
+  position 2 max 0.125
+  position 3 max 0.1015625
+  position 4 max 0.125
+  position 5 max 0.09375
+  position 6 max 0.1875
+  position 7 max 0.15625
+  position 8 max 0.125
+  position 9 max 0.09375
+  position 10 max 0.125
+  position 11 max 0.125
+model.layers.20/output/1 exact False neq 9770 max 1.0
+  position 1 max 0.25
+  position 2 max 0.25
+  position 3 max 0.25
+  position 4 max 0.25
+  position 5 max 1.0
+  position 6 max 0.25
+  position 7 max 0.5
+  position 8 max 1.0
+  position 9 max 0.5
+  position 10 max 0.25
+  position 11 max 0.375
+model.layers.21/input/0 exact True neq 0 max 0.0
+model.layers.21/input/1 exact False neq 10125 max 0.1875
+  position 1 max 0.09375
+  position 2 max 0.125
+  position 3 max 0.1015625
+  position 4 max 0.125
+  position 5 max 0.09375
+  position 6 max 0.1875
+  position 7 max 0.15625
+  position 8 max 0.125
+  position 9 max 0.09375
+  position 10 max 0.125
+  position 11 max 0.125
+model.layers.21/input/2 exact False neq 9770 max 1.0
+  position 1 max 0.25
+  position 2 max 0.25
+  position 3 max 0.25
+  position 4 max 0.25
+  position 5 max 1.0
+  position 6 max 0.25
+  position 7 max 0.5
+  position 8 max 1.0
+  position 9 max 0.5
+  position 10 max 0.25
+  position 11 max 0.375
+model.layers.21/output/0 exact False neq 10029 max 0.5
+  position 1 max 0.109375
+  position 2 max 0.09375
+  position 3 max 0.125
+  position 4 max 0.125
+  position 5 max 0.09375
+  position 6 max 0.125
+  position 7 max 0.5
+  position 8 max 0.25
+  position 9 max 0.1171875
+  position 10 max 0.125
+  position 11 max 0.125
+model.layers.21/output/1 exact False neq 9796 max 1.0
+  position 1 max 0.25
+  position 2 max 0.25
+  position 3 max 0.25
+  position 4 max 0.3125
+  position 5 max 1.0
+  position 6 max 0.25
+  position 7 max 0.5
+  position 8 max 1.0
+  position 9 max 0.5
+  position 10 max 0.25
+  position 11 max 0.5
+model.layers.22/input/0 exact True neq 0 max 0.0
+model.layers.22/input/1 exact False neq 10029 max 0.5
+  position 1 max 0.109375
+  position 2 max 0.09375
+  position 3 max 0.125
+  position 4 max 0.125
+  position 5 max 0.09375
+  position 6 max 0.125
+  position 7 max 0.5
+  position 8 max 0.25
+  position 9 max 0.1171875
+  position 10 max 0.125
+  position 11 max 0.125
+model.layers.22/input/2 exact False neq 9796 max 1.0
+  position 1 max 0.25
+  position 2 max 0.25
+  position 3 max 0.25
+  position 4 max 0.3125
+  position 5 max 1.0
+  position 6 max 0.25
+  position 7 max 0.5
+  position 8 max 1.0
+  position 9 max 0.5
+  position 10 max 0.25
+  position 11 max 0.5
+model.layers.22/output/0 exact False neq 10086 max 0.5
+  position 1 max 0.125
+  position 2 max 0.125
+  position 3 max 0.125
+  position 4 max 0.140625
+  position 5 max 0.25
+  position 6 max 0.25
+  position 7 max 0.375
+  position 8 max 0.5
+  position 9 max 0.125
+  position 10 max 0.109375
+  position 11 max 0.11474609375
+model.layers.22/output/1 exact False neq 9858 max 1.0
+  position 1 max 0.25
+  position 2 max 0.25
+  position 3 max 0.3125
+  position 4 max 0.5
+  position 5 max 1.0
+  position 6 max 0.25
+  position 7 max 1.0
+  position 8 max 1.0
+  position 9 max 1.0
+  position 10 max 0.25
+  position 11 max 0.375
+model.layers.23/input/0 exact True neq 0 max 0.0
+model.layers.23/input/1 exact False neq 10086 max 0.5
+  position 1 max 0.125
+  position 2 max 0.125
+  position 3 max 0.125
+  position 4 max 0.140625
+  position 5 max 0.25
+  position 6 max 0.25
+  position 7 max 0.375
+  position 8 max 0.5
+  position 9 max 0.125
+  position 10 max 0.109375
+  position 11 max 0.11474609375
+model.layers.23/input/2 exact False neq 9858 max 1.0
+  position 1 max 0.25
+  position 2 max 0.25
+  position 3 max 0.3125
+  position 4 max 0.5
+  position 5 max 1.0
+  position 6 max 0.25
+  position 7 max 1.0
+  position 8 max 1.0
+  position 9 max 1.0
+  position 10 max 0.25
+  position 11 max 0.375
+model.layers.23/output/0 exact False neq 10160 max 0.375
+  position 1 max 0.125
+  position 2 max 0.125
+  position 3 max 0.375
+  position 4 max 0.15625
+  position 5 max 0.25
+  position 6 max 0.125
+  position 7 max 0.1484375
+  position 8 max 0.25
+  position 9 max 0.25
+  position 10 max 0.09375
+  position 11 max 0.125
+model.layers.23/output/1 exact False neq 9841 max 2.0
+  position 1 max 0.25
+  position 2 max 0.25
+  position 3 max 0.375
+  position 4 max 0.375
+  position 5 max 2.0
+  position 6 max 0.5
+  position 7 max 1.5
+  position 8 max 1.0
+  position 9 max 1.0
+  position 10 max 0.3125
+  position 11 max 0.375
+model.layers.24/input/0 exact True neq 0 max 0.0
+model.layers.24/input/1 exact False neq 10160 max 0.375
+  position 1 max 0.125
+  position 2 max 0.125
+  position 3 max 0.375
+  position 4 max 0.15625
+  position 5 max 0.25
+  position 6 max 0.125
+  position 7 max 0.1484375
+  position 8 max 0.25
+  position 9 max 0.25
+  position 10 max 0.09375
+  position 11 max 0.125
+model.layers.24/input/2 exact False neq 9841 max 2.0
+  position 1 max 0.25
+  position 2 max 0.25
+  position 3 max 0.375
+  position 4 max 0.375
+  position 5 max 2.0
+  position 6 max 0.5
+  position 7 max 1.5
+  position 8 max 1.0
+  position 9 max 1.0
+  position 10 max 0.3125
+  position 11 max 0.375
+model.layers.24/output/0 exact False neq 10161 max 0.25
+  position 1 max 0.25
+  position 2 max 0.25
+  position 3 max 0.171875
+  position 4 max 0.15625
+  position 5 max 0.25
+  position 6 max 0.25
+  position 7 max 0.25
+  position 8 max 0.12109375
+  position 9 max 0.125
+  position 10 max 0.25
+  position 11 max 0.140625
+model.layers.24/output/1 exact False neq 9858 max 2.0
+  position 1 max 0.5
+  position 2 max 0.5
+  position 3 max 1.0
+  position 4 max 0.5
+  position 5 max 2.0
+  position 6 max 1.0
+  position 7 max 1.0
+  position 8 max 1.0
+  position 9 max 1.0
+  position 10 max 0.5
+  position 11 max 1.0
+model.layers.25/input/0 exact True neq 0 max 0.0
+model.layers.25/input/1 exact False neq 10161 max 0.25
+  position 1 max 0.25
+  position 2 max 0.25
+  position 3 max 0.171875
+  position 4 max 0.15625
+  position 5 max 0.25
+  position 6 max 0.25
+  position 7 max 0.25
+  position 8 max 0.12109375
+  position 9 max 0.125
+  position 10 max 0.25
+  position 11 max 0.140625
+model.layers.25/input/2 exact False neq 9858 max 2.0
+  position 1 max 0.5
+  position 2 max 0.5
+  position 3 max 1.0
+  position 4 max 0.5
+  position 5 max 2.0
+  position 6 max 1.0
+  position 7 max 1.0
+  position 8 max 1.0
+  position 9 max 1.0
+  position 10 max 0.5
+  position 11 max 1.0
+model.layers.25/output/0 exact False neq 10147 max 0.75
+  position 1 max 0.25
+  position 2 max 0.25
+  position 3 max 0.25
+  position 4 max 0.25
+  position 5 max 0.25
+  position 6 max 0.10546875
+  position 7 max 0.25
+  position 8 max 0.25
+  position 9 max 0.75
+  position 10 max 0.140625
+  position 11 max 0.25
+model.layers.25/output/1 exact False neq 9901 max 2.0
+  position 1 max 1.0
+  position 2 max 0.5
+  position 3 max 1.0
+  position 4 max 1.0
+  position 5 max 2.0
+  position 6 max 1.0
+  position 7 max 1.0
+  position 8 max 2.0
+  position 9 max 2.0
+  position 10 max 0.375
+  position 11 max 1.0
+model.layers.26/input/0 exact True neq 0 max 0.0
+model.layers.26/input/1 exact False neq 10147 max 0.75
+  position 1 max 0.25
+  position 2 max 0.25
+  position 3 max 0.25
+  position 4 max 0.25
+  position 5 max 0.25
+  position 6 max 0.10546875
+  position 7 max 0.25
+  position 8 max 0.25
+  position 9 max 0.75
+  position 10 max 0.140625
+  position 11 max 0.25
+model.layers.26/input/2 exact False neq 9901 max 2.0
+  position 1 max 1.0
+  position 2 max 0.5
+  position 3 max 1.0
+  position 4 max 1.0
+  position 5 max 2.0
+  position 6 max 1.0
+  position 7 max 1.0
+  position 8 max 2.0
+  position 9 max 2.0
+  position 10 max 0.375
+  position 11 max 1.0
+model.layers.26/output/0 exact False neq 10114 max 0.4375
+  position 1 max 0.140625
+  position 2 max 0.1875
+  position 3 max 0.4375
+  position 4 max 0.265625
+  position 5 max 0.25
+  position 6 max 0.28125
+  position 7 max 0.375
+  position 8 max 0.25
+  position 9 max 0.25
+  position 10 max 0.1484375
+  position 11 max 0.1875
+model.layers.26/output/1 exact False neq 9940 max 2.0
+  position 1 max 0.40625
+  position 2 max 1.0
+  position 3 max 0.6875
+  position 4 max 2.0
+  position 5 max 2.0
+  position 6 max 2.0
+  position 7 max 1.0
+  position 8 max 2.0
+  position 9 max 2.0
+  position 10 max 1.0
+  position 11 max 0.5
+model.layers.27/input/0 exact True neq 0 max 0.0
+model.layers.27/input/1 exact False neq 10114 max 0.4375
+  position 1 max 0.140625
+  position 2 max 0.1875
+  position 3 max 0.4375
+  position 4 max 0.265625
+  position 5 max 0.25
+  position 6 max 0.28125
+  position 7 max 0.375
+  position 8 max 0.25
+  position 9 max 0.25
+  position 10 max 0.1484375
+  position 11 max 0.1875
+model.layers.27/input/2 exact False neq 9940 max 2.0
+  position 1 max 0.40625
+  position 2 max 1.0
+  position 3 max 0.6875
+  position 4 max 2.0
+  position 5 max 2.0
+  position 6 max 2.0
+  position 7 max 1.0
+  position 8 max 2.0
+  position 9 max 2.0
+  position 10 max 1.0
+  position 11 max 0.5
+model.layers.27/output/0 exact False neq 9784 max 1.0
+  position 1 max 0.984375
+  position 2 max 0.5
+  position 3 max 0.5
+  position 4 max 0.3125
+  position 5 max 1.0
+  position 6 max 1.0
+  position 7 max 0.5
+  position 8 max 1.0
+  position 9 max 0.5
+  position 10 max 0.5
+  position 11 max 1.0
+model.layers.27/output/1 exact False neq 9940 max 4.0
+  position 1 max 0.4375
+  position 2 max 1.0
+  position 3 max 2.0
+  position 4 max 2.0
+  position 5 max 2.0
+  position 6 max 2.0
+  position 7 max 2.0
+  position 8 max 2.0
+  position 9 max 4.0
+  position 10 max 1.0
+  position 11 max 0.625
+model.norm/input/0 exact False neq 9784 max 1.0
+  position 1 max 0.984375
+  position 2 max 0.5
+  position 3 max 0.5
+  position 4 max 0.3125
+  position 5 max 1.0
+  position 6 max 1.0
+  position 7 max 0.5
+  position 8 max 1.0
+  position 9 max 0.5
+  position 10 max 0.5
+  position 11 max 1.0
+model.norm/input/1 exact False neq 9940 max 4.0
+  position 1 max 0.4375
+  position 2 max 1.0
+  position 3 max 2.0
+  position 4 max 2.0
+  position 5 max 2.0
+  position 6 max 2.0
+  position 7 max 2.0
+  position 8 max 2.0
+  position 9 max 4.0
+  position 10 max 1.0
+  position 11 max 0.625
+model.norm/output/0 exact False neq 10084 max 1.0
+  position 1 max 0.25
+  position 2 max 1.0
+  position 3 max 0.4375
+  position 4 max 1.0
+  position 5 max 0.5
+  position 6 max 0.5
+  position 7 max 0.40625
+  position 8 max 0.25
+  position 9 max 0.625
+  position 10 max 0.259765625
+  position 11 max 0.75
+model.norm/output/1 exact False neq 9877 max 4.0
+  position 1 max 0.5
+  position 2 max 1.25
+  position 3 max 2.0
+  position 4 max 2.0
+  position 5 max 2.0
+  position 6 max 2.0
+  position 7 max 3.0
+  position 8 max 3.0
+  position 9 max 4.0
+  position 10 max 1.0
+  position 11 max 2.0
+result exact False neq 10084 max 1.0
+  position 1 max 0.25
+  position 2 max 1.0
+  position 3 max 0.4375
+  position 4 max 1.0
+  position 5 max 0.5
+  position 6 max 0.5
+  position 7 max 0.40625
+  position 8 max 0.25
+  position 9 max 0.625
+  position 10 max 0.259765625
+  position 11 max 0.75

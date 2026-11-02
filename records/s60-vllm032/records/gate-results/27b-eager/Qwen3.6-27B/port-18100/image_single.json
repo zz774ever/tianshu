@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "case": {
+    "scenario": "image_single",
+    "model_path": "/models/Qwen3.6-27B",
+    "served_model_name": "/models/Qwen3.6-27B",
+    "port": "18100",
+    "concurrency": 1
+  },
+  "started_at": "2026-11-02T02:07:55.282768+00:00",
+  "finished_at": "2026-11-02T02:07:56.835749+00:00",
+  "input": [
+    {
+      "request_id": "image-05",
+      "kind": "image",
+      "messages": [
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Read the two words. The second word has four letters. Copy every visible character exactly and reply with the text only."
+            },
+            {
+              "type": "image_url",
+              "image_url": {
+                "url": "file:///workspace/vllm-plugin-FL/tools/adaptation-gate-cases/images/image_05.png"
+              }
+            }
+          ]
+        }
+      ],
+      "image_path": "/workspace/vllm-plugin-FL/tools/adaptation-gate-cases/images/image_05.png",
+      "required_terms": [
+        "hello",
+        "vllm"
+      ]
+    }
+  ],
+  "output": [
+    {
+      "request_id": "image-05",
+      "kind": "image",
+      "latency_seconds": 1.514,
+      "text": "",
+      "checks": {},
+      "passed": false,
+      "error": "APIConnectionError: Connection error."
+    }
+  ],
+  "summary": {
+    "request_count": 1,
+    "passed_count": 0,
+    "failed_count": 1,
+    "passed": false
+  }
+}

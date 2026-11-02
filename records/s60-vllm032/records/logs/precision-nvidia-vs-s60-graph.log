@@ -1,0 +1,37 @@
+[
+  {
+    "prompt": "Paris is the capital of",
+    "exact": true,
+    "reference_tokens": 32,
+    "candidate_tokens": 32,
+    "first_mismatch": null
+  },
+  {
+    "prompt": "The quick brown fox jumps over the",
+    "exact": true,
+    "reference_tokens": 32,
+    "candidate_tokens": 32,
+    "first_mismatch": null
+  },
+  {
+    "prompt": "What is 17 + 25? Answer briefly.",
+    "exact": false,
+    "reference_tokens": 32,
+    "candidate_tokens": 32,
+    "first_mismatch": 7
+  },
+  {
+    "prompt": "\u8bf7\u7b80\u8981\u4ecb\u7ecd\u673a\u5668\u5b66\u4e60\u3002",
+    "exact": true,
+    "reference_tokens": 32,
+    "candidate_tokens": 32,
+    "first_mismatch": null
+  },
+  {
+    "prompt": "Write a Python function to reverse a list.",
+    "exact": false,
+    "reference_tokens": 32,
+    "candidate_tokens": 32,
+    "first_mismatch": 13
+  }
+]

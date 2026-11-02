@@ -1,0 +1,524 @@
+--- /workspace/s60-adaptation/src/vllm/vllm/v1/worker/gpu_model_runner.py	2026-10-30 03:33:50.273365664 +0000
++++ /workspace/vllm-plugin-FL/vllm_fl/worker/model_runner.py	2026-10-30 03:55:20.492961305 +0000
+@@ -1,3 +1,6 @@
++# Copyright (c) 2025 BAAI. All rights reserved.
++# Adapted from https://github.com/vllm-project/vllm/blob/v0.32.0/vllm/v1/worker/gpu_model_runner.py
++# Below is the original copyright:
+ # SPDX-License-Identifier: Apache-2.0
+ # SPDX-FileCopyrightText: Copyright contributors to the vLLM project
+ 
+@@ -45,10 +48,10 @@
+     copy_kv_blocks,
+ )
+ from vllm.distributed.parallel_state import (
++    GraphCaptureContext,
+     get_dcp_group,
+     get_pp_group,
+     get_tp_group,
+-    graph_capture,
+     is_global_first_rank,
+ )
+ from vllm.forward_context import (
+@@ -217,13 +220,8 @@
+     split_attn_metadata,
+ )
+ from vllm.v1.worker.utils import (
+-    EncoderTimingStats,
+-    raise_if_nan_logits,
+-)
+-from vllm.v1.worker.workspace import lock_workspace
+-
+-from .utils import (
+     AttentionGroup,
++    EncoderTimingStats,
+     KVBlockZeroer,
+     add_kv_sharing_layers_to_kv_cache_groups,
+     allocate_kv_cache,
+@@ -232,8 +230,18 @@
+     customize_attention_spec,
+     map_kv_caches_to_kernel_blocks,
+     prepare_kernel_block_sizes,
++    raise_if_nan_logits,
+     sanity_check_mm_encoder_outputs,
+ )
++from vllm.v1.worker.workspace import lock_workspace
++
++from vllm_fl.compilation.graph import GraphWrapper
++from vllm_fl.dispatch.io_common import managed_inference_mode
++from vllm_fl.dispatch.io_dumper import (
++    advance_io_step,
++    init_io_dump_from_env,
++    register_io_module_hooks,
++)
+ 
+ if TYPE_CHECKING:
+     from vllm.v1.core.sched.output import GrammarOutput, SchedulerOutput
+@@ -243,6 +251,44 @@
+ logger = init_logger(__name__)
+ 
+ 
++def _accelerator_synchronize() -> None:
++    """Synchronize through the active accelerator implementation."""
++    if current_platform.device_type == "musa":
++        import torch_musa
++
++        torch_musa.synchronize()
++    else:
++        torch.accelerator.synchronize()
++
++
++@contextmanager
++def _device_graph_capture(
++    device: torch.device,
++    graph_capture_context: GraphCaptureContext | None = None,
++):
++    """Enter graph capture using the active accelerator's stream API."""
++    if graph_capture_context is None:
++        graph_capture_context = GraphCaptureContext(
++            current_platform.torch_device_fn.Stream(device=device)
++        )
++    stream = graph_capture_context.stream
++    curr_stream = current_platform.torch_device_fn.current_stream()
++    if curr_stream != stream:
++        stream.wait_stream(curr_stream)
++    with current_platform.torch_device_fn.stream(stream), nullcontext():
++        yield graph_capture_context
++
++
++if current_platform.dist_backend == "flagcx" or current_platform.device_type in (
++    "musa",
++    "npu",
++):
++    graph_capture = _device_graph_capture
++
++else:
++    from vllm.distributed.parallel_state import graph_capture
++
++
+ AttnMetadataDict: TypeAlias = dict[str, AttentionMetadata]
+ # list when ubatching is enabled
+ PerLayerAttnMetadata: TypeAlias = list[AttnMetadataDict] | AttnMetadataDict
+@@ -273,7 +319,7 @@
+         sampled_token_ids: torch.Tensor,
+         logprobs_tensors: LogprobsTensors | None,
+         invalid_req_indices: list[int],
+-        async_output_copy_stream: torch.cuda.Stream,
++        async_output_copy_stream: current_platform.torch_device_fn.Stream,
+         vocab_size: int,
+         check_ep_fault: bool = False,
+         num_nans: torch.Tensor | None = None,
+@@ -283,7 +329,9 @@
+ 
+         # Event on the copy stream so we can synchronize the non-blocking copy.
+         # Blocking (sleep) event to avoid busy-polling the CUDA driver lock.
+-        self.async_copy_ready_event = torch.cuda.Event(blocking=True)
++        self.async_copy_ready_event = current_platform.torch_device_fn.Event(
++            blocking=True
++        )
+ 
+         # Keep a reference to the device tensor to avoid it being
+         # deallocated until we finish copying it to the host.
+@@ -294,8 +342,8 @@
+         self._has_fault: torch.Tensor | None = None
+ 
+         # Initiate the copy on a separate stream, but do not synchronize it.
+-        default_stream = torch.cuda.current_stream()
+-        with torch.cuda.stream(async_output_copy_stream):
++        default_stream = current_platform.torch_device_fn.current_stream()
++        with current_platform.torch_device_fn.stream(async_output_copy_stream):
+             async_output_copy_stream.wait_stream(default_stream)
+             self.sampled_token_ids_cpu = self._sampled_token_ids.to(
+                 "cpu", non_blocking=True
+@@ -415,21 +463,23 @@
+         model_runner_output: ModelRunnerOutput,
+         raw_pooler_output: PoolerOutput,
+         finished_mask: list[bool],
+-        async_output_copy_stream: torch.cuda.Stream,
++        async_output_copy_stream: current_platform.torch_device_fn.Stream,
+     ):
+         self._model_runner_output = model_runner_output
+ 
+         # Event on the copy stream so we can synchronize the non-blocking copy.
+         # Blocking (sleep) event to avoid busy-polling the CUDA driver lock.
+-        self.async_copy_ready_event = torch.cuda.Event(blocking=True)
++        self.async_copy_ready_event = current_platform.torch_device_fn.Event(
++            blocking=True
++        )
+ 
+         # Keep a reference to the device tensors to avoid them being
+         # deallocated until we finish copying it to the host.
+         self._raw_pooler_output = raw_pooler_output
+ 
+         # Initiate the copy on a separate stream, but do not synchronize it.
+-        default_stream = torch.cuda.current_stream()
+-        with torch.cuda.stream(async_output_copy_stream):
++        default_stream = current_platform.torch_device_fn.current_stream()
++        with current_platform.torch_device_fn.stream(async_output_copy_stream):
+             async_output_copy_stream.wait_stream(default_stream)
+             self._model_runner_output.pooler_output = _copy_pooler_output_to_cpu(
+                 raw_pooler_output=self._raw_pooler_output,
+@@ -464,7 +514,7 @@
+     slot_mappings: dict[str, torch.Tensor] | list[dict[str, torch.Tensor]] | None
+ 
+ 
+-class GPUModelRunner(
++class ModelRunnerFL(
+     LoRAModelRunnerMixin, KVConnectorModelRunnerMixin, ECConnectorModelRunnerMixin
+ ):
+     @JitWarmupRegistry.capture
+@@ -742,15 +792,19 @@
+ 
+         # Separate cuda stream for overlapping transfer of sampled token ids from
+         # GPU to CPU when async scheduling is enabled.
+-        self.async_output_copy_stream: torch.cuda.Stream | None = None
++        self.async_output_copy_stream: (
++            current_platform.torch_device_fn.Stream | None
++        ) = None
+         # cuda event to synchronize use of reused CPU tensors between steps
+         # when async scheduling is enabled.
+         self.prepare_inputs_event: torch.Event | None = None
+         if self.use_async_scheduling:
+-            self.async_output_copy_stream = torch.cuda.Stream()
++            self.async_output_copy_stream = current_platform.torch_device_fn.Stream()
+             # Blocking (sleep) event to avoid busy-polling the CUDA driver lock;
+             # under TP contention that spin can balloon and make the rank a straggler.
+-            self.prepare_inputs_event = torch.cuda.Event(blocking=True)
++            self.prepare_inputs_event = current_platform.torch_device_fn.Event(
++                blocking=True
++            )
+ 
+         # self.cudagraph_batch_sizes sorts in ascending order.
+         if (
+@@ -892,8 +946,12 @@
+         # N-gram GPU path: async D2H buffer/event for per-request valid draft counts.
+         self._num_valid_draft_tokens: torch.Tensor | None = None
+         self._num_valid_draft_tokens_cpu: torch.Tensor | None = None
+-        self._num_valid_draft_tokens_event: torch.cuda.Event | None = None
+-        self._num_valid_draft_tokens_copy_stream: torch.cuda.Stream | None = None
++        self._num_valid_draft_tokens_event: (
++            current_platform.torch_device_fn.Event | None
++        ) = None
++        self._num_valid_draft_tokens_copy_stream: (
++            current_platform.torch_device_fn.Stream | None
++        ) = None
+         if (
+             self.speculative_config is not None
+             and self.speculative_config.use_ngram_gpu()
+@@ -901,8 +959,12 @@
+             self._num_valid_draft_tokens_cpu = torch.empty(
+                 self.max_num_reqs, dtype=torch.int32, pin_memory=PIN_MEMORY
+             )
+-            self._num_valid_draft_tokens_event = torch.cuda.Event()
+-            self._num_valid_draft_tokens_copy_stream = torch.cuda.Stream()
++            self._num_valid_draft_tokens_event = (
++                current_platform.torch_device_fn.Event()
++            )
++            self._num_valid_draft_tokens_copy_stream = (
++                current_platform.torch_device_fn.Stream()
++            )
+ 
+         self._draft_token_req_ids: list[str] | None = None
+         self.transfer_event = torch.Event()
+@@ -916,18 +978,22 @@
+         # Pre-allocated tensor for copying valid sampled token counts to CPU,
+         # with dedicated stream for overlapping and event for coordination.
+         self.valid_sampled_token_count_event: torch.Event | None = None
+-        self.valid_sampled_token_count_copy_stream: torch.cuda.Stream | None = None
++        self.valid_sampled_token_count_copy_stream: (
++            current_platform.torch_device_fn.Stream | None
++        ) = None
+         # We also copy the drafted tokens to the CPU asynchronously,
+         # in case we need them for structured outputs.
+         self.draft_token_ids_event: torch.Event | None = None
+-        self.draft_token_ids_copy_stream: torch.cuda.Stream | None = None
++        self.draft_token_ids_copy_stream: (
++            current_platform.torch_device_fn.Stream | None
++        ) = None
+         self.valid_sampled_token_count_cpu: torch.Tensor | None = None
+         self.draft_token_ids_cpu: torch.Tensor | None = None
+         self.num_accepted_tokens_event: torch.Event | None = None
+         if self.num_spec_tokens:
+             self.draft_token_ids_event = torch.Event()
+             self.num_accepted_tokens_event = torch.Event()
+-            self.draft_token_ids_copy_stream = torch.cuda.Stream()
++            self.draft_token_ids_copy_stream = current_platform.torch_device_fn.Stream()
+             self.draft_token_ids_cpu = torch.empty(
+                 (self.max_num_reqs, self.num_spec_tokens),
+                 dtype=torch.int64,
+@@ -936,7 +1002,9 @@
+             )
+             if self.use_async_scheduling:
+                 self.valid_sampled_token_count_event = torch.Event()
+-                self.valid_sampled_token_count_copy_stream = torch.cuda.Stream()
++                self.valid_sampled_token_count_copy_stream = (
++                    current_platform.torch_device_fn.Stream()
++                )
+                 self.valid_sampled_token_count_cpu = torch.empty(
+                     self.max_num_reqs,
+                     dtype=torch.int32,
+@@ -1144,12 +1212,14 @@
+ 
+     # Note: used for model runner override.
+     def _sync_device(self) -> None:
+-        torch.accelerator.synchronize()
++        _accelerator_synchronize()
+ 
+-    def _get_or_create_async_output_copy_stream(self) -> torch.cuda.Stream:
++    def _get_or_create_async_output_copy_stream(
++        self,
++    ) -> current_platform.torch_device_fn.Stream:
+         stream = self.async_output_copy_stream
+         if stream is None:
+-            stream = torch.cuda.Stream()
++            stream = current_platform.torch_device_fn.Stream()
+             self.async_output_copy_stream = stream
+         return stream
+ 
+@@ -3113,7 +3183,13 @@
+         if not hasattr(self, "model"):
+             raise ValueError("Cannot get model before model has been initialized")
+         if isinstance(
+-            self.model, (CUDAGraphWrapper, UBatchWrapper, BreakableCUDAGraphWrapper)
++            self.model,
++            (
++                CUDAGraphWrapper,
++                GraphWrapper,
++                UBatchWrapper,
++                BreakableCUDAGraphWrapper,
++            ),
+         ):
+             # get raw model out of the cudagraph wrapper.
+             return self.model.unwrap()
+@@ -3125,7 +3201,13 @@
+             return None
+         model = getattr(drafter, "model", None)
+         if isinstance(
+-            model, (CUDAGraphWrapper, UBatchWrapper, BreakableCUDAGraphWrapper)
++            model,
++            (
++                CUDAGraphWrapper,
++                GraphWrapper,
++                UBatchWrapper,
++                BreakableCUDAGraphWrapper,
++            ),
+         ):
+             return cast(nn.Module, model.unwrap())
+         return cast(nn.Module | None, model)
+@@ -3936,7 +4018,7 @@
+         num_reqs = self.input_batch.num_reqs
+         return bool(self.discard_request_mask.np[:num_reqs].all())
+ 
+-    @torch.inference_mode()
++    @managed_inference_mode()
+     def execute_model(
+         self,
+         scheduler_output: "SchedulerOutput",
+@@ -4300,7 +4382,7 @@
+             <= self.effective_drafter_max_model_len
+         )
+ 
+-    @torch.inference_mode
++    @managed_inference_mode()
+     def sample_tokens(
+         self, grammar_output: "GrammarOutput | None"
+     ) -> ModelRunnerOutput | AsyncModelRunnerOutput | IntermediateTensors:
+@@ -4530,6 +4612,9 @@
+                 cudagraph_stats=cudagraph_stats,
+             )
+ 
++        # One IO-dump step covers the full forward + sampling cycle.
++        advance_io_step()
++
+         if not self.use_async_scheduling:
+             return output
+ 
+@@ -4652,10 +4737,10 @@
+         assert self.draft_token_ids_event is not None
+         assert self.draft_token_ids_copy_stream is not None
+         assert self.draft_token_ids_cpu is not None
+-        default_stream = torch.cuda.current_stream()
++        default_stream = current_platform.torch_device_fn.current_stream()
+         num_reqs = draft_token_ids.shape[0]
+         num_spec_tokens = draft_token_ids.shape[1]
+-        with torch.cuda.stream(self.draft_token_ids_copy_stream):
++        with current_platform.torch_device_fn.stream(self.draft_token_ids_copy_stream):
+             if not zeros_only:
+                 # Trigger async copy of draft token ids to cpu.
+                 self.draft_token_ids_copy_stream.wait_stream(default_stream)
+@@ -4688,10 +4773,12 @@
+         if self.valid_sampled_token_count_event is None:
+             return
+ 
+-        default_stream = torch.cuda.current_stream()
++        default_stream = current_platform.torch_device_fn.current_stream()
+         # Initialize a new stream to overlap the copy operation with
+         # prepare_input of draft model.
+-        with torch.cuda.stream(self.valid_sampled_token_count_copy_stream):
++        with current_platform.torch_device_fn.stream(
++            self.valid_sampled_token_count_copy_stream
++        ):
+             self.valid_sampled_token_count_copy_stream.wait_stream(default_stream)  # type: ignore
+             counts = valid_sampled_tokens_count
+             counts_cpu = self.valid_sampled_token_count_cpu
+@@ -5036,6 +5123,7 @@
+         model: a pre-loaded model to skip the model loader.
+ 
+         """
++        init_io_dump_from_env(getattr(self.model_config, "enforce_eager", False))
+         logger.info_once(
+             "Starting to load model %s...",
+             self.model_config.model,
+@@ -5135,7 +5223,7 @@
+ 
+                 time_after_load = time.perf_counter()
+             self.model_memory_usage = m.consumed_memory
+-        except torch.cuda.OutOfMemoryError as e:
++        except torch.OutOfMemoryError as e:
+             msg = (
+                 "Failed to load model - not enough GPU memory. "
+                 "Try lowering --gpu-memory-utilization to free memory for weights, "
+@@ -5151,7 +5239,8 @@
+             format_gib(self.model_memory_usage),
+             time_after_load - time_before_load,
+         )
+-
++        if not load_dummy_weights:
++            register_io_module_hooks(self.model)
+         mm_config = self.model_config.multimodal_config
+         self.is_multimodal_pruning_enabled = (
+             supports_multimodal_pruning(self.get_model())
+@@ -5172,6 +5261,17 @@
+             self.eplb_state.start_async_loop()
+ 
+         if (
++            current_platform.device_type == "npu"
++            and self.compilation_config.mode != CompilationMode.NONE
++        ):
++            # Dispatch operators are lazily resolved behind a process-safe
++            # RLock. Resolve imported CachedOps before Dynamo starts tracing,
++            # because fullgraph compilation cannot enter that context manager.
++            from vllm_fl.dispatch import warmup_cached_ops
++
++            warmup_cached_ops()
++
++        if (
+             self.vllm_config.compilation_config.mode
+             == CompilationMode.STOCK_TORCH_COMPILE
+         ):
+@@ -5212,7 +5312,7 @@
+             cudagraph_mode.has_full_cudagraphs()
+             and not self.parallel_config.use_ubatching
+         ):
+-            self.model = CUDAGraphWrapper(
++            self.model = GraphWrapper(
+                 self.model, self.vllm_config, runtime_mode=CUDAGraphMode.FULL
+             )
+         elif self.parallel_config.use_ubatching:
+@@ -5504,7 +5604,7 @@
+             )
+         )
+ 
+-    @torch.inference_mode()
++    @managed_inference_mode()
+     def _dummy_run(
+         self,
+         num_tokens: int,
+@@ -5923,7 +6023,7 @@
+         logit_indices_device = async_tensor_h2d(logit_indices, device=self.device)
+         return hidden_states, hidden_states[logit_indices_device]
+ 
+-    @torch.inference_mode()
++    @managed_inference_mode()
+     def _dummy_sampler_run(
+         self,
+         hidden_states: torch.Tensor,
+@@ -5964,6 +6064,16 @@
+             bad_words_token_ids={},
+             logitsprocs=LogitsProcessors(),
+         )
++
++        # FlagGems 5.4's Kunlunxin radix-sort kernel can raise an XPU kernel
++        # exception for the large synthetic top-k workload used only by this
++        # memory profile.  Exercise the real logits and greedy sampler path
++        # here; non-greedy requests still use the normal runtime metadata.
++        from vllm_fl.platform import PlatformFL
++
++        if PlatformFL.vendor_name == "kunlunxin":
++            dummy_metadata = replace(dummy_metadata, all_greedy=True)
++
+         try:
+             sampler_output = self.sampler(
+                 logits=logits, sampling_metadata=dummy_metadata
+@@ -6099,7 +6209,7 @@
+             else:
+                 raise e
+ 
+-    @torch.inference_mode()
++    @managed_inference_mode()
+     def _dummy_pooler_run(
+         self,
+         hidden_states: torch.Tensor,
+@@ -6247,6 +6357,7 @@
+             # Drop captured graphs before distributed teardown. On ROCm, delayed
+             # graph destruction can surface HSA faults in the next engine startup.
+             CUDAGraphWrapper.clear_all_graphs()
++            GraphWrapper.clear_all_graphs()
+             BreakableCUDAGraphWrapper.clear_all_graphs()
+             self.encoder_cudagraph_manager = None
+         self.compilation_config.static_forward_context.clear()
+@@ -6293,7 +6404,7 @@
+ 
+         logger.debug("Cleaned up profiling KV cache and CUDA graphs")
+ 
+-    @torch.inference_mode()
++    @managed_inference_mode()
+     def _create_encoder_cudagraph_manager(self) -> "EncoderCudaGraphManager | None":
+         if not (
+             self.compilation_config.cudagraph_mm_encoder and self.supports_mm_inputs
+@@ -6322,14 +6433,14 @@
+             model=cast(SupportsEncoderCudaGraph, raw_model),
+         )
+ 
+-    @torch.inference_mode()
++    @managed_inference_mode()
+     def _maybe_init_encoder_cudagraph_manager(self) -> None:
+         if self.encoder_cudagraph_manager is None:
+             self.encoder_cudagraph_manager = self._create_encoder_cudagraph_manager()
+             if self.encoder_cudagraph_manager is not None:
+                 logger.info("Initialized EncoderCudaGraphManager for vision encoder")
+ 
+-    @torch.inference_mode()
++    @managed_inference_mode()
+     def profile_cudagraph_memory(self) -> int:
+         with set_current_vllm_config(self.vllm_config):
+             self._init_minimal_kv_cache_for_profiling()
+@@ -6372,8 +6483,10 @@
+         profiling_pool = current_platform.graph_pool_handle()
+         encoder_profiling_pool = current_platform.graph_pool_handle()
+         original_pools: dict[int, Any] = {}
+-        all_wrappers = list(CUDAGraphWrapper._all_instances) + list(
+-            BreakableCUDAGraphWrapper._all_instances
++        all_wrappers = (
++            list(CUDAGraphWrapper._all_instances)
++            + list(GraphWrapper._all_instances)
++            + list(BreakableCUDAGraphWrapper._all_instances)
+         )
+         for instance in all_wrappers:
+             original_pools[id(instance)] = instance.graph_pool
+@@ -6446,11 +6559,14 @@
+         finally:
+             set_cudagraph_capturing_enabled(False)
+             CUDAGraphWrapper.clear_all_graphs()
++            GraphWrapper.clear_all_graphs()
+             BreakableCUDAGraphWrapper.clear_all_graphs()
+             if encoder_cudagraph_manager is not None:
+                 encoder_cudagraph_manager.clear()
+-            all_wrappers = list(CUDAGraphWrapper._all_instances) + list(
+-                BreakableCUDAGraphWrapper._all_instances
++            all_wrappers = (
++                list(CUDAGraphWrapper._all_instances)
++                + list(GraphWrapper._all_instances)
++                + list(BreakableCUDAGraphWrapper._all_instances)
+             )
+             for instance in all_wrappers:
+                 if id(instance) in original_pools:

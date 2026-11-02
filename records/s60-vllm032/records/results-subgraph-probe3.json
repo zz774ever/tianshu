@@ -1,0 +1,46 @@
+[
+  {
+    "prompt": "Paris is the capital of",
+    "token_ids": [
+      279,
+      315,
+      279,
+      1879,
+      13,
+      576,
+      4226,
+      374,
+      9625,
+      13,
+      2055,
+      11,
+      279,
+      11652,
+      374,
+      264
+    ],
+    "text": " the of the world. The answer is France. So, the sentence is a"
+  },
+  {
+    "prompt": "The quick brown fox jumps over the",
+    "token_ids": [
+      23946,
+      11,
+      279,
+      23946,
+      11,
+      323,
+      279,
+      23946,
+      11,
+      323,
+      279,
+      23946,
+      11,
+      323,
+      279,
+      23946
+    ],
+    "text": " hill, the hill, and the hill, and the hill, and the hill"
+  }
+]

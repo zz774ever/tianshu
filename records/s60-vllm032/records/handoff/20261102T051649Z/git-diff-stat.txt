@@ -1,0 +1,26 @@
+ .github/scripts/enflame/setup.sh                   |    6 +-
+ docker/build.sh                                    |    2 +-
+ docker/enflame/Dockerfile                          |    8 +-
+ docker/enflame/README.md                           |   28 +-
+ docs/usage/enflame.md                              |    4 +
+ tests/platforms/enflame.yaml                       |    3 +
+ tests/unit_tests/dispatch/test_gcu_inductor.py     |   64 +-
+ tests/unit_tests/dispatch/test_gcu_kv_zeroer.py    |   15 +-
+ .../dispatch/test_gcu_reshape_and_cache.py         |   23 +
+ .../unit_tests/test_enflame_compilation_config.py  |   23 +
+ tests/unit_tests/test_model_config.py              |   38 +
+ tests/unit_tests/worker/test_model_runner.py       |   82 +-
+ tests/unit_tests/worker/test_worker.py             |    2 +-
+ tests/utils/model_config.py                        |    4 +-
+ .../backends/flaggems/impl/normalization.py        |    6 +
+ .../dispatch/backends/vendor/gcu/impl/attention.py |   50 +-
+ .../dispatch/backends/vendor/gcu/impl/inductor.py  |   72 +-
+ .../backends/vendor/gcu/impl/normalization.py      |   34 +-
+ .../backends/vendor/gcu/impl/reshape_and_cache.py  |   42 +-
+ vllm_fl/dispatch/backends/vendor/gcu/patch.py      |    2 +
+ vllm_fl/distributed/device_communicators/flagcx.py |    7 +
+ vllm_fl/ops/fused_moe/router.py                    |   11 +-
+ vllm_fl/platform.py                                |   20 +-
+ vllm_fl/worker/model_runner.py                     | 1543 +++++---------------
+ vllm_fl/worker/worker.py                           |  606 +++++---
+ 25 files changed, 1185 insertions(+), 1510 deletions(-)

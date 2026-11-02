@@ -1,0 +1,19 @@
+/usr/local/lib/python3.12/site-packages/paramiko/pkey.py:82: CryptographyDeprecationWarning: TripleDES has been moved to cryptography.hazmat.decrepit.ciphers.algorithms.TripleDES and will be removed from cryptography.hazmat.primitives.ciphers.algorithms in 48.0.0.
+  "cipher": algorithms.TripleDES,
+/usr/local/lib/python3.12/site-packages/paramiko/transport.py:243: CryptographyDeprecationWarning: TripleDES has been moved to cryptography.hazmat.decrepit.ciphers.algorithms.TripleDES and will be removed from cryptography.hazmat.primitives.ciphers.algorithms in 48.0.0.
+  "class": algorithms.TripleDES,
+12K	/root/.cache/uv
+53M	/root/autodl-tmp/s60-reference/venv
+   PID     ELAPSED STAT COMMAND
+  1838       03:02 Ssl  /root/autodl-tmp/s60-reference/venv/bin/uv pip install --python /root/autodl-tmp/s60-reference/venv/bin/python --torch-backend cu129 https://github.com/vllm-project/vllm/releases/download/v0.32.0/vllm-0.32.0%2Bcu129-cp38-abi3-manylinux_2_28_x86_64.whl
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/md0         50G  1.5G   49G   3% /root/autodl-tmp
+HTTP/2 302 
+date: Fri, 30 Oct 2026 08:38:49 GMT
+content-type: text/html; charset=utf-8
+vary: X-PJAX, X-PJAX-Container, Turbo-Visit, Turbo-Frame, X-Requested-With, X-GitHub-Client-Version, Sec-Fetch-Site,Accept-Encoding, Accept, X-Requested-With
+location: https://release-assets.githubusercontent.com/github-production-release-asset/599547518/e92c9b38-770a-492d-842d-f85d6e816816?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-10-30T09%3A25%3A27Z&rscd=attachment%3B+filename%3Dvllm-0.32.0%2Bcu129-cp38-abi3-manylinux_2_28_x86_64.whl&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-10-30T08%3A24%3A50Z&ske=2026-10-30T09%3A25%3A27Z&sks=b&skv=2018-11-09&sig=LUJGL6WLGZs24hucmTHZ6gVa5svHFqxacDcXu2ThNRE%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc5MzM1MzEyOSwibmJmIjoxNzkzMzQ5NTI5LCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.-SiIKbDZgf7NATW_s_wLuUYLkX3Q0sR05WezxJYxyE0&response-content-disposition=attachment%3B%20filename%3Dvllm-0.32.0%2Bcu129-cp38-abi3-manylinux_2_28_x86_64.whl&response-content-type=application%2Foctet-stream
+cache-control: no-cache
+strict-transport-security: max-age=31536000; includeSubdomains; preload
+x-frame-options: deny
+curl: (23) Failed writing body

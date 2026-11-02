@@ -1,0 +1,72 @@
+[
+  {
+    "prompt": "Explain why the sky appears blue in two sentences.",
+    "exact": false,
+    "reference_tokens": 32,
+    "candidate_tokens": 32,
+    "first_mismatch": 29
+  },
+  {
+    "prompt": "\u8ba1\u7b97 17 \u00d7 23\uff0c\u5e76\u8bf4\u660e\u8ba1\u7b97\u6b65\u9aa4\u3002",
+    "exact": true,
+    "reference_tokens": 32,
+    "candidate_tokens": 32,
+    "first_mismatch": null
+  },
+  {
+    "prompt": "Write a Python function that checks whether a string is a palindrome.",
+    "exact": true,
+    "reference_tokens": 32,
+    "candidate_tokens": 32,
+    "first_mismatch": null
+  },
+  {
+    "prompt": "Translate into French: The train will arrive tomorrow morning.",
+    "exact": true,
+    "reference_tokens": 32,
+    "candidate_tokens": 32,
+    "first_mismatch": null
+  },
+  {
+    "prompt": "List three differences between TCP and UDP.",
+    "exact": true,
+    "reference_tokens": 32,
+    "candidate_tokens": 32,
+    "first_mismatch": null
+  },
+  {
+    "prompt": "Continue this sequence and explain: 2, 4, 8, 16,",
+    "exact": true,
+    "reference_tokens": 32,
+    "candidate_tokens": 32,
+    "first_mismatch": null
+  },
+  {
+    "prompt": "Summarize the following: A library extended its opening hours after residents requested evening access. Visitor numbers then increased.",
+    "exact": true,
+    "reference_tokens": 32,
+    "candidate_tokens": 32,
+    "first_mismatch": null
+  },
+  {
+    "prompt": "What is the capital of Japan? Give a short answer.",
+    "exact": true,
+    "reference_tokens": 32,
+    "candidate_tokens": 32,
+    "first_mismatch": null
+  },
+  {
+    "prompt": "Return a JSON object with two keys: name and count, using values apple and 3.",
+    "exact": false,
+    "reference_tokens": 32,
+    "candidate_tokens": 32,
+    "first_mismatch": 16
+  },
+  {
+    "prompt": "Explain the difference between a metaphor and a simile with examples.",
+    "exact": true,
+    "reference_tokens": 32,
+    "candidate_tokens": 32,
+    "first_mismatch": null
+  }
+]

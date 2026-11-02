@@ -1,0 +1,16 @@
+/usr/local/lib/python3.12/site-packages/paramiko/pkey.py:82: CryptographyDeprecationWarning: TripleDES has been moved to cryptography.hazmat.decrepit.ciphers.algorithms.TripleDES and will be removed from cryptography.hazmat.primitives.ciphers.algorithms in 48.0.0.
+  "cipher": algorithms.TripleDES,
+/usr/local/lib/python3.12/site-packages/paramiko/transport.py:243: CryptographyDeprecationWarning: TripleDES has been moved to cryptography.hazmat.decrepit.ciphers.algorithms.TripleDES and will be removed from cryptography.hazmat.primitives.ciphers.algorithms in 48.0.0.
+  "class": algorithms.TripleDES,
+.gitattributes: OK
+LICENSE: OK
+README.md: OK
+config.json: OK
+generation_config.json: OK
+merges.txt: OK
+model.safetensors: OK
+tokenizer.json: OK
+tokenizer_config.json: OK
+vocab.json: OK
+  1838       01:54 /root/autodl-tmp/s60-reference/venv/bin/uv pip install --python /root/autodl-tmp/s60-reference/venv/bin/python --torch-backend cu129 https://github.com/vllm-project/vllm/releases/download/v0.32.0/vllm-0.32.0%2Bcu129-cp38-abi3-manylinux_2_28_x86_64.whl
+-rwxr-xr-x 1 root root 37784096 Oct 30 16:36 /root/autodl-tmp/s60-reference/venv/bin/uv

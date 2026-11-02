@@ -1,0 +1,14 @@
+{
+  "repository": "/workspace/vllm-plugin-FL",
+  "branch": "adapt/vllm032-from-050",
+  "head": "64c9d216ee6c66acb0b9fc8c097b6c1eab3a4ef4",
+  "vllm_target": "0.32.0",
+  "precision": "user accepted recorded differences; not a strict-match pass",
+  "files": {
+    "STATUS.md": "0537da6f3ad9c16b897bd9a749683d8e1ba49dd7b90a5bbe4d1dff5e724f3bb9",
+    "git-diff-stat.txt": "d1ae9a1253be751ddf32c053983ef0d3d86db168a7aa90e8384a2bc8a17d1835",
+    "git-status.txt": "943e136bcba8f5d89594909696029816c8fc4891260660120ab9c8cdb5c140ef",
+    "tracked-changes.patch": "9d8cd98d6328be6fb0b3296bb2abb5e45810296aec4212896f9d253035a37b28",
+    "untracked-files.tar.gz": "8f0bef3457e7ce154ea7ff46de26741480d0213b7d533664e62141fc8bd3942f"
+  }
+}

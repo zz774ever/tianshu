@@ -1,0 +1,198 @@
+{
+  "schema_version": 1,
+  "case": {
+    "scenario": "text_concurrent_8",
+    "model_path": "/models/Qwen3.6-27B",
+    "served_model_name": "/models/Qwen3.6-27B",
+    "port": "18100",
+    "concurrency": 8
+  },
+  "started_at": "2026-11-02T02:07:52.435895+00:00",
+  "finished_at": "2026-11-02T02:07:53.863979+00:00",
+  "input": [
+    {
+      "request_id": "text-01",
+      "kind": "text",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Compute 19 + 23. Reply with the number only."
+        }
+      ],
+      "required_terms": [
+        "42"
+      ]
+    },
+    {
+      "request_id": "text-02",
+      "kind": "text",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Name the capital of France. Reply with the city only."
+        }
+      ],
+      "required_terms": [
+        "paris"
+      ]
+    },
+    {
+      "request_id": "text-03",
+      "kind": "text",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Give the opposite of hot. Reply with one word."
+        }
+      ],
+      "required_terms": [
+        "cold"
+      ]
+    },
+    {
+      "request_id": "text-04",
+      "kind": "text",
+      "messages": [
+        {
+          "role": "user",
+          "content": "How many days are in one week? Reply with the number only."
+        }
+      ],
+      "required_terms": [
+        "7"
+      ]
+    },
+    {
+      "request_id": "text-05",
+      "kind": "text",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Give the chemical formula for water. Reply with the formula only."
+        }
+      ],
+      "required_terms": [
+        "h2o"
+      ]
+    },
+    {
+      "request_id": "text-06",
+      "kind": "text",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Name Earth's largest ocean. Reply with the ocean name only."
+        }
+      ],
+      "required_terms": [
+        "pacific"
+      ]
+    },
+    {
+      "request_id": "text-07",
+      "kind": "text",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Compute 5 multiplied by 6. Reply with the number only."
+        }
+      ],
+      "required_terms": [
+        "30"
+      ]
+    },
+    {
+      "request_id": "text-08",
+      "kind": "text",
+      "messages": [
+        {
+          "role": "user",
+          "content": "What color results from mixing blue and yellow paint? Reply with one word."
+        }
+      ],
+      "required_terms": [
+        "green"
+      ]
+    }
+  ],
+  "output": [
+    {
+      "request_id": "text-01",
+      "kind": "text",
+      "latency_seconds": 1.2,
+      "text": "",
+      "checks": {},
+      "passed": false,
+      "error": "APIConnectionError: Connection error."
+    },
+    {
+      "request_id": "text-02",
+      "kind": "text",
+      "latency_seconds": 1.424,
+      "text": "",
+      "checks": {},
+      "passed": false,
+      "error": "APIConnectionError: Connection error."
+    },
+    {
+      "request_id": "text-03",
+      "kind": "text",
+      "latency_seconds": 1.307,
+      "text": "",
+      "checks": {},
+      "passed": false,
+      "error": "APIConnectionError: Connection error."
+    },
+    {
+      "request_id": "text-04",
+      "kind": "text",
+      "latency_seconds": 1.212,
+      "text": "",
+      "checks": {},
+      "passed": false,
+      "error": "APIConnectionError: Connection error."
+    },
+    {
+      "request_id": "text-05",
+      "kind": "text",
+      "latency_seconds": 1.38,
+      "text": "",
+      "checks": {},
+      "passed": false,
+      "error": "APIConnectionError: Connection error."
+    },
+    {
+      "request_id": "text-06",
+      "kind": "text",
+      "latency_seconds": 1.38,
+      "text": "",
+      "checks": {},
+      "passed": false,
+      "error": "APIConnectionError: Connection error."
+    },
+    {
+      "request_id": "text-07",
+      "kind": "text",
+      "latency_seconds": 1.324,
+      "text": "",
+      "checks": {},
+      "passed": false,
+      "error": "APIConnectionError: Connection error."
+    },
+    {
+      "request_id": "text-08",
+      "kind": "text",
+      "latency_seconds": 1.225,
+      "text": "",
+      "checks": {},
+      "passed": false,
+      "error": "APIConnectionError: Connection error."
+    }
+  ],
+  "summary": {
+    "request_count": 8,
+    "passed_count": 0,
+    "failed_count": 8,
+    "passed": false
+  }
+}
