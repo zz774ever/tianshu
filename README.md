@@ -2,6 +2,8 @@
 
 ## 归档索引
 
+- [S60 适配与验证总说明](docs/s60-vllm032-overview.md)：总体结论、适配内容、验收矩阵、配置前提、未闭环事项与证据导航。
+
 - [S60 完整记录归档与验收边界](records/s60-vllm032/README.md)：日志、结果、诊断数据、使用说明及历史交付快照；公开脱敏副本，不包含凭据或原始聊天历史。
 - [Iluvatar BI-V150 阶段报告](docs/iluvatar-vllm032-report.md)：保留已有报告。
 
