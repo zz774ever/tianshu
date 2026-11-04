@@ -1,0 +1,45 @@
+output-ok
+EXIT_CODE=0 LOG=/workspace/validation/doc2-checks/tmpo7qql34j/logs/20261104T110115Z-success-agWcDd
+error-message
+EXIT_CODE=17 LOG=/workspace/validation/doc2-checks/tmpo7qql34j/logs/20261104T110115Z-expected-failure-liKXt3
+STDIN_PASS
+EXIT_CODE=0 LOG=/workspace/validation/doc2-checks/tmpo7qql34j/logs/20261104T110115Z-heredoc-XV1coQ
+{
+  "bash_blocks": 24,
+  "python_heredocs": 8,
+  "shell_heredocs": 2,
+  "host_blocks": 4,
+  "recorder_success_failure_stdin": "PASS",
+  "syntax_links_scope_secrets": "PASS",
+  "scope": "Documentation checks; no new container, installation, communication or model run"
+}
+Python: /workspace/validation/venv/bin/python
+Plugin: /workspace/pr674-plugin
+FlagCX: /mnt/share/user_homes/iluv/FlagCX
+Devices: 0,1
+torch 2.10.0+corex.4.5.0
+flagtree 0.6.2a3+iluvatar3.6
+flag-gems 5.3.5
+numpy 1.26.4
+python: /workspace/validation/venv/bin/python torch: 2.10.0 /usr/local/lib/python3.12/site-packages/torch/__init__.py
+triton: /usr/local/lib/python3.12/site-packages/triton/__init__.py
+GPU: 0 Iluvatar BI-V150 31.796875 32.0
+GPU: 1 Iluvatar BI-V150 31.80078125 32.0
+VENDOR_PASS
+/usr/local/lib/python3.12/site-packages/flag_gems/utils/libentry.py:728: DeprecationWarning: use_cuda_graph is deprecated; use benchmark_mode='replay' or benchmark_mode='event'
+  super().__init__(*args, **kwargs)
+/usr/local/lib/python3.12/site-packages/flag_gems/utils/libentry.py:411: RuntimeWarning: active Triton backend does not provide a replay benchmarker; falling back to event timing
+  resolved_benchmark = resolve_benchmarker(
+transformers 5.14.1
+tokenizers 0.22.2
+huggingface-hub 1.24.0
+fastapi 0.139.2
+openai 2.46.0
+requests 2.34.2
+python: /workspace/validation/venv/bin/python
+vllm: 0.32.0 /workspace/validation/venv/lib/python3.12/site-packages/vllm/__init__.py
+plugin: /workspace/pr674-plugin/vllm_fl/__init__.py
+devices: 2
+RUNTIME_PASS
+710468ef4434b5dfafc684e6160fffbbe49c7f3068af3089c86d04c8366b5626  /mnt/share/user_homes/yubenjie/0509/corex-driver-linux64-4.5.0.20260509_x86_64.run
+6cf92e5c9112ab657af07076b29446c8210590cd46062111c60f8e367200a35f  /workspace/driver-extracted/corex/lib64/libcuda.so.1

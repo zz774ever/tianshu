@@ -1,0 +1,19 @@
+{
+  "label": "100-doc2-script-reference",
+  "started_utc": "2026-11-04T10:51:09.250557+00:00",
+  "command": "set -euo pipefail\ncd /workspace/tianshu-delivery\ncat tools/iluvatar-repro/activate-local.sh tools/iluvatar-repro/prepare_cli.py tools/iluvatar-repro/probe_flagcx.py\nsed -n \"1,230p\" tools/iluvatar-repro/smoke.py\nsed -n \"1,160p\" tools/iluvatar-repro/serve-text.sh\nsed -n \"1,150p\" tools/iluvatar-repro/text_client.py\nsed -n \"1,180p\" /workspace/pr674-plugin/.github/scripts/install_flaggems_vllm.py\nsed -n \"1,100p\" /workspace/validation/verify_tutorial_publication.py",
+  "cwd": "/workspace",
+  "environment": {
+    "PATH": "/usr/local/corex/bin:/usr/local/lib/python3.12/site-packages/bin:/usr/local/openmpi/bin:/usr/local/openmpi/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+    "PYTHONPATH": "/usr/local/lib/python3.12/site-packages",
+    "LD_LIBRARY_PATH": "/usr/local/corex/lib64:/usr/local/openmpi/lib:/usr/local/lib:/usr/local/lib:/usr/local/openmpi/lib:",
+    "CUDA_VISIBLE_DEVICES": "8,9,10,11",
+    "GEMS_VENDOR": "iluvatar",
+    "VLLM_PLUGINS": "fl",
+    "USE_FLAGGEMS": "1",
+    "FLAGCX_PATH": null
+  },
+  "finished_utc": "2026-11-04T10:51:09.270798+00:00",
+  "elapsed_seconds": 0.019897785037755966,
+  "exit_code": 0
+}

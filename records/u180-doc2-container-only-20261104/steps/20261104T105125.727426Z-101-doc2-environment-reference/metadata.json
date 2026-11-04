@@ -1,0 +1,19 @@
+{
+  "label": "101-doc2-environment-reference",
+  "started_utc": "2026-11-04T10:51:25.727426+00:00",
+  "command": "set -euo pipefail\nsed -n \"1,220p\" /workspace/tianshu-delivery/tools/iluvatar-repro/activate.sh\nsed -n \"1,230p\" /workspace/tianshu-delivery/tools/iluvatar-repro/verify_env.py\nsed -n \"1,210p\" /workspace/tianshu-delivery/docs/iluvatar-vllm032-local-reproduction.md\nls -l /usr/local/corex/lib64/libcuda.so.1 /workspace/driver-extracted/corex/lib64\nsed -n \"1,140p\" /workspace/pr674-plugin/pyproject.toml",
+  "cwd": "/workspace",
+  "environment": {
+    "PATH": "/usr/local/corex/bin:/usr/local/lib/python3.12/site-packages/bin:/usr/local/openmpi/bin:/usr/local/openmpi/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+    "PYTHONPATH": "/usr/local/lib/python3.12/site-packages",
+    "LD_LIBRARY_PATH": "/usr/local/corex/lib64:/usr/local/openmpi/lib:/usr/local/lib:/usr/local/lib:/usr/local/openmpi/lib:",
+    "CUDA_VISIBLE_DEVICES": "8,9,10,11",
+    "GEMS_VENDOR": "iluvatar",
+    "VLLM_PLUGINS": "fl",
+    "USE_FLAGGEMS": "1",
+    "FLAGCX_PATH": null
+  },
+  "finished_utc": "2026-11-04T10:51:25.747620+00:00",
+  "elapsed_seconds": 0.01984320767223835,
+  "exit_code": 0
+}

@@ -1,0 +1,19 @@
+{
+  "label": "099-doc2-current-state",
+  "started_utc": "2026-11-04T10:50:59.817768+00:00",
+  "command": "set -euo pipefail\ncd /workspace/tianshu-delivery\ngit status --short\nsed -n \"1,130p\" README.md\nsed -n \"1,100p\" docs/iluvatar-vllm032-fresh-machine-setup.md\nsed -n \"1,220p\" /workspace/validation/publish_tutorial.py",
+  "cwd": "/workspace",
+  "environment": {
+    "PATH": "/usr/local/corex/bin:/usr/local/lib/python3.12/site-packages/bin:/usr/local/openmpi/bin:/usr/local/openmpi/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+    "PYTHONPATH": "/usr/local/lib/python3.12/site-packages",
+    "LD_LIBRARY_PATH": "/usr/local/corex/lib64:/usr/local/openmpi/lib:/usr/local/lib:/usr/local/lib:/usr/local/openmpi/lib:",
+    "CUDA_VISIBLE_DEVICES": "8,9,10,11",
+    "GEMS_VENDOR": "iluvatar",
+    "VLLM_PLUGINS": "fl",
+    "USE_FLAGGEMS": "1",
+    "FLAGCX_PATH": null
+  },
+  "finished_utc": "2026-11-04T10:50:59.843299+00:00",
+  "elapsed_seconds": 0.025182906538248062,
+  "exit_code": 0
+}

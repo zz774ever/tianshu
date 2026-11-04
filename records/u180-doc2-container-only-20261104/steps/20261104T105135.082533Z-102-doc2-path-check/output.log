@@ -1,0 +1,7 @@
+drwxr-xr-x  3 root root 16 May 26 11:41 /data/models/Qwen/Qwen3-4B
+drwxr-xr-x 12 root root 21 Jan 27  2026 /mnt/share/user_homes/iluv/FlagCX
+drwxr-xr-x  7 root root  6 Oct 30 14:41 /mnt/share/user_homes/models
+drwxr-xr-x  3 root root 16 May 26 11:41 /mnt/share/user_homes/models/Qwen3-4B
+/data/models/Qwen/Qwen3-4B
+-rw-r--r-- 1 root root 15675447 Jul  3 15:35 /mnt/share/user_homes/yubenjie/0509/corex-driver-linux64-4.5.0.20260509_x86_64.run
+bash: line 5: rg: command not found

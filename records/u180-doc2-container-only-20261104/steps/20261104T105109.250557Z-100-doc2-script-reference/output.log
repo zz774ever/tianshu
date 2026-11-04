@@ -1,0 +1,345 @@
+if [[ "${BASH_SOURCE[0]}" == "$0" ]]; then
+    echo 'Use: source /workspace/tianshu-delivery/tools/iluvatar-repro/activate-local.sh' >&2
+    exit 2
+fi
+
+export REPRO_ROOT="${REPRO_ROOT:-/workspace/tianshu-manual}"
+export ENV_DIR="${ENV_DIR:-/workspace/validation/venv}"
+export REPO_DIR="${REPO_DIR:-/workspace/pr674-plugin}"
+export FLAGCX_PATH="${FLAGCX_PATH:-/mnt/share/user_homes/iluv/FlagCX}"
+export COREX_DRIVER_LIB_DIR="${COREX_DRIVER_LIB_DIR:-/workspace/driver-extracted/corex/lib64}"
+source "$(dirname -- "${BASH_SOURCE[0]}")/activate.sh"
+import os
+from pathlib import Path
+import sys
+
+
+def main():
+    if sys.prefix == sys.base_prefix:
+        raise SystemExit('Activate the isolated venv before preparing its CLI')
+    import pytest
+
+    target = Path(sys.prefix) / 'bin/pytest'
+    content = (
+        f'#!{sys.executable}\n'
+        'from pytest import console_main\n'
+        '\n'
+        'if __name__ == "__main__":\n'
+        '    raise SystemExit(console_main())\n'
+    )
+    if not target.exists() or target.read_text() != content:
+        target.write_text(content)
+        target.chmod(target.stat().st_mode | 0o111)
+    print(f'pytest module: {pytest.__file__}')
+    print(f'pytest entry: {target}')
+    print(f'interpreter: {sys.executable}')
+    assert os.access(target, os.X_OK)
+
+
+if __name__ == '__main__':
+    main()
+import os
+from datetime import timedelta
+
+
+def main():
+    import torch
+    from torch import distributed
+    from vllm_fl.distributed.device_communicators.flagcx import PyFlagcxCommunicator
+
+    local_rank = int(os.environ["LOCAL_RANK"])
+    torch.cuda.set_device(local_rank)
+    distributed.init_process_group("gloo", timeout=timedelta(seconds=120))
+    communicator = None
+    try:
+        world_size = distributed.get_world_size()
+        assert world_size >= 2, "Use torchrun with at least two processes"
+        communicator = PyFlagcxCommunicator(distributed.group.WORLD, torch.device("cuda", local_rank))
+        assert communicator.available and not communicator.disabled, getattr(communicator, "init_error", None)
+        tensor = torch.full((1024,), float(distributed.get_rank() + 1), device=f"cuda:{local_rank}")
+        result = communicator.all_reduce(tensor)
+        torch.cuda.synchronize()
+        expected = world_size * (world_size + 1) / 2
+        assert torch.equal(result, torch.full_like(result, expected)), result[:4]
+        print(f"FLAGCX_PASS rank={distributed.get_rank()} world_size={world_size} values={result[:4].tolist()}", flush=True)
+        distributed.barrier()
+    finally:
+        if communicator is not None:
+            communicator.destroy()
+        distributed.destroy_process_group()
+
+
+if __name__ == "__main__":
+    main()
+import argparse
+import hashlib
+from importlib import metadata
+import json
+import os
+from pathlib import Path
+import sys
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Qwen3-4B BF16 text smoke on the adapted runtime")
+    parser.add_argument("--model", required=True)
+    parser.add_argument("--tp", type=int, choices=(1, 2, 4), default=1)
+    parser.add_argument("--graph", action="store_true")
+    parser.add_argument("--output", required=True)
+    args = parser.parse_args()
+    output = Path(args.output)
+    if output.exists():
+        parser.error("Output exists; use a new path to preserve previous results")
+    if not (Path(args.model) / "config.json").is_file():
+        parser.error("Model directory must contain config.json")
+
+    import vllm
+    from vllm import LLM, SamplingParams
+
+    assert vllm.__version__.split("+")[0] == "0.32.0", vllm.__version__
+    options = {}
+    if args.graph:
+        options["compilation_config"] = {
+            "mode": 0, "cudagraph_mode": "FULL", "custom_ops": ["all"],
+            "ir_enable_torch_wrap": False,
+        }
+    model = LLM(
+        model=args.model, tensor_parallel_size=args.tp,
+        dtype="bfloat16", enforce_eager=not args.graph,
+        max_model_len=512, max_num_seqs=2, gpu_memory_utilization=0.65,
+        max_num_batched_tokens=512, seed=0,
+        **options,
+    )
+    prompts = ["The capital of France is", "The speed of light in vacuum is approximately"]
+    generated = model.generate(prompts, SamplingParams(temperature=0, max_tokens=16))
+    assert len(generated) == len(prompts), "Missing generation results"
+    records = []
+    for result in generated:
+        completion = result.outputs[0]
+        assert completion.token_ids and completion.text.strip(), "Empty generation"
+        records.append({"prompt": result.prompt, "text": completion.text,
+                        "token_ids": list(completion.token_ids)})
+    output.parent.mkdir(parents=True, exist_ok=True)
+    report = {"status": "PASS", "vllm_version": vllm.__version__,
+              "vllm_path": vllm.__file__, "model": args.model,
+              "tp": args.tp, "graph": args.graph, "outputs": records,
+              "python": sys.executable,
+              "devices": os.environ.get('CUDA_VISIBLE_DEVICES'),
+              "versions": {name: metadata.version(name) for name in (
+                  'torch', 'flagtree', 'flag-gems', 'transformers', 'tokenizers', 'numpy')},
+              "model_config_sha256": hashlib.sha256(
+                  (Path(args.model) / 'config.json').read_bytes()).hexdigest(),
+              "scope": "Nonempty generation only; not semantic correctness or NVIDIA alignment"}
+    with output.open("x") as handle:
+        json.dump(report, handle, ensure_ascii=False, indent=2)
+        handle.write("\n")
+    print(json.dumps(report, ensure_ascii=False, indent=2), flush=True)
+
+
+if __name__ == "__main__":
+    main()
+set -euo pipefail
+: "${MODEL_PATH:?Set the existing Qwen3-4B model directory}"
+export PORT="${PORT:-18133}"
+test -f "$MODEL_PATH/config.json"
+python - <<'PY'
+import os
+import socket
+with socket.socket() as endpoint:
+    endpoint.bind(('127.0.0.1', int(os.environ['PORT'])))
+print('Text API port is free', flush=True)
+PY
+exec python -m vllm.entrypoints.cli.main serve "$MODEL_PATH" \
+  --served-model-name qwen --host 127.0.0.1 --port "$PORT" \
+  --tensor-parallel-size "${TENSOR_PARALLEL_SIZE:-1}" \
+  --enforce-eager --max-model-len 4096 --max-num-seqs 16 \
+  --max-num-batched-tokens 512 --gpu-memory-utilization 0.65 --seed 0
+import argparse
+import json
+from pathlib import Path
+import time
+
+from openai import OpenAI
+
+
+def main():
+    parser = argparse.ArgumentParser(description='Text-only API and streaming validation')
+    parser.add_argument('--base-url', default='http://127.0.0.1:18133/v1')
+    parser.add_argument('--model', default='qwen')
+    parser.add_argument('--output-dir', required=True)
+    parser.add_argument('--ready-timeout', type=float, default=1800)
+    parser.add_argument('--require-quality', action='store_true')
+    args = parser.parse_args()
+    if args.ready_timeout <= 0:
+        parser.error('--ready-timeout must be positive')
+    root = Path(args.output_dir)
+    if root.exists():
+        parser.error('Output directory exists; use a new directory to preserve previous evidence')
+    root.mkdir(parents=True)
+
+    def save(name, value):
+        (root / name).write_text(json.dumps(value, ensure_ascii=False, indent=2) + '\n')
+
+    summary = {'transport_passed': False, 'quality_passed': False,
+               'require_quality': args.require_quality, 'base_url': args.base_url,
+               'scope': 'Text requests only; API functionality and two explicit quality checks'}
+    try:
+        client = OpenAI(api_key='EMPTY', base_url=args.base_url, timeout=300, max_retries=0)
+        deadline = time.monotonic() + args.ready_timeout
+        while True:
+            try:
+                models = client.models.list(timeout=5).model_dump()
+                break
+            except Exception:
+                if time.monotonic() >= deadline:
+                    raise
+                time.sleep(5)
+        save('models.json', models)
+        assert any(value['id'] == args.model for value in models['data']), models
+        request = dict(model=args.model,
+                       messages=[{'role': 'user', 'content': 'Give me a short introduction to large language models.'}],
+                       max_tokens=20, temperature=0.7, top_p=0.8, presence_penalty=1.5,
+                       extra_body={'top_k': 20, 'chat_template_kwargs': {'enable_thinking': False}},
+                       stream=True)
+        save('stream-request.json', request)
+        chunks = []
+        content = []
+        for chunk in client.chat.completions.create(**request):
+            chunks.append(chunk.model_dump())
+            if chunk.choices and chunk.choices[0].delta.content:
+                content.append(chunk.choices[0].delta.content)
+            save('stream-response.json', {'response': ''.join(content), 'chunks': chunks})
+        response = ''.join(content)
+        save('stream-response.json', {'response': response, 'chunks': chunks})
+        assert response.strip(), 'Empty stream'
+        assert any(choice.get('finish_reason') for chunk in chunks for choice in chunk['choices']), 'No stream finish marker'
+        checks = []
+        for question, expected in (
+            ('What is 17 + 25? Answer only with the number.', '42'),
+            ('What is the capital of France? Answer only the city name.', 'paris'),
+        ):
+            parameters = dict(model=args.model, messages=[{'role': 'user', 'content': question}],
+                              max_tokens=32, temperature=0, top_p=1,
+                              extra_body={'chat_template_kwargs': {'enable_thinking': False}})
+            result = client.chat.completions.create(**parameters)
+            text = result.choices[0].message.content or ''
+            checks.append({'request': parameters, 'expected': expected, 'text': text,
+                           'response': result.model_dump(),
+                           'quality_passed': text.strip().rstrip('.。!').lower() == expected})
+            save('deterministic-responses.json', checks)
+            assert text.strip(), 'Empty non-stream response'
+        summary.update(transport_passed=True,
+                       quality_passed=all(value['quality_passed'] for value in checks),
+                       stream_text=response, quality_checks=checks)
+    except Exception as error:
+        summary['error'] = f'{type(error).__name__}: {error}'
+    passed = summary['transport_passed'] and (summary['quality_passed'] or not args.require_quality)
+    summary['exit_code'] = 0 if passed else 1
+    save('summary.json', summary)
+    print(json.dumps(summary, ensure_ascii=False, indent=2), flush=True)
+    return summary['exit_code']
+
+
+if __name__ == '__main__':
+    raise SystemExit(main())
+# Copyright (c) 2026 BAAI. All rights reserved.
+"""Install the same FlagGems-vllm release in every platform's CI interpreter."""
+
+import json
+import os
+import subprocess
+import sys
+from importlib.metadata import PackageNotFoundError, distribution, version
+
+RELEASE = "v0.2.0"
+COMMIT = "b5c2c2249319277ccda4d41aa0f65164bd9b2a19"
+REPOSITORY = "https://github.com/flagos-ai/FlagGems-vllm.git"
+RUNTIME_PACKAGES = ("torch", "flagtree", "triton", "flag-gems", "vllm", "numpy")
+PACKAGE_DEPENDENCIES = ("packaging", "pybind11", "PyYAML", "sqlalchemy")
+
+
+def package_version(name):
+    try:
+        return version(name)
+    except PackageNotFoundError:
+        return None
+
+
+def release_is_installed():
+    try:
+        text = distribution("flaggems-vllm").read_text("direct_url.json")
+        source = json.loads(text or "{}")
+    except (PackageNotFoundError, ValueError):
+        return False
+    return (
+        source.get("url", "").removesuffix(".git") == REPOSITORY.removesuffix(".git")
+        and source.get("vcs_info", {}).get("commit_id") == COMMIT
+    )
+
+
+def pip_install(*args):
+    env = dict(os.environ, PIP_BREAK_SYSTEM_PACKAGES="1")
+    subprocess.run([sys.executable, "-m", "pip", "install", *args], env=env, check=True)
+
+
+def main():
+    before = {name: package_version(name) for name in RUNTIME_PACKAGES}
+    missing = [name for name in PACKAGE_DEPENDENCIES if package_version(name) is None]
+    if missing:
+        pip_install(*missing)
+    if not release_is_installed():
+        # Metadata still says 0.1.0; force replacement of another 0.1.0 source.
+        # Reuse the build tools already used by this platform's plugin setup.
+        pip_install(
+            "--no-deps",
+            "--no-build-isolation",
+            "--force-reinstall",
+            f"flaggems-vllm @ git+{REPOSITORY}@{COMMIT}",
+        )
+    if not release_is_installed():
+        raise RuntimeError(f"FlagGems-vllm must come from {RELEASE} commit {COMMIT}")
+    after = {name: package_version(name) for name in RUNTIME_PACKAGES}
+    if after != before:
+        raise RuntimeError(f"CI runtime dependencies changed: {before} -> {after}")
+    print(
+        f"FlagGems-vllm: {RELEASE}, commit {COMMIT}, "
+        f"package metadata {package_version('flaggems-vllm')}"
+    )
+
+
+if __name__ == "__main__":
+    main()
+import datetime
+import hashlib
+import json
+from pathlib import Path
+import urllib.request
+
+
+root = Path('/workspace/tianshu-delivery')
+published = json.loads(Path('/workspace/validation/tutorial-publish-result.json').read_text())
+prefix = 'https://api.github.com/repos/zz774ever/tianshu'
+
+
+def read(path):
+    request = urllib.request.Request(prefix + path, headers={'User-Agent': 'tianshu-publication-verification'})
+    with urllib.request.urlopen(request, timeout=45) as response:
+        return json.load(response)
+
+
+reference = read('/git/ref/heads/main')
+assert reference['object']['sha'] == published['commit'], reference
+tree = read('/git/trees/' + published['commit'] + '?recursive=1')
+assert not tree.get('truncated'), 'Truncated repository tree'
+entries = {entry['path']: entry for entry in tree['tree']}
+for name in published['files']:
+    data = (root / name).read_bytes()
+    expected = hashlib.sha1(b'blob ' + str(len(data)).encode() + b'\x00' + data).hexdigest()
+    assert entries[name]['sha'] == expected, name
+result = {'verified_utc': datetime.datetime.now(datetime.UTC).isoformat(),
+          'commit': published['commit'], 'branch': 'main', 'files_verified': len(published['files']),
+          'all_blob_hashes_match': True,
+          'tutorial': 'https://github.com/zz774ever/tianshu/blob/' + published['commit'] + '/docs/iluvatar-vllm032-local-reproduction.md'}
+Path('/workspace/validation/tutorial-publication-verification.json').write_text(
+    json.dumps(result, ensure_ascii=False, indent=2) + '\n')
+print(json.dumps(result, ensure_ascii=False, indent=2))

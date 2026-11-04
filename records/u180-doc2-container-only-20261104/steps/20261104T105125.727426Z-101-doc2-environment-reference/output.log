@@ -1,0 +1,510 @@
+if [[ "${BASH_SOURCE[0]}" == "$0" ]]; then
+    echo 'Use: source /repro/docs/tools/iluvatar-repro/activate.sh' >&2
+    exit 2
+fi
+
+export REPRO_ROOT="${REPRO_ROOT:-/repro}"
+export ENV_DIR="${ENV_DIR:-$REPRO_ROOT/venv}"
+export REPO_DIR="${REPO_DIR:-$REPRO_ROOT/src/vllm-plugin-FL}"
+export FLAGCX_PATH="${FLAGCX_PATH:-$REPRO_ROOT/src/FlagCX}"
+
+if [[ ! -r "$ENV_DIR/bin/activate" || ! -f "$REPO_DIR/pyproject.toml" ]]; then
+    echo 'Create the venv and clone vllm-plugin-FL using the setup guide first.' >&2
+    return 2
+fi
+
+if [[ -n ${COREX_DRIVER_LIB_DIR:-} && ! -d "$COREX_DRIVER_LIB_DIR" ]]; then
+    echo "Missing driver userspace directory: $COREX_DRIVER_LIB_DIR" >&2
+    return 2
+fi
+
+unset PYTHONPATH VLLM_VENDOR VLLM_ENGINE_ITERATION_TIMEOUT_S VLLM_RPC_TIMEOUT
+source "$ENV_DIR/bin/activate"
+export PYTHONNOUSERSITE=1
+export PYTHONPATH="$REPO_DIR"
+export VLLM_PLUGINS=fl
+export USE_FLAGGEMS=1
+export GEMS_VENDOR=iluvatar
+export COREX_VISIBLE_DEVICES="${REPRO_DEVICES:-0,1,2,3}"
+export CUDA_VISIBLE_DEVICES="$COREX_VISIBLE_DEVICES"
+export LD_LIBRARY_PATH="$FLAGCX_PATH/build/lib:/usr/local/corex/lib64${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+if [[ -n ${COREX_DRIVER_LIB_DIR:-} ]]; then
+    export LD_LIBRARY_PATH="$COREX_DRIVER_LIB_DIR:$LD_LIBRARY_PATH"
+fi
+export VLLM_EXECUTE_MODEL_TIMEOUT_SECONDS=3600
+
+printf 'Python: %s\nPlugin: %s\nFlagCX: %s\nDevices: %s\n' \
+    "$(command -v python)" "$REPO_DIR" "$FLAGCX_PATH" "$CUDA_VISIBLE_DEVICES"
+import argparse
+import ctypes
+import json
+import os
+import shutil
+import subprocess
+import sys
+from importlib import metadata
+from pathlib import Path
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Verify the pinned Iluvatar 0.32 environment")
+    parser.add_argument("--min-devices", type=int, default=1)
+    parser.add_argument("--min-free-gib", type=float, default=0)
+    args = parser.parse_args()
+    if args.min_devices < 1:
+        parser.error("--min-devices must be positive")
+    if args.min_free_gib < 0:
+        parser.error("--min-free-gib must be nonnegative")
+
+    import flag_gems
+    import torch
+    import triton
+    import vllm
+    import vllm_fl
+    from vllm.platforms import current_platform
+
+    expected = {
+        "torch": "2.10.0+corex.4.5.0",
+        "flagtree": "0.6.2a3+iluvatar3.6",
+        "flag-gems": "5.3.5",
+    }
+    versions = {name: metadata.version(name) for name in expected}
+    assert versions == expected, (versions, expected)
+    assert vllm.__version__.split("+")[0] == "0.32.0", vllm.__version__
+    assert metadata.version("vllm").split("+")[0] == "0.32.0"
+    assert triton.__version__.startswith("3.6"), triton.__version__
+    assert sys.prefix != sys.base_prefix, "Activate the isolated venv"
+    assert Path(sys.prefix).resolve() in Path(vllm.__file__).resolve().parents, vllm.__file__
+    repository = Path(os.environ["REPO_DIR"]).resolve()
+    assert repository in Path(vllm_fl.__file__).resolve().parents, vllm_fl.__file__
+    revision = subprocess.check_output(
+        ['git', '-C', str(repository), 'rev-parse', 'HEAD'], text=True
+    ).strip()
+    assert revision == 'c17d866e08b583f63998cbd47bc39fe3e57efce0', revision
+    assert current_platform.vendor_name == "iluvatar", current_platform
+    assert torch.cuda.is_available(), "CoreX device is unavailable"
+    assert torch.cuda.device_count() >= args.min_devices, torch.cuda.device_count()
+    devices = []
+    for device in range(torch.cuda.device_count()):
+        free, total = torch.cuda.mem_get_info(device)
+        devices.append({'logical_device': device, 'free_gib': free / 2**30,
+                        'total_gib': total / 2**30})
+        assert free / 2**30 >= args.min_free_gib, devices[-1]
+    tensor = torch.ones(4, device='cuda') + 2
+    assert tensor.cpu().tolist() == [3, 3, 3, 3]
+    assert torch.tensor([1, 2, 3]).numpy().tolist() == [1, 2, 3]
+    cli = {}
+    for name in ('vllm', 'pytest'):
+        executable = shutil.which(name)
+        assert executable, f'Missing {name} CLI'
+        target = Path(executable)
+        assert target.parent.resolve() == (Path(sys.prefix) / 'bin').resolve(), executable
+        with target.open() as handle:
+            shebang = handle.readline().strip()
+        assert shebang.startswith('#!'), (executable, shebang)
+        interpreter = shebang[2:]
+        assert Path(interpreter).parent.resolve() == (Path(sys.prefix) / 'bin').resolve(), shebang
+        cli[name] = {'path': executable, 'shebang': shebang}
+    for name, value in {"VLLM_PLUGINS": "fl", "USE_FLAGGEMS": "1", "GEMS_VENDOR": "iluvatar"}.items():
+        assert os.environ.get(name) == value, (name, os.environ.get(name))
+
+    distribution = metadata.distribution("flagtree")
+    assert any(
+        Path(distribution.locate_file(entry)).resolve() == Path(triton.__file__).resolve()
+        for entry in distribution.files or ()
+    ), f"Active Triton is not owned by FlagTree: {triton.__file__}"
+    compiler = triton._C.libtriton
+    assert hasattr(compiler, "iluvatar"), "FlagTree lacks the Iluvatar compiler backend"
+
+    root = Path(os.environ["FLAGCX_PATH"]).resolve()
+    library = root / "build/lib/libflagcx.so"
+    assert (root / "plugin/interservice/flagcx_wrapper.py").is_file()
+    ctypes.CDLL(str(library))
+    from vllm_fl.distributed.device_communicators import flagcx
+
+    assert flagcx._flagcx_available, "FlagCX Python wrapper is unavailable"
+    source = json.loads(metadata.distribution("flaggems-vllm").read_text("direct_url.json") or "{}")
+    assert source.get("vcs_info", {}).get("commit_id") == "b5c2c2249319277ccda4d41aa0f65164bd9b2a19", source
+    print(json.dumps({
+        "status": "PASS",
+        "python": sys.executable,
+        "plugin_commit": revision,
+        "cli": cli,
+        "device_memory": devices,
+        "scope": "Pinned runtime, import/CLI sources, library loading and basic GPU arithmetic; not all pip requirements or model quality",
+        "versions": {**versions, "vllm": vllm.__version__, "triton": triton.__version__},
+        "paths": {"vllm": vllm.__file__, "plugin": vllm_fl.__file__,
+                  "flag_gems": flag_gems.__file__, "triton": triton.__file__, "flagcx": str(library)},
+        "devices": torch.cuda.device_count(),
+        "device_name": torch.cuda.get_device_name(0),
+    }, ensure_ascii=False, indent=2), flush=True)
+
+
+if __name__ == "__main__":
+    main()
+# 本机 u180 / n180：手动复现 vLLM 0.32 纯文本测试
+
+更新：2026-11-04。这份教程针对当前机器及已创建的 `testtianshuzdh` 容器。用户称机器为 n180，最初只读检查得到 hostname=u180。所有安装、脚本、缓存和测试记录留在容器内；共享模型与 FlagCX 目录为只读。
+
+**本机请先按本文复现，已有环境无需重装。** 需要重新拉镜像并创建另一个容器时，使用[修正后的新机教程](iluvatar-vllm032-fresh-machine-setup.md)。两个教程复用[同一套配套脚本](../tools/iluvatar-repro/)，不要混用 `/repro` 和本文的 `/workspace` 路径。
+
+按用户要求，本文只运行文本测试，不下载图片或多模态模型，也不执行图像、混合请求和完整图文门禁。这里修复的是搭建教程和脚本入口，不是模型适配的生成精度；真实结果和失败均保留，不保证生成内容全部正确。
+
+## 1. 当前已准备好的内容
+
+| 项目 | 容器内真实路径或固定版本 |
+|---|---|
+| 容器 | `testtianshuzdh`；独立32GiB共享内存；不共享宿主PID空间 |
+| 基础镜像 | `harbor.baai.ac.cn/plugin/vllm-plugin-fl@sha256:eb904d40a92e9769f358f4d81c8043acfbc30b1b077f0a31210be6316ec0cf18` |
+| 教程仓库 | `/workspace/tianshu-delivery`，本仓库 |
+| 隔离Python | `/workspace/validation/venv/bin/python`，Python3.12.11 |
+| 适配源码 | `/workspace/pr674-plugin`，`c17d866e08b583f63998cbd47bc39fe3e57efce0` |
+| vLLM源码 | `/workspace/vllm`，tag v0.32.0，commit `5df63a7203cdb9328d824a27b682e77c7b9928be` |
+| 实际导入vLLM | venv内普通安装的 `0.32.0+empty`，不是继承镜像的0.28 |
+| 厂商组件 | torch distribution `2.10.0+corex.4.5.0`；FlagTree `0.6.2a3+iluvatar3.6`；FlagGems `5.3.5` |
+| 驱动用户态依赖 | `/workspace/driver-extracted/corex/lib64` |
+| FlagCX | `/mnt/share/user_homes/iluv/FlagCX`，包含真实库和wrapper，挂载只读 |
+| 模型 | `/data/models/Qwen/Qwen3-4B`、`Qwen3.6-27B`、`Qwen3.6-35B-A3B`，挂载只读 |
+| 本次手动结果根目录 | `/workspace/tianshu-manual/results`，每步创建新子目录 |
+| 此前完整原始验证记录 | `/workspace/validation/README.md`、`COMMANDS.md`、`REPORT.md`、`steps/` |
+
+当前旧镜像的上层Python依赖与vLLM0.32声明存在差异，参见第8节。这里复现的是已测的固定厂商组合，不会用无约束升级替换CoreX torch或FlagTree。
+
+## 2. 进入现有容器
+
+唯一需要在宿主终端输入的是进入容器命令：
+
+```bash
+docker exec -it testtianshuzdh bash
+```
+
+**从下一行起全部在容器内执行。不要在宿主运行pip、apt、驱动安装或本文Python脚本。** 不要再次创建同名容器，不要修改其他人的服务。
+
+核对文件，设置真实路径：
+
+```bash
+export DOCS_DIR=/workspace/tianshu-delivery
+export REPRO_ROOT=/workspace/tianshu-manual
+export ENV_DIR=/workspace/validation/venv
+export REPO_DIR=/workspace/pr674-plugin
+export FLAGCX_PATH=/mnt/share/user_homes/iluv/FlagCX
+export COREX_DRIVER_LIB_DIR=/workspace/driver-extracted/corex/lib64
+
+test -f "$DOCS_DIR/tools/iluvatar-repro/activate-local.sh"
+test -f "$ENV_DIR/bin/activate"
+test -f "$REPO_DIR/pyproject.toml"
+test -f "$FLAGCX_PATH/build/lib/libflagcx.so"
+test -f "$COREX_DRIVER_LIB_DIR/libixthunk.so"
+git -C "$DOCS_DIR" rev-parse HEAD
+git -C "$REPO_DIR" rev-parse HEAD
+```
+
+如果这些目录不存在，说明进入了其他容器，或旧容器已经被删除。此时不要靠创建空文件绕过检查，转到新机教程搭建。
+
+## 3. 选择空闲卡，激活环境
+
+原完整验证用卡8–11；编写本文时这些卡已有其他任务，因此脚本实测选择0、1卡。卡占用会变化，下面的0、1只是示例，每次先确认空闲。
+
+```bash
+export REPRO_DEVICES=0,1
+source "$DOCS_DIR/tools/iluvatar-repro/activate-local.sh"
+mkdir -p "$REPRO_ROOT/results"
+
+ldd /usr/local/corex/lib64/libcuda.so.1
+ldd "$FLAGCX_PATH/build/lib/libflagcx.so"
+```
+
+两份ldd输出都不应有 `not found`。`activate-local.sh` 将匹配驱动的用户态目录放在LD_LIBRARY_PATH最前；只挂载libcuda和libixml曾导致缺少libixthunk，必须保留这一步。
+
+该用户态目录来自容器内对同版驱动包的 `--noexec` 解包，未运行安装器和内核操作；它不是给任意机器复用的通用驱动安装包。
+
+准备venv自己的pytest入口，避免原门禁脚本调用全局Python：
+
+```bash
+python "$DOCS_DIR/tools/iluvatar-repro/prepare_cli.py"
+hash -r
+command -v python
+command -v vllm
+command -v pytest
+head -n 1 "$(command -v pytest)"
+```
+
+三个命令均应位于 `/workspace/validation/venv/bin`。这里的pytest入口复用已安装pytest模块，仅写当前venv，不安装任何全局软件。
+
+## 4. 每一步都保存完整记录
+
+下面统一通过 `record.py` 执行。每次创建含UTC时间的独立目录，保存 `command.sh`、完整合并stdout/stderr的 `output.log` 和带起止时间、耗时、退出码、关键环境的 `metadata.json`，命令失败时原样返回非零。
+
+```bash
+export RECORDER="$DOCS_DIR/tools/iluvatar-repro/record.py"
+export RECORD_ROOT="$REPRO_ROOT/results/steps"
+
+python "$RECORDER" --root "$RECORD_ROOT" verify-env -- \
+  python "$DOCS_DIR/tools/iluvatar-repro/verify_env.py" \
+  --min-devices 2 --min-free-gib 30
+```
+
+检查范围：venv解释器、真实导入及CLI来源、插件精确commit、厂商版本、FlagTree编译器归属、FlagCX可加载、GPU加法及NumPy桥接。每张可见卡至少30GiB空闲才继续；这只是启动前检查，不是GPU锁，运行期间仍应避免他人同时占用。
+
+如果显存不足，停止这一轮，确认后换卡并重新source，不要杀其他人的任务。不要把凭据放进记录命令或环境打印；记录器不用于登录、令牌提交等操作。
+
+交互终端无需全局开启 `set -e`，以便失败后继续查看证据。记录器自身始终保存命令实际退出码，不会因为后续打印成功而掩盖失败。
+
+## 5. 真实双卡FlagCX验证
+
+保持两张卡可见，执行：
+
+```bash
+export FLAGCX_MASTER_PORT=18134
+python - <<'PY'
+import os
+import socket
+with socket.socket() as endpoint:
+    endpoint.bind(('127.0.0.1', int(os.environ['FLAGCX_MASTER_PORT'])))
+print('FlagCX control port is free')
+PY
+
+python "$RECORDER" --root "$RECORD_ROOT" flagcx-tp2 -- \
+  python -m torch.distributed.run --nnodes=1 --nproc_per_node=2 \
+  --master-addr=127.0.0.1 --master-port="$FLAGCX_MASTER_PORT" \
+  "$DOCS_DIR/tools/iluvatar-repro/probe_flagcx.py"
+```
+
+预期两个rank分别输出 `FLAGCX_PASS ... values=[3.0, 3.0, 3.0, 3.0]`，外层 `EXIT_CODE=0`。脚本实际调用 `PyFlagcxCommunicator.all_reduce`；Gloo仅用于建立控制组。
+
+使用 `python -m torch.distributed.run` 是必要的：镜像的裸torchrun脚本指向全局Python，即使venv已激活，也可能用回vLLM0.28。不要把这条命令改回裸torchrun。
+
+这里还明确使用单机static rendezvous及127.0.0.1。实测 `--standalone` 会选用容器hostname作为控制端地址，而该hostname无法解析，持续重试；不修改宿主或容器hosts文件，用显式回环地址解决。端口占用时换一个空闲端口并重新检查。
+
+## 6. Qwen3-4B：TP1 eager、TP2 eager、TP2 FULL graph
+
+模型已存在，无需下载，也不要写入共享模型目录。先创建本轮独立结果目录：
+
+```bash
+export RUN_DIR="$REPRO_ROOT/results/smoke-$(date -u +%Y%m%dT%H%M%SZ)"
+mkdir -p "$RUN_DIR"
+test -f /data/models/Qwen/Qwen3-4B/config.json
+```
+
+### 6.1 TP1 eager
+
+```bash
+export REPRO_DEVICES=0
+source "$DOCS_DIR/tools/iluvatar-repro/activate-local.sh"
+
+python "$RECORDER" --root "$RECORD_ROOT" tp1-eager -- \
+  python "$DOCS_DIR/tools/iluvatar-repro/smoke.py" \
+  --model /data/models/Qwen/Qwen3-4B --tp 1 \
+  --output "$RUN_DIR/tp1-eager.json"
+```
+
+### 6.2 TP2 eager
+
+等上一条命令退出后，再执行：
+
+```bash
+export REPRO_DEVICES=0,1
+source "$DOCS_DIR/tools/iluvatar-repro/activate-local.sh"
+
+python "$RECORDER" --root "$RECORD_ROOT" tp2-eager -- \
+  python "$DOCS_DIR/tools/iluvatar-repro/smoke.py" \
+  --model /data/models/Qwen/Qwen3-4B --tp 2 \
+  --output "$RUN_DIR/tp2-eager.json"
+```
+
+### 6.3 TP2 FULL graph
+
+```bash
+python "$RECORDER" --root "$RECORD_ROOT" tp2-full-graph -- \
+  python "$DOCS_DIR/tools/iluvatar-repro/smoke.py" \
+  --model /data/models/Qwen/Qwen3-4B --tp 2 --graph \
+  --output "$RUN_DIR/tp2-full-graph.json"
+```
+
+三种配置均为BF16、seed0、512上下文、最多2个序列、512 token批次预算和0.65显存预算。每条启动独立离线LLM进程，不绑定API端口。首次JIT调优可能较慢，等待日志推进，不要叠加启动。
+
+graph采用 `{"mode":0,"cudagraph_mode":"FULL","custom_ops":["all"],"ir_enable_torch_wrap":false}`；保留graph replay，关闭Inductor。图捕获成功应在日志中核对，不能只根据命令中的 `--graph` 声称已运行graph。
+
+成功需要命令退出0且JSON为PASS。JSON保存实际Python、vLLM路径、关键版本、可见卡号、config哈希和生成token IDs。**PASS只表示两条prompt生成了非空内容，不证明算术、图像质量或与NVIDIA逐token一致。** 文件已存在会拒绝覆盖，重跑请新建RUN_DIR。
+
+如果只需要确认离线文本生成，到这里即可；下一节是同样的纯文本API及流式测试。
+
+## 7. 纯文本API与流式请求
+
+等离线测试进程退出后，终端A启动单卡文本服务。记录器会先检查端口空闲，服务仅监听同容器127.0.0.1：
+
+```bash
+export REPRO_DEVICES=0
+source "$DOCS_DIR/tools/iluvatar-repro/activate-local.sh"
+export PORT=18133
+export MODEL_PATH=/data/models/Qwen/Qwen3-4B
+export TENSOR_PARALLEL_SIZE=1
+
+python "$RECORDER" --root "$RECORD_ROOT" text-api-server -- \
+  bash "$DOCS_DIR/tools/iluvatar-repro/serve-text.sh"
+```
+
+保持终端A运行，终端B进入同一容器，重新激活：
+
+```bash
+docker exec -it testtianshuzdh bash
+```
+
+接下来在终端B的容器内执行：
+
+-rwxr-xr-x 1 root root 17527080 Jun 17 16:53 /usr/local/corex/lib64/libcuda.so.1
+
+/workspace/driver-extracted/corex/lib64:
+total 72912
+lrwxrwxrwx 1 root root       17 May  9 21:47 libcudart.so -> libcudart.so.10.2
+lrwxrwxrwx 1 root root       20 May  9 21:47 libcudart.so.10.2 -> libcudart.so.10.2.89
+-rwxr-xr-x 1 root root  8586192 May  9 20:27 libcudart.so.10.2.89
+-rw-r--r-- 1 root root 41784956 May  9 20:25 libcudart_static.a
+lrwxrwxrwx 1 root root       12 May  9 21:47 libcuda.so -> libcuda.so.1
+-rwxr-xr-x 1 root root 17527080 May  9 20:27 libcuda.so.1
+lrwxrwxrwx 1 root root       14 May  9 21:47 libcufile.so -> libcufile.so.1
+-rwxr-xr-x 1 root root  4544384 May  9 20:27 libcufile.so.1
+-rwxr-xr-x 1 root root    37656 May  9 20:27 libgdrapi.so
+-rwxr-xr-x 1 root root   509976 May  9 20:34 libixml.so
+-rwxr-xr-x 1 root root  1622536 May  9 20:27 libixthunk.so
+-rw-r--r-- 1 root root    28212 May  9 20:24 libregdump.a
+[build-system]
+requires = [
+    "setuptools>=77.0.3,<81.0.0",
+    "setuptools-scm>=8.0",
+    "torch>=2.7.1",
+    "wheel",
+    "scikit-build-core==0.11",
+    "pybind11",
+    "ninja",
+    "cmake",
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vllm-plugin-fl"
+dynamic = ["version"]
+description = "A vLLM plugin built on the FlagOS unified multi-chip backend"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+readme = "README.md"
+requires-python = ">=3.10,<3.14"
+classifiers = [
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Information Technology",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+]
+dependencies = [
+    "pyyaml",
+    "modelscope==1.35.3",
+]
+
+[project.entry-points."vllm.platform_plugins"]
+fl = "vllm_fl:register"
+
+[project.entry-points."vllm.general_plugins"]
+fl = "vllm_fl:register_model"
+
+[project.urls]
+Homepage = "https://github.com/flagos-ai/vllm-plugin-FL"
+
+[project.optional-dependencies]
+test = [
+    "pytest",
+    "pytest-cov",
+    "pytest-timeout",
+    "pytest-json-report",
+    "numpy",
+    "requests",
+    "openai",
+    "decorator",
+    # NVIDIA uses the official CUDA distribution; other backends may preinstall
+    # their 0.32.0 local-version wheel before installing test dependencies.
+    "vllm[audio]==0.32.0",
+]
+
+[tool.setuptools_scm]
+# Generate a static `_version.py` at build time so the installed package
+# never needs to run `git` at import time (same pattern as vLLM/PyTorch).
+# The template extracts commit sha and date from the version string and
+# exposes them as `git_version`, `git_date`, and `git_info`.
+write_to = "vllm_fl/_version.py"
+# Keep the public version at the nearest tag without appending `.devN`.
+version_scheme = "only-version"
+write_to_template = '''# This file is generated by setuptools-scm at build time.  Do not edit.
+# At runtime vllm_fl/version.py imports git_version and git_date from here.
+from __future__ import annotations
+import re as _re
+
+__version__: str = "{version}"
+version: str = __version__
+_node_date: str = "{scm_version.node_date}"
+
+_sha_m = _re.search(r"(?:^|[.+-])g(?P<sha>[0-9a-f]{{7,40}})(?:[.+-]|$)", __version__)
+_date_m = _re.search(r"(?:^|[.+-])d(?P<ymd>\d{{8}})(?:[.+-]|$)", __version__)
+
+git_version: str = _sha_m.group("sha") if _sha_m else "Unknown"
+git_date: str = (
+    _node_date if _node_date not in ("", "None")
+    else (
+        _date_m.group("ymd")[0:4] + "-" + _date_m.group("ymd")[4:6] + "-" + _date_m.group("ymd")[6:8]
+        if _date_m else "Unknown"
+    )
+)
+git_info: dict[str, str] = {{"id": git_version, "date": git_date}}
+'''
+# Include commit date in the local version string so the template can parse it.
+local_scheme = "node-and-date"
+fallback_version = "0.0.0"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["vllm_fl*"]
+
+[tool.setuptools.package-data]
+"vllm_fl.dispatch.config" = ["*.yaml"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+markers = [
+    "gpu: marks tests as requiring single GPU (deselect with '-m \"not gpu\"')",
+    "multi_gpu: marks tests as requiring multiple GPUs",
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "integration: marks tests as integration tests",
+    "e2e: marks tests as end-to-end tests",
+    "flaggems: marks tests as requiring flag_gems library",
+    "functional: marks tests as functional tests",
+]
+addopts = "-v --tb=short"
+filterwarnings = [
+    "ignore::DeprecationWarning",
+    "ignore::UserWarning",
+]
+
+[tool.coverage.run]
+source = ["vllm_fl"]
+omit = [
+    "tests/*",
+    "examples/*",
+    "benchmarks/*",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise NotImplementedError",
+    "if TYPE_CHECKING:",
+    "if __name__ == .__main__.:",
+]
+
+[tool.ruff]
+exclude = [

@@ -3,10 +3,10 @@
 ## 新机器环境搭建与测试教程
 
 - **[本机 u180 / n180 纯文本复现：从现有容器开始](docs/iluvatar-vllm032-local-reproduction.md)**：已核实路径、驱动依赖、venv入口、双卡通信、文本eager/graph及流式API；当前机器请优先阅读，不运行图像门禁。
-- **[从零准备天数 CoreX 环境并运行测试](docs/iluvatar-vllm032-fresh-machine-setup.md)**：宿主机与镜像、FlagTree / FlagGems / FlagCX、EMPTY vLLM 0.32、适配插件、模型下载、小模型冒烟和图文门禁的顺序命令。
+- **[教程二：本机新建容器，复现 vLLM 0.32 纯文本测试](docs/iluvatar-vllm032-fresh-machine-setup.md)**：宿主仅做必要的 Docker 操作；其余安装、源码、记录与文本测试均在容器内，附完整命令和测试代码，无需下载教程仓库。
 - [配套环境与验证脚本](tools/iluvatar-repro/)：环境激活、版本及库检查、真实 FlagCX 通信和 Qwen3-4B 冒烟。
 
-需要在另一台机器复现环境时，请先看这份教程。下面的完整命令档案用于追溯历史操作。
+已有容器看教程一，从新容器搭建看教程二。教程二的只读材料路径属于当前机器，换机器时需核对。下面的完整命令档案用于追溯历史操作。
 
 ## FlagScale-Agent 完整命令档案（2026-11-04）
 

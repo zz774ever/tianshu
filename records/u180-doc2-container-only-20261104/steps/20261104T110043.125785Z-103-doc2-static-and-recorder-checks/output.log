@@ -1,0 +1,18 @@
+output-ok
+EXIT_CODE=0 LOG=/workspace/validation/doc2-checks/tmpvalcjgq3/logs/20261104T110043Z-success-0elG6T
+error-message
+EXIT_CODE=17 LOG=/workspace/validation/doc2-checks/tmpvalcjgq3/logs/20261104T110043Z-expected-failure-6OaHH1
+STDIN_PASS
+EXIT_CODE=0 LOG=/workspace/validation/doc2-checks/tmpvalcjgq3/logs/20261104T110043Z-heredoc-kQIq38
+{
+  "bash_blocks": 24,
+  "python_heredocs": 8,
+  "shell_heredocs": 2,
+  "host_blocks": 4,
+  "recorder_success_failure_stdin": "PASS",
+  "syntax_links_scope_secrets": "PASS",
+  "scope": "Documentation checks; no new container, installation, communication or model run"
+}
+ README.md                                    |    4 +-
+ docs/iluvatar-vllm032-fresh-machine-setup.md | 1162 +++++++++++---------------
+ 2 files changed, 480 insertions(+), 686 deletions(-)

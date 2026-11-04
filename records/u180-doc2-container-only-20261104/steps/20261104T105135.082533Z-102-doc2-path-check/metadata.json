@@ -1,0 +1,19 @@
+{
+  "label": "102-doc2-path-check",
+  "started_utc": "2026-11-04T10:51:35.082533+00:00",
+  "command": "set -euo pipefail\nls -ld /mnt/share/user_homes/models /mnt/share/user_homes/models/Qwen3-4B /data/models/Qwen/Qwen3-4B /mnt/share/user_homes/iluv/FlagCX\nreadlink -f /data/models/Qwen/Qwen3-4B\nls -l /mnt/share/user_homes/yubenjie/0509/corex-driver-linux64-4.5.0.20260509_x86_64.run\nrg -n \"docker run|source.*models|src=.*models|--mount|libcuda.so.1\" /workspace/validation/steps/*/command.sh | head -n 65",
+  "cwd": "/workspace",
+  "environment": {
+    "PATH": "/usr/local/corex/bin:/usr/local/lib/python3.12/site-packages/bin:/usr/local/openmpi/bin:/usr/local/openmpi/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+    "PYTHONPATH": "/usr/local/lib/python3.12/site-packages",
+    "LD_LIBRARY_PATH": "/usr/local/corex/lib64:/usr/local/openmpi/lib:/usr/local/lib:/usr/local/lib:/usr/local/openmpi/lib:",
+    "CUDA_VISIBLE_DEVICES": "8,9,10,11",
+    "GEMS_VENDOR": "iluvatar",
+    "VLLM_PLUGINS": "fl",
+    "USE_FLAGGEMS": "1",
+    "FLAGCX_PATH": null
+  },
+  "finished_utc": "2026-11-04T10:51:35.101021+00:00",
+  "elapsed_seconds": 0.01813434436917305,
+  "exit_code": 127
+}

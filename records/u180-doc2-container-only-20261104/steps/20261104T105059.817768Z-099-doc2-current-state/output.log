@@ -1,0 +1,260 @@
+# vLLM 0.32 适配记录
+
+## 新机器环境搭建与测试教程
+
+- **[本机 u180 / n180 纯文本复现：从现有容器开始](docs/iluvatar-vllm032-local-reproduction.md)**：已核实路径、驱动依赖、venv入口、双卡通信、文本eager/graph及流式API；当前机器请优先阅读，不运行图像门禁。
+- **[从零准备天数 CoreX 环境并运行测试](docs/iluvatar-vllm032-fresh-machine-setup.md)**：宿主机与镜像、FlagTree / FlagGems / FlagCX、EMPTY vLLM 0.32、适配插件、模型下载、小模型冒烟和图文门禁的顺序命令。
+- [配套环境与验证脚本](tools/iluvatar-repro/)：环境激活、版本及库检查、真实 FlagCX 通信和 Qwen3-4B 冒烟。
+
+需要在另一台机器复现环境时，请先看这份教程。下面的完整命令档案用于追溯历史操作。
+
+## FlagScale-Agent 完整命令档案（2026-11-04）
+
+- [环境建立与后续操作：网页阅读版](docs/flagscale-agent-command-history-guide.md)
+- [完整单份 Markdown：逐条命令、文件修改与脚本全文](docs/flagscale-agent-complete-command-history.md)
+- [脱敏审计原始结果、覆盖统计与校验](records/flagscale-agent-command-history-20261104/README.md)
+
+完整文件较大，请使用 Raw/Download 下载在编辑器阅读。原有 S60 和 Iluvatar 报告继续保留。
+
+
+## 归档索引
+
+- [S60 完整适配技术报告](docs/s60-vllm032-detailed-report.md)：版本差异、36 个改动文件逐项说明、根因与修复链、精度数值、完整请求矩阵、失败尝试、未做事项和复现方法。
+- [S60 适配与验证总说明](docs/s60-vllm032-overview.md)：总体结论、适配内容、验收矩阵、配置前提、未闭环事项与证据导航。
+
+- [S60 完整记录归档与验收边界](records/s60-vllm032/README.md)：日志、结果、诊断数据、使用说明及历史交付快照；公开脱敏副本，不包含凭据或原始聊天历史。
+- [Iluvatar BI-V150 阶段报告](docs/iluvatar-vllm032-report.md)：保留已有报告。
+
+以下为原有 Iluvatar 阶段说明，其测试数字与限制仅属于 Iluvatar，不适用于 S60。
+
+# Iluvatar BI-V150：vLLM 0.32 适配阶段报告
+
+供导师审阅的适配记录。主要实机执行日期为 2026-10-30，文档整理日期为 2026-11-02。
+
+## 从这里开始
+
+请阅读 **[最终适配执行记录](docs/iluvatar-vllm032-report.md)**，其中包含环境版本、代码改动、执行时间线、测试结果、启动命令和原始证据索引。
+
+## 阶段结论
+
+- 已完成隔离的 vLLM 0.32.0 EMPTY 环境、Iluvatar 兼容改动及基础验证。
+- Qwen3-4B 已有 TP1/TP2 eager/graph 文本生成证据。
+- 相关单元回归为 **157 passed、1 warning**，本地依赖栈核验通过。
+- 最近大模型复测：27B graph 为 26/26；35B eager、graph 各为 25/26，同一图片 OCR 失败。
+- 35B OCR 输出不稳定的归因尚未确定；按用户要求停止深入排查，保留失败证据。
+- 完整 104 请求全部通过、NVIDIA 逐 token 对照和远端硬件 CI 尚未达成。
+
+这是带已知问题的阶段交付，不能表述为完整适配验收通过或发布声明。
+
+## 仓库内容
+
+原有 Iluvatar 部分仅包含审阅文档，报告中的 `/workspace/...` 为执行容器内的证据位置，不能直接在 GitHub 访问。新增 S60 归档位于 `records/s60-vllm032/`，包含脱敏日志、诊断脚本和适配交付补丁，不包含模型权重或访问令牌。
+
+如需导师直接访问私有仓库，请由仓库所有者在 GitHub 的 **Settings → Collaborators** 中添加导师账号。
+# 新天数机器：从拉取环境到运行 vLLM 0.32 测试
+
+更新：2026-11-04。适用对象：要在另一台天数 Iluvatar / CoreX 服务器上复现本项目环境的同学。
+
+**当前u180/n180机器已有 `testtianshuzdh` 容器，请优先使用[本机手动复现教程](iluvatar-vllm032-local-reproduction.md)，无需重复拉取、安装和下载。** 本文用于重新创建环境。教程入口、驱动依赖及venv入口已经按独立复现问题修正；实测范围见[教程验证记录](iluvatar-vllm032-tutorial-validation.md)。
+
+**只做文本测试：执行第1–10节即可，跳过第11节所有图像/混合门禁。** 本轮用户只需要文本，新增本机主教程和API客户端均只发送文本；第11节保留供历史参考，不属于此次复现主线。
+
+本文按实际搭建顺序给出命令：检查宿主机 → 拉镜像 → 建立隔离 Python → 准备 FlagTree、FlagGems、FlagCX → 安装 vLLM 与适配插件 → 下载模型 → 通信及推理验证 → 图文门禁 → 保存结果。
+
+主线基于当前容器核实的 **CoreX 4.5.0 + Python 3.12 + vLLM 0.32.0**。本文命令经过源码、安装元数据、已有安装脚本和 Shell/Python 语法核对；此次编写没有另找一台空白服务器完整重装，因此下文把尚需目标机器验证的条件写在对应步骤中。
+
+## 1. 先确定要准备什么
+
+### 1.1 硬件与权限
+
+- 一台 Linux x86_64 天数服务器，宿主机已经安装与设备配套的 **CoreX 4.5.0 驱动**。
+- Docker 可以正常运行，允许使用本文的设备与驱动库挂载方式。
+- 最小 Qwen3-4B 文本冒烟使用 1 张空闲卡；通信验证至少 2 张；本文大模型图文测试使用 4 张 BI-V150。
+- 可访问 GitHub、镜像仓库及模型下载源，或由管理员提前转移相同的镜像、源码和模型文件。
+- 数据盘能容纳模型、源码、虚拟环境、编译缓存及日志；模型文件的需求以下载源实际大小为准。27B / 35B 模型需预留数十 GB 以上空间。
+
+**宿主机驱动属于前置条件。** CoreX 安装包随操作系统、内核和设备而异，当前适配记录没有可公开验证的统一驱动安装包下载地址。没有驱动时先请管理员按厂商文档安装；只执行 `git clone` 或 `pip install` 不能补齐驱动。
+
+如果新机器是 NVIDIA / A100 / A800，应使用对应 CUDA 镜像和 PyTorch。本文的 CoreX 库、FlagTree 后端、FlagCX 编译选项不能原样用于 NVIDIA 机器。
+
+### 1.2 锁定的软件栈
+
+| 组件 | 本文使用的版本 / 来源 | 用途 |
+| --- | --- | --- |
+| CoreX | 驱动和容器用户态 4.5.0 | 天数设备运行时及通信依赖 |
+| Python | 3.12；当前实例 3.12.11 | 与厂商 wheel 的 ABI 对应 |
+| PyTorch | `2.10.0+corex.4.5.0`，来自配套镜像 | 厂商 GPU 支持 |
+| FlagTree | `0.6.2a3+iluvatar3.6` | 提供天数版 Triton 编译器 |
+| Triton import | `3.6.0`，由 FlagTree 提供 | 运行和编译算子 |
+| FlagGems | `5.3.5`；tag `v5.3.5`，提交 `4df52d9168ac55c1c1061cefb4638c570292d896` | 算子实现 |
+| FlagCX | 提交 `6143384797219733aee89bd3118b2cb184ad4959` | 多卡通信；在目标容器编译 |
+| vLLM | 上游 tag `v0.32.0`，以 EMPTY 模式构建 | 推理框架 |
+| vllm-plugin-FL | 适配分支提交 `c17d866e08b583f63998cbd47bc39fe3e57efce0` | 天数平台、runner、算子及通信接入 |
+| FlagGems-vllm | `v0.2.0` 源码提交 `b5c2c2249319277ccda4d41aa0f65164bd9b2a19` | 与插件配套的辅助算子；包元数据仍为 0.1.0 |
+
+当前容器另外观察到：Transformers `5.14.1`、tokenizers `0.22.2`、NumPy `1.26.4`、OpenAI SDK `2.46.0`、Pillow `12.3.0`、pytest `8.4.1`、ModelScope `1.39.1`。这些记录用于核对镜像中的 Python 运行时；不要用一次无约束的 `pip install -U` 改动整套环境。
+
+特别注意三个来源：
+
+1. `zz774ever/tianshu` 是教程和交付记录仓库。
+2. 本文已核实的适配源码在 `luoyc123/vllm-plugin-FL`，使用表中固定提交。
+3. `flagos-ai/vllm-plugin-FL` 是上游仓库。直接克隆上游默认分支，不保证包含本次适配提交。
+
+## 2. 在宿主机准备目录、镜像与容器
+
+**本节全部在宿主机执行。已经进入容器的终端不一定提供 Docker。**
+
+### 2.1 检查驱动、Docker 和磁盘
+
+```bash
+uname -m
+ixsmi
+docker version
+df -h /data
+```
+
+`uname -m` 应为 `x86_64`；`ixsmi` 应能看到天数卡。部分环境只提供兼容命令 `nvidia-smi`，可用它检查天数驱动，但命令名字本身不代表机器装的是 NVIDIA 卡。
+
+Docker 尚未安装时，按宿主机发行版的 Docker 官方安装步骤准备。本文不在正在使用的宿主机上自动替换驱动或容器运行时。
+
+### 2.2 设置三条宿主机路径
+
+只需根据目标机器修改以下路径。后文容器内统一使用 `/repro` 和 `/models`，不依赖旧机器的 `/workspace` 或共享盘用户名。
+
+```bash
+export REPRO_HOST_ROOT=/data/tianshu-repro
+export MODEL_HOST_ROOT=/data/models
+export COREX_HOST_ROOT=/usr/local/corex-4.5.0
+
+mkdir -p "$REPRO_HOST_ROOT" "$MODEL_HOST_ROOT"
+test -f "$COREX_HOST_ROOT/lib64/libcuda.so.1"
+test -f "$COREX_HOST_ROOT/lib64/libixml.so"
+
+git clone https://github.com/zz774ever/tianshu.git "$REPRO_HOST_ROOT/docs"
+git -C "$REPRO_HOST_ROOT/docs" rev-parse HEAD
+```
+
+如果 `docs` 已存在，用 `git -C "$REPRO_HOST_ROOT/docs" pull --ff-only` 更新，不要重复 clone 到同一目录。
+
+记录这里的教程commit；跨机器复制时用同一commit，避免配套脚本跟随main变化。网络受限可使用可访问的GitHub代理克隆，但之后仍须核对精确commit，不关闭TLS校验。
+
+另外设置**与当前宿主驱动匹配、包含完整依赖的用户态库目录**：
+
+```bash
+export COREX_DRIVER_HOST_LIB_DIR="$COREX_HOST_ROOT/lib64"
+test -f "$COREX_DRIVER_HOST_LIB_DIR/libcuda.so.1"
+ldd "$COREX_DRIVER_HOST_LIB_DIR/libcuda.so.1"
+```
+
+此变量与SDK根目录不同，必须按实际安装路径调整。本机宿主驱动路径是 `/usr/local/corex-4.5.0.20260509`，不能照抄不带日期的示例。新驱动的libcuda可能额外需要libixthunk等库：若它们不在此目录，需由维护者提供匹配的完整用户态依赖目录，然后在下节只读挂载。仅libcuda和libixml两个文件不足以保证容器可导入torch。
+
+### 2.3 拉取已有的天数基础环境
+
+适配仓库已有部署文档提供如下 CI 镜像和摘要：
+import base64
+from concurrent.futures import ThreadPoolExecutor
+import datetime
+import getpass
+import hashlib
+import json
+from pathlib import Path
+import subprocess
+import sys
+import threading
+import time
+import urllib.error
+import urllib.request
+
+
+def main():
+    root = Path('/workspace/tianshu-delivery')
+    repository = 'zz774ever/tianshu'
+    print('READY: supply repository token; it will remain in memory', flush=True)
+    token = getpass.getpass('Repository token: ').strip() if sys.stdin.isatty() else sys.stdin.readline().strip()
+    if not token:
+        raise SystemExit('Empty token')
+
+    def api(method, path, body=None):
+        data = json.dumps(body).encode() if body is not None else None
+        request = urllib.request.Request(
+            'https://api.github.com' + path, data=data, method=method,
+            headers={'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json',
+                     'User-Agent': 'tianshu-tutorial-delivery', 'Content-Type': 'application/json',
+                     'X-GitHub-Api-Version': '2022-11-28'})
+        for attempt in range(4):
+            try:
+                with urllib.request.urlopen(request, timeout=60) as response:
+                    return json.load(response)
+            except urllib.error.HTTPError as error:
+                try:
+                    message = json.loads(error.read()).get('message', 'HTTP error')
+                except Exception:
+                    message = 'HTTP error'
+                if error.code in (429, 500, 502, 503, 504) and attempt < 3:
+                    print(f'Retrying GitHub HTTP {error.code}: {method} {path}', flush=True)
+                    time.sleep(2 ** (attempt + 1))
+                    continue
+                raise RuntimeError(f'GitHub API {method} {path}: HTTP {error.code}: {message}') from None
+            except (urllib.error.URLError, TimeoutError):
+                if attempt == 3:
+                    raise RuntimeError(f'GitHub network timeout: {method} {path}') from None
+                time.sleep(2 ** (attempt + 1))
+
+    account = api('GET', '/user')
+    assert account['login'].lower() == 'zz774ever', 'Unexpected token owner'
+    prefix = '/repos/' + repository
+    reference = api('GET', prefix + '/git/ref/heads/main')
+    parent = reference['object']['sha']
+    expected = subprocess.check_output(['git', '-C', str(root), 'rev-parse', 'HEAD'], text=True).strip()
+    assert parent == expected, 'Remote main changed; fetch and reconcile before publishing'
+    parent_commit = api('GET', prefix + '/git/commits/' + parent)
+    files = ['README.md', 'docs/iluvatar-vllm032-fresh-machine-setup.md',
+             'docs/iluvatar-vllm032-local-reproduction.md',
+             'docs/iluvatar-vllm032-tutorial-validation.md']
+    files += [str(source.relative_to(root)) for source in sorted((root / 'tools/iluvatar-repro').iterdir())
+              if source.is_file()]
+    files += [str(source.relative_to(root)) for source in sorted((root / 'records/u180-tutorial-20261104').rglob('*'))
+              if source.is_file()]
+    assert all((root / name).is_file() for name in files)
+    existing = api('GET', prefix + '/git/trees/' + parent + '?recursive=1')
+    existing_blobs = {entry['sha'] for entry in existing['tree'] if entry['type'] == 'blob'}
+    cache_file = Path('/workspace/validation/tutorial-publish-blobs.json')
+    cache = json.loads(cache_file.read_text()) if cache_file.exists() else {}
+    cache_lock = threading.Lock()
+
+    def upload(name):
+        content = (root / name).read_bytes()
+        assert token.encode() not in content, f'Credential found in {name}'
+        digest = hashlib.sha1(b'blob ' + str(len(content)).encode() + b'\x00' + content).hexdigest()
+        if digest in existing_blobs or digest in cache:
+            return {'path': name, 'mode': '100644', 'type': 'blob', 'sha': digest}
+        blob = api('POST', prefix + '/git/blobs',
+                   {'content': base64.b64encode(content).decode(), 'encoding': 'base64'})
+        assert blob['sha'] == digest
+        with cache_lock:
+            cache[digest] = name
+            cache_file.write_text(json.dumps(cache, ensure_ascii=False, indent=2))
+        print('Uploaded:', name, flush=True)
+        return {'path': name, 'mode': '100644', 'type': 'blob', 'sha': blob['sha']}
+
+    with ThreadPoolExecutor(max_workers=2) as pool:
+        entries = list(pool.map(upload, files))
+    tree = api('POST', prefix + '/git/trees', {'base_tree': parent_commit['tree']['sha'], 'tree': entries})
+    commit = api('POST', prefix + '/git/commits', {
+        'message': 'docs: fix Iluvatar setup and validate local reproduction commands',
+        'tree': tree['sha'], 'parents': [parent]})
+    api('PATCH', prefix + '/git/refs/heads/main', {'sha': commit['sha'], 'force': False})
+    confirmed = api('GET', prefix + '/git/ref/heads/main')
+    assert confirmed['object']['sha'] == commit['sha']
+    result = {'repository': repository, 'branch': 'main', 'parent': parent,
+              'commit': commit['sha'], 'files': files,
+              'published_utc': datetime.datetime.now(datetime.UTC).isoformat(),
+              'url': 'https://github.com/' + repository + '/commit/' + commit['sha'],
+              'method': 'GitHub git objects API; non-force update of main; token only in memory'}
+    Path('/workspace/validation/tutorial-publish-result.json').write_text(
+        json.dumps(result, ensure_ascii=False, indent=2) + '\n')
+    print(json.dumps(result, ensure_ascii=False, indent=2), flush=True)
+
+
+if __name__ == '__main__':
+    main()

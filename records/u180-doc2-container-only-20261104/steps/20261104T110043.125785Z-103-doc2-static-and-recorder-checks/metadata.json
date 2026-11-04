@@ -1,0 +1,19 @@
+{
+  "label": "103-doc2-static-and-recorder-checks",
+  "started_utc": "2026-11-04T11:00:43.125785+00:00",
+  "command": "set -euo pipefail\npython /workspace/validation/check_doc2.py\ncd /workspace/tianshu-delivery\ngit diff --check\ngit diff --stat",
+  "cwd": "/workspace",
+  "environment": {
+    "PATH": "/usr/local/corex/bin:/usr/local/lib/python3.12/site-packages/bin:/usr/local/openmpi/bin:/usr/local/openmpi/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+    "PYTHONPATH": "/usr/local/lib/python3.12/site-packages",
+    "LD_LIBRARY_PATH": "/usr/local/corex/lib64:/usr/local/openmpi/lib:/usr/local/lib:/usr/local/lib:/usr/local/openmpi/lib:",
+    "CUDA_VISIBLE_DEVICES": "8,9,10,11",
+    "GEMS_VENDOR": "iluvatar",
+    "VLLM_PLUGINS": "fl",
+    "USE_FLAGGEMS": "1",
+    "FLAGCX_PATH": null
+  },
+  "finished_utc": "2026-11-04T11:00:43.389038+00:00",
+  "elapsed_seconds": 0.2629140429198742,
+  "exit_code": 0
+}
