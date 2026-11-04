@@ -1,0 +1,644 @@
+{
+  "captured_at": "2026-11-04T15:52:53.981495+08:00",
+  "session": "4761e787",
+  "messages": 7094,
+  "tool_calls": 4045,
+  "tool_counts": {
+    "plan_status": 60,
+    "recall_search": 79,
+    "memory_list": 132,
+    "load_skill": 77,
+    "shell": 1319,
+    "plan_create": 19,
+    "read_file": 1019,
+    "memory_write": 200,
+    "shell_jobs": 177,
+    "web_fetch": 19,
+    "memory_read": 51,
+    "plan_update": 339,
+    "hard_reset": 57,
+    "evict": 82,
+    "recall": 26,
+    "edit_file": 197,
+    "write_file": 152,
+    "proposal": 30,
+    "load_knowledge": 10
+  },
+  "shell_commands_rendered": 1319,
+  "support_calls": 446,
+  "source_snapshots": {
+    "agent-full.json": "9d70aeae210f2966d04caf3456be5cfbc7e648794973ea493dc3414d9c032a16",
+    "codex-support.jsonl": "3098723f96fb426167071c6a30e86d988c746c51c71186c1bc25ffcf54cf5799"
+  },
+  "repo_head_at_capture": "c17d866e08b583f63998cbd47bc39fe3e57efce0",
+  "repo_status_at_capture": " M tools/adaptation-gate-cases/case_utils.py\n?? tests/unit_tests/test_gate_semantics.py\n",
+  "script_snapshot_at": "2026-11-04T15:59:02.981686+08:00",
+  "scripts": [
+    {
+      "path": "/workspace/adapt-logs/compare_layer_trace032.py",
+      "bytes": 1451,
+      "mtime": "2026-10-30T19:28:12.460111+08:00",
+      "sha256_before_redaction": "e72da3f71c24678e466f03aa53cb6bfce5ab02d29ece4b7d8ce3020c796a0c6f",
+      "sha256_after_redaction": "e72da3f71c24678e466f03aa53cb6bfce5ab02d29ece4b7d8ce3020c796a0c6f"
+    },
+    {
+      "path": "/workspace/adapt-logs/compare_ocr_logprobs032.py",
+      "bytes": 1298,
+      "mtime": "2026-10-30T19:09:39.310391+08:00",
+      "sha256_before_redaction": "d14d389555973c508c9b44c27c5521b959321667db1c9492607d4019f34429fb",
+      "sha256_after_redaction": "c45744ef0dd69dc4a971ea6dc28225b15013edfb14d19fb67360ac55a7d10c37"
+    },
+    {
+      "path": "/workspace/adapt-logs/compare_prefix_diagnostic.py",
+      "bytes": 2179,
+      "mtime": "2026-11-04T15:40:44.061642+08:00",
+      "sha256_before_redaction": "277f62dcdffc6c423c5328a3260b542706fd779914a93b79ce12e2c2cac1b3fc",
+      "sha256_after_redaction": "277f62dcdffc6c423c5328a3260b542706fd779914a93b79ce12e2c2cac1b3fc"
+    },
+    {
+      "path": "/workspace/adapt-logs/compare_serving_ocr032.py",
+      "bytes": 1179,
+      "mtime": "2026-10-30T20:05:10.763510+08:00",
+      "sha256_before_redaction": "297057a080537d5e5265509a9ded9eda5323269c7d3267874910a9cce169bb93",
+      "sha256_after_redaction": "297057a080537d5e5265509a9ded9eda5323269c7d3267874910a9cce169bb93"
+    },
+    {
+      "path": "/workspace/adapt-logs/compare_serving_trace032.py",
+      "bytes": 1422,
+      "mtime": "2026-10-30T21:23:13.463571+08:00",
+      "sha256_before_redaction": "2f0e16f62817ee5d08623f921f2f92d41a8ff1c08c3f103d9aa482c7c54f7fc3",
+      "sha256_after_redaction": "2f0e16f62817ee5d08623f921f2f92d41a8ff1c08c3f103d9aa482c7c54f7fc3"
+    },
+    {
+      "path": "/workspace/adapt-logs/compare_sync_trace032.py",
+      "bytes": 1678,
+      "mtime": "2026-10-30T21:48:20.859316+08:00",
+      "sha256_before_redaction": "5982a58a0b392835459789931ccb2bd3e76c510ce07c29b5fc90c48dc651b743",
+      "sha256_after_redaction": "5982a58a0b392835459789931ccb2bd3e76c510ce07c29b5fc90c48dc651b743"
+    },
+    {
+      "path": "/workspace/adapt-logs/inspect_components032.py",
+      "bytes": 786,
+      "mtime": "2026-10-30T21:27:54.141013+08:00",
+      "sha256_before_redaction": "4773134049bfb38d93cfbe19afbfc05565e5c916e7261e79393c7dfea163cf31",
+      "sha256_after_redaction": "4773134049bfb38d93cfbe19afbfc05565e5c916e7261e79393c7dfea163cf31"
+    },
+    {
+      "path": "/workspace/adapt-logs/model_runner.merge032.py",
+      "bytes": 333572,
+      "mtime": "2026-10-30T12:16:04.670884+08:00",
+      "sha256_before_redaction": "0364e8301fceaa9a1679b98a8fa95f7e9b58369b9caaf071fb582c3afed8d6d1",
+      "sha256_after_redaction": "0364e8301fceaa9a1679b98a8fa95f7e9b58369b9caaf071fb582c3afed8d6d1"
+    },
+    {
+      "path": "/workspace/adapt-logs/patch_worker032.py",
+      "bytes": 921,
+      "mtime": "2026-10-30T12:05:37.435661+08:00",
+      "sha256_before_redaction": "15edd14cb2c17231b823718ae3ab8df39c0ac24d5b33d68636f16e84a4ee3bfa",
+      "sha256_after_redaction": "15edd14cb2c17231b823718ae3ab8df39c0ac24d5b33d68636f16e84a4ee3bfa"
+    },
+    {
+      "path": "/workspace/adapt-logs/precision-small-a800/collect.py",
+      "bytes": 2635,
+      "mtime": "2026-11-02T13:47:49.130970+08:00",
+      "sha256_before_redaction": "126caac8ae43f1e3dbfb6ab100d482e617053286d67e07256eccd62bae26255d",
+      "sha256_after_redaction": "126caac8ae43f1e3dbfb6ab100d482e617053286d67e07256eccd62bae26255d"
+    },
+    {
+      "path": "/workspace/adapt-logs/precision-small-a800/compare.py",
+      "bytes": 2467,
+      "mtime": "2026-11-02T13:57:20.001903+08:00",
+      "sha256_before_redaction": "31c334f2c3a37edbaff6a2c0385e0b2fc054c707d9a25817962e0102489af512",
+      "sha256_after_redaction": "31c334f2c3a37edbaff6a2c0385e0b2fc054c707d9a25817962e0102489af512"
+    },
+    {
+      "path": "/workspace/adapt-logs/precision-small-a800/download_model.sh",
+      "bytes": 599,
+      "mtime": "2026-11-02T13:47:43.582941+08:00",
+      "sha256_before_redaction": "8005e1b59fb92f3ef023324585ae35e7fe9bb434f54e80b03e2e8c1501d8f709",
+      "sha256_after_redaction": "8005e1b59fb92f3ef023324585ae35e7fe9bb434f54e80b03e2e8c1501d8f709"
+    },
+    {
+      "path": "/workspace/adapt-logs/precision-small-a800/run_reference.sh",
+      "bytes": 669,
+      "mtime": "2026-11-02T13:53:10.952623+08:00",
+      "sha256_before_redaction": "b13c096fc4a2947e024dc3058d81bc09d79cb3583508862a7107243ce51a0c40",
+      "sha256_after_redaction": "b13c096fc4a2947e024dc3058d81bc09d79cb3583508862a7107243ce51a0c40"
+    },
+    {
+      "path": "/workspace/adapt-logs/precision-small-a800/verify_model.py",
+      "bytes": 763,
+      "mtime": "2026-11-02T13:52:05.276286+08:00",
+      "sha256_before_redaction": "587bdb40c0e85b99f4c78b7b4b2d4ac853ab035d56fdf6d1686bcd107604fbf8",
+      "sha256_after_redaction": "587bdb40c0e85b99f4c78b7b4b2d4ac853ab035d56fdf6d1686bcd107604fbf8"
+    },
+    {
+      "path": "/workspace/adapt-logs/preflight_customops032.py",
+      "bytes": 1208,
+      "mtime": "2026-10-30T18:05:16.062540+08:00",
+      "sha256_before_redaction": "7eb0a7a55f23568db6235621df065da1e6c3cd8f17aa4a2190625b8b950ffe24",
+      "sha256_after_redaction": "7eb0a7a55f23568db6235621df065da1e6c3cd8f17aa4a2190625b8b950ffe24"
+    },
+    {
+      "path": "/workspace/adapt-logs/preflight_fp32head032.py",
+      "bytes": 814,
+      "mtime": "2026-10-30T19:13:55.639708+08:00",
+      "sha256_before_redaction": "745abf0358e16fd3232d23f12bd7219397132051a39fda106b95cf92d80f8095",
+      "sha256_after_redaction": "745abf0358e16fd3232d23f12bd7219397132051a39fda106b95cf92d80f8095"
+    },
+    {
+      "path": "/workspace/adapt-logs/preflight_full_nocompile032.py",
+      "bytes": 883,
+      "mtime": "2026-10-30T18:29:49.262110+08:00",
+      "sha256_before_redaction": "0513b50f36affe2c381deae0ff3b788c5387d078b1a6ed213fd8f80e769a4606",
+      "sha256_after_redaction": "0513b50f36affe2c381deae0ff3b788c5387d078b1a6ed213fd8f80e769a4606"
+    },
+    {
+      "path": "/workspace/adapt-logs/probe_borrowed032.py",
+      "bytes": 1751,
+      "mtime": "2026-10-30T16:58:35.405983+08:00",
+      "sha256_before_redaction": "76a7924d1df6285ba0dc852f2068dac0c0b7b8d0f6066047c9fb4dfe57ec49ee",
+      "sha256_after_redaction": "76a7924d1df6285ba0dc852f2068dac0c0b7b8d0f6066047c9fb4dfe57ec49ee"
+    },
+    {
+      "path": "/workspace/adapt-logs/probe_conv_graph032.py",
+      "bytes": 1499,
+      "mtime": "2026-10-30T17:22:41.133412+08:00",
+      "sha256_before_redaction": "d312d2ffbf794909bd5fe87c04816c7b948e3c22999c89d3a419b182f01dc076",
+      "sha256_after_redaction": "d312d2ffbf794909bd5fe87c04816c7b948e3c22999c89d3a419b182f01dc076"
+    },
+    {
+      "path": "/workspace/adapt-logs/probe_copy_record032.py",
+      "bytes": 1218,
+      "mtime": "2026-10-30T21:48:40.075415+08:00",
+      "sha256_before_redaction": "48e4b7211b31162e40fd6e3788b3be19536b8b20fa362c53a4945ed893c97d9c",
+      "sha256_after_redaction": "48e4b7211b31162e40fd6e3788b3be19536b8b20fa362c53a4945ed893c97d9c"
+    },
+    {
+      "path": "/workspace/adapt-logs/probe_flagcx032.py",
+      "bytes": 659,
+      "mtime": "2026-10-30T12:46:58.568410+08:00",
+      "sha256_before_redaction": "28a2eeac86e392d58fb4a01ffff9262b67ccbe32bc144fd45c8d42fda2f48b7c",
+      "sha256_after_redaction": "28a2eeac86e392d58fb4a01ffff9262b67ccbe32bc144fd45c8d42fda2f48b7c"
+    },
+    {
+      "path": "/workspace/adapt-logs/probe_flagcx_determinism032.py",
+      "bytes": 1524,
+      "mtime": "2026-10-30T20:10:46.641235+08:00",
+      "sha256_before_redaction": "a6b508f18d8fc8633732e8054a4ae3a89f4d155079709cb9c0767bee41a892ee",
+      "sha256_after_redaction": "a6b508f18d8fc8633732e8054a4ae3a89f4d155079709cb9c0767bee41a892ee"
+    },
+    {
+      "path": "/workspace/adapt-logs/probe_flagcx_graph032.py",
+      "bytes": 1284,
+      "mtime": "2026-10-30T17:17:11.623719+08:00",
+      "sha256_before_redaction": "b3d59206d6f52615f792c7fa72d1007558f09f2799ed12dd8ce283e90813049d",
+      "sha256_after_redaction": "b3d59206d6f52615f792c7fa72d1007558f09f2799ed12dd8ce283e90813049d"
+    },
+    {
+      "path": "/workspace/adapt-logs/probe_gdn_graph032.py",
+      "bytes": 1698,
+      "mtime": "2026-10-30T17:20:06.432617+08:00",
+      "sha256_before_redaction": "4285af4df103f23eef10473d1db213d411fae095057f504858c485502bcf8506",
+      "sha256_after_redaction": "4285af4df103f23eef10473d1db213d411fae095057f504858c485502bcf8506"
+    },
+    {
+      "path": "/workspace/adapt-logs/probe_gdn_prefill_determinism032.py",
+      "bytes": 1958,
+      "mtime": "2026-10-30T20:22:32.708863+08:00",
+      "sha256_before_redaction": "0f11c11763b52cb155bd43dc78175a93fd439f740e16a37cb9592d1c63f8aa73",
+      "sha256_after_redaction": "0f11c11763b52cb155bd43dc78175a93fd439f740e16a37cb9592d1c63f8aa73"
+    },
+    {
+      "path": "/workspace/adapt-logs/probe_graph_images032.py",
+      "bytes": 1752,
+      "mtime": "2026-10-30T15:09:39.580400+08:00",
+      "sha256_before_redaction": "38e76e6ccd1ddfd926adc642475436fb2884a0b56e2f0723b8d3136fa9e4a47a",
+      "sha256_after_redaction": "38e76e6ccd1ddfd926adc642475436fb2884a0b56e2f0723b8d3136fa9e4a47a"
+    },
+    {
+      "path": "/workspace/adapt-logs/probe_index_retention032.py",
+      "bytes": 1271,
+      "mtime": "2026-10-30T16:32:00.413788+08:00",
+      "sha256_before_redaction": "8e2f7ce44581b26d92ef2635e0a14949c5e59094b00c8fa506bc28b7757e53b2",
+      "sha256_after_redaction": "8e2f7ce44581b26d92ef2635e0a14949c5e59094b00c8fa506bc28b7757e53b2"
+    },
+    {
+      "path": "/workspace/adapt-logs/probe_mm_batch032.py",
+      "bytes": 951,
+      "mtime": "2026-10-30T20:33:05.332114+08:00",
+      "sha256_before_redaction": "e26e1db60acfbde428478a1e4a9f0734d7d123e42c2623d93352753d1122f5de",
+      "sha256_after_redaction": "e26e1db60acfbde428478a1e4a9f0734d7d123e42c2623d93352753d1122f5de"
+    },
+    {
+      "path": "/workspace/adapt-logs/probe_moe_actual032.py",
+      "bytes": 2063,
+      "mtime": "2026-10-30T20:46:01.880104+08:00",
+      "sha256_before_redaction": "8c4ff2d909ce0484f99e3b1a5af3adcff69a64676ad208f3e21ecd4cc14145d9",
+      "sha256_after_redaction": "8c4ff2d909ce0484f99e3b1a5af3adcff69a64676ad208f3e21ecd4cc14145d9"
+    },
+    {
+      "path": "/workspace/adapt-logs/probe_moe_batch032.py",
+      "bytes": 1664,
+      "mtime": "2026-10-30T20:39:06.921972+08:00",
+      "sha256_before_redaction": "c46af807718ca37e27711c97905fcd81d49cec278bcc4d78ad1fc24f083b685b",
+      "sha256_after_redaction": "c46af807718ca37e27711c97905fcd81d49cec278bcc4d78ad1fc24f083b685b"
+    },
+    {
+      "path": "/workspace/adapt-logs/probe_moe_router032.py",
+      "bytes": 961,
+      "mtime": "2026-10-30T13:19:30.718441+08:00",
+      "sha256_before_redaction": "0cc985584fc79ac473a30a077e8e6324bb0aac6466288e4792cea8363a5654e9",
+      "sha256_after_redaction": "0cc985584fc79ac473a30a077e8e6324bb0aac6466288e4792cea8363a5654e9"
+    },
+    {
+      "path": "/workspace/adapt-logs/probe_native_zeros032.py",
+      "bytes": 279,
+      "mtime": "2026-10-30T12:47:47.168660+08:00",
+      "sha256_before_redaction": "b91043dbf81c783fe09d5c4632b51337109cc8c0e01cceb18825cb157395fc24",
+      "sha256_after_redaction": "b91043dbf81c783fe09d5c4632b51337109cc8c0e01cceb18825cb157395fc24"
+    },
+    {
+      "path": "/workspace/adapt-logs/probe_ocr_cache032.py",
+      "bytes": 1774,
+      "mtime": "2026-10-30T20:17:49.263407+08:00",
+      "sha256_before_redaction": "b6bd39eaadf7d142e048e03424ad62810709af210bad5a03a0c1ec527ba6925f",
+      "sha256_after_redaction": "b6bd39eaadf7d142e048e03424ad62810709af210bad5a03a0c1ec527ba6925f"
+    },
+    {
+      "path": "/workspace/adapt-logs/probe_ocr_options032.py",
+      "bytes": 1203,
+      "mtime": "2026-10-30T20:07:52.008338+08:00",
+      "sha256_before_redaction": "b2b299e9807527d3f63cfb76e3885cb260dce7fa877e69ea701de55471e82ac0",
+      "sha256_after_redaction": "b2b299e9807527d3f63cfb76e3885cb260dce7fa877e69ea701de55471e82ac0"
+    },
+    {
+      "path": "/workspace/adapt-logs/probe_real_linear032.py",
+      "bytes": 2399,
+      "mtime": "2026-10-30T21:43:37.021858+08:00",
+      "sha256_before_redaction": "ef99a729384b8a70b5011772b303a56409c3ddf39a16d96894f6fa0894d6f6e7",
+      "sha256_after_redaction": "ef99a729384b8a70b5011772b303a56409c3ddf39a16d96894f6fa0894d6f6e7"
+    },
+    {
+      "path": "/workspace/adapt-logs/probe_real_reduce032.py",
+      "bytes": 1495,
+      "mtime": "2026-10-30T15:59:48.435860+08:00",
+      "sha256_before_redaction": "c009146f6207eb7db0ec6cac9b6be2457547e3bacd93daf7ec37d4b9f5005527",
+      "sha256_after_redaction": "c009146f6207eb7db0ec6cac9b6be2457547e3bacd93daf7ec37d4b9f5005527"
+    },
+    {
+      "path": "/workspace/adapt-logs/probe_router_determinism032.py",
+      "bytes": 1157,
+      "mtime": "2026-10-30T20:15:48.530787+08:00",
+      "sha256_before_redaction": "df2792c633028e2656e1a2fb66759e0bd3babaf8f66316557340fd68ee0873fe",
+      "sha256_after_redaction": "df2792c633028e2656e1a2fb66759e0bd3babaf8f66316557340fd68ee0873fe"
+    },
+    {
+      "path": "/workspace/adapt-logs/probe_sdpa_dispatch032.py",
+      "bytes": 763,
+      "mtime": "2026-10-30T13:28:26.941197+08:00",
+      "sha256_before_redaction": "2bd31f65912b0613ed17663fc393c40e528ef9b2b0f142ce7b858b278d1e13e0",
+      "sha256_after_redaction": "2bd31f65912b0613ed17663fc393c40e528ef9b2b0f142ce7b858b278d1e13e0"
+    },
+    {
+      "path": "/workspace/adapt-logs/probe_silu_boundary032.py",
+      "bytes": 729,
+      "mtime": "2026-10-30T18:18:26.786603+08:00",
+      "sha256_before_redaction": "033886448f092e3d3d474525ab7e0695b5964624bc7eda60a91ca58dcb52f540",
+      "sha256_after_redaction": "033886448f092e3d3d474525ab7e0695b5964624bc7eda60a91ca58dcb52f540"
+    },
+    {
+      "path": "/workspace/adapt-logs/probe_silu_compile032.py",
+      "bytes": 851,
+      "mtime": "2026-10-30T18:16:14.213922+08:00",
+      "sha256_before_redaction": "9e7ba65071f6db10e5901eb88761cb6a6849b1742b8807d5f6f47f308fc31fa7",
+      "sha256_after_redaction": "9e7ba65071f6db10e5901eb88761cb6a6849b1742b8807d5f6f47f308fc31fa7"
+    },
+    {
+      "path": "/workspace/adapt-logs/probe_tp_comm032.py",
+      "bytes": 1092,
+      "mtime": "2026-10-30T13:39:44.660679+08:00",
+      "sha256_before_redaction": "c9a668a082ebd7133a6cf2ce9e5fa7e00700d3357d80e076bd6b2fa4f80113ae",
+      "sha256_after_redaction": "c9a668a082ebd7133a6cf2ce9e5fa7e00700d3357d80e076bd6b2fa4f80113ae"
+    },
+    {
+      "path": "/workspace/adapt-logs/probe_tp_reduce032.py",
+      "bytes": 1384,
+      "mtime": "2026-10-30T15:30:14.278744+08:00",
+      "sha256_before_redaction": "c866e82ceae9f5ffedbc86f6ea38777ebf5d7aa82b5ccd54133d48d4fe03eb8a",
+      "sha256_after_redaction": "c866e82ceae9f5ffedbc86f6ea38777ebf5d7aa82b5ccd54133d48d4fe03eb8a"
+    },
+    {
+      "path": "/workspace/adapt-logs/probe_trace_capture032.py",
+      "bytes": 727,
+      "mtime": "2026-10-30T19:24:40.311021+08:00",
+      "sha256_before_redaction": "42d310067d87103c3cbd79006f0dc4fb577b2b0f6a76ce803d281b36e4d3c320",
+      "sha256_after_redaction": "42d310067d87103c3cbd79006f0dc4fb577b2b0f6a76ce803d281b36e4d3c320"
+    },
+    {
+      "path": "/workspace/adapt-logs/probe_vision032.py",
+      "bytes": 2881,
+      "mtime": "2026-10-30T15:22:06.536238+08:00",
+      "sha256_before_redaction": "dbafc7c6a42d0524be4bfa745ab6376e0cf0490a4c62a69cdd8b4915cddc17e6",
+      "sha256_after_redaction": "dbafc7c6a42d0524be4bfa745ab6376e0cf0490a4c62a69cdd8b4915cddc17e6"
+    },
+    {
+      "path": "/workspace/adapt-logs/probe_vision_diagnostic.py",
+      "bytes": 5611,
+      "mtime": "2026-11-04T15:34:21.047674+08:00",
+      "sha256_before_redaction": "ecb7202115562a80111f051176886bd054da5b49673fe158380913df93648a91",
+      "sha256_after_redaction": "ecb7202115562a80111f051176886bd054da5b49673fe158380913df93648a91"
+    },
+    {
+      "path": "/workspace/adapt-logs/probe_vision_tp032.py",
+      "bytes": 5627,
+      "mtime": "2026-10-30T16:05:31.309622+08:00",
+      "sha256_before_redaction": "912ae65073e77efae9ddba9f91a5812fddea70f73cb2e3c7ab707e6a15b3a4c6",
+      "sha256_after_redaction": "912ae65073e77efae9ddba9f91a5812fddea70f73cb2e3c7ab707e6a15b3a4c6"
+    },
+    {
+      "path": "/workspace/adapt-logs/probe_vit_batch032.py",
+      "bytes": 1328,
+      "mtime": "2026-10-30T15:13:13.293498+08:00",
+      "sha256_before_redaction": "70efdba9a6ad79e68a93aa932e09174b6c1aa25e048826cb0606a8da768400bc",
+      "sha256_after_redaction": "70efdba9a6ad79e68a93aa932e09174b6c1aa25e048826cb0606a8da768400bc"
+    },
+    {
+      "path": "/workspace/adapt-logs/probe_vit_sdpa032.py",
+      "bytes": 993,
+      "mtime": "2026-10-30T13:17:15.517746+08:00",
+      "sha256_before_redaction": "4a18bd4fa3d17dbc71284fcfd4cf06aa3ee28a832823ab585232b03b3f1c0cf1",
+      "sha256_after_redaction": "4a18bd4fa3d17dbc71284fcfd4cf06aa3ee28a832823ab585232b03b3f1c0cf1"
+    },
+    {
+      "path": "/workspace/adapt-logs/probe_weakref032.py",
+      "bytes": 651,
+      "mtime": "2026-10-30T16:50:45.695570+08:00",
+      "sha256_before_redaction": "9627b5ec3df952ea4e8f409598b9b27ab480d580fe3b09e9cdb2131a68197882",
+      "sha256_after_redaction": "9627b5ec3df952ea4e8f409598b9b27ab480d580fe3b09e9cdb2131a68197882"
+    },
+    {
+      "path": "/workspace/adapt-logs/probe_zeros032.py",
+      "bytes": 474,
+      "mtime": "2026-10-30T12:41:01.190574+08:00",
+      "sha256_before_redaction": "1f61b4301f96fc751078306d9ba54c60effb66954767ee8490b9286a65b0c669",
+      "sha256_after_redaction": "1f61b4301f96fc751078306d9ba54c60effb66954767ee8490b9286a65b0c669"
+    },
+    {
+      "path": "/workspace/adapt-logs/resolve_runner032.py",
+      "bytes": 1303,
+      "mtime": "2026-10-30T12:23:13.629088+08:00",
+      "sha256_before_redaction": "6a34940bd992e81c6653392565933ca4d3aeb841f3b72c1ad039048de06b1096",
+      "sha256_after_redaction": "6a34940bd992e81c6653392565933ca4d3aeb841f3b72c1ad039048de06b1096"
+    },
+    {
+      "path": "/workspace/adapt-logs/run_layer_trace032.py",
+      "bytes": 2914,
+      "mtime": "2026-10-30T19:55:22.952489+08:00",
+      "sha256_before_redaction": "cc7c92dd8cfdc4adf7b1d3086a8c3bbfdedaa59dece211069c356bc156a64048",
+      "sha256_after_redaction": "cc7c92dd8cfdc4adf7b1d3086a8c3bbfdedaa59dece211069c356bc156a64048"
+    },
+    {
+      "path": "/workspace/adapt-logs/run_prefix_trace_diagnostic.py",
+      "bytes": 1892,
+      "mtime": "2026-11-04T15:39:16.217191+08:00",
+      "sha256_before_redaction": "fa2807a16b5cbb95bb25b7d34a6d3795c8022e87e92fcd7452318562da5a0b94",
+      "sha256_after_redaction": "fa2807a16b5cbb95bb25b7d34a6d3795c8022e87e92fcd7452318562da5a0b94"
+    },
+    {
+      "path": "/workspace/adapt-logs/run_serving_trace032.py",
+      "bytes": 2226,
+      "mtime": "2026-10-30T21:36:45.991746+08:00",
+      "sha256_before_redaction": "2d90a5e972a08f2eb828fad80e98f7d847994621b5ba9487c82cb9dbc301f0c7",
+      "sha256_after_redaction": "2d90a5e972a08f2eb828fad80e98f7d847994621b5ba9487c82cb9dbc301f0c7"
+    },
+    {
+      "path": "/workspace/adapt-logs/serve_27b_full_nocompile032.sh",
+      "bytes": 816,
+      "mtime": "2026-10-30T18:34:20.571504+08:00",
+      "sha256_before_redaction": "3350772e3e2fde5f03effec4f1053fcf9365f6dcbbee2ebef080b11e332220d9",
+      "sha256_after_redaction": "3350772e3e2fde5f03effec4f1053fcf9365f6dcbbee2ebef080b11e332220d9"
+    },
+    {
+      "path": "/workspace/adapt-logs/serve_35b_dependency_b.sh",
+      "bytes": 1008,
+      "mtime": "2026-11-04T15:40:11.137473+08:00",
+      "sha256_before_redaction": "aa4eadc2dd907056b0f6e34e3a643b30cf389037ea38f0d2047634e88b44487b",
+      "sha256_after_redaction": "aa4eadc2dd907056b0f6e34e3a643b30cf389037ea38f0d2047634e88b44487b"
+    },
+    {
+      "path": "/workspace/adapt-logs/serve_35b_eager_final032.sh",
+      "bytes": 748,
+      "mtime": "2026-10-30T18:39:23.393060+08:00",
+      "sha256_before_redaction": "b9bd650ae5c41206f213d7628045bb273834722b4789232313641a491a0923a1",
+      "sha256_after_redaction": "b9bd650ae5c41206f213d7628045bb273834722b4789232313641a491a0923a1"
+    },
+    {
+      "path": "/workspace/adapt-logs/serve_35b_eager_fp32head032.sh",
+      "bytes": 793,
+      "mtime": "2026-10-30T19:14:30.215886+08:00",
+      "sha256_before_redaction": "d30efaa77fb5e2dface27dfdc3f25c0341744688e53e5ba263f5dd29adef945a",
+      "sha256_after_redaction": "d30efaa77fb5e2dface27dfdc3f25c0341744688e53e5ba263f5dd29adef945a"
+    },
+    {
+      "path": "/workspace/adapt-logs/serve_35b_full_nocompile032.sh",
+      "bytes": 828,
+      "mtime": "2026-10-30T18:31:06.378506+08:00",
+      "sha256_before_redaction": "c6a6bcdfffd1e15f3a5413d84d8735d7c83272f18fcf0a809b4f1e67e546ccc2",
+      "sha256_after_redaction": "c6a6bcdfffd1e15f3a5413d84d8735d7c83272f18fcf0a809b4f1e67e546ccc2"
+    },
+    {
+      "path": "/workspace/adapt-logs/serve_35b_nograph_warm032.sh",
+      "bytes": 844,
+      "mtime": "2026-10-30T18:53:36.541444+08:00",
+      "sha256_before_redaction": "8dcf40737aed3d92f841a40dd2e7fdfa2cee27f4cd4d0fbb2573dc8f575057fc",
+      "sha256_after_redaction": "8dcf40737aed3d92f841a40dd2e7fdfa2cee27f4cd4d0fbb2573dc8f575057fc"
+    },
+    {
+      "path": "/workspace/adapt-logs/serve_35b_trace032.sh",
+      "bytes": 845,
+      "mtime": "2026-10-30T20:50:48.089575+08:00",
+      "sha256_before_redaction": "84d8116b24d94de48a90a1177538b0815aa4f2a6c3d2b93366f79cfdb0ee8408",
+      "sha256_after_redaction": "84d8116b24d94de48a90a1177538b0815aa4f2a6c3d2b93366f79cfdb0ee8408"
+    },
+    {
+      "path": "/workspace/adapt-logs/smoke032.py",
+      "bytes": 845,
+      "mtime": "2026-10-30T12:02:43.070765+08:00",
+      "sha256_before_redaction": "a544006dd722d85aef2896ae08d3ea26b0dbfdb4c0f611837051a60e8f8d8fa9",
+      "sha256_after_redaction": "a544006dd722d85aef2896ae08d3ea26b0dbfdb4c0f611837051a60e8f8d8fa9"
+    },
+    {
+      "path": "/workspace/adapt-logs/smoke032_matrix.py",
+      "bytes": 1282,
+      "mtime": "2026-10-30T12:37:15.017412+08:00",
+      "sha256_before_redaction": "ac38d0e442d020520edc79506e33935836d8a3de45e247ef55a992c63bab5e8e",
+      "sha256_after_redaction": "ac38d0e442d020520edc79506e33935836d8a3de45e247ef55a992c63bab5e8e"
+    },
+    {
+      "path": "/workspace/adapt-logs/summarize_gate032.py",
+      "bytes": 377,
+      "mtime": "2026-10-30T16:24:23.011437+08:00",
+      "sha256_before_redaction": "c1ea5d0b4ff0dfd36efe70750ec2756661b52b8410cf1be42821358505165cdc",
+      "sha256_after_redaction": "c1ea5d0b4ff0dfd36efe70750ec2756661b52b8410cf1be42821358505165cdc"
+    },
+    {
+      "path": "/workspace/adapt-logs/summarize_ocr_controls032.py",
+      "bytes": 744,
+      "mtime": "2026-10-30T19:57:19.605088+08:00",
+      "sha256_before_redaction": "10a2487aa39c5319c18f43b6bd5ff5499adf881809dc0730e087d5badf5da4a3",
+      "sha256_after_redaction": "10a2487aa39c5319c18f43b6bd5ff5499adf881809dc0730e087d5badf5da4a3"
+    },
+    {
+      "path": "/workspace/adapt-logs/summarize_prefix_diagnostic.py",
+      "bytes": 915,
+      "mtime": "2026-11-04T15:44:16.494734+08:00",
+      "sha256_before_redaction": "3778a6bc718e785bf595c35e47111d4363381e10af02d7bbd7be210597e70345",
+      "sha256_after_redaction": "3778a6bc718e785bf595c35e47111d4363381e10af02d7bbd7be210597e70345"
+    },
+    {
+      "path": "/workspace/adapt-logs/test_trace_layers032.py",
+      "bytes": 1414,
+      "mtime": "2026-10-30T19:32:06.245312+08:00",
+      "sha256_before_redaction": "1ef9c040a5c24dd6e4b3aad11e1be203103a9602b18aa6547cf67409b31e8b0e",
+      "sha256_after_redaction": "1ef9c040a5c24dd6e4b3aad11e1be203103a9602b18aa6547cf67409b31e8b0e"
+    },
+    {
+      "path": "/workspace/adapt-logs/test_trace_serving032.py",
+      "bytes": 3467,
+      "mtime": "2026-10-30T21:45:40.594493+08:00",
+      "sha256_before_redaction": "d65137d924e93e63c64d0777869af9c5e2b58abd097b74729fbe9469ea251af3",
+      "sha256_after_redaction": "d65137d924e93e63c64d0777869af9c5e2b58abd097b74729fbe9469ea251af3"
+    },
+    {
+      "path": "/workspace/adapt-logs/trace_layers032.py",
+      "bytes": 1674,
+      "mtime": "2026-10-30T19:31:52.165240+08:00",
+      "sha256_before_redaction": "6b874d6665fd8364f4b6f2d339a9507dc03e882e5f41c44a0c0fb5ce14adc7f0",
+      "sha256_after_redaction": "6b874d6665fd8364f4b6f2d339a9507dc03e882e5f41c44a0c0fb5ce14adc7f0"
+    },
+    {
+      "path": "/workspace/adapt-logs/trace_serving032.py",
+      "bytes": 2865,
+      "mtime": "2026-10-30T21:45:22.922402+08:00",
+      "sha256_before_redaction": "8a77568b8396f43be742618dffa565ed4eb8be8177f83ba4ca9d918f4648882f",
+      "sha256_after_redaction": "8a77568b8396f43be742618dffa565ed4eb8be8177f83ba4ca9d918f4648882f"
+    },
+    {
+      "path": "/workspace/adapt-logs/wait_run_serving_trace032.sh",
+      "bytes": 375,
+      "mtime": "2026-10-30T21:20:28.614724+08:00",
+      "sha256_before_redaction": "7e0f2c1a95e3b632598885b6f8d4d5e96cfeb0fc609078990d55eb6a8a2d9e62",
+      "sha256_after_redaction": "7e0f2c1a95e3b632598885b6f8d4d5e96cfeb0fc609078990d55eb6a8a2d9e62"
+    },
+    {
+      "path": "/workspace/adapt-logs/wait_sync_trace032.sh",
+      "bytes": 376,
+      "mtime": "2026-10-30T21:47:25.595032+08:00",
+      "sha256_before_redaction": "7c8b3adb6b3ebdf6c9daec4f17ba6499404c024e3dc77b9911143c6619a6e5d2",
+      "sha256_after_redaction": "7c8b3adb6b3ebdf6c9daec4f17ba6499404c024e3dc77b9911143c6619a6e5d2"
+    },
+    {
+      "path": "/workspace/flagscale-agent-migration/BASE_COMMIT.txt",
+      "bytes": 41,
+      "mtime": "2026-10-28T10:45:41.227137+08:00",
+      "sha256_before_redaction": "97415828695eb236c7c51bc48a3d04191b7439d3b8fe326ce466c4bf3235be23",
+      "sha256_after_redaction": "97415828695eb236c7c51bc48a3d04191b7439d3b8fe326ce466c4bf3235be23"
+    },
+    {
+      "path": "/workspace/flagscale-agent-migration/VALIDATION.txt",
+      "bytes": 710,
+      "mtime": "2026-10-28T12:44:18.003704+08:00",
+      "sha256_before_redaction": "a9c44254ad642b3deebf5f39c2ced97dd1ff1c62bf9521658c1d0e356c9acdeb",
+      "sha256_after_redaction": "a9c44254ad642b3deebf5f39c2ced97dd1ff1c62bf9521658c1d0e356c9acdeb"
+    },
+    {
+      "path": "/workspace/flagscale-agent-migration/agent.yaml.example",
+      "bytes": 312,
+      "mtime": "2026-10-28T10:54:10.925756+08:00",
+      "sha256_before_redaction": "07d21f1b748b2a8cfd1844d4a3bd1d74f7ba1e3ca36aff1f7fed85232c26659d",
+      "sha256_after_redaction": "ccb6f53ffc23c3c569dde2b79a46ff2a4ed80158a97a44b7da3cc3e03fd5a080"
+    },
+    {
+      "path": "/workspace/flagscale-agent-migration/constraints-tested.txt",
+      "bytes": 314,
+      "mtime": "2026-10-28T10:45:41.243137+08:00",
+      "sha256_before_redaction": "775853f57f298181d79bcb70ec92ce3053cad78cfe258ba3482693972d055682",
+      "sha256_after_redaction": "775853f57f298181d79bcb70ec92ce3053cad78cfe258ba3482693972d055682"
+    },
+    {
+      "path": "/workspace/flagscale-agent-migration/迁移与配置说明.md",
+      "bytes": 11259,
+      "mtime": "2026-10-28T12:44:17.991704+08:00",
+      "sha256_before_redaction": "d5a376f352cbc46403263d53c7623094bec0f2246fe9869484b292d01aa1c04f",
+      "sha256_after_redaction": "0cb36e475bb10ca367fdd52be6c2c6128588abe9f8ccf36a81811f5a579b3340"
+    },
+    {
+      "path": "/workspace/vllm-plugin-FL/.github/scripts/iluvatar/check.sh",
+      "bytes": 960,
+      "mtime": "2026-10-30T10:49:39.400241+08:00",
+      "sha256_before_redaction": "47053a8eea7faa30c2bb36d1d0ae31915a66406c740323c885afa309b6391d13",
+      "sha256_after_redaction": "47053a8eea7faa30c2bb36d1d0ae31915a66406c740323c885afa309b6391d13"
+    },
+    {
+      "path": "/workspace/vllm-plugin-FL/.github/scripts/iluvatar/install_vllm.sh",
+      "bytes": 890,
+      "mtime": "2026-10-30T13:44:09.974042+08:00",
+      "sha256_before_redaction": "d9cbf866454404b316bb7aed336023820d861bda8016ab0d56c479e22d3ee006",
+      "sha256_after_redaction": "d9cbf866454404b316bb7aed336023820d861bda8016ab0d56c479e22d3ee006"
+    },
+    {
+      "path": "/workspace/vllm-plugin-FL/.github/scripts/iluvatar/run_gates.sh",
+      "bytes": 2716,
+      "mtime": "2026-11-03T18:54:28.245438+08:00",
+      "sha256_before_redaction": "d6f2f6cd4667a8c0317db5de60dcb53f12f49f5529b8221a56d416a05fb20d6d",
+      "sha256_after_redaction": "d6f2f6cd4667a8c0317db5de60dcb53f12f49f5529b8221a56d416a05fb20d6d"
+    },
+    {
+      "path": "/workspace/vllm-plugin-FL/.github/scripts/iluvatar/setup.sh",
+      "bytes": 1905,
+      "mtime": "2026-10-30T14:34:46.073643+08:00",
+      "sha256_before_redaction": "6f78328de6675aca4704a33df5bd8373f9a6992b3e24965254f221d199f1b136",
+      "sha256_after_redaction": "6f78328de6675aca4704a33df5bd8373f9a6992b3e24965254f221d199f1b136"
+    },
+    {
+      "path": "/workspace/vllm-plugin-FL/tools/adaptation-gate-cases/run_serve.sh",
+      "bytes": 308,
+      "mtime": "2026-10-30T10:49:39.424241+08:00",
+      "sha256_before_redaction": "8c00d35c2d2ee23eb9702cb88fb70ea74cab84e43eba9f260139c5c559acb702",
+      "sha256_after_redaction": "8c00d35c2d2ee23eb9702cb88fb70ea74cab84e43eba9f260139c5c559acb702"
+    },
+    {
+      "path": "/workspace/vllm-plugin-FL/tools/adaptation-gate-cases/run_serve_eager.sh",
+      "bytes": 1338,
+      "mtime": "2026-10-30T20:24:24.585438+08:00",
+      "sha256_before_redaction": "6f5b4355ee5ba24760aadc952d2cf820bd09b19c9d78683fa377acf7c747dac6",
+      "sha256_after_redaction": "6f5b4355ee5ba24760aadc952d2cf820bd09b19c9d78683fa377acf7c747dac6"
+    },
+    {
+      "path": "/workspace/vllm-plugin-FL/tools/adaptation-gate-cases/run_serve_graph.sh",
+      "bytes": 1492,
+      "mtime": "2026-10-30T18:43:17.306262+08:00",
+      "sha256_before_redaction": "def2b0e1ad7a6aad8c512eddc882dadbb52ac01d56beed932899ae411fe15701",
+      "sha256_after_redaction": "def2b0e1ad7a6aad8c512eddc882dadbb52ac01d56beed932899ae411fe15701"
+    },
+    {
+      "path": "/workspace/vllm-plugin-FL/tools/adaptation-gate-cases/run_test.sh",
+      "bytes": 1771,
+      "mtime": "2026-10-30T10:49:39.424241+08:00",
+      "sha256_before_redaction": "ecdb52f2e78a4918ab17f766c274e91e24dc174a29accd105eae17cd87bda3f7",
+      "sha256_after_redaction": "ecdb52f2e78a4918ab17f766c274e91e24dc174a29accd105eae17cd87bda3f7"
+    }
+  ],
+  "missing_scripts": [],
+  "artifacts": {
+    "flagscale-agent-complete-command-history.md": {
+      "bytes": 8501759,
+      "sha256": "1c302937b9434188b0f4374824293a681f1b9e3a8aa920c00a16a5caf019d7f9"
+    },
+    "flagscale-agent-all-tool-records.redacted.jsonl": {
+      "bytes": 16906844,
+      "sha256": "4aad8794204bbb9ebca8eae2621065f065abd6c8d5b962ba4001381cb11e9726"
+    }
+  }
+}

@@ -1,5 +1,14 @@
 # vLLM 0.32 适配记录
 
+## FlagScale-Agent 完整命令档案（2026-11-04）
+
+- [环境建立与后续操作：网页阅读版](docs/flagscale-agent-command-history-guide.md)
+- [完整单份 Markdown：逐条命令、文件修改与脚本全文](docs/flagscale-agent-complete-command-history.md)
+- [脱敏审计原始结果、覆盖统计与校验](records/flagscale-agent-command-history-20261104/README.md)
+
+完整文件较大，请使用 Raw/Download 下载在编辑器阅读。原有 S60 和 Iluvatar 报告继续保留。
+
+
 ## 归档索引
 
 - [S60 完整适配技术报告](docs/s60-vllm032-detailed-report.md)：版本差异、36 个改动文件逐项说明、根因与修复链、精度数值、完整请求矩阵、失败尝试、未做事项和复现方法。

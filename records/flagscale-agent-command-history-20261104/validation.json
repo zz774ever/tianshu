@@ -1,0 +1,15 @@
+{
+  "status": "passed",
+  "unique_agent_records": 4045,
+  "shell_commands_checked_verbatim": 1319,
+  "all_audit_records": 4491,
+  "checks": [
+    "Markdown fences balanced",
+    "All tool records indexed exactly once",
+    "Every sanitized shell command appears verbatim under its own heading",
+    "Artifact SHA256 verified",
+    "No current configured credentials or token patterns",
+    "Public gzip audit decompresses exactly",
+    "Staged complete document matches source"
+  ]
+}
