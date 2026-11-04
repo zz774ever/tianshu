@@ -2,7 +2,7 @@
 
 ## 新机器环境搭建与测试教程
 
-- **[教程二：官方镜像、原始环境验证、直接升级与文本测试](docs/iluvatar-vllm032-fresh-machine-setup.md)**：当前手动复现入口；不建 venv，容器内直接安装，终端 A 启服务、终端 B 运行 OpenAI/curl，包含 4B、27B、35B 文本命令。
+- **[教程二：官方镜像、原始环境验证、直接升级与文本测试](docs/iluvatar-vllm032-fresh-machine-setup.md)**：当前手动复现入口；不建 venv、不录制日志，容器内直接安装，终端 A 启服务、终端 B 用 curl 询问“详细介绍下人工智能”，包含 4B、27B、35B 文本命令。
 - **[教程一：此前现有 venv 环境的复现记录](docs/iluvatar-vllm032-local-reproduction.md)**：保留旧版隔离环境、通信、eager/graph 和流式测试证据，不与教程二混用。
 - [配套环境与验证脚本](tools/iluvatar-repro/)：环境激活、版本及库检查、真实 FlagCX 通信和 Qwen3-4B 冒烟。
 
