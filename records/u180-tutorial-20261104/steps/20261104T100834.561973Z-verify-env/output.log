@@ -1,0 +1,48 @@
+/usr/local/lib/python3.12/site-packages/flag_gems/utils/libentry.py:728: DeprecationWarning: use_cuda_graph is deprecated; use benchmark_mode='replay' or benchmark_mode='event'
+  super().__init__(*args, **kwargs)
+/usr/local/lib/python3.12/site-packages/flag_gems/utils/libentry.py:411: RuntimeWarning: active Triton backend does not provide a replay benchmarker; falling back to event timing
+  resolved_benchmark = resolve_benchmarker(
+{
+  "status": "PASS",
+  "python": "/workspace/validation/venv/bin/python",
+  "plugin_commit": "c17d866e08b583f63998cbd47bc39fe3e57efce0",
+  "cli": {
+    "vllm": {
+      "path": "/workspace/validation/venv/bin/vllm",
+      "shebang": "#!/workspace/validation/venv/bin/python"
+    },
+    "pytest": {
+      "path": "/workspace/validation/venv/bin/pytest",
+      "shebang": "#!/workspace/validation/venv/bin/python"
+    }
+  },
+  "device_memory": [
+    {
+      "logical_device": 0,
+      "free_gib": 31.80078125,
+      "total_gib": 32.0
+    },
+    {
+      "logical_device": 1,
+      "free_gib": 31.80078125,
+      "total_gib": 32.0
+    }
+  ],
+  "scope": "Pinned runtime, import/CLI sources, library loading and basic GPU arithmetic; not all pip requirements or model quality",
+  "versions": {
+    "torch": "2.10.0+corex.4.5.0",
+    "flagtree": "0.6.2a3+iluvatar3.6",
+    "flag-gems": "5.3.5",
+    "vllm": "0.32.0",
+    "triton": "3.6.0"
+  },
+  "paths": {
+    "vllm": "/workspace/validation/venv/lib/python3.12/site-packages/vllm/__init__.py",
+    "plugin": "/workspace/pr674-plugin/vllm_fl/__init__.py",
+    "flag_gems": "/usr/local/lib/python3.12/site-packages/flag_gems/__init__.py",
+    "triton": "/usr/local/lib/python3.12/site-packages/triton/__init__.py",
+    "flagcx": "/mnt/share/user_homes/iluv/FlagCX/build/lib/libflagcx.so"
+  },
+  "devices": 2,
+  "device_name": "Iluvatar BI-V150"
+}

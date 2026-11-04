@@ -1,6 +1,10 @@
 import argparse
+import hashlib
+from importlib import metadata
 import json
+import os
 from pathlib import Path
+import sys
 
 
 def main():
@@ -30,6 +34,7 @@ def main():
         model=args.model, tensor_parallel_size=args.tp,
         dtype="bfloat16", enforce_eager=not args.graph,
         max_model_len=512, max_num_seqs=2, gpu_memory_utilization=0.65,
+        max_num_batched_tokens=512, seed=0,
         **options,
     )
     prompts = ["The capital of France is", "The speed of light in vacuum is approximately"]
@@ -44,7 +49,14 @@ def main():
     output.parent.mkdir(parents=True, exist_ok=True)
     report = {"status": "PASS", "vllm_version": vllm.__version__,
               "vllm_path": vllm.__file__, "model": args.model,
-              "tp": args.tp, "graph": args.graph, "outputs": records}
+              "tp": args.tp, "graph": args.graph, "outputs": records,
+              "python": sys.executable,
+              "devices": os.environ.get('CUDA_VISIBLE_DEVICES'),
+              "versions": {name: metadata.version(name) for name in (
+                  'torch', 'flagtree', 'flag-gems', 'transformers', 'tokenizers', 'numpy')},
+              "model_config_sha256": hashlib.sha256(
+                  (Path(args.model) / 'config.json').read_bytes()).hexdigest(),
+              "scope": "Nonempty generation only; not semantic correctness or NVIDIA alignment"}
     with output.open("x") as handle:
         json.dump(report, handle, ensure_ascii=False, indent=2)
         handle.write("\n")

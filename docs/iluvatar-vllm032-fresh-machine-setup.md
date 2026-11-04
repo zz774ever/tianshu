@@ -2,6 +2,10 @@
 
 更新：2026-11-04。适用对象：要在另一台天数 Iluvatar / CoreX 服务器上复现本项目环境的同学。
 
+**当前u180/n180机器已有 `testtianshuzdh` 容器，请优先使用[本机手动复现教程](iluvatar-vllm032-local-reproduction.md)，无需重复拉取、安装和下载。** 本文用于重新创建环境。教程入口、驱动依赖及venv入口已经按独立复现问题修正；实测范围见[教程验证记录](iluvatar-vllm032-tutorial-validation.md)。
+
+**只做文本测试：执行第1–10节即可，跳过第11节所有图像/混合门禁。** 本轮用户只需要文本，新增本机主教程和API客户端均只发送文本；第11节保留供历史参考，不属于此次复现主线。
+
 本文按实际搭建顺序给出命令：检查宿主机 → 拉镜像 → 建立隔离 Python → 准备 FlagTree、FlagGems、FlagCX → 安装 vLLM 与适配插件 → 下载模型 → 通信及推理验证 → 图文门禁 → 保存结果。
 
 主线基于当前容器核实的 **CoreX 4.5.0 + Python 3.12 + vLLM 0.32.0**。本文命令经过源码、安装元数据、已有安装脚本和 Shell/Python 语法核对；此次编写没有另找一台空白服务器完整重装，因此下文把尚需目标机器验证的条件写在对应步骤中。
@@ -74,9 +78,22 @@ test -f "$COREX_HOST_ROOT/lib64/libcuda.so.1"
 test -f "$COREX_HOST_ROOT/lib64/libixml.so"
 
 git clone https://github.com/zz774ever/tianshu.git "$REPRO_HOST_ROOT/docs"
+git -C "$REPRO_HOST_ROOT/docs" rev-parse HEAD
 ```
 
 如果 `docs` 已存在，用 `git -C "$REPRO_HOST_ROOT/docs" pull --ff-only` 更新，不要重复 clone 到同一目录。
+
+记录这里的教程commit；跨机器复制时用同一commit，避免配套脚本跟随main变化。网络受限可使用可访问的GitHub代理克隆，但之后仍须核对精确commit，不关闭TLS校验。
+
+另外设置**与当前宿主驱动匹配、包含完整依赖的用户态库目录**：
+
+```bash
+export COREX_DRIVER_HOST_LIB_DIR="$COREX_HOST_ROOT/lib64"
+test -f "$COREX_DRIVER_HOST_LIB_DIR/libcuda.so.1"
+ldd "$COREX_DRIVER_HOST_LIB_DIR/libcuda.so.1"
+```
+
+此变量与SDK根目录不同，必须按实际安装路径调整。本机宿主驱动路径是 `/usr/local/corex-4.5.0.20260509`，不能照抄不带日期的示例。新驱动的libcuda可能额外需要libixthunk等库：若它们不在此目录，需由维护者提供匹配的完整用户态依赖目录，然后在下节只读挂载。仅libcuda和libixml两个文件不足以保证容器可导入torch。
 
 ### 2.3 拉取已有的天数基础环境
 
@@ -102,7 +119,7 @@ docker image inspect "$BASE_IMAGE" --format '{{json .RepoDigests}}'
 docker run -dit \
   --name tianshu-vllm032 \
   --privileged \
-  --ipc=host \
+  --shm-size=32g \
   --ulimit nofile=65535:65535 \
   --mount "type=bind,src=$REPRO_HOST_ROOT,dst=/repro" \
   --mount "type=bind,src=$MODEL_HOST_ROOT,dst=/models" \
@@ -110,7 +127,10 @@ docker run -dit \
   --mount type=bind,src=/lib/modules,dst=/lib/modules,readonly \
   --mount "type=bind,src=$COREX_HOST_ROOT/lib64/libcuda.so.1,dst=/usr/local/corex/lib64/libcuda.so.1,readonly" \
   --mount "type=bind,src=$COREX_HOST_ROOT/lib64/libixml.so,dst=/usr/local/corex/lib64/libixml.so,readonly" \
+  --mount "type=bind,src=$COREX_DRIVER_HOST_LIB_DIR,dst=/opt/corex-driver/lib64,readonly" \
   -e REPRO_ROOT=/repro \
+  -e COREX_DRIVER_LIB_DIR=/opt/corex-driver/lib64 \
+  -e LD_LIBRARY_PATH=/opt/corex-driver/lib64:/usr/local/corex/lib64:/usr/local/openmpi/lib:/usr/local/lib \
   -e REPRO_DEVICES=0,1,2,3 \
   -e COREX_VISIBLE_DEVICES=0,1,2,3 \
   -e CUDA_VISIBLE_DEVICES=0,1,2,3 \
@@ -121,6 +141,8 @@ docker exec -it tianshu-vllm032 bash
 ```
 
 后文服务绑定容器的 `127.0.0.1`，测试也在同一容器运行，因此本例不需要暴露宿主机端口。CoreX 使用上述设备及驱动库挂载方式；本教程没有使用 NVIDIA Container Toolkit 的 `--gpus all`。
+
+这里使用独立32GiB共享内存，不共享宿主IPC或PID空间。新增用户态库目录只读挂载到独立位置，没有覆盖镜像整个CoreX SDK。
 
 ## 3. 在容器里建立目录与隔离 Python
 
@@ -146,6 +168,17 @@ python3 -c 'import sys; assert sys.version_info[:2] == (3, 12), sys.version'
 
 ### 3.2 建立 venv，保留镜像提供的厂商包
 
+先在容器检查驱动依赖，必须没有 `not found`：
+
+```bash
+export COREX_DRIVER_LIB_DIR=/opt/corex-driver/lib64
+export LD_LIBRARY_PATH="$COREX_DRIVER_LIB_DIR:/usr/local/corex/lib64${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+ldd /usr/local/corex/lib64/libcuda.so.1
+ldd /usr/local/corex/lib64/libixml.so
+```
+
+缺少libixthunk等库时在此停止，补齐同驱动版本用户态依赖。不能用pip解决，也不要在容器执行驱动安装器。本机独立复现曾在容器中用厂商同版驱动包 `--noexec` 提取用户态库解决；安装包路径及SHA必须由该机器维护者确认，不能将旧机器私有路径当成公开通用下载地址。
+
 ```bash
 unset PYTHONPATH VLLM_VENDOR
 python3 -m venv --system-site-packages "$REPRO_ROOT/venv"
@@ -154,10 +187,19 @@ export PYTHONNOUSERSITE=1
 
 which python
 python -c 'import sys; print(sys.executable); assert sys.prefix != sys.base_prefix'
-python -c 'import torch; print(torch.__version__, torch.__file__)'
+python - <<'PY'
+from importlib import metadata
+import torch
+print('Torch runtime:', torch.__version__, torch.__file__)
+print('Torch distribution:', metadata.version('torch'))
+assert metadata.version('torch') == '2.10.0+corex.4.5.0'
+assert torch.__version__.split('+')[0] == '2.10.0'
+assert torch.cuda.is_available()
+assert (torch.ones(4, device='cuda') + 2).cpu().tolist() == [3, 3, 3, 3]
+PY
 ```
 
-期望 PyTorch 为 `2.10.0+corex.4.5.0`。`--system-site-packages` 有意复用镜像里的 CoreX PyTorch、FlagTree 等依赖；venv 用于单独安装 vLLM 0.32 和适配插件，不覆盖镜像原来的 vLLM 0.28。
+期望PyTorch的distribution版本为 `2.10.0+corex.4.5.0`，但其 `torch.__version__` 在实机为 `2.10.0`，不能用带CoreX后缀的字符串直接断言runtime版本。`--system-site-packages` 有意复用镜像里的厂商依赖，venv仅隔离安装vLLM及插件。
 
 如果新镜像 PyTorch 不是这个厂商构建，先修正基础环境。不要用 PyPI 上的普通 `torch==2.10.0` 替代它。
 
@@ -352,6 +394,7 @@ VLLM_SOURCE_ARCHIVE="$REPRO_ROOT/src/vllm-v0.32.0.tar.gz" \
 
 python - <<'PY'
 import sys
+from importlib import metadata
 from pathlib import Path
 import torch
 import vllm
@@ -360,7 +403,8 @@ print('vLLM:', vllm.__version__, vllm.__file__)
 print('Torch:', torch.__version__, torch.__file__)
 assert vllm.__version__.split('+')[0] == '0.32.0'
 assert Path(sys.prefix).resolve() in Path(vllm.__file__).resolve().parents
-assert torch.__version__ == '2.10.0+corex.4.5.0'
+assert metadata.version('torch') == '2.10.0+corex.4.5.0'
+assert torch.__version__.split('+')[0] == '2.10.0'
 PY
 ```
 
@@ -382,7 +426,7 @@ python .github/scripts/install_flaggems_vllm.py
 
 第二条命令会拉取并安装固定的 FlagGems-vllm 提交，检查 `direct_url.json` 的 commit，并确认 Torch、FlagTree、FlagGems、vLLM、NumPy 的版本没有被替换。只看到包版本 `0.1.0` 不能证明装错，要核对固定源码提交。
 
-### 7.6 核对并同步上层 Python 依赖
+### 7.6 核对上层依赖；可选复现历史组合
 
 基础镜像还应提供 pytest、requests、OpenAI SDK、Pillow、PyYAML、SQLAlchemy 等依赖。先检查：
 
@@ -395,7 +439,9 @@ for name in ('transformers', 'tokenizers', 'numpy', 'openai', 'pillow',
 PY
 ```
 
-若基础镜像中的这些包与当前运行记录不同，使用以下命令同步已观察的上层版本，保留 `--no-deps`，不触碰 PyTorch、FlagTree、FlagGems 或 vLLM：
+**使用相同镜像且版本一致时，不要执行下面的重新安装。** 下列命令仅用于有意复现已观察的历史组合，并非建立满足上游全部依赖约束的新环境。若目标是严格依赖对齐，请另建诊断venv，按vLLM元数据解析兼容版本并重新验证，不将其结果与历史组合混用。
+
+只有确定选择历史组合且需要补齐差异时，才保留 `--no-deps` 执行：
 
 ```bash
 python -m pip install --no-deps \
@@ -419,6 +465,8 @@ export REPRO_ROOT=/repro
 export REPRO_DEVICES=0,1,2,3
 source "$REPRO_ROOT/docs/tools/iluvatar-repro/activate.sh"
 
+python "$REPRO_ROOT/docs/tools/iluvatar-repro/prepare_cli.py"
+hash -r
 python "$REPRO_ROOT/docs/tools/iluvatar-repro/verify_env.py" --min-devices 1
 ```
 
@@ -431,6 +479,23 @@ python "$REPRO_ROOT/docs/tools/iluvatar-repro/verify_env.py" --min-devices 1
 - 可见设备数量满足要求。
 - FlagCX 的真实动态库与 Python wrapper 均可导入。
 - FlagGems-vllm 的源码 commit 正确。
+- 插件精确commit、venv内的vllm/pytest入口解释器、真实GPU加法和NumPy桥接。
+
+`prepare_cli.py`只在当前venv创建pytest入口，复用已安装pytest模块，不修改门禁源码或全局安装。原 `run_test.sh` 使用裸pytest，若没有此入口可能误用全局Python/vLLM0.28。
+
+可用 `--min-free-gib 30` 在启动前拒绝显存不足的卡；这不是GPU预约锁。`verify_env PASS`只覆盖上述显式检查，不等于所有pip依赖兼容或模型内容正确。务必保存依赖检查输出和退出码：
+
+```bash
+mkdir -p "$REPRO_ROOT/results"
+if python "$REPRO_ROOT/docs/tools/iluvatar-repro/record.py" \
+  --root "$REPRO_ROOT/results/steps" pip-check -- python -m pip check; then
+  echo 'pip check passed'
+else
+  echo 'pip check failed; preserve output and assess declared dependency differences' >&2
+fi
+```
+
+当前历史组合的pip check非零有已知原因，应如实保留，不安装普通Triton来掩盖FlagTree发行包名差异。后续安装、通信、生成也可用同一记录器包裹，保存命令、stdout/stderr、UTC时间、耗时和退出码；令牌及登录操作不进入记录器。
 
 使用 4 卡完整模型测试时再执行仓库已有的严格检查：
 
@@ -459,13 +524,27 @@ source "$REPRO_ROOT/docs/tools/iluvatar-repro/activate.sh"
 export REPRO_DEVICES=0,1
 source "$REPRO_ROOT/docs/tools/iluvatar-repro/activate.sh"
 
-torchrun --standalone --nproc_per_node=2 \
+export FLAGCX_MASTER_PORT=18134
+python - <<'PY'
+import os
+import socket
+with socket.socket() as endpoint:
+    endpoint.bind(('127.0.0.1', int(os.environ['FLAGCX_MASTER_PORT'])))
+print('FlagCX control port is free')
+PY
+
+python -m torch.distributed.run --nnodes=1 --nproc_per_node=2 \
+  --master-addr=127.0.0.1 --master-port="$FLAGCX_MASTER_PORT" \
   "$REPRO_ROOT/docs/tools/iluvatar-repro/probe_flagcx.py"
 ```
 
 预期两个 rank 均输出 `FLAGCX_PASS ... values=[3.0, 3.0, 3.0, 3.0]`，进程正常退出。脚本明确调用插件中的 `PyFlagcxCommunicator`；仅运行 Gloo 的 `all_reduce` 不能代替这一验证。
 
 通信成功后，再恢复下一节需要的卡号。独立 AllReduce 成功只证明所测通信可用，不等于所有模型场景都通过。
+
+不要用裸torchrun替代：继承系统torch的venv通常没有自己的torchrun入口，系统脚本的shebang会绕过当前venv。使用python -m明确启动同一解释器。
+
+显式static rendezvous和127.0.0.1还避免 `--standalone` 在当前容器选择不可解析的hostname。若控制端口占用，修改FLAGCX_MASTER_PORT并重新检查，无需修改宿主hosts。
 
 ## 10. 下载小模型，做最低成本的推理检查
 
@@ -499,7 +578,7 @@ python "$REPRO_ROOT/docs/tools/iluvatar-repro/smoke.py" \
   2>&1 | tee "$RUN_DIR/tp1-eager.log"
 ```
 
-脚本使用 BF16、512 上下文、最多 2 个序列、显存预算 0.65，对两个文本 prompt 各生成最多 16 token。成功时保存版本、导入路径、文本与 token IDs。JSON 的 `status=PASS` 代表真实生成了非空结果，不是 NVIDIA 精度对齐结论。
+脚本使用BF16、seed0、512上下文、512批次token预算、最多2个序列、显存预算0.65，对两个文本prompt各生成最多16 token。JSON保存Python、关键包版本、vLLM导入路径、可见卡号、config哈希、文本与token IDs。`status=PASS`仅代表真实生成了非空结果，不是语义正确性或NVIDIA精度对齐结论。
 
 ### 10.3 TP2 eager 和 Graph 检查
 
@@ -651,7 +730,7 @@ unset SERVED_MODEL_NAME
 bash .github/scripts/iluvatar/run_gates.sh
 ```
 
-`run_gates.sh` 自己管理服务启停，日志分别保存在四组目录。原适配记录存在 35B OCR 稳定性及精度对齐的未闭环问题；本文固定提交不保证完整矩阵全通过。环境安装成功、冒烟通过、完整图文验收通过是不同结论，应分别记录。
+`run_gates.sh`自己管理服务启停，日志分别保存在四组目录。当前固定提交存在已知质量失败：本机独立完整复测27B eager=13/26、27B graph=17/26、35B eager=24/26、35B graph=26/26，总80/104，脚本退出1；失败不只35B OCR。详见[本机复现教程](iluvatar-vllm032-local-reproduction.md)。本文不保证完整矩阵全通过。环境安装成功、冒烟通过、完整图文验收通过应分别记录。
 
 ## 12. 运行适配相关单元测试
 
@@ -681,6 +760,7 @@ mkdir -p "$SNAPSHOT_DIR"
 
 python -m pip list --format=json > "$SNAPSHOT_DIR/python-packages.json"
 python -VV > "$SNAPSHOT_DIR/python-version.txt"
+git -C "$REPRO_ROOT/docs" rev-parse HEAD > "$SNAPSHOT_DIR/tutorial-commit.txt"
 git -C "$REPO_DIR" rev-parse HEAD > "$SNAPSHOT_DIR/plugin-commit.txt"
 git -C "$FLAGCX_PATH" rev-parse HEAD > "$SNAPSHOT_DIR/flagcx-commit.txt"
 git -C "$REPRO_ROOT/src/FlagGems" rev-parse HEAD > "$SNAPSHOT_DIR/flaggems-commit.txt"
@@ -746,7 +826,7 @@ git bundle create vllm-plugin-FL.bundle repro-iluvatar-c17d866
 | 35B OCR 仍不稳定 | 属于已记录的诊断范围；复现后单独登记，不应直接归因于新机器环境未安装 |
 | 端口被占用 | 查当前容器中已有服务，停止自己的前一次示例或改两侧 PORT；不要批量杀其他人的进程 |
 
-完成第 8 节表示依赖及导入来源通过检查；第 9 节表示所测 FlagCX 通信通过；第 10 节表示小模型能够生成；第 11 节才是图文场景验证。NVIDIA 逐 token / logits 对齐和性能验收需要单独设计对照，本教程没有将它们视为环境安装的成功条件。
+完成第8节表示指定厂商版本、导入/CLI来源及库加载检查通过，不保证pip check通过；第9节表示所测FlagCX通信通过；第10节表示小模型能够生成；第11节才是图文场景验证。NVIDIA逐token/logits对齐和性能验收需要单独设计对照。
 
 ## 16. 依据与配套文件
 
@@ -762,4 +842,4 @@ git bundle create vllm-plugin-FL.bundle repro-iluvatar-c17d866
 
 最后一项官方 Wiki 在本次网络环境中访问失败；FlagTree 开发构建形式另外核对了当前已安装包随附 README。本文没有将不可取得的源码 commit、wheel 地址或未执行的新机测试结果编造成已验证事实。
 
-本次文档交付检查：所有 Bash 代码块与配套 Shell 脚本通过语法检查；配套 Python 脚本通过编译和 Ruff 静态检查；本地相对链接通过检查。`verify_env.py --min-devices 1` 在现有适配 venv 中以正确插件源码路径实际返回 PASS，识别 BI-V150 和表中版本。本次没有重新运行通信探针或模型测试，也没有把这些新机执行步骤记成已跑通。
+本次修正版交付检查和实际文本执行结果统一见[教程验证记录](iluvatar-vllm032-tutorial-validation.md)：区分已运行的现有容器文本测试、语法检查，以及未重做的新机安装/源码编译步骤。本轮环境没有Ruff，未将其记为本轮已通过；没有执行图像测试。

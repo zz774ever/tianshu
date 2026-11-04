@@ -1,0 +1,428 @@
+{
+  "generated_utc": "2026-11-04T10:24:35.083741+00:00",
+  "container": "testtianshuzdh",
+  "text_only": true,
+  "smoke": {
+    "tp1-eager": {
+      "status": "PASS",
+      "vllm_version": "0.32.0",
+      "vllm_path": "/workspace/validation/venv/lib/python3.12/site-packages/vllm/__init__.py",
+      "model": "/data/models/Qwen/Qwen3-4B",
+      "tp": 1,
+      "graph": false,
+      "outputs": [
+        {
+          "prompt": "The capital of France is",
+          "text": " not Paris. What is it? Also, why is the capital of France not",
+          "token_ids": [
+            537,
+            12095,
+            13,
+            3555,
+            374,
+            432,
+            30,
+            7281,
+            11,
+            3170,
+            374,
+            279,
+            6722,
+            315,
+            9625,
+            537
+          ]
+        },
+        {
+          "prompt": "The speed of light in vacuum is approximately",
+          "text": " 3.00 × 10^8 m/s. What is",
+          "token_ids": [
+            220,
+            18,
+            13,
+            15,
+            15,
+            24768,
+            220,
+            16,
+            15,
+            61,
+            23,
+            296,
+            2687,
+            13,
+            3555,
+            374
+          ]
+        }
+      ],
+      "python": "/workspace/validation/venv/bin/python",
+      "devices": "0",
+      "versions": {
+        "torch": "2.10.0+corex.4.5.0",
+        "flagtree": "0.6.2a3+iluvatar3.6",
+        "flag-gems": "5.3.5",
+        "transformers": "5.14.1",
+        "tokenizers": "0.22.2",
+        "numpy": "1.26.4"
+      },
+      "model_config_sha256": "8ba006f74fecfaaeb392872a60f4a480e7ec9860153d2e1b769ec81f9a147f8a",
+      "scope": "Nonempty generation only; not semantic correctness or NVIDIA alignment"
+    },
+    "tp2-eager": {
+      "status": "PASS",
+      "vllm_version": "0.32.0",
+      "vllm_path": "/workspace/validation/venv/lib/python3.12/site-packages/vllm/__init__.py",
+      "model": "/data/models/Qwen/Qwen3-4B",
+      "tp": 2,
+      "graph": false,
+      "outputs": [
+        {
+          "prompt": "The capital of France is",
+          "text": " Paris. The capital of Germany is Berlin. The capital of Italy is Rome.",
+          "token_ids": [
+            12095,
+            13,
+            576,
+            6722,
+            315,
+            9856,
+            374,
+            19846,
+            13,
+            576,
+            6722,
+            315,
+            15344,
+            374,
+            21718,
+            13
+          ]
+        },
+        {
+          "prompt": "The speed of light in vacuum is approximately",
+          "text": " 3.00 × 10^8 m/s. What is",
+          "token_ids": [
+            220,
+            18,
+            13,
+            15,
+            15,
+            24768,
+            220,
+            16,
+            15,
+            61,
+            23,
+            296,
+            2687,
+            13,
+            3555,
+            374
+          ]
+        }
+      ],
+      "python": "/workspace/validation/venv/bin/python",
+      "devices": "0,1",
+      "versions": {
+        "torch": "2.10.0+corex.4.5.0",
+        "flagtree": "0.6.2a3+iluvatar3.6",
+        "flag-gems": "5.3.5",
+        "transformers": "5.14.1",
+        "tokenizers": "0.22.2",
+        "numpy": "1.26.4"
+      },
+      "model_config_sha256": "8ba006f74fecfaaeb392872a60f4a480e7ec9860153d2e1b769ec81f9a147f8a",
+      "scope": "Nonempty generation only; not semantic correctness or NVIDIA alignment"
+    },
+    "tp2-full-graph": {
+      "status": "PASS",
+      "vllm_version": "0.32.0",
+      "vllm_path": "/workspace/validation/venv/lib/python3.12/site-packages/vllm/__init__.py",
+      "model": "/data/models/Qwen/Qwen3-4B",
+      "tp": 2,
+      "graph": true,
+      "outputs": [
+        {
+          "prompt": "The capital of France is",
+          "text": " Paris. The capital of Germany is Berlin. The capital of the United Kingdom is",
+          "token_ids": [
+            12095,
+            13,
+            576,
+            6722,
+            315,
+            9856,
+            374,
+            19846,
+            13,
+            576,
+            6722,
+            315,
+            279,
+            3639,
+            15072,
+            374
+          ]
+        },
+        {
+          "prompt": "The speed of light in vacuum is approximately",
+          "text": " 3.00 x 10^8 m/s. The speed",
+          "token_ids": [
+            220,
+            18,
+            13,
+            15,
+            15,
+            856,
+            220,
+            16,
+            15,
+            61,
+            23,
+            296,
+            2687,
+            13,
+            576,
+            4628
+          ]
+        }
+      ],
+      "python": "/workspace/validation/venv/bin/python",
+      "devices": "0,1",
+      "versions": {
+        "torch": "2.10.0+corex.4.5.0",
+        "flagtree": "0.6.2a3+iluvatar3.6",
+        "flag-gems": "5.3.5",
+        "transformers": "5.14.1",
+        "tokenizers": "0.22.2",
+        "numpy": "1.26.4"
+      },
+      "model_config_sha256": "8ba006f74fecfaaeb392872a60f4a480e7ec9860153d2e1b769ec81f9a147f8a",
+      "scope": "Nonempty generation only; not semantic correctness or NVIDIA alignment"
+    }
+  },
+  "records": [
+    {
+      "label": "verify-env",
+      "exit_code": 0,
+      "started_utc": "2026-11-04T10:08:34.561973+00:00",
+      "elapsed_seconds": 10.066047504544258,
+      "path": "steps/20261104T100834.561973Z-verify-env"
+    },
+    {
+      "label": "flagcx-tp2",
+      "exit_code": -15,
+      "started_utc": "2026-11-04T10:08:44.707671+00:00",
+      "elapsed_seconds": 218.66379017941654,
+      "path": "steps/20261104T100844.707671Z-flagcx-tp2"
+    },
+    {
+      "label": "flagcx-tp2-static",
+      "exit_code": 0,
+      "started_utc": "2026-11-04T10:12:23.465345+00:00",
+      "elapsed_seconds": 44.69364417903125,
+      "path": "steps/20261104T101223.465345Z-flagcx-tp2-static"
+    },
+    {
+      "label": "tp1-eager",
+      "exit_code": 0,
+      "started_utc": "2026-11-04T10:13:31.804024+00:00",
+      "elapsed_seconds": 145.6536390092224,
+      "path": "steps/20261104T101331.804024Z-tp1-eager"
+    },
+    {
+      "label": "tp2-eager",
+      "exit_code": 0,
+      "started_utc": "2026-11-04T10:16:11.459704+00:00",
+      "elapsed_seconds": 180.54412141628563,
+      "path": "steps/20261104T101611.459704Z-tp2-eager"
+    },
+    {
+      "label": "pip-check",
+      "exit_code": 1,
+      "started_utc": "2026-11-04T10:17:44.529061+00:00",
+      "elapsed_seconds": 0.8456756956875324,
+      "path": "steps/20261104T101744.529061Z-pip-check"
+    },
+    {
+      "label": "tp2-full-graph",
+      "exit_code": 0,
+      "started_utc": "2026-11-04T10:20:03.558042+00:00",
+      "elapsed_seconds": 174.54285981692374,
+      "path": "steps/20261104T102003.558042Z-tp2-full-graph"
+    },
+    {
+      "label": "text-api-client",
+      "exit_code": 0,
+      "started_utc": "2026-11-04T10:20:38.468102+00:00",
+      "elapsed_seconds": 136.29607763700187,
+      "path": "steps/20261104T102038.468102Z-text-api-client"
+    },
+    {
+      "label": "verify-env-final",
+      "exit_code": 0,
+      "started_utc": "2026-11-04T10:23:36.616580+00:00",
+      "elapsed_seconds": 9.886459086090326,
+      "path": "steps/20261104T102336.616580Z-verify-env-final"
+    }
+  ],
+  "graph_capture_log_lines": [
+    "Capturing CUDA graphs (mixed prefill-decode, FULL):   0%|          | 0/3 [00:00<?, ?it/s]/usr/local/lib/python3.12/site-packages/flag_gems/utils/libentry.py:411: RuntimeWarning: active Triton backend does not provide a replay benchmarker; falling back to event timing",
+    "Capturing CUDA graphs (mixed prefill-decode, FULL):  33%|███▎      | 1/3 [00:04<00:09,  4.61s/it]/usr/local/lib/python3.12/site-packages/flag_gems/utils/libentry.py:411: RuntimeWarning: active Triton backend does not provide a replay benchmarker; falling back to event timing",
+    "Capturing CUDA graphs (mixed prefill-decode, FULL):  67%|██████▋   | 2/3 [00:04<00:02,  2.10s/it]/usr/local/lib/python3.12/site-packages/flag_gems/utils/libentry.py:411: RuntimeWarning: active Triton backend does not provide a replay benchmarker; falling back to event timing",
+    "Capturing CUDA graphs (mixed prefill-decode, FULL): 100%|██████████| 3/3 [00:06<00:00,  1.85s/it]",
+    "Capturing CUDA graphs (mixed prefill-decode, FULL): 100%|██████████| 3/3 [00:06<00:00,  2.17s/it]"
+  ],
+  "text_api": {
+    "transport_passed": true,
+    "quality_passed": false,
+    "require_quality": false,
+    "base_url": "http://127.0.0.1:18133/v1",
+    "scope": "Text requests only; API functionality and two explicit quality checks",
+    "stream_text": "Certainly! Here's a short introduction to large language models (LLMs):\n\nLarge language models are advanced",
+    "quality_checks": [
+      {
+        "request": {
+          "model": "qwen",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What is 17 + 25? Answer only with the number."
+            }
+          ],
+          "max_tokens": 32,
+          "temperature": 0,
+          "top_p": 1,
+          "extra_body": {
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          }
+        },
+        "expected": "42",
+        "text": "52",
+        "response": {
+          "id": "chatcmpl-94530b8afb29a03e",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "52",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": null
+              },
+              "stop_reason": null,
+              "token_ids": null,
+              "routed_experts": null
+            }
+          ],
+          "created": 1793787773,
+          "model": "qwen",
+          "object": "chat.completion",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "vllm-0.32.0-c2cd6c04",
+          "usage": {
+            "completion_tokens": 3,
+            "prompt_tokens": 28,
+            "total_tokens": 31,
+            "completion_tokens_details": null,
+            "prompt_tokens_details": null
+          },
+          "prompt_logprobs": null,
+          "prompt_token_ids": null,
+          "prompt_text": null,
+          "kv_transfer_params": null,
+          "ec_transfer_params": null,
+          "metrics": null
+        },
+        "quality_passed": false
+      },
+      {
+        "request": {
+          "model": "qwen",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What is the capital of France? Answer only the city name."
+            }
+          ],
+          "max_tokens": 32,
+          "temperature": 0,
+          "top_p": 1,
+          "extra_body": {
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          }
+        },
+        "expected": "paris",
+        "text": "Paris.",
+        "response": {
+          "id": "chatcmpl-bdfa279dcb86ae03",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "Paris.",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": null
+              },
+              "stop_reason": null,
+              "token_ids": null,
+              "routed_experts": null
+            }
+          ],
+          "created": 1793787774,
+          "model": "qwen",
+          "object": "chat.completion",
+          "moderation": null,
+          "service_tier": null,
+          "system_fingerprint": "vllm-0.32.0-c2cd6c04",
+          "usage": {
+            "completion_tokens": 3,
+            "prompt_tokens": 25,
+            "total_tokens": 28,
+            "completion_tokens_details": null,
+            "prompt_tokens_details": null
+          },
+          "prompt_logprobs": null,
+          "prompt_token_ids": null,
+          "prompt_text": null,
+          "kv_transfer_params": null,
+          "ec_transfer_params": null,
+          "metrics": null
+        },
+        "quality_passed": true
+      }
+    ],
+    "exit_code": 0
+  },
+  "helper_sha256": {
+    ".gitignore": "32dae3052f331ee34d628ef535709b301259a45df7c7522c4d35dcf49873f00b",
+    "activate-local.sh": "1a469f145e2bc8930f9a602639d8a31cc128e26f0fdb06ce4bb0b6654a5838f8",
+    "activate.sh": "ba6566586761f2d2de414558cac230d1bfd3e0631f517ea14b99bbcac293629d",
+    "prepare_cli.py": "ee207fdc5443225db21f4be672aa8fb64153a4c415185abf452b826d8e2f6cb5",
+    "probe_flagcx.py": "b7c350bb24b4aa91dff79cb821818703d764de489292dc1f69f9028b5cffb217",
+    "record.py": "adf72936b7a9a048dbb8ade92fb7400340b9cfe3c15b860ad2a4dc3c71a2d6fa",
+    "serve-text.sh": "ebadf5b548d725525e61e0220daa46903c4f3f4aeb331fc06c230048610bed45",
+    "smoke.py": "567255fd3dcd57dc66a1e97bbb1a3ec9737fe66d66d9a508e48a347b8ac27358",
+    "text_client.py": "ba954419ec1cd30dd36238bcb324b376810c30d31aca4d5023006961c173f4ec",
+    "verify_env.py": "ae3482f0b1388fca3db6149bcbc6232fba59c0791a5eaba83d6bb81f374ddb63"
+  }
+}

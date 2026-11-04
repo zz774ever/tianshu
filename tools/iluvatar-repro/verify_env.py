@@ -2,6 +2,8 @@ import argparse
 import ctypes
 import json
 import os
+import shutil
+import subprocess
 import sys
 from importlib import metadata
 from pathlib import Path
@@ -10,9 +12,12 @@ from pathlib import Path
 def main():
     parser = argparse.ArgumentParser(description="Verify the pinned Iluvatar 0.32 environment")
     parser.add_argument("--min-devices", type=int, default=1)
+    parser.add_argument("--min-free-gib", type=float, default=0)
     args = parser.parse_args()
     if args.min_devices < 1:
         parser.error("--min-devices must be positive")
+    if args.min_free_gib < 0:
+        parser.error("--min-free-gib must be nonnegative")
 
     import flag_gems
     import torch
@@ -35,9 +40,34 @@ def main():
     assert Path(sys.prefix).resolve() in Path(vllm.__file__).resolve().parents, vllm.__file__
     repository = Path(os.environ["REPO_DIR"]).resolve()
     assert repository in Path(vllm_fl.__file__).resolve().parents, vllm_fl.__file__
+    revision = subprocess.check_output(
+        ['git', '-C', str(repository), 'rev-parse', 'HEAD'], text=True
+    ).strip()
+    assert revision == 'c17d866e08b583f63998cbd47bc39fe3e57efce0', revision
     assert current_platform.vendor_name == "iluvatar", current_platform
     assert torch.cuda.is_available(), "CoreX device is unavailable"
     assert torch.cuda.device_count() >= args.min_devices, torch.cuda.device_count()
+    devices = []
+    for device in range(torch.cuda.device_count()):
+        free, total = torch.cuda.mem_get_info(device)
+        devices.append({'logical_device': device, 'free_gib': free / 2**30,
+                        'total_gib': total / 2**30})
+        assert free / 2**30 >= args.min_free_gib, devices[-1]
+    tensor = torch.ones(4, device='cuda') + 2
+    assert tensor.cpu().tolist() == [3, 3, 3, 3]
+    assert torch.tensor([1, 2, 3]).numpy().tolist() == [1, 2, 3]
+    cli = {}
+    for name in ('vllm', 'pytest'):
+        executable = shutil.which(name)
+        assert executable, f'Missing {name} CLI'
+        target = Path(executable)
+        assert target.parent.resolve() == (Path(sys.prefix) / 'bin').resolve(), executable
+        with target.open() as handle:
+            shebang = handle.readline().strip()
+        assert shebang.startswith('#!'), (executable, shebang)
+        interpreter = shebang[2:]
+        assert Path(interpreter).parent.resolve() == (Path(sys.prefix) / 'bin').resolve(), shebang
+        cli[name] = {'path': executable, 'shebang': shebang}
     for name, value in {"VLLM_PLUGINS": "fl", "USE_FLAGGEMS": "1", "GEMS_VENDOR": "iluvatar"}.items():
         assert os.environ.get(name) == value, (name, os.environ.get(name))
 
@@ -61,6 +91,10 @@ def main():
     print(json.dumps({
         "status": "PASS",
         "python": sys.executable,
+        "plugin_commit": revision,
+        "cli": cli,
+        "device_memory": devices,
+        "scope": "Pinned runtime, import/CLI sources, library loading and basic GPU arithmetic; not all pip requirements or model quality",
         "versions": {**versions, "vllm": vllm.__version__, "triton": triton.__version__},
         "paths": {"vllm": vllm.__file__, "plugin": vllm_fl.__file__,
                   "flag_gems": flag_gems.__file__, "triton": triton.__file__, "flagcx": str(library)},

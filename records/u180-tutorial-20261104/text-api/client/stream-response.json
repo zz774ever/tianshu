@@ -1,0 +1,507 @@
+{
+  "response": "Certainly! Here's a short introduction to large language models (LLMs):\n\nLarge language models are advanced",
+  "chunks": [
+    {
+      "id": "chatcmpl-93e80bdc7b00da0f",
+      "choices": [
+        {
+          "delta": {
+            "content": "",
+            "function_call": null,
+            "refusal": null,
+            "role": "assistant",
+            "tool_calls": null
+          },
+          "finish_reason": null,
+          "index": 0,
+          "logprobs": null
+        }
+      ],
+      "created": 1793787769,
+      "model": "qwen",
+      "object": "chat.completion.chunk",
+      "moderation": null,
+      "service_tier": null,
+      "system_fingerprint": null,
+      "usage": null,
+      "prompt_token_ids": null,
+      "prompt_text": null
+    },
+    {
+      "id": "chatcmpl-93e80bdc7b00da0f",
+      "choices": [
+        {
+          "delta": {
+            "content": "Certainly",
+            "function_call": null,
+            "refusal": null,
+            "role": null,
+            "tool_calls": null
+          },
+          "finish_reason": null,
+          "index": 0,
+          "logprobs": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1793787769,
+      "model": "qwen",
+      "object": "chat.completion.chunk",
+      "moderation": null,
+      "service_tier": null,
+      "system_fingerprint": null,
+      "usage": null
+    },
+    {
+      "id": "chatcmpl-93e80bdc7b00da0f",
+      "choices": [
+        {
+          "delta": {
+            "content": "!",
+            "function_call": null,
+            "refusal": null,
+            "role": null,
+            "tool_calls": null
+          },
+          "finish_reason": null,
+          "index": 0,
+          "logprobs": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1793787769,
+      "model": "qwen",
+      "object": "chat.completion.chunk",
+      "moderation": null,
+      "service_tier": null,
+      "system_fingerprint": null,
+      "usage": null
+    },
+    {
+      "id": "chatcmpl-93e80bdc7b00da0f",
+      "choices": [
+        {
+          "delta": {
+            "content": " Here",
+            "function_call": null,
+            "refusal": null,
+            "role": null,
+            "tool_calls": null
+          },
+          "finish_reason": null,
+          "index": 0,
+          "logprobs": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1793787769,
+      "model": "qwen",
+      "object": "chat.completion.chunk",
+      "moderation": null,
+      "service_tier": null,
+      "system_fingerprint": null,
+      "usage": null
+    },
+    {
+      "id": "chatcmpl-93e80bdc7b00da0f",
+      "choices": [
+        {
+          "delta": {
+            "content": "'s",
+            "function_call": null,
+            "refusal": null,
+            "role": null,
+            "tool_calls": null
+          },
+          "finish_reason": null,
+          "index": 0,
+          "logprobs": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1793787769,
+      "model": "qwen",
+      "object": "chat.completion.chunk",
+      "moderation": null,
+      "service_tier": null,
+      "system_fingerprint": null,
+      "usage": null
+    },
+    {
+      "id": "chatcmpl-93e80bdc7b00da0f",
+      "choices": [
+        {
+          "delta": {
+            "content": " a",
+            "function_call": null,
+            "refusal": null,
+            "role": null,
+            "tool_calls": null
+          },
+          "finish_reason": null,
+          "index": 0,
+          "logprobs": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1793787769,
+      "model": "qwen",
+      "object": "chat.completion.chunk",
+      "moderation": null,
+      "service_tier": null,
+      "system_fingerprint": null,
+      "usage": null
+    },
+    {
+      "id": "chatcmpl-93e80bdc7b00da0f",
+      "choices": [
+        {
+          "delta": {
+            "content": " short",
+            "function_call": null,
+            "refusal": null,
+            "role": null,
+            "tool_calls": null
+          },
+          "finish_reason": null,
+          "index": 0,
+          "logprobs": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1793787769,
+      "model": "qwen",
+      "object": "chat.completion.chunk",
+      "moderation": null,
+      "service_tier": null,
+      "system_fingerprint": null,
+      "usage": null
+    },
+    {
+      "id": "chatcmpl-93e80bdc7b00da0f",
+      "choices": [
+        {
+          "delta": {
+            "content": " introduction",
+            "function_call": null,
+            "refusal": null,
+            "role": null,
+            "tool_calls": null
+          },
+          "finish_reason": null,
+          "index": 0,
+          "logprobs": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1793787769,
+      "model": "qwen",
+      "object": "chat.completion.chunk",
+      "moderation": null,
+      "service_tier": null,
+      "system_fingerprint": null,
+      "usage": null
+    },
+    {
+      "id": "chatcmpl-93e80bdc7b00da0f",
+      "choices": [
+        {
+          "delta": {
+            "content": " to",
+            "function_call": null,
+            "refusal": null,
+            "role": null,
+            "tool_calls": null
+          },
+          "finish_reason": null,
+          "index": 0,
+          "logprobs": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1793787769,
+      "model": "qwen",
+      "object": "chat.completion.chunk",
+      "moderation": null,
+      "service_tier": null,
+      "system_fingerprint": null,
+      "usage": null
+    },
+    {
+      "id": "chatcmpl-93e80bdc7b00da0f",
+      "choices": [
+        {
+          "delta": {
+            "content": " large",
+            "function_call": null,
+            "refusal": null,
+            "role": null,
+            "tool_calls": null
+          },
+          "finish_reason": null,
+          "index": 0,
+          "logprobs": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1793787769,
+      "model": "qwen",
+      "object": "chat.completion.chunk",
+      "moderation": null,
+      "service_tier": null,
+      "system_fingerprint": null,
+      "usage": null
+    },
+    {
+      "id": "chatcmpl-93e80bdc7b00da0f",
+      "choices": [
+        {
+          "delta": {
+            "content": " language",
+            "function_call": null,
+            "refusal": null,
+            "role": null,
+            "tool_calls": null
+          },
+          "finish_reason": null,
+          "index": 0,
+          "logprobs": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1793787769,
+      "model": "qwen",
+      "object": "chat.completion.chunk",
+      "moderation": null,
+      "service_tier": null,
+      "system_fingerprint": null,
+      "usage": null
+    },
+    {
+      "id": "chatcmpl-93e80bdc7b00da0f",
+      "choices": [
+        {
+          "delta": {
+            "content": " models",
+            "function_call": null,
+            "refusal": null,
+            "role": null,
+            "tool_calls": null
+          },
+          "finish_reason": null,
+          "index": 0,
+          "logprobs": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1793787769,
+      "model": "qwen",
+      "object": "chat.completion.chunk",
+      "moderation": null,
+      "service_tier": null,
+      "system_fingerprint": null,
+      "usage": null
+    },
+    {
+      "id": "chatcmpl-93e80bdc7b00da0f",
+      "choices": [
+        {
+          "delta": {
+            "content": " (",
+            "function_call": null,
+            "refusal": null,
+            "role": null,
+            "tool_calls": null
+          },
+          "finish_reason": null,
+          "index": 0,
+          "logprobs": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1793787769,
+      "model": "qwen",
+      "object": "chat.completion.chunk",
+      "moderation": null,
+      "service_tier": null,
+      "system_fingerprint": null,
+      "usage": null
+    },
+    {
+      "id": "chatcmpl-93e80bdc7b00da0f",
+      "choices": [
+        {
+          "delta": {
+            "content": "LL",
+            "function_call": null,
+            "refusal": null,
+            "role": null,
+            "tool_calls": null
+          },
+          "finish_reason": null,
+          "index": 0,
+          "logprobs": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1793787769,
+      "model": "qwen",
+      "object": "chat.completion.chunk",
+      "moderation": null,
+      "service_tier": null,
+      "system_fingerprint": null,
+      "usage": null
+    },
+    {
+      "id": "chatcmpl-93e80bdc7b00da0f",
+      "choices": [
+        {
+          "delta": {
+            "content": "Ms",
+            "function_call": null,
+            "refusal": null,
+            "role": null,
+            "tool_calls": null
+          },
+          "finish_reason": null,
+          "index": 0,
+          "logprobs": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1793787769,
+      "model": "qwen",
+      "object": "chat.completion.chunk",
+      "moderation": null,
+      "service_tier": null,
+      "system_fingerprint": null,
+      "usage": null
+    },
+    {
+      "id": "chatcmpl-93e80bdc7b00da0f",
+      "choices": [
+        {
+          "delta": {
+            "content": "):\n\n",
+            "function_call": null,
+            "refusal": null,
+            "role": null,
+            "tool_calls": null
+          },
+          "finish_reason": null,
+          "index": 0,
+          "logprobs": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1793787769,
+      "model": "qwen",
+      "object": "chat.completion.chunk",
+      "moderation": null,
+      "service_tier": null,
+      "system_fingerprint": null,
+      "usage": null
+    },
+    {
+      "id": "chatcmpl-93e80bdc7b00da0f",
+      "choices": [
+        {
+          "delta": {
+            "content": "Large",
+            "function_call": null,
+            "refusal": null,
+            "role": null,
+            "tool_calls": null
+          },
+          "finish_reason": null,
+          "index": 0,
+          "logprobs": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1793787769,
+      "model": "qwen",
+      "object": "chat.completion.chunk",
+      "moderation": null,
+      "service_tier": null,
+      "system_fingerprint": null,
+      "usage": null
+    },
+    {
+      "id": "chatcmpl-93e80bdc7b00da0f",
+      "choices": [
+        {
+          "delta": {
+            "content": " language",
+            "function_call": null,
+            "refusal": null,
+            "role": null,
+            "tool_calls": null
+          },
+          "finish_reason": null,
+          "index": 0,
+          "logprobs": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1793787769,
+      "model": "qwen",
+      "object": "chat.completion.chunk",
+      "moderation": null,
+      "service_tier": null,
+      "system_fingerprint": null,
+      "usage": null
+    },
+    {
+      "id": "chatcmpl-93e80bdc7b00da0f",
+      "choices": [
+        {
+          "delta": {
+            "content": " models",
+            "function_call": null,
+            "refusal": null,
+            "role": null,
+            "tool_calls": null
+          },
+          "finish_reason": null,
+          "index": 0,
+          "logprobs": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1793787769,
+      "model": "qwen",
+      "object": "chat.completion.chunk",
+      "moderation": null,
+      "service_tier": null,
+      "system_fingerprint": null,
+      "usage": null
+    },
+    {
+      "id": "chatcmpl-93e80bdc7b00da0f",
+      "choices": [
+        {
+          "delta": {
+            "content": " are advanced",
+            "function_call": null,
+            "refusal": null,
+            "role": null,
+            "tool_calls": null
+          },
+          "finish_reason": "length",
+          "index": 0,
+          "logprobs": null,
+          "stop_reason": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1793787769,
+      "model": "qwen",
+      "object": "chat.completion.chunk",
+      "moderation": null,
+      "service_tier": null,
+      "system_fingerprint": "vllm-0.32.0-c2cd6c04",
+      "usage": null
+    }
+  ]
+}

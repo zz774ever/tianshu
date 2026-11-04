@@ -1,0 +1,1 @@
+python /workspace/tianshu-delivery/tools/iluvatar-repro/text_client.py --base-url http://127.0.0.1:18133/v1 --model qwen --output-dir /workspace/tianshu-manual/results/tutorial-text-api-20261104/client

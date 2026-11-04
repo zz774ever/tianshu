@@ -1,0 +1,66 @@
+{
+  "status": "PASS",
+  "vllm_version": "0.32.0",
+  "vllm_path": "/workspace/validation/venv/lib/python3.12/site-packages/vllm/__init__.py",
+  "model": "/data/models/Qwen/Qwen3-4B",
+  "tp": 2,
+  "graph": false,
+  "outputs": [
+    {
+      "prompt": "The capital of France is",
+      "text": " Paris. The capital of Germany is Berlin. The capital of Italy is Rome.",
+      "token_ids": [
+        12095,
+        13,
+        576,
+        6722,
+        315,
+        9856,
+        374,
+        19846,
+        13,
+        576,
+        6722,
+        315,
+        15344,
+        374,
+        21718,
+        13
+      ]
+    },
+    {
+      "prompt": "The speed of light in vacuum is approximately",
+      "text": " 3.00 × 10^8 m/s. What is",
+      "token_ids": [
+        220,
+        18,
+        13,
+        15,
+        15,
+        24768,
+        220,
+        16,
+        15,
+        61,
+        23,
+        296,
+        2687,
+        13,
+        3555,
+        374
+      ]
+    }
+  ],
+  "python": "/workspace/validation/venv/bin/python",
+  "devices": "0,1",
+  "versions": {
+    "torch": "2.10.0+corex.4.5.0",
+    "flagtree": "0.6.2a3+iluvatar3.6",
+    "flag-gems": "5.3.5",
+    "transformers": "5.14.1",
+    "tokenizers": "0.22.2",
+    "numpy": "1.26.4"
+  },
+  "model_config_sha256": "8ba006f74fecfaaeb392872a60f4a480e7ec9860153d2e1b769ec81f9a147f8a",
+  "scope": "Nonempty generation only; not semantic correctness or NVIDIA alignment"
+}

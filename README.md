@@ -2,6 +2,7 @@
 
 ## 新机器环境搭建与测试教程
 
+- **[本机 u180 / n180 纯文本复现：从现有容器开始](docs/iluvatar-vllm032-local-reproduction.md)**：已核实路径、驱动依赖、venv入口、双卡通信、文本eager/graph及流式API；当前机器请优先阅读，不运行图像门禁。
 - **[从零准备天数 CoreX 环境并运行测试](docs/iluvatar-vllm032-fresh-machine-setup.md)**：宿主机与镜像、FlagTree / FlagGems / FlagCX、EMPTY vLLM 0.32、适配插件、模型下载、小模型冒烟和图文门禁的顺序命令。
 - [配套环境与验证脚本](tools/iluvatar-repro/)：环境激活、版本及库检查、真实 FlagCX 通信和 Qwen3-4B 冒烟。
 

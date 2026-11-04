@@ -1,0 +1,30 @@
+{
+  "label": "verify-env",
+  "started_utc": "2026-11-04T10:08:34.561973+00:00",
+  "argv": [
+    "python",
+    "/workspace/tianshu-delivery/tools/iluvatar-repro/verify_env.py",
+    "--min-devices",
+    "2",
+    "--min-free-gib",
+    "30"
+  ],
+  "cwd": "/workspace",
+  "status": "FINISHED",
+  "environment": {
+    "VIRTUAL_ENV": "/workspace/validation/venv",
+    "PYTHONPATH": "/workspace/pr674-plugin",
+    "LD_LIBRARY_PATH": "/workspace/driver-extracted/corex/lib64:/mnt/share/user_homes/iluv/FlagCX/build/lib:/usr/local/corex/lib64:/usr/local/corex/lib64:/usr/local/openmpi/lib:/usr/local/lib:/usr/local/lib:/usr/local/openmpi/lib:",
+    "REPO_DIR": "/workspace/pr674-plugin",
+    "FLAGCX_PATH": "/mnt/share/user_homes/iluv/FlagCX",
+    "COREX_DRIVER_LIB_DIR": "/workspace/driver-extracted/corex/lib64",
+    "CUDA_VISIBLE_DEVICES": "0,1",
+    "COREX_VISIBLE_DEVICES": "0,1",
+    "VLLM_PLUGINS": "fl",
+    "USE_FLAGGEMS": "1",
+    "GEMS_VENDOR": "iluvatar"
+  },
+  "exit_code": 0,
+  "finished_utc": "2026-11-04T10:08:44.628583+00:00",
+  "elapsed_seconds": 10.066047504544258
+}

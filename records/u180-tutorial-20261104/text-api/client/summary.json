@@ -1,0 +1,139 @@
+{
+  "transport_passed": true,
+  "quality_passed": false,
+  "require_quality": false,
+  "base_url": "http://127.0.0.1:18133/v1",
+  "scope": "Text requests only; API functionality and two explicit quality checks",
+  "stream_text": "Certainly! Here's a short introduction to large language models (LLMs):\n\nLarge language models are advanced",
+  "quality_checks": [
+    {
+      "request": {
+        "model": "qwen",
+        "messages": [
+          {
+            "role": "user",
+            "content": "What is 17 + 25? Answer only with the number."
+          }
+        ],
+        "max_tokens": 32,
+        "temperature": 0,
+        "top_p": 1,
+        "extra_body": {
+          "chat_template_kwargs": {
+            "enable_thinking": false
+          }
+        }
+      },
+      "expected": "42",
+      "text": "52",
+      "response": {
+        "id": "chatcmpl-94530b8afb29a03e",
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "content": "52",
+              "refusal": null,
+              "role": "assistant",
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "tool_calls": null,
+              "reasoning": null
+            },
+            "stop_reason": null,
+            "token_ids": null,
+            "routed_experts": null
+          }
+        ],
+        "created": 1793787773,
+        "model": "qwen",
+        "object": "chat.completion",
+        "moderation": null,
+        "service_tier": null,
+        "system_fingerprint": "vllm-0.32.0-c2cd6c04",
+        "usage": {
+          "completion_tokens": 3,
+          "prompt_tokens": 28,
+          "total_tokens": 31,
+          "completion_tokens_details": null,
+          "prompt_tokens_details": null
+        },
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "prompt_text": null,
+        "kv_transfer_params": null,
+        "ec_transfer_params": null,
+        "metrics": null
+      },
+      "quality_passed": false
+    },
+    {
+      "request": {
+        "model": "qwen",
+        "messages": [
+          {
+            "role": "user",
+            "content": "What is the capital of France? Answer only the city name."
+          }
+        ],
+        "max_tokens": 32,
+        "temperature": 0,
+        "top_p": 1,
+        "extra_body": {
+          "chat_template_kwargs": {
+            "enable_thinking": false
+          }
+        }
+      },
+      "expected": "paris",
+      "text": "Paris.",
+      "response": {
+        "id": "chatcmpl-bdfa279dcb86ae03",
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "content": "Paris.",
+              "refusal": null,
+              "role": "assistant",
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "tool_calls": null,
+              "reasoning": null
+            },
+            "stop_reason": null,
+            "token_ids": null,
+            "routed_experts": null
+          }
+        ],
+        "created": 1793787774,
+        "model": "qwen",
+        "object": "chat.completion",
+        "moderation": null,
+        "service_tier": null,
+        "system_fingerprint": "vllm-0.32.0-c2cd6c04",
+        "usage": {
+          "completion_tokens": 3,
+          "prompt_tokens": 25,
+          "total_tokens": 28,
+          "completion_tokens_details": null,
+          "prompt_tokens_details": null
+        },
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "prompt_text": null,
+        "kv_transfer_params": null,
+        "ec_transfer_params": null,
+        "metrics": null
+      },
+      "quality_passed": true
+    }
+  ],
+  "exit_code": 0
+}
