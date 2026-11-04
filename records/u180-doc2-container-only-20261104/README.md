@@ -34,3 +34,9 @@
 环境代码执行使用已有 venv 和插件目录，未安装新包。GPU 0/1 分别约 31.80 GiB 空闲；厂商版本、编译器归属、GPU 加法、NumPy 桥接、vLLM 0.32 导入路径、插件平台及 FlagCX 动态库检查通过。驱动包和用户态 libcuda 的 SHA256 与教程一致。
 
 此次没有重新执行模型、通信或新容器完整搭建；对应历史实测见上一轮验证记录。没有宣称依赖声明全部满足或生成精度已修复。发布时使用 GitHub Git objects API 更新 main，不强制覆盖；凭据仅在内存中使用，不进入本记录。
+
+## 手动复现发现的终端记录问题
+
+用户在新容器 a20ad38e000a 按第 11 节操作时，客户端记录会话退出 127。读取 `/workspace/repro/logs/client-session-20261104T115918Z.log` 确认错误为 `set: Illegal option -o pipefail` 和 `source: not found`；`text_client.py` 未创建，客户端进程和 API 结果目录均不存在。服务端仍正常，容器内 `/v1/models` 返回 200 和 qwen。
+
+根因是原教程未给 script 指定命令，它按默认 SHELL 启动 sh；外层 docker exec bash 不能保证其子 shell 是 Bash。已将教程两处 script 命令改为显式 `-c 'bash --noprofile --norc -i'`，并说明失败后需重新执行完整客户端代码块。诊断记录位于当前容器 logs 下的 inspect-text-client-status 和 inspect-client-session 步骤目录。此修正只处理 shell 入口，不改变模型测试判据。

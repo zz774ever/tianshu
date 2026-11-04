@@ -1,0 +1,40 @@
+{
+  "id": "chatcmpl-ac333afa80d83d55",
+  "object": "chat.completion",
+  "created": 1793802091,
+  "model": "qwen",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "当然可以！人工智能（Artificial Intelligence，简称AI）是一个涵盖广泛、发展迅速的科技领域，涉及计算机科学、数学、心理学、神经科学等多个学科。以下是对人工智能的详细介绍：\n\n---\n\n## 一、人工智能的定义\n\n人工智能是计算机科学的一个分支，旨在开发能够执行通常需要人类智能的任务的系统或机器。这些任务包括学习、推理、问题解决、感知、语言理解、决策等。\n\nAI 的目标是让机器能够模拟人类的智能行为，甚至在某些方面超越人类。\n\n---\n\n## 二、人工智能的发展历程\n\n### 1. 早期阶段（1950s-1970s）\n- **1956年**：达特茅斯会议被认为是人工智能的正式起点。\n- **图灵测试**：艾伦·图灵提出了“图灵测试”作为判断机器是否具有智能的标准。\n- **符号主义**：早期AI主要基于符号逻辑，如专家系统（Expert Systems）。\n\n### 2. 中期阶段（1980s-1990s）\n- **专家系统**：用于医疗、金融等领域，但受限于知识表示和推理能力。\n- **机器学习的萌芽**：开始",
+        "refusal": null,
+        "annotations": null,
+        "audio": null,
+        "function_call": null,
+        "reasoning": null
+      },
+      "logprobs": null,
+      "finish_reason": "length",
+      "stop_reason": null,
+      "token_ids": null,
+      "routed_experts": null
+    }
+  ],
+  "service_tier": null,
+  "system_fingerprint": "vllm-0.32.0-7c090101",
+  "usage": {
+    "prompt_tokens": 15,
+    "total_tokens": 271,
+    "completion_tokens": 256,
+    "prompt_tokens_details": null,
+    "completion_tokens_details": null
+  },
+  "prompt_logprobs": null,
+  "prompt_token_ids": null,
+  "prompt_text": null,
+  "kv_transfer_params": null,
+  "ec_transfer_params": null,
+  "metrics": null
+}

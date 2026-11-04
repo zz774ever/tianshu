@@ -1,0 +1,40 @@
+{
+  "id": "chatcmpl-8087dca69e45faf5",
+  "object": "chat.completion",
+  "created": 1793802855,
+  "model": "qwen",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "**人工智能（Artificial Intelligence，简称 AI）** 是计算机科学的一个分支，旨在研究、开发用于模拟、延伸和扩展人智能的理论、方法、技术及应用系统。简单来说，AI 的目标是让机器能够像人一样“思考”、“学习”和“行动”，从而完成需要人类智能才能完成的任务。\n\n以下从**核心定义、发展历程、主要技术、应用场景、伦理挑战及未来展望**六个维度进行详细介绍：\n\n---\n\n### 1. 核心定义与分类\nAI 并不是单一的技术，而是一组技术的集合。根据能力和范围，AI 通常分为三类：\n\n*   **弱人工智能（Narrow AI / ANI）**：\n    *   专门设计用于执行**特定任务**的智能系统。\n    *   目前我们接触到的所有 AI 都属于这一类，如：Siri、AlphaGo、人脸识别系统、推荐算法等。\n    *   特点：在特定领域表现超越人类，但缺乏跨领域的通用认知能力。\n*   **强人工智能（General AI / AGI）**：\n    *   具备与人类相当或超越人类的**通用认知能力**，能够理解、学习并适应任何智力任务。\n    *  ",
+        "refusal": null,
+        "annotations": null,
+        "audio": null,
+        "function_call": null,
+        "reasoning": null
+      },
+      "logprobs": null,
+      "finish_reason": "length",
+      "stop_reason": null,
+      "token_ids": null,
+      "routed_experts": null
+    }
+  ],
+  "service_tier": null,
+  "system_fingerprint": "vllm-0.32.0-tp4-44530c95",
+  "usage": {
+    "prompt_tokens": 15,
+    "total_tokens": 271,
+    "completion_tokens": 256,
+    "prompt_tokens_details": null,
+    "completion_tokens_details": null
+  },
+  "prompt_logprobs": null,
+  "prompt_token_ids": null,
+  "prompt_text": null,
+  "kv_transfer_params": null,
+  "ec_transfer_params": null,
+  "metrics": null
+}

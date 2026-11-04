@@ -1,0 +1,321 @@
+{
+  "archive": "raw-steps.tar.gz",
+  "archive_sha256": "97c255cd9aa34d8062a0471e264b9f7492a0705fc64b8e78c9f0979cf602c66b",
+  "archived_files": 323,
+  "commands": 52,
+  "entries": [
+    {
+      "directory": "logs/20261104T132323Z-check-official-github-image-wD3oSk",
+      "exit_code": 0,
+      "command_sha256": "88af9689b8575c64f32cf51597b6854757c54002faa18450dce84d91ec44b15f",
+      "output_sha256": "f21980425a09f14843ddede26091245de8d56903531579bbe68392273ead2750"
+    },
+    {
+      "directory": "logs/20261104T132345Z-check-official-registry-manifest-BWYR1g",
+      "exit_code": 1,
+      "command_sha256": "ce5ea899ea051261a26dcc6e09b7d44d34740ca75fc1979d3e2d589340e0b4e4",
+      "output_sha256": "4d06ce9eaeb5dc90fa099b7a6146751757f2875908d070037c0884dbe12b80f3"
+    },
+    {
+      "directory": "logs/20261104T132423Z-check-official-main-dev-config-abTOLV",
+      "exit_code": 0,
+      "command_sha256": "eb9d3c9a077584294c281634d8993d74dbc84d41c9ca7409e94396b7ca9eaee0",
+      "output_sha256": "70d4f3159df048eab845857d2a2593a270b6aba56a8efcff881fedb7b9fa00fc"
+    },
+    {
+      "directory": "logs/20261104T132832Z-diagnose-driver-library-provenance-NQXyoT",
+      "exit_code": 0,
+      "command_sha256": "bb8a7890d6e4e1eff2eedfd7e4d523932953e64890bd240863caad4e28f87394",
+      "output_sha256": "080284713671783dfc6d2b326bc3a4ecaadfda321f8ca7df94a62f8f8711e733"
+    },
+    {
+      "directory": "logs/20261104T141043Z-inspect-direct-install-prerequisites-5Kp1dx",
+      "exit_code": 1,
+      "command_sha256": "483ab2978cf3e51cd32461dd88c264f55c24680fbf113299fcad193533ce3df5",
+      "output_sha256": "2fbbe99b76fec92e6364231a2e63ed4a6c739edc4f3383316f65095201ccd328"
+    },
+    {
+      "directory": "logs/20261104T141120Z-snapshot-original-system-python-Bqs5as",
+      "exit_code": 0,
+      "command_sha256": "99e1cf512852cc85c78d2c365d7659fff3a6fa6c227fff77e809eeb01704948f",
+      "output_sha256": "2a705afebf2d1f8519b5247084b58544e61495c540c5104b9fb2d8206b393e37"
+    },
+    {
+      "directory": "logs/20261104T141121Z-inspect-install-scripts-IoNV4X",
+      "exit_code": 0,
+      "command_sha256": "2cb32c5b4f680669a809aa490fb7ab971b2506d23231a2f0f9e146742d961b02",
+      "output_sha256": "73b07364769e1850d7f568c41481f08c52e77cee1fb207552bb09ede3bc7f011"
+    },
+    {
+      "directory": "logs/20261104T141150Z-baseline-028-serve-direct-Z0CpPV",
+      "exit_code": 1,
+      "command_sha256": "e4569c72be93cf24324784b98f8e6028b772d715f5a80cb745407c8781eab304",
+      "output_sha256": "d95336118377a1a6f2deea35cfedf75daacdf7d089fe74aec6b4fe7e0d4bd367"
+    },
+    {
+      "directory": "logs/20261104T141223Z-inspect-pr674-current-head-k72CJz",
+      "exit_code": 0,
+      "command_sha256": "f53393f3419ddd08e67a1026f0a60ae556a019def17aa2f200e23cf7baefc5d8",
+      "output_sha256": "f5b45cf98bffddc74522385d1a451cab27eb05f74ec7e40bdcb22ccedecee6a2"
+    },
+    {
+      "directory": "logs/20261104T141247Z-inspect-system-build-tools-tymyI1",
+      "exit_code": 0,
+      "command_sha256": "4070fa1885b7ca13613ac2cc67d48809ec659753d2cdee97ab131925bfe4da46",
+      "output_sha256": "11a7e744ff97f1a1f795f2405ad0cb92f53d6a027340a743039602af754487e7"
+    },
+    {
+      "directory": "logs/20261104T141248Z-install-system-build-tools-efh7c7",
+      "exit_code": 0,
+      "command_sha256": "35f7b3d873b0acab9ee9d9a0c7082359d07d988c4afabbe093f65dbabc2a167f",
+      "output_sha256": "9e1084ebf0d3a76fee47b4d5713d95c616a4c60080a2d4871d22f26d8ce287bd"
+    },
+    {
+      "directory": "logs/20261104T141303Z-baseline-028-curl-direct-RVUFFZ",
+      "exit_code": 7,
+      "command_sha256": "a152f9a556cc418835d3c872fc79407880300b8dceb3bdd3e3b5ca9ca683146e",
+      "output_sha256": "f08d70c6d6dd90934a2a10da2bc56312b298b5375cc55c071071bc4459d1efad"
+    },
+    {
+      "directory": "logs/20261104T141303Z-install-system-vllm032-editable-ndzMy1",
+      "exit_code": 0,
+      "command_sha256": "0c0b89b1ec918c4f43d23dcbd96fff89d573d0147cab5925b3cf62651b649873",
+      "output_sha256": "59c34c45438b2f006a7b9ed250dc1da9acfb8903ae71cb2922facab32401e7ba"
+    },
+    {
+      "directory": "logs/20261104T141352Z-install-system-plugin674-editable-EjZhJ7",
+      "exit_code": 0,
+      "command_sha256": "41973ccf4bd76ac26477d500cfbaaaec19083c47f98a0a6e714daa1ef2d0c465",
+      "output_sha256": "6d312078fd1fc9c8192a9e593c44fb38e6cd69274fc106edecf0bda21d155cc7"
+    },
+    {
+      "directory": "logs/20261104T141353Z-use-local-flaggems-source-th6Ub2",
+      "exit_code": 0,
+      "command_sha256": "ad3afa6fa9ce4896e955e9265eee01907dc6e49af44a3d4aa8cf54fc44c16598",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "directory": "logs/20261104T141806Z-install-system-flaggems-vllm-txhzqA",
+      "exit_code": 0,
+      "command_sha256": "45a047a31526b4785315bb37fde971ff02f80a2a99b2eedfa29d3118d6397ad7",
+      "output_sha256": "4361d56cadea0e3ec586085c78e9268ff1488968c445bcf6d20b4560f1e63f62"
+    },
+    {
+      "directory": "logs/20261104T141913Z-activate-direct-document-environment-5O4Sxn",
+      "exit_code": 0,
+      "command_sha256": "71b35cd551d21f501ede200af065c08cf12377aee1dc37a239e5ef42636b8b78",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "directory": "logs/20261104T141913Z-transfer-direct-document-snippets-PapoY3",
+      "exit_code": 0,
+      "command_sha256": "f8d7ed796d44bcaa3665ce6730707504f90dfc5d2733fa26741000352b176103",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "directory": "logs/20261104T141913Z-verify-system032-direct-imports-jzY0Fm",
+      "exit_code": 0,
+      "command_sha256": "17dc4bb36e2a7098b85bc6a35b25d4ed728c0e6f14b0fee33866e2cd85ff754c",
+      "output_sha256": "51c1ec67c8d24c36be47480179db622b07b8476bec67362097f006ac900ca3d8"
+    },
+    {
+      "directory": "logs/20261104T141941Z-recover-original-core-fingerprint-SPIhJh",
+      "exit_code": 0,
+      "command_sha256": "e0c34dff94232a872639b04077af5d1c431f306a845fd56374f864bf73ac6a0d",
+      "output_sha256": "fb48e3966a90b8d408e9e005afe400a5ace8378ff1f4fbd1c209adf45c89e62a"
+    },
+    {
+      "directory": "logs/20261104T141941Z-verify-direct-document-runtime-aWZYSd",
+      "exit_code": 0,
+      "command_sha256": "2210c94fc22880af384b2dab9ac58d7e34f6763c6643f881f4262412693b4af2",
+      "output_sha256": "497a7a1b3e9e1efdc1d46b63341b0485a2c5e27087c7cdedd470fc2bb9109e6d"
+    },
+    {
+      "directory": "logs/20261104T141943Z-system032-4b-direct-serve-OvyW98",
+      "exit_code": 0,
+      "command_sha256": "5c40df112d7bf8e3f01e1b50f7b7177742bfb173cbd40f4e6588d70d2f1b75ad",
+      "output_sha256": "28180dd299e9a7d6f1dd615bb33770852d76f20d939141aaf261685a6d139917"
+    },
+    {
+      "directory": "logs/20261104T142043Z-inspect-direct-4b-startup-e2dRY7",
+      "exit_code": 7,
+      "command_sha256": "acedb7a20f04466a5bd71ed4db26e2ec98791338fb34a5233a7e95ba06d8aad7",
+      "output_sha256": "c9543e147e96a2209d42f841dbd6ab4bcf04170ace2dd146b6086754492c6be6"
+    },
+    {
+      "directory": "logs/20261104T142131Z-system032-4b-direct-curl-lIGhyy",
+      "exit_code": 0,
+      "command_sha256": "1fec705122602549f2ec849faddb8de4d92b552b626447815fa4175ff76cbdaa",
+      "output_sha256": "5452fe3cca34f186c3279ad9e7c9379df8431d528c1562a942a4a024f109e247"
+    },
+    {
+      "directory": "logs/20261104T142131Z-system032-4b-direct-stream-fVYyzo",
+      "exit_code": 2,
+      "command_sha256": "24ab16e24b3f1820f1a9e1140a77c1f392a2848084fae5be0e0717f571ec7f75",
+      "output_sha256": "2a24ee9906a080773f386d98ace11735a8f406467015a245cb1d66859e3b25f3"
+    },
+    {
+      "directory": "logs/20261104T142145Z-system032-4b-direct-stream-retry-vzmoQu",
+      "exit_code": 0,
+      "command_sha256": "24ab16e24b3f1820f1a9e1140a77c1f392a2848084fae5be0e0717f571ec7f75",
+      "output_sha256": "e515b593c71f8c5e59cd49b733265d7b2f48b91253006d398645b334bf7c7c92"
+    },
+    {
+      "directory": "logs/20261104T142145Z-transfer-direct-stream-snippet-OcSV0S",
+      "exit_code": 0,
+      "command_sha256": "f8d7ed796d44bcaa3665ce6730707504f90dfc5d2733fa26741000352b176103",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "directory": "logs/20261104T142310Z-stop-tested-system032-4b-server-VLlF4V",
+      "exit_code": 0,
+      "command_sha256": "eaa81418897996500b8ad68b407d0dc8cc87de8d0eae2bcf9c0ab126fd3958c5",
+      "output_sha256": "dcc5be458287a2f57c263b7a73be1481bb30607292c7357d78c1182beb5d6a07"
+    },
+    {
+      "directory": "logs/20261104T142329Z-system032-large-text-precheck-I2xBM5",
+      "exit_code": 0,
+      "command_sha256": "17dc4bb36e2a7098b85bc6a35b25d4ed728c0e6f14b0fee33866e2cd85ff754c",
+      "output_sha256": "51c1ec67c8d24c36be47480179db622b07b8476bec67362097f006ac900ca3d8"
+    },
+    {
+      "directory": "logs/20261104T142333Z-system032-27b-direct-serve-Oy5rqn",
+      "exit_code": 0,
+      "command_sha256": "f14616520e5627bbbc429505d979761b7dce40aae6d822df71bcd6a14eb69cc9",
+      "output_sha256": "6037a1b3b05c0984e4a4134b471fb564d9a135189c634e6420c7951abaa999ce"
+    },
+    {
+      "directory": "logs/20261104T142410Z-inspect-direct-27b-startup-5IiMPl",
+      "exit_code": 7,
+      "command_sha256": "a1e86333ec560cd3980f7fb385adcc03d7d22d0194f454d1a415b1bd66713b5f",
+      "output_sha256": "b97695f1c05cb902df6c53e6452629ffa83e312ad1fad71ff4c7b9491d8a65c4"
+    },
+    {
+      "directory": "logs/20261104T142445Z-inspect-direct-27b-load-progress-8cNSsY",
+      "exit_code": 0,
+      "command_sha256": "27ae4f799b7e8acc1846082eccfd9ab5e1d739a45593f28145892ad4f4046c2b",
+      "output_sha256": "1fc38ca629a1a2ce911ced12bb4083969b4467b84be7f226291287dcec640f0d"
+    },
+    {
+      "directory": "logs/20261104T142524Z-check-explicit-bash-system-python-iSOTy9",
+      "exit_code": 0,
+      "command_sha256": "ff6ffc3a65493fbf8dddc155bf416bf4190d9d8c14dea8456b4985508873b18b",
+      "output_sha256": "af3102b10dba8f4f88dc1281d2c794de831d68c27005a5342b24f629aa2a3a89"
+    },
+    {
+      "directory": "logs/20261104T142524Z-system032-final-pip-fingerprint-a3tZXr",
+      "exit_code": 0,
+      "command_sha256": "a5141ae1c3e69d794b9b4bffb903cc8a7fb6b170345f71773460f230a0bc1c79",
+      "output_sha256": "17730a7ac979c60e9b9d7d28ffb4372f358456ea74b428a48cf265de84576c00"
+    },
+    {
+      "directory": "logs/20261104T142614Z-inspect-direct-27b-ready-xdguBT",
+      "exit_code": 7,
+      "command_sha256": "f8f5f1ceb16d8cb806d6e676b975cf3ac981ba3f048732c95381e639f5e554fb",
+      "output_sha256": "91a4e85f0a940fc448c8dda378921da72bb8aa542145397cb01de1eb053096b5"
+    },
+    {
+      "directory": "logs/20261104T142704Z-inspect-direct-27b-weight-progress-b5ZwHK",
+      "exit_code": 0,
+      "command_sha256": "0ee9a4b59e8bf6addbb3f8e4621369bd3680afaf645ed618431b0065a5a5d278",
+      "output_sha256": "8b27877f70cf9372d4325fdaa55dee09c384fe8f249e992713138c94039f9438"
+    },
+    {
+      "directory": "logs/20261104T142735Z-inspect-direct-27b-warmup-h7WSWg",
+      "exit_code": 0,
+      "command_sha256": "973970c4948cf065c3e7ea8027f4dc8a1384b6b7425fcd35df9edaccd177571b",
+      "output_sha256": "d04f4ac562c8d407202c5487eb6ea1297a0e673e276f44367c15adcd26948771"
+    },
+    {
+      "directory": "logs/20261104T142753Z-system032-27b-direct-curl-RjYZEH",
+      "exit_code": 0,
+      "command_sha256": "1fec705122602549f2ec849faddb8de4d92b552b626447815fa4175ff76cbdaa",
+      "output_sha256": "3411d3b77092a9692f90b3e277b01c14dad7cfba88006319addb60d59bc3adee"
+    },
+    {
+      "directory": "logs/20261104T142847Z-inspect-direct-27b-first-request-gdJ4Vf",
+      "exit_code": 0,
+      "command_sha256": "0ee9a4b59e8bf6addbb3f8e4621369bd3680afaf645ed618431b0065a5a5d278",
+      "output_sha256": "2f00ac9dd7a5ac6a59cd22bc4cb6cd31b4ad3240a8ab54cf641c10201311cb3e"
+    },
+    {
+      "directory": "logs/20261104T142925Z-inspect-direct-27b-request-progress-54lhc2",
+      "exit_code": 0,
+      "command_sha256": "ae708d5d3f5a33f4a2206c43c157ed571960f57e139789f221d19874f2e837d6",
+      "output_sha256": "4d9440c832dcb89b8d004fbd840f9ab69b8daf82d9022f92f1edee604b39c091"
+    },
+    {
+      "directory": "logs/20261104T143025Z-inspect-direct-27b-generation-status-LMckeU",
+      "exit_code": 0,
+      "command_sha256": "3f86b4bd67f0fb637998be79631d0cf9674df2b33749eb1a6147a7b3eba7860d",
+      "output_sha256": "eed6fb23ee3b1d82ff57b4c518293748a6f111249525807b24aabededbbe1007"
+    },
+    {
+      "directory": "logs/20261104T143117Z-stop-tested-system032-27b-server-7EZr1u",
+      "exit_code": 0,
+      "command_sha256": "a7bff818f2661efe7dd6fb60e6c7b71cb04f9aa8c7a5899dbd0ed590b76a7165",
+      "output_sha256": "935a35335c368e6d6c3386fa3c688c8a80051cefdf2eb956e8dee83d86ca49bd"
+    },
+    {
+      "directory": "logs/20261104T143141Z-system032-35b-precheck-T2yoHf",
+      "exit_code": 0,
+      "command_sha256": "17dc4bb36e2a7098b85bc6a35b25d4ed728c0e6f14b0fee33866e2cd85ff754c",
+      "output_sha256": "51c1ec67c8d24c36be47480179db622b07b8476bec67362097f006ac900ca3d8"
+    },
+    {
+      "directory": "logs/20261104T143145Z-system032-35b-direct-serve-y5yzkY",
+      "exit_code": 0,
+      "command_sha256": "437f1c7aad1886d95690cb83f47270a8b39df3ce531d2459c37cae8d0a1c316d",
+      "output_sha256": "16e030180ac211c0e75d73e4a14ab30b25649060fc266689d5eef702698a17aa"
+    },
+    {
+      "directory": "logs/20261104T143219Z-inspect-direct-35b-startup-O6CH5j",
+      "exit_code": 0,
+      "command_sha256": "734fd240690c578076eaf5689145957545639aee1ee90198809edfcd8669425f",
+      "output_sha256": "65fe246b1f7a73f3da1e5ba06afb27d1219127d317dcd857aae5dd1fc7c58042"
+    },
+    {
+      "directory": "logs/20261104T143302Z-inspect-direct-35b-load-progress-jNfxAE",
+      "exit_code": 0,
+      "command_sha256": "f1dbd0ad8eae9cb86e9811c9a7121e90304ba9a167190b33de43d0d8e9255dd9",
+      "output_sha256": "f8f0bd9cb40177c986863e8d6efec812099297a58e147d0b9fdb0b3035ee8649"
+    },
+    {
+      "directory": "logs/20261104T143359Z-inspect-direct-35b-warmup-OrjEWO",
+      "exit_code": 0,
+      "command_sha256": "8c2b80522ba16f77b0aa1c5179e2548920a5d7b19cdb2bf75984e425dea793b9",
+      "output_sha256": "fa4e2971676d3fc0035dfdcbe304ce896616964716a14aa4a2a4f0fbf1beea44"
+    },
+    {
+      "directory": "logs/20261104T143415Z-system032-35b-direct-curl-h383A8",
+      "exit_code": 0,
+      "command_sha256": "1fec705122602549f2ec849faddb8de4d92b552b626447815fa4175ff76cbdaa",
+      "output_sha256": "21f444b084992871d1c7c1fe8ef82596fe656294b6f0690017f6437e27f7401d"
+    },
+    {
+      "directory": "logs/20261104T143511Z-inspect-direct-35b-request-progress-54mjLs",
+      "exit_code": 0,
+      "command_sha256": "a99c928553a5b84c2f7aa6817b13f3a9598861ea4ab4338834fd3142ef821806",
+      "output_sha256": "7da572adb6e67964c7b01e1d36eb47a112c2cd6991d35748af685cb275175ac7"
+    },
+    {
+      "directory": "logs/20261104T143720Z-stop-tested-system032-35b-server-Es1RlW",
+      "exit_code": 0,
+      "command_sha256": "f0828c8fceac0e24e38d5278f6ddae87ed9530b256234b34a24d40f1d3e7ef54",
+      "output_sha256": "5486ee3b1bca8d658f790ec2b1134a21c6bd986976edb02dfd95ae48275215dc"
+    },
+    {
+      "directory": "logs/20261104T143741Z-final-system032-resources-RckKZs",
+      "exit_code": 0,
+      "command_sha256": "17dc4bb36e2a7098b85bc6a35b25d4ed728c0e6f14b0fee33866e2cd85ff754c",
+      "output_sha256": "51c1ec67c8d24c36be47480179db622b07b8476bec67362097f006ac900ca3d8"
+    },
+    {
+      "directory": "logs/20261104T143746Z-final-system032-source-commits-8dpjMH",
+      "exit_code": 0,
+      "command_sha256": "a5456e2e10cc1b498d37ef887dae1662fce659857b54218b2f10cccfe3e0d710",
+      "output_sha256": "748bc55914e7bac2c8e3f43cb5ba99494a250f6f6076f199b2e0eabc749ee304"
+    }
+  ],
+  "scope": "Container system Python install and eager text tests; original baseline failure retained"
+}

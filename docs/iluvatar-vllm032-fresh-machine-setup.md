@@ -1,53 +1,31 @@
-# 教程二：本机新建容器，复现 vLLM 0.32 纯文本测试
+# 教程二：官方天数镜像 → 原始环境验证 → 直接升级 vLLM 0.32 → 纯文本测试
 
-更新：2026-11-04。适用于当前 u180 / n180 天数 BI-V150 机器：假设你还没有自己的环境，从拉镜像、建容器开始。已有 `testtianshuzdh` 环境可使用[教程一](iluvatar-vllm032-local-reproduction.md)；本文另建 `tianshu-vllm032-text`，避免覆盖已有容器。
+更新：2026-11-04。适用于当前 u180 / n180 天数 BI-V150 机器。**宿主仅执行 Docker 拉取、创建、进入命令；安装和测试全部在容器内。不创建 venv，不下载教程仓库，不使用 run_step 或自定义测试客户端。终端 A 启动服务，终端 B 直接运行 OpenAI 示例或 curl，结果直接显示。**
 
-**宿主机只执行必要的 Docker 操作。源码、Python 环境、脚本、缓存和日志全部放在新容器的 `/workspace/repro`。无需下载教程仓库，直接复制本文代码。只测试文本。**
+已有容器可以从第 2 节开始，但升级过的环境不能再当成原始镜像环境。本文的系统 Python 是 `/usr/local/bin/python`；不要 source 旧教程的 `/workspace/repro/env.sh`，它会激活旧 venv。原来的 venv 无需删除。
 
-本机已有的模型、驱动包和 FlagCX 全部只读复用。Docker 镜像与容器仍会占用宿主 Docker 存储；本文不创建宿主工作目录，不安装或修改宿主软件。容器删除后，可写层中的源码、venv 和日志也会删除，完成前不要删除容器。
+执行顺序：原始版本及路径记录 → 驱动库检查 → vLLM 0.28 基线服务和请求 → 停服务 → 直接安装 0.32 与 PR 674 → 相同命令验证 4B → 27B/35B 文本测试。
 
-验证边界：已有容器实测通过环境检查、真实双卡 FlagCX AllReduce、Qwen3-4B TP1/TP2 eager、TP2 FULL graph 和文本流式接口检查。**此次改写没有再从镜像新建容器完整重装**；本文做了语法、现有材料及对应路径核对，且在已有环境执行了文档内的厂商和运行时检查代码。见[本次修改与检查记录](../records/u180-doc2-container-only-20261104/README.md)。生成链路和回答正确性分开验收，已有算术错误尚未修复，见第 11 节及[原始验证记录](iluvatar-vllm032-tutorial-validation.md)。
+## 1. 官方镜像与建容器：仅本节在宿主执行
 
-## 1. 固定材料与本机前置条件
+镜像来自 **flagos-ai/vllm-plugin-FL 官方项目的 0.5.0-dev 分支**，不是本项目制作的镜像，也不是本次测试容器的打包产物：
 
-| 材料 | 本文使用的值 |
-| --- | --- |
-| 基础镜像 | `harbor.baai.ac.cn/plugin/vllm-plugin-fl@sha256:eb904d40a92e9769f358f4d81c8043acfbc30b1b077f0a31210be6316ec0cf18` |
-| Python | 镜像提供的 Python 3.12 |
-| CoreX PyTorch distribution | `2.10.0+corex.4.5.0`；`torch.__version__` 实测为 `2.10.0` |
-| FlagTree / Triton import | `0.6.2a3+iluvatar3.6` / `3.6.0`，必须有 Iluvatar 后端 |
-| FlagGems / NumPy | `5.3.5` / `1.26.4` |
-| vLLM | tag `v0.32.0`，提交 `5df63a7203cdb9328d824a27b682e77c7b9928be`，EMPTY 普通安装 |
-| 适配插件 | `luoyc123/vllm-plugin-FL`，提交 `c17d866e08b583f63998cbd47bc39fe3e57efce0` |
-| FlagGems-vllm | 提交 `b5c2c2249319277ccda4d41aa0f65164bd9b2a19`，包元数据仍为 `0.1.0` |
-| 本机 FlagCX | `/mnt/share/user_homes/iluv/FlagCX`，提交 `6143384797219733aee89bd3118b2cb184ad4959` |
-| Qwen3-4B | 宿主 `/mnt/share/user_homes/models/Qwen3-4B` → 容器 `/models/Qwen3-4B` |
-| 驱动用户态包 | `/mnt/share/user_homes/yubenjie/0509/corex-driver-linux64-4.5.0.20260509_x86_64.run` |
-
-宿主已具备可用 Docker、CoreX 4.5.0 驱动和上述共享材料。本文不安装宿主驱动或 Docker。另一台机器没有这些文件时，不能原样照搬路径，需先取得匹配材料。
-
-只做 TP1 文本需要一张空闲卡；双卡通信和 TP2 需要两张。下文 `0,1` 是示例，必须在容器内检查当时占用后选择。
-
-## 2. 宿主机：只拉镜像、创建容器、进入容器
-
-**仅本节和第 11 节的 `docker exec` 在宿主终端执行。后续 git、pip、mkdir、驱动解包及 Python 代码全部在容器内。**
-
-### 2.1 拉取固定镜像
+- [官方 CI 配置](https://github.com/flagos-ai/vllm-plugin-FL/blob/0.5.0-dev/.github/configs/iluvatar.yml#L15) 列出标签及摘要。
+- [官方天数部署说明](https://github.com/flagos-ai/vllm-plugin-FL/blob/0.5.0-dev/docs/usage/iluvatar.md#L12) 列出相同信息。
 
 ```bash
-docker pull harbor.baai.ac.cn/plugin/vllm-plugin-fl@sha256:eb904d40a92e9769f358f4d81c8043acfbc30b1b077f0a31210be6316ec0cf18
+docker pull harbor.baai.ac.cn/plugin/vllm-plugin-fl:v0.28.0-iluvatar-ci
+docker image inspect harbor.baai.ac.cn/plugin/vllm-plugin-fl:v0.28.0-iluvatar-ci --format '{{json .RepoDigests}}'
 ```
 
-仅当提示鉴权失败时，才执行 `docker login harbor.baai.ac.cn` 后重试。凭据向镜像维护者取得，不写进教程或测试日志。拉取失败保留终端错误，不换成未知镜像。
+官方文档记录的摘要是 `sha256:eb904d40a92e9769f358f4d81c8043acfbc30b1b077f0a31210be6316ec0cf18`。标签可能更新，保留本次实际 inspect 输出；不同摘要不能直接沿用本文实测结论。Harbor 拉取失败时保留原始错误，按 DNS、网络、权限或标签定位。只有提示需要鉴权时才 `docker login harbor.baai.ac.cn`，不要把凭据写入记录。
 
-### 2.2 创建独立容器
+本机已经有宿主驱动和共享模型，无需安装宿主驱动、创建宿主目录或下载教程仓库。创建容器：
 
 ```bash
 docker run -dit \
   --name tianshu-vllm032-text \
-  --init \
-  --shm-size=32g \
-  --privileged \
+  --init --shm-size=32g --privileged \
   --ulimit nofile=65535:65535 \
   --mount type=bind,src=/dev,dst=/dev \
   --mount type=bind,src=/lib/modules,dst=/lib/modules,readonly \
@@ -56,257 +34,332 @@ docker run -dit \
   --mount type=bind,src=/usr/local/corex-4.5.0.20260509/lib64/libcuda.so.1,dst=/usr/local/corex/lib64/libcuda.so.1,readonly \
   --mount type=bind,src=/usr/local/corex-4.5.0.20260509/lib64/libixml.so,dst=/usr/local/corex/lib64/libixml.so,readonly \
   --entrypoint /bin/bash \
-  harbor.baai.ac.cn/plugin/vllm-plugin-fl@sha256:eb904d40a92e9769f358f4d81c8043acfbc30b1b077f0a31210be6316ec0cf18
+  harbor.baai.ac.cn/plugin/vllm-plugin-fl:v0.28.0-iluvatar-ci
+
+docker exec -it tianshu-vllm032-text bash
 ```
 
-本机驱动目录带 `.20260509`，不能写成 `/usr/local/corex-4.5.0`。`--mount` 遇到源路径缺失会报错，不会替你建立宿主目录。名称冲突时确认是否已创建成功，不自动删除原容器。
+本机实际驱动路径带 `.20260509`，不是官方示例不带日期的目录。`--mount` 源路径不存在会报错，不自动创建宿主目录。名字已存在时进入现有容器，不删除或覆盖它。设备访问保留必要权限，模型和共享文件只读。
 
-设备访问使用 `/dev` 及相应权限；共享文件只读。独立 PID、IPC 和默认桥接网络，服务及客户端在同容器内通信，无需共享宿主网络或映射端口。
+后文服务监听容器 `127.0.0.1:8060`；终端 B 必须进入**同一个容器**，不是创建另一个容器。不需要宿主端口映射或 host 网络。镜像和容器仍占用 Docker 存储；容器删除会丢失可写层中的源码、环境和日志。
 
-### 2.3 进入容器
+## 2. 容器内：开始记录，展示原始环境
+
+从这里开始，除明确标注的 docker exec，所有命令都在容器内执行。首先启动 Bash 终端记录：
+
+```bash
+mkdir -p /workspace/repro/{src,logs,results}
+script -q -f -c 'bash --noprofile --norc -i' \
+  "/workspace/repro/logs/setup-session-$(date -u +%Y%m%dT%H%M%SZ).log"
+```
+
+看到 `bash-...#` 提示符后再继续。必须保留显式 Bash；否则 script 可能启动 sh，出现 `source: not found` 或 `Illegal option -o pipefail`。只复制代码块，不复制提示符。heredoc 结束的 `PY` / `SH` 必须单独一行且顶格，Python 顶层代码也不要整体缩进。
+
+```bash
+export REPRO_ROOT=/workspace/repro
+export PATH=/usr/local/bin:/usr/local/sbin:/usr/sbin:/usr/bin:/sbin:/bin
+unset VIRTUAL_ENV PYTHONHOME PYTHONPATH VLLM_VENDOR
+export PYTHONNOUSERSITE=1
+set -o pipefail
+command -v python pip vllm
+python -VV
+python -m pip --version
+python -m pip list --format=json > "$REPRO_ROOT/logs/original-packages.json"
+python - <<'PY' 2>&1 | tee "$REPRO_ROOT/logs/original-environment.log"
+import os
+import sys
+from importlib import metadata
+print('Python:', sys.executable, sys.version)
+print('prefix:', sys.prefix, 'base_prefix:', sys.base_prefix)
+assert sys.prefix == sys.base_prefix, '当前仍在 venv，请用本节 PATH/清理命令恢复系统 Python'
+for name in ('vllm', 'vllm-plugin-fl', 'torch', 'flagtree', 'flag-gems',
+             'numpy', 'transformers', 'tokenizers', 'openai', 'flaggems-vllm'):
+    try:
+        package = metadata.distribution(name)
+        print(name, package.version, package._path)
+    except metadata.PackageNotFoundError:
+        print(name, 'NOT_INSTALLED')
+print('LD_LIBRARY_PATH:', os.environ.get('LD_LIBRARY_PATH'))
+PY
+printf 'ORIGINAL_ENV_EXIT_CODE=%s\n' "${PIPESTATUS[0]}"
+```
+
+镜像摘要对应的本机原始系统环境实测：Python 3.12.11、vLLM `0.28.0+empty`、插件 `0.3.0rc0+g13eb9be69`、torch distribution `2.10.0+corex.4.5.0`、FlagTree `0.6.2a3+iluvatar3.6`、FlagGems `5.3.5`、NumPy `1.26.4`、OpenAI `2.46.0`；系统 Python 未安装 FlagGems-vllm。以你这次输出为准。这里只读取包元数据，不要求先成功 import torch。
+
+本机 Qwen3-4B 实际路径是 `/models/Qwen3-4B`。历史参考 `/mnt/share/user_homes/zyp/models/Qwen/Qwen3-4B/` 在本机不存在，不能照抄。27B、35B 路径也只读复用：
+
+```bash
+test -f /models/Qwen3-4B/config.json && echo QWEN3_4B_FOUND
+test -f /models/Qwen3.6-27B/config.json && echo QWEN36_27B_FOUND
+test -f /models/Qwen3.6-35B-A3B/config.json && echo QWEN36_35B_FOUND
+```
+
+拉镜像、建容器的命令及原始输出也应留存。它们发生在 session 记录之前，可以从宿主终端复制到容器内编辑保存；这只是补录日志，不影响搭建，不要求运行一个等待输入的 cat。
+
+## 3. 容器内：设备与驱动依赖检查，不安装驱动
+
+```bash
+if command -v ixsmi >/dev/null; then ixsmi; else nvidia-smi; fi
+ldd /usr/local/corex/lib64/libcuda.so.1 2>&1 | tee "$REPRO_ROOT/logs/libcuda-before.log"
+```
+
+8、9、10、11 是旧参考卡号。本轮检查这些卡已有其他任务，0、1、2、3 空闲，因此本文使用 0–3；执行时再确认，不终止其他人的任务。
+
+如果 `ldd` 没有 `not found`，跳过下面修复代码。如果明确缺少 `libixthunk.so`，执行下面的**容器内用户态依赖补齐**。原因是本机挂载的 libcuda 还依赖该库，而官方两个库的示例挂载未覆盖它；不是要求更换宿主驱动。
+
+```bash
+export DRIVER_PACKAGE=/mnt/share/user_homes/yubenjie/0509/corex-driver-linux64-4.5.0.20260509_x86_64.run
+printf '%s  %s\n' \
+  710468ef4434b5dfafc684e6160fffbbe49c7f3068af3089c86d04c8366b5626 \
+  "$DRIVER_PACKAGE" | sha256sum -c -
+```
+
+校验必须为 OK。尚未解包才执行：
+
+```bash
+if [ ! -f "$REPRO_ROOT/driver-extracted/corex/lib64/libixthunk.so" ]; then
+  bash "$DRIVER_PACKAGE" --noexec --target "$REPRO_ROOT/driver-extracted" \
+    2>&1 | tee "$REPRO_ROOT/logs/driver-userspace-extract.log"
+  printf 'EXTRACT_EXIT_CODE=%s\n' "${PIPESTATUS[0]}"
+fi
+export LD_LIBRARY_PATH="$REPRO_ROOT/driver-extracted/corex/lib64:/usr/local/corex/lib64${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+ldd /usr/local/corex/lib64/libcuda.so.1
+```
+
+确认不再有 `not found`。`--noexec` 不执行安装器，不改宿主驱动；只读模型和共享材料保持不变。本机挂载与解包的 libcuda SHA256 均为 `6cf92e5c9112ab657af07076b29446c8210590cd46062111c60f8e367200a35f`。另一台机器需对应的驱动材料，不能套用这份包。
+
+为以后每个终端保存相同环境，只做环境变量设置，不激活 venv：
+
+```bash
+cat > "$REPRO_ROOT/env-direct.sh" <<'SH'
+export REPRO_ROOT=/workspace/repro
+export REPO_DIR="$REPRO_ROOT/src/vllm-plugin-FL"
+export PATH=/usr/local/bin:/usr/local/sbin:/usr/sbin:/usr/bin:/sbin:/bin
+unset VIRTUAL_ENV PYTHONHOME PYTHONPATH VLLM_VENDOR
+export PYTHONNOUSERSITE=1
+export GIT_CONFIG_GLOBAL="$REPRO_ROOT/gitconfig"
+export FLAGCX_PATH=/mnt/share/user_homes/iluv/FlagCX
+export LD_LIBRARY_PATH="$FLAGCX_PATH/build/lib:/usr/local/corex/lib64${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+if [ -f "$REPRO_ROOT/driver-extracted/corex/lib64/libixthunk.so" ]; then
+  export LD_LIBRARY_PATH="$REPRO_ROOT/driver-extracted/corex/lib64:$LD_LIBRARY_PATH"
+fi
+export CUDA_VISIBLE_DEVICES="${REPRO_DEVICES:-0,1,2,3}"
+export COREX_VISIBLE_DEVICES="$CUDA_VISIBLE_DEVICES"
+export VLLM_PLUGINS=fl
+export USE_FLAGGEMS=1
+export GEMS_VENDOR=iluvatar
+export VLLM_ENGINE_ITERATION_TIMEOUT_S=36000
+export VLLM_RPC_TIMEOUT=36000000
+export VLLM_EXECUTE_MODEL_TIMEOUT_SECONDS=3600
+export XDG_CACHE_HOME="$REPRO_ROOT/cache"
+export TRITON_CACHE_DIR="$REPRO_ROOT/cache/triton"
+export HF_HOME="$REPRO_ROOT/cache/huggingface"
+export VLLM_CACHE_ROOT="$REPRO_ROOT/cache/vllm"
+SH
+export REPRO_DEVICES=0,1,2,3
+source "$REPRO_ROOT/env-direct.sh"
+python - <<'PY'
+import torch
+print('torch:', torch.__version__, torch.__file__)
+assert torch.cuda.is_available()
+for device in range(torch.cuda.device_count()):
+    free, total = torch.cuda.mem_get_info(device)
+    print(device, torch.cuda.get_device_name(device), 'free GiB:', round(free / 2**30, 2))
+assert (torch.ones(4, device='cuda') + 2).cpu().tolist() == [3, 3, 3, 3]
+print('GPU_BASIC_PASS')
+PY
+```
+
+如果出现 GPU 错误，先停在这里定位，不开始安装。env-direct.sh 中设置的两个旧超时变量按原参考保留；不保证新版本仍读取它们，不能用增大超时掩盖真实异常。
+
+## 4. 原始环境验证：终端 A 启动 4B 服务
+
+这是升级前测试。确认原始包版本仍是 0.28；已升级为 0.32 的容器不要降级伪造基线，使用之前保存的原始记录，或另建官方镜像容器验证。
+
+```bash
+source /workspace/repro/env-direct.sh
+export CUDA_VISIBLE_DEVICES=0,1,2,3
+export COREX_VISIBLE_DEVICES="$CUDA_VISIBLE_DEVICES"
+export VLLM_ENGINE_ITERATION_TIMEOUT_S=36000
+export VLLM_RPC_TIMEOUT=36000000
+export VLLM_EXECUTE_MODEL_TIMEOUT_SECONDS=3600
+vllm serve /models/Qwen3-4B/ --served-model-name qwen \
+  --host 127.0.0.1 --enforce-eager --port 8060 --max-model-len 32768 \
+  2>&1 | tee "$REPRO_ROOT/logs/baseline-028-server.log"
+printf 'BASELINE_SERVER_EXIT_CODE=%s\n' "${PIPESTATUS[0]}"
+```
+
+可见四张卡不表示使用 TP4；这条命令没有 `-tp`，4B 默认 TP1。终端 A 保持运行，看到服务启动完成后再发请求。
+
+**本轮原始系统环境实测失败**：镜像内置插件在注册时访问 `vllm.model_executor.layers.fused_moe.FusedMoE`，而原装 vLLM 0.28 没有该属性，报 AttributeError，尚未启动模型或接口。它不是驱动缺库，也不是 curl 参数问题。保留原始错误；不要修改原装源码把基线强行变绿。此时第 5 节接口验证记“服务启动失败，未通过”，再进入第 6 节验证适配后的环境。参见[本轮直接安装验证记录](../records/u180-direct-install-20261104/README.md)。
+
+## 5. 原始环境验证：终端 B 直接执行 OpenAI 流式请求
+
+终端 B 从宿主进入**同一个容器**：
 
 ```bash
 docker exec -it tianshu-vllm032-text bash
 ```
 
-**从下一节起全部在这个容器内执行。** Docker 失败就停在这里，不在宿主补执行后续步骤。
-
-## 3. 容器内：开始记录，建立目录
+以下全部在容器内。开始记录，再加载不含 venv 的环境：
 
 ```bash
-export REPRO_ROOT=/workspace/repro
-mkdir -p "$REPRO_ROOT"/{src,logs,results,cache}
-command -v script
-script -q -f "$REPRO_ROOT/logs/session-$(date -u +%Y%m%dT%H%M%SZ).log"
+script -q -f -c 'bash --noprofile --norc -i' \
+  "/workspace/repro/logs/client-session-$(date -u +%Y%m%dT%H%M%SZ).log"
 ```
 
-最后一条启动带终端记录的子 shell。继续在里面输入以下命令；结束时 `exit` 关闭记录。新终端也可重复这组命令，使用新时间戳。不要在记录会话中输入密码或令牌。
-
-在记录 shell 中设置逐条命令记录器：
+看到 Bash 提示符后执行：
 
 ```bash
-export REPRO_ROOT=/workspace/repro
-set -euo pipefail
-cat > "$REPRO_ROOT/record.sh" <<'SH'
-run_step() {
-    local label="$1"
-    shift
-    local step_dir
-    step_dir="$(mktemp -d "$REPRO_ROOT/logs/$(date -u +%Y%m%dT%H%M%SZ)-${label}-XXXXXX")"
-    printf '%q ' "$@" > "$step_dir/command.sh"
-    printf '\n' >> "$step_dir/command.sh"
-    date -u +%FT%TZ > "$step_dir/start.txt"
-    local -a codes
-    if "$@" 2>&1 | tee "$step_dir/output.log"; then
-        codes=("${PIPESTATUS[@]}")
-    else
-        codes=("${PIPESTATUS[@]}")
-    fi
-    printf '%s\n' "${codes[0]}" > "$step_dir/exit-code.txt"
-    printf '%s\n' "${codes[1]}" > "$step_dir/tee-exit-code.txt"
-    date -u +%FT%TZ > "$step_dir/end.txt"
-    printf 'EXIT_CODE=%s LOG=%s\n' "${codes[0]}" "$step_dir"
-    if (( codes[0] != 0 )); then return "${codes[0]}"; fi
-    return "${codes[1]}"
-}
-SH
-source "$REPRO_ROOT/record.sh"
-run_step system bash -c 'set -e; uname -m; python3 --version; df -h /workspace; command -v git curl make gcc'
+source /workspace/repro/env-direct.sh
+set -o pipefail
+curl --noproxy '*' --connect-timeout 5 --max-time 10 --fail-with-body -sS \
+  http://127.0.0.1:8060/v1/models
 ```
 
-每次保存命令、完整 stdout/stderr、起止时间和命令/tee 退出码。export、source 和文件创建等交互操作保存在 session 日志中。失败返回非零；重新进入 shell 后 source 记录器，先定位错误，不跳过失败。
-
-镜像拉取和容器创建发生在记录器启动前：把第 2 节实际命令、拉取输出、容器 ID 及错误从终端复制到容器内保存，不补写虚构的成功记录：
+只有模型列表能返回 qwen，才运行下面的请求；连接失败先看终端 A，不静默等待半小时。
 
 ```bash
-cat > "$REPRO_ROOT/logs/docker-bootstrap.txt"
+NO_PROXY=127.0.0.1,localhost no_proxy=127.0.0.1,localhost \
+python - <<'PY' 2>&1 | tee "$REPRO_ROOT/logs/baseline-028-openai-stream.log"
+from openai import OpenAI
+
+client = OpenAI(api_key='EMPTY', base_url='http://127.0.0.1:8060/v1', timeout=300, max_retries=0)
+response = client.chat.completions.create(
+    model='qwen',
+    messages=[{'role': 'user', 'content': 'Give me a short introduction to large language models.'}],
+    max_tokens=20,
+    temperature=0.7,
+    top_p=0.8,
+    presence_penalty=1.5,
+    extra_body={'top_k': 20, 'chat_template_kwargs': {'enable_thinking': False}},
+    stream=True,
+)
+for chunk in response:
+    if chunk.choices and chunk.choices[0].delta.content:
+        print(chunk.choices[0].delta.content, end='', flush=True)
+print()
+PY
+printf 'BASELINE_CLIENT_EXIT_CODE=%s\n' "${PIPESTATUS[0]}"
 ```
 
-粘贴原始内容后按 Ctrl+D。此次改写未重新拉镜像或创建容器，因此没有新增这两步的成功记录。
+输出直接显示在终端，同时保存在日志。如果想生成更多内容，可另一次改为 max_tokens=256 并保存新日志；原参考 20 token 只是短流式冒烟。
 
-## 4. 容器内：补齐驱动用户态依赖
+完成后在终端 A 按 Ctrl+C 停止服务，等待释放显存和端口，再升级。中断服务的退出码通常非零，不能记为“正常退出 0”。
 
-之前只挂 `libcuda.so.1`、`libixml.so`，实际出现缺少 `libixthunk.so`。在容器内**仅解包**本机同版驱动包，将完整用户态库放在搜索路径最前。不要直接运行安装器安装驱动。
+## 6. 容器内直接搭建新环境，不建 venv
+
+回到终端 A，保持 Bash 记录会话。所有 pip 操作仅修改**这个容器的系统 Python**，不修改宿主。本文使用 `python -m pip` 明确解释器，与系统 Python 下的 pip 命令等价。
+
+### 6.1 拉取 vLLM 与官方插件 PR
 
 ```bash
-export DRIVER_PACKAGE=/mnt/share/user_homes/yubenjie/0509/corex-driver-linux64-4.5.0.20260509_x86_64.run
-run_step driver-package-check bash -c '
-  printf "%s  %s\n" 710468ef4434b5dfafc684e6160fffbbe49c7f3068af3089c86d04c8366b5626 "$DRIVER_PACKAGE" | sha256sum -c -
-'
-run_step driver-extract bash "$DRIVER_PACKAGE" --noexec --target "$REPRO_ROOT/driver-extracted"
-export COREX_DRIVER_LIB_DIR="$REPRO_ROOT/driver-extracted/corex/lib64"
-export LD_LIBRARY_PATH="$COREX_DRIVER_LIB_DIR:/usr/local/corex/lib64${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
-run_step driver-libraries bash -c '
-  set -e
-  test -f "$COREX_DRIVER_LIB_DIR/libixthunk.so"
-  printf "%s  %s\n" 6cf92e5c9112ab657af07076b29446c8210590cd46062111c60f8e367200a35f "$COREX_DRIVER_LIB_DIR/libcuda.so.1" | sha256sum -c -
-  ldd "$COREX_DRIVER_LIB_DIR/libcuda.so.1"
-  ldd /usr/local/corex/lib64/libcuda.so.1
-'
+source /workspace/repro/env-direct.sh
+cd "$REPRO_ROOT/src"
+git config --file "$GIT_CONFIG_GLOBAL" \
+  url.https://gh-proxy.org/https://github.com/.insteadOf https://github.com/
+
+git clone --depth 1 --branch v0.32.0 https://github.com/vllm-project/vllm.git vllm
+git -C vllm rev-parse HEAD
+
+git clone --branch 0.5.0-dev https://github.com/flagos-ai/vllm-plugin-FL.git vllm-plugin-FL
+git -C vllm-plugin-FL fetch origin refs/pull/674/head
+git -C vllm-plugin-FL checkout --detach FETCH_HEAD
+git -C vllm-plugin-FL rev-parse HEAD
 ```
 
-两份 `ldd` 都必须没有 `not found`。解包目录已存在时先核对已有文件，不反复向未知目录解包。这里只调用 `--noexec`，不运行驱动安装脚本或操作内核模块。
+GitHub 代理仅用于公开源码，Docker 镜像仍直接使用官方 Harbor。代理慢时可换可用下载源或传入已校验 Git 源码，不能跳过提交检查。本文当前实测提交：
 
-## 5. 容器内：建立 venv，核对厂商组件
+| 项目 | 提交 |
+| --- | --- |
+| vLLM tag v0.32.0 | `5df63a7203cdb9328d824a27b682e77c7b9928be` |
+| PR 674 head | `c17d866e08b583f63998cbd47bc39fe3e57efce0` |
+
+本轮直接查询官方 PR API，PR 674 仍开放、目标分支 0.5.0-dev，head 与上表一致。用 fetch + checkout 直接检出 PR，避免 `git pull origin pull/674/head` 在已有分支制造合并或因分叉策略失败。
+
+**当前容器已有这两份源码，直接核对后跳过 clone，不重复下载：**
 
 ```bash
-unset PYTHONPATH VLLM_VENDOR
-run_step create-venv python3 -m venv --system-site-packages "$REPRO_ROOT/venv"
-source "$REPRO_ROOT/venv/bin/activate"
-export PYTHONNOUSERSITE=1
-export GEMS_VENDOR=iluvatar
-export REPRO_DEVICES=0,1
-export COREX_VISIBLE_DEVICES="$REPRO_DEVICES"
-export CUDA_VISIBLE_DEVICES="$REPRO_DEVICES"
-if command -v ixsmi >/dev/null; then
-    run_step devices ixsmi
-else
-    run_step devices nvidia-smi
-fi
+git -C "$REPRO_ROOT/src/vllm" rev-parse HEAD
+git -C "$REPO_DIR" rev-parse HEAD
+git -C "$REPO_DIR" status --short
 ```
 
-本机兼容命令可能名为 `nvidia-smi`，实际仍是天数卡。若 0、1 卡有任务，修改三个可见卡变量后继续；单卡使用者选择一张卡并跳过后面的双卡步骤。不要终止其他人的任务。
+已有目录不要再 clone 到同一位置。若 PR head 后续变化，记录新提交并重新测试，不能冒用本文结果。
+
+### 6.2 构建工具与核心包指纹
 
 ```bash
-run_step vendor-check python - <<'PY'
-import sys
+python - <<'PY'
+import json
+import os
 from importlib import metadata
 from pathlib import Path
-import torch
-import triton
-from triton._C import libtriton
-
-assert sys.version_info[:2] == (3, 12), sys.version
-assert sys.prefix != sys.base_prefix, sys.executable
-expected = {'torch': '2.10.0+corex.4.5.0', 'flagtree': '0.6.2a3+iluvatar3.6',
-            'flag-gems': '5.3.5', 'numpy': '1.26.4'}
-for name, value in expected.items():
-    actual = metadata.version(name)
-    print(name, actual, flush=True)
-    assert actual == value, (name, actual, value)
-assert triton.__version__ == '3.6.0'
-assert hasattr(libtriton, 'iluvatar')
-package = metadata.distribution('flagtree')
-assert any(Path(package.locate_file(entry)).resolve() == Path(triton.__file__).resolve()
-           for entry in package.files or ())
-print('python:', sys.executable, 'torch:', torch.__version__, torch.__file__)
-print('triton:', triton.__file__)
-assert torch.cuda.is_available()
-for device in range(torch.cuda.device_count()):
-    free, total = torch.cuda.mem_get_info(device)
-    print('GPU:', device, torch.cuda.get_device_name(device), free / 2**30, total / 2**30)
-    assert free / 2**30 >= 30, 'Select an idle card with at least 30 GiB free'
-assert (torch.ones(4, device='cuda') + 2).cpu().tolist() == [3, 3, 3, 3]
-assert torch.tensor([1, 2, 3]).numpy().tolist() == [1, 2, 3]
-print('VENDOR_PASS')
+names = ('torch', 'flagtree', 'flag-gems', 'numpy')
+versions = {name: metadata.version(name) for name in names}
+Path(os.environ['REPRO_ROOT'], 'logs/core-before-upgrade.json').write_text(json.dumps(versions, indent=2))
+print(versions)
 PY
-```
-
-失败就停止。镜像标签的历史版本文字不能代替检查；缺少专用 FlagTree wheel 时需取得匹配材料，不安装普通 torch 或独立 Triton 覆盖厂商组件。
-
-## 6. 容器内：固定源码并安装
-
-### 6.1 拉源码
-
-以下 Git 配置只写容器 `/workspace/repro/gitconfig`。可直连时可不配置 URL 重写，仍需核对相同提交。代理只用于公开源码，不发送令牌。
-
-```bash
-export GIT_CONFIG_GLOBAL="$REPRO_ROOT/gitconfig"
-run_step git-proxy git config --file "$GIT_CONFIG_GLOBAL" \
-  url.https://gh-proxy.org/https://github.com/.insteadOf https://github.com/
-run_step clone-vllm git clone --depth 1 --branch v0.32.0 \
-  https://github.com/vllm-project/vllm.git "$REPRO_ROOT/src/vllm"
-run_step clone-plugin git clone \
-  https://github.com/luoyc123/vllm-plugin-FL.git "$REPRO_ROOT/src/vllm-plugin-FL"
-export REPO_DIR="$REPRO_ROOT/src/vllm-plugin-FL"
-run_step pin-plugin git -C "$REPO_DIR" checkout --detach c17d866e08b583f63998cbd47bc39fe3e57efce0
-run_step source-check python - <<'PY'
-import os
-import subprocess
-root = os.environ['REPRO_ROOT']
-for name, expected in (
-    ('vllm', '5df63a7203cdb9328d824a27b682e77c7b9928be'),
-    ('vllm-plugin-FL', 'c17d866e08b583f63998cbd47bc39fe3e57efce0'),
-):
-    actual = subprocess.check_output(['git', '-C', f'{root}/src/{name}', 'rev-parse', 'HEAD'], text=True).strip()
-    print(name, actual)
-    assert actual == expected
-PY
-```
-
-这是已核实的适配快照。PR 674、`0.5.0-dev` 或默认分支可能变化，不用 `git pull` 混入未知新代码。上面下载的是必需的推理框架和插件源码，没有下载教程仓库。
-
-### 6.2 准备 venv 构建工具
-
-```bash
-run_step build-tools python -m pip install --no-deps \
+python -m pip install --no-deps \
   'setuptools==80.10.2' 'setuptools-scm==10.2.1' \
   'setuptools-rust==1.13.0' 'scikit-build-core==0.11.0' \
   'pybind11==3.1.0' 'ninja==1.13.0' 'cmake==4.4.2' \
-  'packaging==26.2' wheel
-run_step build-imports python -c 'import setuptools, setuptools_scm, setuptools_rust, scikit_build_core, pybind11, wheel, jinja2; print("BUILD_TOOLS_PASS")'
+  'packaging==26.2' 'wheel==0.48.0' \
+  2>&1 | tee "$REPRO_ROOT/logs/install-build-tools.log"
+printf 'BUILD_TOOLS_EXIT_CODE=%s\n' "${PIPESTATUS[0]}"
 ```
 
-版本来自已观察环境；`wheel` 是补充的构建工具，实际选中的版本记录在日志和最终包清单。包源无法提供某版本时保留错误，不无约束升级运行时。这些命令由 venv Python 执行。
+确认退出码为 0，再继续。不要普通 `pip install -U torch triton`；FlagTree 提供天数版 import triton，不能用通用 Triton 覆盖。镜像多数构建工具已经具备，本轮补充 wheel 0.48.0。
 
-### 6.3 EMPTY 普通安装 vLLM，安装插件与辅助算子
+### 6.3 直接 editable 安装 vLLM 0.32 与 PR 674
 
 ```bash
-run_step install-vllm env VLLM_TARGET_DEVICE=empty VLLM_VERSION_OVERRIDE=0.32.0 \
-  python -m pip install --no-build-isolation --no-deps "$REPRO_ROOT/src/vllm"
-run_step install-plugin python -m pip install --no-build-isolation --no-deps -e "$REPO_DIR"
-run_step install-flaggems-vllm python "$REPO_DIR/.github/scripts/install_flaggems_vllm.py"
+cd "$REPRO_ROOT/src/vllm"
+VLLM_TARGET_DEVICE=empty VLLM_VERSION_OVERRIDE=0.32.0 \
+  python -m pip install -v --no-build-isolation --no-deps -e . \
+  2>&1 | tee "$REPRO_ROOT/logs/install-vllm032.log"
+printf 'INSTALL_VLLM_EXIT_CODE=%s\n' "${PIPESTATUS[0]}"
 ```
 
-对 vLLM 使用普通安装：在 `--system-site-packages` venv 中仅 editable 安装，曾实际导入镜像 vLLM 0.28。插件可 editable 安装，下一节明确指定源码路径。
-
-`empty` 不构建 NVIDIA `vllm._C`；`--no-deps` 保留厂商运行时；`--no-build-isolation` 避免按上游声明拉取普通 `torch==2.13.0`。不要先卸载镜像中的 torch、vLLM 或其他全局包。
-
-辅助算子 helper 固定源码提交，并核对核心运行时版本没变。它可能补装缺少的 packaging、pybind11、PyYAML、SQLAlchemy，也只安装到当前 venv。容器专用 Git 配置同样适用于 helper 的 Git 下载。
-
-## 7. 容器内：固定运行环境，复用只读 FlagCX
+退出 0 后安装插件：
 
 ```bash
-cat > "$REPRO_ROOT/env.sh" <<'SH'
-export REPRO_ROOT=/workspace/repro
-export REPO_DIR="$REPRO_ROOT/src/vllm-plugin-FL"
-export FLAGCX_PATH=/mnt/share/user_homes/iluv/FlagCX
-export COREX_DRIVER_LIB_DIR="$REPRO_ROOT/driver-extracted/corex/lib64"
-export GIT_CONFIG_GLOBAL="$REPRO_ROOT/gitconfig"
-unset PYTHONPATH VLLM_VENDOR VLLM_ENGINE_ITERATION_TIMEOUT_S VLLM_RPC_TIMEOUT
-source "$REPRO_ROOT/venv/bin/activate"
-export PYTHONNOUSERSITE=1
-export PYTHONPATH="$REPO_DIR"
-export VLLM_PLUGINS=fl
-export USE_FLAGGEMS=1
-export GEMS_VENDOR=iluvatar
-export REPRO_DEVICES="${REPRO_DEVICES:-0,1}"
-export COREX_VISIBLE_DEVICES="$REPRO_DEVICES"
-export CUDA_VISIBLE_DEVICES="$REPRO_DEVICES"
-export LD_LIBRARY_PATH="$COREX_DRIVER_LIB_DIR:$FLAGCX_PATH/build/lib:/usr/local/corex/lib64${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
-export XDG_CACHE_HOME="$REPRO_ROOT/cache"
-export TRITON_CACHE_DIR="$REPRO_ROOT/cache/triton"
-export HF_HOME="$REPRO_ROOT/cache/huggingface"
-export VLLM_CACHE_ROOT="$REPRO_ROOT/cache/vllm"
-export VLLM_EXECUTE_MODEL_TIMEOUT_SECONDS=3600
-source "$REPRO_ROOT/record.sh"
-SH
-source "$REPRO_ROOT/env.sh"
-run_step flagcx-library bash -c '
-  set -e
-  test "$(git -C "$FLAGCX_PATH" rev-parse HEAD)" = 6143384797219733aee89bd3118b2cb184ad4959
-  test -f "$FLAGCX_PATH/plugin/interservice/flagcx_wrapper.py"
-  test -f "$FLAGCX_PATH/build/lib/libflagcx.so"
-  ldd "$FLAGCX_PATH/build/lib/libflagcx.so"
-'
+cd "$REPO_DIR"
+python -m pip install --no-build-isolation --no-deps -e . \
+  2>&1 | tee "$REPRO_ROOT/logs/install-plugin674.log"
+printf 'INSTALL_PLUGIN_EXIT_CODE=%s\n' "${PIPESTATUS[0]}"
 ```
 
-确认 `ldd` 无 `not found`。已有 FlagCX 由只读共享目录提供，不重新编译、不 `make install`。只有路径变量，没有真实 `.so` 和 wrapper，不能算就绪。
+这里按你的要求在系统 Python 中 editable 安装，旧版 vLLM/插件由 pip 在容器内替换，不会影响宿主。两处 `--no-deps` 保留厂商运行时，避免解析安装上游普通 torch。`--no-build-isolation` 也避免上游构建声明中的 torch 2.13 自动进入隔离环境。插件版本可能显示 `0.0.0+gc17d866e0`，应核对源码提交，不单凭包版本字符串判断。
 
-检查最终导入：
+安装 PR 配套的辅助算子：
 
 ```bash
-run_step runtime-check python - <<'PY'
+python "$REPO_DIR/.github/scripts/install_flaggems_vllm.py" \
+  2>&1 | tee "$REPRO_ROOT/logs/install-flaggems-vllm.log"
+printf 'INSTALL_FLAGGEMS_VLLM_EXIT_CODE=%s\n' "${PIPESTATUS[0]}"
+hash -r
+```
+
+helper 固定 `b5c2c2249319277ccda4d41aa0f65164bd9b2a19`，检查运行时没有被替换。包元数据为 0.1.0，对应发布 v0.2.0，不算装错。
+
+本机已经传入同版 `/workspace/repro/src/FlagGems-vllm` 源码；如外网慢，可以先检查该目录提交，然后仅对这个仓库改用本地 Git 源，再重跑 helper：
+
+```bash
+git -C "$REPRO_ROOT/src/FlagGems-vllm" rev-parse HEAD
+git config --file "$GIT_CONFIG_GLOBAL" \
+  url.file:///workspace/repro/src/FlagGems-vllm.insteadOf \
+  https://github.com/flagos-ai/FlagGems-vllm.git
+python "$REPO_DIR/.github/scripts/install_flaggems_vllm.py"
+```
+
+只有本地仓库存在且提交匹配才使用这个分支。helper 保留真实 VCS 提交校验，不手工伪造 direct_url.json。
+
+### 6.4 核对实际导入和厂商包
+
+```bash
+source /workspace/repro/env-direct.sh
+python - <<'PY' 2>&1 | tee "$REPRO_ROOT/logs/upgraded-environment.log"
 import ctypes
 import json
 import os
@@ -314,326 +367,187 @@ import sys
 from importlib import metadata
 from pathlib import Path
 import torch
+import triton
 import vllm
 import vllm_fl
 from vllm.platforms import current_platform
 from vllm_fl.distributed.device_communicators import flagcx
 
-assert vllm.__version__.split('+')[0] == '0.32.0'
-assert metadata.version('vllm').split('+')[0] == '0.32.0'
-assert Path(sys.prefix).resolve() in Path(vllm.__file__).resolve().parents
+assert sys.prefix == sys.base_prefix, sys.executable
+assert vllm.__version__.split('+')[0] == '0.32.0', vllm.__version__
+assert Path(os.environ['REPRO_ROOT'], 'src/vllm').resolve() in Path(vllm.__file__).resolve().parents
 assert Path(os.environ['REPO_DIR']).resolve() in Path(vllm_fl.__file__).resolve().parents
+versions = {name: metadata.version(name) for name in ('torch', 'flagtree', 'flag-gems', 'numpy')}
+before = json.loads(Path(os.environ['REPRO_ROOT'], 'logs/core-before-upgrade.json').read_text())
+assert versions == before, (before, versions)
+assert hasattr(triton._C.libtriton, 'iluvatar')
 assert current_platform.vendor_name == 'iluvatar'
-for name, expected in {'torch': '2.10.0+corex.4.5.0', 'flagtree': '0.6.2a3+iluvatar3.6',
-                       'flag-gems': '5.3.5', 'numpy': '1.26.4'}.items():
-    assert metadata.version(name) == expected
+assert torch.cuda.is_available()
+assert (torch.ones(4, device='cuda') + 2).cpu().tolist() == [3, 3, 3, 3]
 source = json.loads(metadata.distribution('flaggems-vllm').read_text('direct_url.json') or '{}')
 assert source.get('vcs_info', {}).get('commit_id') == 'b5c2c2249319277ccda4d41aa0f65164bd9b2a19'
 ctypes.CDLL(os.environ['FLAGCX_PATH'] + '/build/lib/libflagcx.so')
 assert flagcx._flagcx_available
-for name in ('transformers', 'tokenizers', 'huggingface-hub', 'fastapi', 'openai', 'requests'):
-    print(name, metadata.version(name))
-print('python:', sys.executable)
-print('vllm:', vllm.__version__, vllm.__file__)
+print('Python:', sys.executable)
+print('vLLM:', vllm.__version__, vllm.__file__)
 print('plugin:', vllm_fl.__file__)
-print('devices:', torch.cuda.device_count())
-print('RUNTIME_PASS')
+print('core versions:', versions)
+print('DIRECT_ENV_PASS')
 PY
+printf 'UPGRADED_ENV_EXIT_CODE=%s\n' "${PIPESTATUS[0]}"
 ```
 
-每次新开容器终端，先设置 `REPRO_DEVICES` 再 `source /workspace/repro/env.sh`。不向 `PYTHONPATH` 添加全局 site-packages。后文统一使用 `python -m ...`，避免裸 torchrun 等镜像脚本调用全局 Python。
+本机 FlagCX 来自只读 `/mnt/share/user_homes/iluv/FlagCX`，必须有 `build/lib/libflagcx.so` 和 `plugin/interservice/flagcx_wrapper.py`。没有这些材料就不能把 TP4 当作已就绪。
 
-已测环境继承 Transformers 5.14.1、tokenizers 0.22.2、huggingface-hub 1.24.0、FastAPI 0.139.2 等包，与上游 vLLM 0.32 的部分声明存在差异，不能宣称 `pip check` 全通过。新容器若版本不同或缺包，保留错误和包清单，单独对齐并重测，不用一次无约束升级代替诊断。
+## 7. 新环境验证：终端 A 使用相同 4B 启动命令
 
-## 8. 容器内：真实双卡 FlagCX 通信
-
-只有一张卡时跳过本节及所有 TP2，结果写“未测试”。双卡使用者创建探针：
+端口与模型名继续统一为 8060 / qwen，不混用参考中的 8000 和 Qwen3-8B。确认旧服务已经停止：
 
 ```bash
-cat > "$REPRO_ROOT/probe_flagcx.py" <<'PY'
-import os
-from datetime import timedelta
+source /workspace/repro/env-direct.sh
+export CUDA_VISIBLE_DEVICES=0,1,2,3
+export COREX_VISIBLE_DEVICES="$CUDA_VISIBLE_DEVICES"
+export VLLM_ENGINE_ITERATION_TIMEOUT_S=36000
+export VLLM_RPC_TIMEOUT=36000000
+export VLLM_EXECUTE_MODEL_TIMEOUT_SECONDS=3600
+vllm serve /models/Qwen3-4B/ --served-model-name qwen \
+  --host 127.0.0.1 --enforce-eager --port 8060 --max-model-len 32768 \
+  2>&1 | tee "$REPRO_ROOT/logs/v032-4b-server.log"
+printf 'V032_4B_SERVER_EXIT_CODE=%s\n' "${PIPESTATUS[0]}"
+```
+
+终端 A 保持运行，看到启动完成后在终端 B 直接请求。
+
+## 8. 新环境验证：终端 B 直接 curl，直接看输出
+
+终端 B 使用第 5 节进入同容器及 Bash 记录的方式，然后：
+
+```bash
+source /workspace/repro/env-direct.sh
+set -o pipefail
+curl --noproxy '*' --fail-with-body -sS --max-time 300 \
+  http://127.0.0.1:8060/v1/chat/completions \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "model": "qwen",
+    "messages": [{"role": "user", "content": "详细介绍下人工智能"}],
+    "max_tokens": 256,
+    "chat_template_kwargs": {"enable_thinking": false}
+  }' | tee "$REPRO_ROOT/logs/v032-4b-curl.json"
+printf '\nCURL_EXIT_CODE=%s\n' "${PIPESTATUS[0]}"
+```
+
+响应 JSON 直接显示，回答位于 `choices[0].message.content`。请求的 model 必须是服务声明的 qwen，不能照搬另一台机器的 `/data/nmodels/Qwen3-8B`。
+
+这里没有设置 stream=true，所以 curl 等整段生成完成后才显示 JSON。大模型 eager 生成 256 token 可能需要几分钟；可在终端 A 查看 Running、generation throughput 和错误日志。希望边生成边看时，用第 5 节 OpenAI 流式请求，不重复启动服务。
+
+如果需要逐字输出，用原 OpenAI 示例同样在终端 B 运行；复制第 5 节请求，将 tee 日志名改为 `v032-4b-openai-stream.log` 即可。没有自定义客户端、自动等待器或算术门禁。本轮系统 Python 直接升级实测中，这条 curl 和原 OpenAI 流式示例均退出 0，分别输出中文介绍和英文介绍，原始日志见文末记录。
+
+curl 退出 0 表示 HTTP 请求成功；还需人工查看生成是否非空、是否合理。本次测试不等于逐 token 精度对齐。需要确认算术时可直接把问题改为“17+25等于多少，只回答数字”，保留真实输出；不要放宽预期把错误记为通过。
+
+## 9. 27B、35B：仍然终端 A 服务、终端 B curl
+
+先在终端 A Ctrl+C 停止 4B，确认释放显存和端口。以下每次只启动一个模型。四张卡需都空闲；35B-A3B 的 A3B 是激活参数量，不能只按 3B 估算权重显存。
+
+```bash
+export REPRO_DEVICES=0,1,2,3
+source /workspace/repro/env-direct.sh
+python - <<'PY'
+import socket
 import torch
-from torch import distributed
-from vllm_fl.distributed.device_communicators.flagcx import PyFlagcxCommunicator
-
-local_rank = int(os.environ['LOCAL_RANK'])
-torch.cuda.set_device(local_rank)
-distributed.init_process_group('gloo', timeout=timedelta(seconds=120))
-communicator = None
-try:
-    assert distributed.get_world_size() == 2
-    communicator = PyFlagcxCommunicator(distributed.group.WORLD, torch.device('cuda', local_rank))
-    assert communicator.available and not communicator.disabled, getattr(communicator, 'init_error', None)
-    tensor = torch.full((1024,), float(distributed.get_rank() + 1), device=f'cuda:{local_rank}')
-    result = communicator.all_reduce(tensor)
-    torch.cuda.synchronize()
-    assert torch.equal(result, torch.full_like(result, 3))
-    print(f'FLAGCX_PASS rank={distributed.get_rank()} values={result[:4].tolist()}', flush=True)
-    distributed.barrier()
-finally:
-    if communicator is not None:
-        communicator.destroy()
-    distributed.destroy_process_group()
-PY
-export REPRO_DEVICES=0,1
-source "$REPRO_ROOT/env.sh"
-run_step communication-port python - <<'PY'
-import socket
+assert torch.cuda.device_count() == 4
+for device in range(4):
+    free, total = torch.cuda.mem_get_info(device)
+    print(device, 'free GiB:', round(free / 2**30, 2))
+    assert free / 2**30 >= 30, '先停止自己的旧服务或换空闲卡'
 with socket.socket() as endpoint:
-    endpoint.bind(('127.0.0.1', 18134))
-print('PORT_FREE 18134')
-PY
-run_step flagcx-tp2 python -m torch.distributed.run \
-  --nnodes=1 --nproc_per_node=2 \
-  --master-addr=127.0.0.1 --master-port=18134 \
-  "$REPRO_ROOT/probe_flagcx.py"
-```
-
-两个 rank 都应输出 `[3.0, 3.0, 3.0, 3.0]`，外层 `EXIT_CODE=0`。实际调用 `PyFlagcxCommunicator.all_reduce`，Gloo 只提供控制组。
-
-不用 `--standalone`：此前实际因容器 hostname 无法解析而持续等待。显式单机回环地址解决入口问题，不修改宿主 hosts。端口占用时两处同步换端口，不杀未知进程。
-
-## 9. 容器内：创建纯文本离线冒烟脚本
-
-```bash
-test -f /models/Qwen3-4B/config.json
-cat > "$REPRO_ROOT/smoke.py" <<'PY'
-import argparse
-import hashlib
-import json
-import os
-import sys
-from importlib import metadata
-from pathlib import Path
-from vllm import LLM, SamplingParams
-import vllm
-
-def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--tp', type=int, choices=(1, 2), default=1)
-    parser.add_argument('--graph', action='store_true')
-    parser.add_argument('--output', required=True)
-    args = parser.parse_args()
-    target = Path(args.output)
-    assert not target.exists(), 'Use a new output path'
-    options = {}
-    if args.graph:
-        options['compilation_config'] = {'mode': 0, 'cudagraph_mode': 'FULL',
-                                         'custom_ops': ['all'], 'ir_enable_torch_wrap': False}
-    model = LLM(model='/models/Qwen3-4B', tensor_parallel_size=args.tp, dtype='bfloat16',
-                enforce_eager=not args.graph, max_model_len=512, max_num_seqs=2,
-                max_num_batched_tokens=512, gpu_memory_utilization=0.65, seed=0, **options)
-    prompts = ['The capital of France is', 'The speed of light in vacuum is approximately']
-    generated = model.generate(prompts, SamplingParams(temperature=0, max_tokens=16))
-    assert len(generated) == len(prompts)
-    records = []
-    for result in generated:
-        completion = result.outputs[0]
-        assert completion.token_ids and completion.text.strip()
-        records.append({'prompt': result.prompt, 'text': completion.text, 'token_ids': list(completion.token_ids)})
-    report = {'status': 'GENERATION_PASS', 'scope': 'Nonempty text only; inspect content separately',
-              'python': sys.executable, 'vllm': vllm.__version__, 'vllm_path': vllm.__file__,
-              'devices': os.environ['CUDA_VISIBLE_DEVICES'], 'tp': args.tp, 'graph': args.graph,
-              'versions': {name: metadata.version(name) for name in ('torch', 'flagtree', 'flag-gems', 'numpy', 'transformers', 'tokenizers')},
-              'model_config_sha256': hashlib.sha256(Path('/models/Qwen3-4B/config.json').read_bytes()).hexdigest(),
-              'outputs': records}
-    target.parent.mkdir(parents=True, exist_ok=True)
-    with target.open('x') as handle:
-        json.dump(report, handle, ensure_ascii=False, indent=2)
-    print(json.dumps(report, ensure_ascii=False, indent=2), flush=True)
-
-if __name__ == '__main__':
-    main()
+    endpoint.bind(('127.0.0.1', 8060))
+print('FOUR_GPUS_AND_PORT_READY')
 PY
 ```
 
-模型只读使用，无需下载。缺少 `config.json` 时先确认挂载和完整材料，不往只读 `/models` 下载。模型 revision 和权重哈希需另存，仅同名目录不足以作跨机器精度对照。
-
-## 10. 容器内：依次运行 TP1 / TP2 eager / FULL graph
+### 9.1 27B eager：终端 A
 
 ```bash
-export RUN_DIR="$(mktemp -d "$REPRO_ROOT/results/smoke-$(date -u +%Y%m%dT%H%M%SZ)-XXXXXX")"
-export REPRO_DEVICES=0
-source "$REPRO_ROOT/env.sh"
-run_step tp1-eager python "$REPRO_ROOT/smoke.py" --tp 1 --output "$RUN_DIR/tp1-eager.json"
+source /workspace/repro/env-direct.sh
+vllm serve /models/Qwen3.6-27B --served-model-name qwen \
+  --host 127.0.0.1 --port 8060 -tp 4 --dtype bfloat16 \
+  --language-model-only --enforce-eager \
+  --max-model-len 4096 --max-num-seqs 4 --max-num-batched-tokens 512 \
+  --gpu-memory-utilization 0.70 \
+  2>&1 | tee "$REPRO_ROOT/logs/v032-27b-eager-server.log"
+printf 'SERVER_EXIT_CODE=%s\n' "${PIPESTATUS[0]}"
 ```
 
-单卡文本到这里即可。双卡通信已通过时，等上一条命令完全退出再运行：
+`--language-model-only` 是 vLLM 0.32 的参数，用于关闭多模态输入。这里只跑文本，不加载图片请求或执行图文测试脚本。
+
+### 9.2 27B eager：终端 B
 
 ```bash
-export REPRO_DEVICES=0,1
-source "$REPRO_ROOT/env.sh"
-run_step tp2-eager python "$REPRO_ROOT/smoke.py" --tp 2 --output "$RUN_DIR/tp2-eager.json"
-run_step tp2-full-graph python "$REPRO_ROOT/smoke.py" --tp 2 --graph --output "$RUN_DIR/tp2-full-graph.json"
+source /workspace/repro/env-direct.sh
+curl --noproxy '*' --fail-with-body -sS --max-time 300 \
+  http://127.0.0.1:8060/v1/chat/completions \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "model": "qwen",
+    "messages": [{"role": "user", "content": "详细介绍下人工智能"}],
+    "max_tokens": 256,
+    "chat_template_kwargs": {"enable_thinking": false}
+  }' | tee "$REPRO_ROOT/logs/v032-27b-eager-curl.json"
+printf '\nCURL_EXIT_CODE=%s\n' "${PIPESTATUS[0]}"
 ```
 
-配置为 BF16、seed 0、512 上下文、最多 2 序列、512 token 批次预算、0.65 显存预算。每条独立加载模型，首次编译/调优可能较慢，不叠加启动。
+### 9.3 35B-A3B eager：终端 A
 
-成功需退出 0、结果 JSON 的 `GENERATION_PASS` 和非空 token。graph 还要核对日志确实完成捕获；该配置关闭 Inductor、保留 FULL graph replay，不代表 Inductor 已验收。
-
-`GENERATION_PASS` 只表示生成链路可用。检查原文内容，错误也原样保留，不修改预期或删掉记录。
-
-## 11. 容器内：纯文本 API 与流式测试
-
-### 11.1 终端 A：启动单卡 eager 服务
-
-离线测试退出后，检查端口，再启动。只监听同容器 `127.0.0.1:18133`。
+先 Ctrl+C 停止 27B，确认释放卡和端口，再执行：
 
 ```bash
-export REPRO_DEVICES=0
-source "$REPRO_ROOT/env.sh"
-run_step api-port python - <<'PY'
-import socket
-with socket.socket() as endpoint:
-    endpoint.bind(('127.0.0.1', 18133))
-print('PORT_FREE 18133')
-PY
-run_step text-server python -m vllm.entrypoints.cli.main serve /models/Qwen3-4B \
-  --served-model-name qwen --host 127.0.0.1 --port 18133 \
-  --tensor-parallel-size 1 --enforce-eager --max-model-len 4096 \
-  --max-num-seqs 16 --max-num-batched-tokens 512 \
-  --gpu-memory-utilization 0.65 --seed 0
+source /workspace/repro/env-direct.sh
+vllm serve /models/Qwen3.6-35B-A3B --served-model-name qwen \
+  --host 127.0.0.1 --port 8060 -tp 4 --dtype bfloat16 \
+  --language-model-only --enforce-eager \
+  --max-model-len 4096 --max-num-seqs 4 --max-num-batched-tokens 512 \
+  --gpu-memory-utilization 0.70 \
+  2>&1 | tee "$REPRO_ROOT/logs/v032-35b-eager-server.log"
+printf 'SERVER_EXIT_CODE=%s\n' "${PIPESTATUS[0]}"
 ```
 
-保持终端 A 运行。服务停止前还没有最终退出码；Ctrl+C 中断后的服务命令不应记成正常退出 0。
-
-### 11.2 终端 B：进入同容器发起请求
-
-**仅这一条 Docker 命令在宿主的新终端执行：**
+### 9.4 35B-A3B eager：终端 B
 
 ```bash
-docker exec -it tianshu-vllm032-text bash
+source /workspace/repro/env-direct.sh
+curl --noproxy '*' --fail-with-body -sS --max-time 300 \
+  http://127.0.0.1:8060/v1/chat/completions \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "model": "qwen",
+    "messages": [{"role": "user", "content": "详细介绍下人工智能"}],
+    "max_tokens": 256,
+    "chat_template_kwargs": {"enable_thinking": false}
+  }' | tee "$REPRO_ROOT/logs/v032-35b-eager-curl.json"
+printf '\nCURL_EXIT_CODE=%s\n' "${PIPESTATUS[0]}"
 ```
 
-后续重新回到容器内，开始另一个终端记录：
+27B 和 35B 分别保存自己的服务日志与 JSON。每组请求完成后，回终端 A Ctrl+C 停止服务，再启动下一组。本轮两组 eager 均实际启动并用上述 curl 返回非空中文回答、256 completion token、退出 0；finish_reason=length 表示达到此次长度上限，不表示完整长文或精度验收。各项原始结果见文末实测记录。
+
+## 10. 收尾：保留原始结果和安装指纹
+
+停止自己最后启动的服务，不批量 kill，不改宿主环境。容器内保存：
 
 ```bash
-script -q -f "/workspace/repro/logs/client-session-$(date -u +%Y%m%dT%H%M%SZ).log"
+source /workspace/repro/env-direct.sh
+python -m pip list --format=json > "$REPRO_ROOT/logs/upgraded-packages.json"
+git -C "$REPRO_ROOT/src/vllm" rev-parse HEAD > "$REPRO_ROOT/logs/vllm-commit.txt"
+git -C "$REPO_DIR" rev-parse HEAD > "$REPRO_ROOT/logs/plugin-commit.txt"
+git -C "$FLAGCX_PATH" rev-parse HEAD > "$REPRO_ROOT/logs/flagcx-commit.txt"
+sha256sum /models/Qwen3-4B/config.json /models/Qwen3.6-27B/config.json \
+  /models/Qwen3.6-35B-A3B/config.json > "$REPRO_ROOT/logs/model-configs.sha256"
+python -m pip check > "$REPRO_ROOT/logs/pip-check.txt" 2>&1
+printf 'PIP_CHECK_EXIT_CODE=%s\n' "$?"
 ```
 
-在记录 shell 内执行：
+session 日志包含输入命令和终端结果；各服务、pip、OpenAI、curl 的输出另有文件。重跑时改日志名或使用新时间戳，不覆盖失败证据。使用 tee 时命令与 tee 的退出码可能不同，本文打印命令的 PIPESTATUS[0]，并保留 set -o pipefail。
 
-```bash
-set -euo pipefail
-source /workspace/repro/env.sh
-export CLIENT_DIR="$(mktemp -d "$REPRO_ROOT/results/api-$(date -u +%Y%m%dT%H%M%SZ)-XXXXXX")"
-cat > "$REPRO_ROOT/text_client.py" <<'PY'
-import json
-import os
-from pathlib import Path
-import time
-from openai import OpenAI
+原镜像继承的上层依赖与上游 0.32 声明部分不一致，pip check 可能非零；本轮没有通过随意升级 torch、Triton、Transformers 来掩盖差异。服务能生成、回答内容正确、完整依赖声明满足、性能达标是不同结论。
 
-root = Path(os.environ['CLIENT_DIR'])
-def save(name, value):
-    (root / name).write_text(json.dumps(value, ensure_ascii=False, indent=2) + '\n')
-
-client = OpenAI(api_key='EMPTY', base_url='http://127.0.0.1:18133/v1', timeout=300, max_retries=0)
-summary = {'transport_passed': False, 'quality_passed': False}
-try:
-    deadline = time.monotonic() + 1800
-    while True:
-        try:
-            models = client.models.list(timeout=5).model_dump()
-            break
-        except Exception:
-            if time.monotonic() >= deadline:
-                raise
-            time.sleep(5)
-    save('models.json', models)
-    assert any(value['id'] == 'qwen' for value in models['data'])
-    request = dict(model='qwen', messages=[{'role': 'user', 'content': 'Give me a short introduction to large language models.'}],
-                   max_tokens=20, temperature=0.7, top_p=0.8, presence_penalty=1.5, stream=True,
-                   extra_body={'top_k': 20, 'chat_template_kwargs': {'enable_thinking': False}})
-    save('stream-request.json', request)
-    chunks = []
-    pieces = []
-    for chunk in client.chat.completions.create(**request):
-        chunks.append(chunk.model_dump())
-        if chunk.choices and chunk.choices[0].delta.content:
-            pieces.append(chunk.choices[0].delta.content)
-            print(chunk.choices[0].delta.content, end='', flush=True)
-        save('stream-response.json', {'text': ''.join(pieces), 'chunks': chunks})
-    assert ''.join(pieces).strip()
-    assert any(choice.get('finish_reason') for chunk in chunks for choice in chunk['choices'])
-    checks = []
-    for question, expected in [('What is 17 + 25? Answer only with the number.', '42'),
-                               ('What is the capital of France? Answer only the city name.', 'paris')]:
-        parameters = dict(model='qwen', messages=[{'role': 'user', 'content': question}],
-                          max_tokens=32, temperature=0, top_p=1,
-                          extra_body={'chat_template_kwargs': {'enable_thinking': False}})
-        response = client.chat.completions.create(**parameters)
-        text = response.choices[0].message.content or ''
-        checks.append({'request': parameters, 'response': response.model_dump(), 'expected': expected,
-                       'quality_passed': text.strip().rstrip('.。!').lower() == expected})
-        save('quality-responses.json', checks)
-        assert text.strip()
-    summary.update(transport_passed=True, quality_passed=all(value['quality_passed'] for value in checks))
-except Exception as error:
-    summary['error'] = f'{type(error).__name__}: {error}'
-save('summary.json', summary)
-print('\n' + json.dumps(summary, ensure_ascii=False, indent=2), flush=True)
-raise SystemExit(0 if summary['transport_passed'] and summary['quality_passed'] else 1)
-PY
-run_step text-client python "$REPRO_ROOT/text_client.py"
-```
-
-结果在 `$CLIENT_DIR`，包含原始请求、逐流式 chunk、完整回答和汇总。脚本要求两项都通过才退出 0：
-
-- `transport_passed`：模型列表正确、流式完成且非空、两个非流式请求均返回非空文本。
-- `quality_passed`：两个明确问题分别回答 `42`、`Paris`。只有两个检查，不能代替完整精度对照。
-
-**已测同套适配曾将 `17 + 25` 回答为 `52`，当时 transport 通过、quality 失败。** 本文未修复此生成问题，新容器仍失败时原样记录，不降低预期，也不只用 HTTP 200 宣称成功。`set -e` 会使失败结束当前记录 shell，但错误和 JSON 已保存，可重新进入容器查看。
-
-完成后在终端 A 按 Ctrl+C 停止自己启动的服务。不要批量 kill 或启动第二个服务抢同一张卡。
-
-## 12. 容器内：保存环境指纹与结果
-
-服务停止后执行：
-
-```bash
-source /workspace/repro/env.sh
-export SNAPSHOT_DIR="$(mktemp -d "$REPRO_ROOT/results/environment-$(date -u +%Y%m%dT%H%M%SZ)-XXXXXX")"
-run_step snapshot bash -c '
-  set -e
-  python -VV > "$SNAPSHOT_DIR/python-version.txt"
-  python -m pip list --format=json > "$SNAPSHOT_DIR/python-packages.json"
-  git -C "$REPO_DIR" rev-parse HEAD > "$SNAPSHOT_DIR/plugin-commit.txt"
-  git -C "$REPRO_ROOT/src/vllm" rev-parse HEAD > "$SNAPSHOT_DIR/vllm-commit.txt"
-  git -C "$FLAGCX_PATH" rev-parse HEAD > "$SNAPSHOT_DIR/flagcx-commit.txt"
-  sha256sum "$FLAGCX_PATH/build/lib/libflagcx.so" > "$SNAPSHOT_DIR/flagcx-library.sha256"
-  sha256sum /models/Qwen3-4B/config.json > "$SNAPSHOT_DIR/model-config.sha256"
-  python -m pip check > "$SNAPSHOT_DIR/pip-check.txt" 2>&1 && status=0 || status=$?
-  printf "%s\n" "$status" > "$SNAPSHOT_DIR/pip-check-exit-code.txt"
-  cat "$SNAPSHOT_DIR/pip-check.txt"
-  echo "PIP_CHECK_EXIT_CODE=$status (saved independently)"
-'
-```
-
-快照只是保存指纹，内部 `pip check` 退出码独立记录，不能把快照成功当作依赖检查成功。包清单也不是跨硬件的通用 requirements。
-
-需要完整模型校验值时，容器内执行只读扫描；大模型会花时间：
-
-```bash
-run_step model-hashes bash -c 'set -euo pipefail; cd /models/Qwen3-4B; find -L . -type f -print0 | sort -z | xargs -0 sha256sum > "$SNAPSHOT_DIR/model-files.sha256"'
-```
-
-最终保留 `/workspace/repro/logs` 和 `results`：Docker 原始输出、会话记录、每步命令/输出/退出码、包版本、源码提交、通信结果、生成结果和 API 原始 JSON。未执行写“未测试”，失败写具体错误。不要将模型权重、密码或令牌放进结果仓库。
-
-## 13. 遇到错误时先看什么
-
-| 现象 | 定位与处理 |
-| --- | --- |
-| Docker 拉取或挂载失败 | 保留终端错误；确认镜像权限及本机真实路径，未建好容器不继续 |
-| 缺少 `libixthunk.so` | 第 4 节同版驱动包仅解包，source env.sh，检查 LD_LIBRARY_PATH 和 ldd |
-| GPU 不可用 | 先检查设备访问、同版用户态库及选择的卡，不先改模型代码 |
-| NumPy 桥接失败 | 核对 NumPy 1.26.4 和厂商 torch，不随意卸载镜像全局包 |
-| 导入 vLLM 0.28 | 核对 `vllm.__file__`，清理 PYTHONPATH，按第 6 节普通安装到 venv |
-| `vllm._C` 警告 | EMPTY 无 NVIDIA 扩展；看实际异常，确认 `VLLM_PLUGINS=fl` 及 iluvatar |
-| FlagCX 可 import 但双卡失败 | 检查真实 `.so`、wrapper、ldd 及 AllReduce，不以 Gloo 成功代替 |
-| torchrun 等待 hostname | 使用 venv Python 和第 8 节显式 127.0.0.1 static rendezvous |
-| 首次启动慢或 graph OOM | 看日志是否推进，核对空闲卡、0.65 预算和本文配置，保留失败，不叠加启动 |
-| 回答错误 | 保存模型哈希、模式、原始问题和回答，链路通过与精度失败分别登记 |
-
-本文只在这台机器新建文本测试环境，不运行图片、OCR、混合请求或大模型门禁，也不把已有精度问题写成已解决。
+本轮实测的实际命令、结果与限制见[直接安装验证记录](../records/u180-direct-install-20261104/README.md)。没有执行的模型/模式写“未测试”，原始镜像失败也如实保留；教程不承诺所有生成内容正确。
