@@ -1,5 +1,12 @@
 # vLLM 0.32 适配记录
 
+## 新机器环境搭建与测试教程
+
+- **[从零准备天数 CoreX 环境并运行测试](docs/iluvatar-vllm032-fresh-machine-setup.md)**：宿主机与镜像、FlagTree / FlagGems / FlagCX、EMPTY vLLM 0.32、适配插件、模型下载、小模型冒烟和图文门禁的顺序命令。
+- [配套环境与验证脚本](tools/iluvatar-repro/)：环境激活、版本及库检查、真实 FlagCX 通信和 Qwen3-4B 冒烟。
+
+需要在另一台机器复现环境时，请先看这份教程。下面的完整命令档案用于追溯历史操作。
+
 ## FlagScale-Agent 完整命令档案（2026-11-04）
 
 - [环境建立与后续操作：网页阅读版](docs/flagscale-agent-command-history-guide.md)
