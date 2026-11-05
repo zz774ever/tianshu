@@ -1,5 +1,19 @@
 # vLLM 0.32 适配记录
 
+## 最新图文门禁（2026-11-05）
+
+- [完整测试步骤与结果说明](docs/iluvatar-vllm032-adaptation-gate-test.md)：硬件和软件环境、库路径、两个模型 eager / CUDA Graph 的启动命令、原始测试执行步骤、判定标准和失败样例。
+- [20 份原始 JSON 结果索引](records/u180-adaptation-gates-20261105/README.md)及 [SHA-256 清单](records/u180-adaptation-gates-20261105/manifest.json)。
+
+| 模型 | 模式 | 通过场景 | 通过请求 |
+| --- | --- | ---: | ---: |
+| Qwen3.6-27B | eager | 2/5 | 13/26 |
+| Qwen3.6-27B | FULL_DECODE_ONLY | 3/5 | 17/26 |
+| Qwen3.6-35B-A3B | eager | 5/5 | 26/26 |
+| Qwen3.6-35B-A3B | FULL_DECODE_ONLY | 4/5 | 25/26 |
+
+本轮在 `test_plugin_28` 的系统 Python 中，使用 TP4、32768 上下文和完整多模态模型执行原始适配门禁。52 条文本全部通过，52 条图片通过 29 条；失败均为内容检查未通过。两轮 Graph 均完成 35/35 捕获。本轮结果与下方历史阶段记录分别保留。
+
 ## 新机器环境搭建与测试教程
 
 - **[教程二：官方镜像、原始环境验证、直接升级与文本测试](docs/iluvatar-vllm032-fresh-machine-setup.md)**：当前手动复现入口；不建 venv、不录制日志，容器内直接安装，终端 A 启服务、终端 B 用 curl 询问“详细介绍下人工智能”，包含 4B、27B、35B 文本命令。
@@ -40,7 +54,7 @@
 - 已完成隔离的 vLLM 0.32.0 EMPTY 环境、Iluvatar 兼容改动及基础验证。
 - Qwen3-4B 已有 TP1/TP2 eager/graph 文本生成证据。
 - 相关单元回归为 **157 passed、1 warning**，本地依赖栈核验通过。
-- 最近大模型复测：27B graph 为 26/26；35B eager、graph 各为 25/26，同一图片 OCR 失败。
+- 此前阶段的大模型复测（历史配置）：27B graph 为 26/26；35B eager、graph 各为 25/26，同一图片 OCR 失败。
 - 35B OCR 输出不稳定的归因尚未确定；按用户要求停止深入排查，保留失败证据。
 - 完整 104 请求全部通过、NVIDIA 逐 token 对照和远端硬件 CI 尚未达成。
 

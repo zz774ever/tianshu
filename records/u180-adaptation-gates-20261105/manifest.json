@@ -1,0 +1,351 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-05",
+  "container": "test_plugin_28",
+  "results_root": "/workspace/adaptation-gate-results/20261105-112054",
+  "report_count": 20,
+  "request_count": 104,
+  "passed_request_count": 81,
+  "failed_request_count": 23,
+  "passed_scenario_count": 14,
+  "finish_reasons": {
+    "stop": 104
+  },
+  "requests_by_kind": {
+    "text": {
+      "total": 52,
+      "passed": 52
+    },
+    "image": {
+      "total": 52,
+      "passed": 29
+    }
+  },
+  "source_commits": {
+    "vllm": "5df63a7203cdb9328d824a27b682e77c7b9928be",
+    "plugin": "c17d866e08b583f63998cbd47bc39fe3e57efce0",
+    "FlagGems-vllm": "b5c2c2249319277ccda4d41aa0f65164bd9b2a19"
+  },
+  "source_files": [
+    {
+      "path": "case_utils.py",
+      "sha256": "c8554aac662742a3f7aa1421044b017a2e60cece301fe92d5144b19e8a6bffd5"
+    },
+    {
+      "path": "generate_images.py",
+      "sha256": "7251d0f01f1e8c605bd1df40e85e3d57a99010f289326806246e1a274742f84a"
+    },
+    {
+      "path": "images/image_01.png",
+      "sha256": "4391e75143bee45b97ce0fa7a784fc929e29d17fddc3f6ad5842d9e16e1251c0"
+    },
+    {
+      "path": "images/image_02.png",
+      "sha256": "8c06f3fca0eff7f564b87f05bcd918b3b082af3518906d20c5e0d331c105a561"
+    },
+    {
+      "path": "images/image_03.png",
+      "sha256": "72b8c421ad39c3c39eb00417e5e4248e48db8026bc3534a8bc5b6016f93f6b5d"
+    },
+    {
+      "path": "images/image_04.png",
+      "sha256": "3ff8052cf808cfda050cc80626cf9b6c627f001d153576ba2b5f4198fcf86a19"
+    },
+    {
+      "path": "images/image_05.png",
+      "sha256": "197185d21a8fd09bc501381a5f0fac34be6799a4239b068435f8b039a1e15e5b"
+    },
+    {
+      "path": "images/image_06.png",
+      "sha256": "9f80415980912348c1b2793eb48e6e05c6b1c90d66e7bbc056876ba650d844e4"
+    },
+    {
+      "path": "images/image_07.png",
+      "sha256": "5ed527a8339091516c45fc0d0db82ab765db501d6857b6a294763efabbf437f3"
+    },
+    {
+      "path": "images/image_08.png",
+      "sha256": "162dc14222db050f8f149b2601c742145612f26dc77af43e9311dcadd0169d6f"
+    },
+    {
+      "path": "run_serve.sh",
+      "sha256": "8c00d35c2d2ee23eb9702cb88fb70ea74cab84e43eba9f260139c5c559acb702"
+    },
+    {
+      "path": "run_serve_eager.sh",
+      "sha256": "6f5b4355ee5ba24760aadc952d2cf820bd09b19c9d78683fa377acf7c747dac6"
+    },
+    {
+      "path": "run_serve_graph.sh",
+      "sha256": "def2b0e1ad7a6aad8c512eddc882dadbb52ac01d56beed932899ae411fe15701"
+    },
+    {
+      "path": "run_test.sh",
+      "sha256": "ecdb52f2e78a4918ab17f766c274e91e24dc174a29accd105eae17cd87bda3f7"
+    },
+    {
+      "path": "test_image.py",
+      "sha256": "650ba67da5bd90834ddf4a2fa2aafd65cb41b02793881436cd214333ad5fa092"
+    },
+    {
+      "path": "test_mix_text_image.py",
+      "sha256": "d69113a0069558a940bd1e45c230a4baff00c58467d261f72e9377d20f57f0fd"
+    },
+    {
+      "path": "test_text.py",
+      "sha256": "a24193d43458cb699606bf1caeff3b45c28e4cf3bc9dc3583b67d19d99554b21"
+    }
+  ],
+  "reports": [
+    {
+      "path": "Qwen3.6-27B-eager/Qwen3.6-27B/port-8132/image_concurrent_8.json",
+      "sha256": "4e2dc40f515840e205525362104797e059d2056b0a69370630e6e5b594942257",
+      "started_at": "2026-11-05T03:26:06.166452+00:00",
+      "finished_at": "2026-11-05T03:26:56.837789+00:00",
+      "request_count": 8,
+      "passed_count": 0,
+      "failed_count": 8,
+      "passed": false
+    },
+    {
+      "path": "Qwen3.6-27B-eager/Qwen3.6-27B/port-8132/image_single.json",
+      "sha256": "0a105e54ee788c8e1d23be70b86866187d56874a293f6af884f5ec44c86f1799",
+      "started_at": "2026-11-05T03:25:46.088893+00:00",
+      "finished_at": "2026-11-05T03:26:06.082706+00:00",
+      "request_count": 1,
+      "passed_count": 0,
+      "failed_count": 1,
+      "passed": false
+    },
+    {
+      "path": "Qwen3.6-27B-eager/Qwen3.6-27B/port-8132/mixed_concurrent_8.json",
+      "sha256": "8d78b1ad400a6baad83f3b57e0889d33317baad373cacf10fb8bf94b862eaf47",
+      "started_at": "2026-11-05T03:26:58.494486+00:00",
+      "finished_at": "2026-11-05T03:27:40.182728+00:00",
+      "request_count": 8,
+      "passed_count": 4,
+      "failed_count": 4,
+      "passed": false
+    },
+    {
+      "path": "Qwen3.6-27B-eager/Qwen3.6-27B/port-8132/text_concurrent_8.json",
+      "sha256": "99eaec358d023dd7224cb74ec5eff5ab3b80df0dda071cbeed0a8bdb90aeafa3",
+      "started_at": "2026-11-05T03:25:07.365593+00:00",
+      "finished_at": "2026-11-05T03:25:44.447319+00:00",
+      "request_count": 8,
+      "passed_count": 8,
+      "failed_count": 0,
+      "passed": true
+    },
+    {
+      "path": "Qwen3.6-27B-eager/Qwen3.6-27B/port-8132/text_single.json",
+      "sha256": "90663fa5ce5dcfa3fa418d0d2cc7376fa17fa4615f0bfbe786f7beefe24b1a8d",
+      "started_at": "2026-11-05T03:23:26.144043+00:00",
+      "finished_at": "2026-11-05T03:25:07.362922+00:00",
+      "request_count": 1,
+      "passed_count": 1,
+      "failed_count": 0,
+      "passed": true
+    },
+    {
+      "path": "Qwen3.6-27B-graph/Qwen3.6-27B/port-8132/image_concurrent_8.json",
+      "sha256": "960df5262ea108e239467ba9af8d48cdd18febd0674e4f6bc01c3e976bba85a8",
+      "started_at": "2026-11-05T03:33:10.526430+00:00",
+      "finished_at": "2026-11-05T03:33:42.916000+00:00",
+      "request_count": 8,
+      "passed_count": 2,
+      "failed_count": 6,
+      "passed": false
+    },
+    {
+      "path": "Qwen3.6-27B-graph/Qwen3.6-27B/port-8132/image_single.json",
+      "sha256": "c0e591542f59c7af4095302c5665063f74f62b5d0890439c7cce5c5771300e1f",
+      "started_at": "2026-11-05T03:33:05.257913+00:00",
+      "finished_at": "2026-11-05T03:33:10.523653+00:00",
+      "request_count": 1,
+      "passed_count": 1,
+      "failed_count": 0,
+      "passed": true
+    },
+    {
+      "path": "Qwen3.6-27B-graph/Qwen3.6-27B/port-8132/mixed_concurrent_8.json",
+      "sha256": "77b05fc411b47bd896a0e6864794bb3674dde4bc572764300d07bd081faa269e",
+      "started_at": "2026-11-05T03:33:44.693755+00:00",
+      "finished_at": "2026-11-05T03:34:02.944073+00:00",
+      "request_count": 8,
+      "passed_count": 5,
+      "failed_count": 3,
+      "passed": false
+    },
+    {
+      "path": "Qwen3.6-27B-graph/Qwen3.6-27B/port-8132/text_concurrent_8.json",
+      "sha256": "de48ebd9e7eb7b18540081b7ab3de953cf6bb8ce50ec632c0dcab2609b7b7241",
+      "started_at": "2026-11-05T03:32:47.814546+00:00",
+      "finished_at": "2026-11-05T03:33:03.635820+00:00",
+      "request_count": 8,
+      "passed_count": 8,
+      "failed_count": 0,
+      "passed": true
+    },
+    {
+      "path": "Qwen3.6-27B-graph/Qwen3.6-27B/port-8132/text_single.json",
+      "sha256": "c37bc75061b2ae452716b5526d646c2eb33b089a274c1426f0a1e1024ecf4824",
+      "started_at": "2026-11-05T03:32:36.028903+00:00",
+      "finished_at": "2026-11-05T03:32:47.811853+00:00",
+      "request_count": 1,
+      "passed_count": 1,
+      "failed_count": 0,
+      "passed": true
+    },
+    {
+      "path": "Qwen3.6-35B-A3B-eager/Qwen3.6-35B-A3B/port-8132/image_concurrent_8.json",
+      "sha256": "597f66b3aace0a3296a9d73dace90dfae34c0d7fe24984a12ba21b4246f7b7d6",
+      "started_at": "2026-11-05T03:39:08.180203+00:00",
+      "finished_at": "2026-11-05T03:39:48.931269+00:00",
+      "request_count": 8,
+      "passed_count": 8,
+      "failed_count": 0,
+      "passed": true
+    },
+    {
+      "path": "Qwen3.6-35B-A3B-eager/Qwen3.6-35B-A3B/port-8132/image_single.json",
+      "sha256": "60a1b2c8aac920d39ac8cebc756d48a2f609442558930097eb98e1bf7682e275",
+      "started_at": "2026-11-05T03:38:53.058988+00:00",
+      "finished_at": "2026-11-05T03:39:08.177117+00:00",
+      "request_count": 1,
+      "passed_count": 1,
+      "failed_count": 0,
+      "passed": true
+    },
+    {
+      "path": "Qwen3.6-35B-A3B-eager/Qwen3.6-35B-A3B/port-8132/mixed_concurrent_8.json",
+      "sha256": "a49701a7e1ca66622739c621c0e45aa42cdbaf500201a0b1e0af4d0966183c10",
+      "started_at": "2026-11-05T03:39:50.577070+00:00",
+      "finished_at": "2026-11-05T03:40:29.986767+00:00",
+      "request_count": 8,
+      "passed_count": 8,
+      "failed_count": 0,
+      "passed": true
+    },
+    {
+      "path": "Qwen3.6-35B-A3B-eager/Qwen3.6-35B-A3B/port-8132/text_concurrent_8.json",
+      "sha256": "05dd4ffcb42c61710556651540591044c97533b18c0c8bddf33376f671eed448",
+      "started_at": "2026-11-05T03:38:25.376376+00:00",
+      "finished_at": "2026-11-05T03:38:51.420144+00:00",
+      "request_count": 8,
+      "passed_count": 8,
+      "failed_count": 0,
+      "passed": true
+    },
+    {
+      "path": "Qwen3.6-35B-A3B-eager/Qwen3.6-35B-A3B/port-8132/text_single.json",
+      "sha256": "db73b9596296103dc4161b6df5a5f82bee4e74c7ee250ab469568f7f39b9bcb2",
+      "started_at": "2026-11-05T03:37:04.149785+00:00",
+      "finished_at": "2026-11-05T03:38:25.373925+00:00",
+      "request_count": 1,
+      "passed_count": 1,
+      "failed_count": 0,
+      "passed": true
+    },
+    {
+      "path": "Qwen3.6-35B-A3B-graph/Qwen3.6-35B-A3B/port-8132/image_concurrent_8.json",
+      "sha256": "8df87ab02d7ae10ded92eea562c3fcee91bf9e1e376054bf93f90ebc1aecc1da",
+      "started_at": "2026-11-05T03:47:08.732044+00:00",
+      "finished_at": "2026-11-05T03:47:48.214863+00:00",
+      "request_count": 8,
+      "passed_count": 8,
+      "failed_count": 0,
+      "passed": true
+    },
+    {
+      "path": "Qwen3.6-35B-A3B-graph/Qwen3.6-35B-A3B/port-8132/image_single.json",
+      "sha256": "bffcd3b3cdfe6a27df22789408d128bcde1359747533072d9a256a6f205d8528",
+      "started_at": "2026-11-05T03:47:03.666530+00:00",
+      "finished_at": "2026-11-05T03:47:08.647621+00:00",
+      "request_count": 1,
+      "passed_count": 0,
+      "failed_count": 1,
+      "passed": false
+    },
+    {
+      "path": "Qwen3.6-35B-A3B-graph/Qwen3.6-35B-A3B/port-8132/mixed_concurrent_8.json",
+      "sha256": "3b231b4609fb257a5c861c5c5b64f0346fd89e67dbaeb913c51a352d2d808786",
+      "started_at": "2026-11-05T03:47:49.846221+00:00",
+      "finished_at": "2026-11-05T03:47:55.507090+00:00",
+      "request_count": 8,
+      "passed_count": 8,
+      "failed_count": 0,
+      "passed": true
+    },
+    {
+      "path": "Qwen3.6-35B-A3B-graph/Qwen3.6-35B-A3B/port-8132/text_concurrent_8.json",
+      "sha256": "c0dd6ff0b48405cf98ec68d2b1161b6d2818dd3e2ab9fb011ce7aaa6e2896da9",
+      "started_at": "2026-11-05T03:46:44.922040+00:00",
+      "finished_at": "2026-11-05T03:47:02.053927+00:00",
+      "request_count": 8,
+      "passed_count": 8,
+      "failed_count": 0,
+      "passed": true
+    },
+    {
+      "path": "Qwen3.6-35B-A3B-graph/Qwen3.6-35B-A3B/port-8132/text_single.json",
+      "sha256": "a98b328e3f4a2c3d977f33fb5d053278e93f19d303c8b3f4e2597c1406ad2189",
+      "started_at": "2026-11-05T03:46:35.072751+00:00",
+      "finished_at": "2026-11-05T03:46:44.919490+00:00",
+      "request_count": 1,
+      "passed_count": 1,
+      "failed_count": 0,
+      "passed": true
+    }
+  ],
+  "configuration": {
+    "CUDA_VISIBLE_DEVICES": "0,1,2,3",
+    "VLLM_PLUGINS": "fl",
+    "USE_FLAGGEMS": "1",
+    "GEMS_VENDOR": "iluvatar",
+    "FLAGCX_PATH": "/mnt/share/user_homes/iluv/FlagCX",
+    "LD_LIBRARY_PATH": "/workspace/driver-extracted/corex/lib64:/mnt/share/user_homes/iluv/FlagCX/build/lib:/usr/local/corex/lib64:/usr/local/openmpi/lib:/usr/local/lib",
+    "PYTHONPATH": "/workspace/vllm-plugin-FL",
+    "TENSOR_PARALLEL_SIZE": 4,
+    "MAX_MODEL_LEN": 32768,
+    "GPU_MEMORY_UTILIZATION": 0.7,
+    "SERVED_MODEL_NAME": "qwen",
+    "PORT": 8132,
+    "SERVICE_TIMEOUT": 1800,
+    "REQUEST_TIMEOUT": 600,
+    "VLLM_EXECUTE_MODEL_TIMEOUT_SECONDS": 7200,
+    "GRAPH_COMPILATION_CONFIG": {
+      "mode": 0,
+      "cudagraph_mode": "FULL_DECODE_ONLY"
+    },
+    "PYTEST_ADDOPTS": "-p no:cacheprovider"
+  },
+  "rounds": [
+    {
+      "model": "Qwen3.6-27B",
+      "mode": "eager",
+      "client_exit": 1,
+      "elapsed_seconds_including_startup": 408.03
+    },
+    {
+      "model": "Qwen3.6-27B",
+      "mode": "graph",
+      "client_exit": 1,
+      "elapsed_seconds_including_startup": 350.03,
+      "captured_graphs_observed_in_terminal": 35
+    },
+    {
+      "model": "Qwen3.6-35B-A3B",
+      "mode": "eager",
+      "client_exit": 0,
+      "elapsed_seconds_including_startup": 380.03
+    },
+    {
+      "model": "Qwen3.6-35B-A3B",
+      "mode": "graph",
+      "client_exit": 1,
+      "elapsed_seconds_including_startup": 414.03,
+      "captured_graphs_observed_in_terminal": 35
+    }
+  ]
+}

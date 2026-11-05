@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "case": {
+    "scenario": "text_single",
+    "model_path": "/mnt/share/user_homes/models/Qwen3.6-27B",
+    "served_model_name": "qwen",
+    "port": "8132",
+    "concurrency": 1
+  },
+  "started_at": "2026-11-05T03:23:26.144043+00:00",
+  "finished_at": "2026-11-05T03:25:07.362922+00:00",
+  "input": [
+    {
+      "request_id": "text-llm-details",
+      "kind": "text",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Introduce large language models (LLMs) in detail. Explain what they are, how training and inference work, typical capabilities, limitations, and responsible use. Write a coherent response of at least 256 characters. Do not repeat words or phrases unnecessarily."
+        }
+      ],
+      "required_terms": [
+        "large language model",
+        "training",
+        "inference",
+        "limitations"
+      ],
+      "min_length": 256,
+      "max_tokens": 512
+    }
+  ],
+  "output": [
+    {
+      "request_id": "text-llm-details",
+      "kind": "text",
+      "latency_seconds": 101.171,
+      "text": "Large language models are advanced artificial intelligence systems trained on vast datasets to understand and generate human-like text. They operate using transformer architectures, leveraging self-attention mechanisms to process sequential data efficiently. Training involves two primary phases: pre-training on massive corpora to learn statistical patterns, followed by fine-tuning with human feedback to align outputs with user intent. During inference, the model predicts subsequent tokens based on input prompts, enabling tasks like translation, summarization, and coding. Despite their versatility, LLMs face limitations such as hallucinations, bias, and lack of real-time knowledge. Responsible deployment requires rigorous safety measures, transparency, and continuous monitoring to mitigate risks and ensure ethical application across diverse domains.",
+      "checks": {
+        "non_empty": true,
+        "minimum_length": true,
+        "expected_semantics": true,
+        "expected_order": true,
+        "no_bang_triplet": true,
+        "no_mojibake": true,
+        "no_control_characters": true,
+        "no_long_character_run": true,
+        "no_repeated_word_run": true,
+        "no_repeated_phrase": true
+      },
+      "passed": true,
+      "response": {
+        "id": "chatcmpl-87e6fb2c6909762a",
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "content": "Large language models are advanced artificial intelligence systems trained on vast datasets to understand and generate human-like text. They operate using transformer architectures, leveraging self-attention mechanisms to process sequential data efficiently. Training involves two primary phases: pre-training on massive corpora to learn statistical patterns, followed by fine-tuning with human feedback to align outputs with user intent. During inference, the model predicts subsequent tokens based on input prompts, enabling tasks like translation, summarization, and coding. Despite their versatility, LLMs face limitations such as hallucinations, bias, and lack of real-time knowledge. Responsible deployment requires rigorous safety measures, transparency, and continuous monitoring to mitigate risks and ensure ethical application across diverse domains.",
+              "refusal": null,
+              "role": "assistant",
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "tool_calls": null,
+              "reasoning": null
+            },
+            "stop_reason": null,
+            "token_ids": null,
+            "routed_experts": null
+          }
+        ],
+        "created": 1793849006,
+        "model": "qwen",
+        "object": "chat.completion",
+        "moderation": null,
+        "service_tier": null,
+        "system_fingerprint": "vllm-0.32.0-tp4-015085fb",
+        "usage": {
+          "completion_tokens": 140,
+          "prompt_tokens": 65,
+          "total_tokens": 205,
+          "completion_tokens_details": null,
+          "prompt_tokens_details": null
+        },
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "prompt_text": null,
+        "kv_transfer_params": null,
+        "ec_transfer_params": null,
+        "metrics": null
+      }
+    }
+  ],
+  "summary": {
+    "request_count": 1,
+    "passed_count": 1,
+    "failed_count": 0,
+    "passed": true
+  }
+}

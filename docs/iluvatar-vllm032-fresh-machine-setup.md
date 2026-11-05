@@ -147,7 +147,7 @@ export VLLM_PLUGINS=fl
 export USE_FLAGGEMS=1
 export GEMS_VENDOR=iluvatar
 export FLAGCX_PATH=/mnt/share/user_homes/iluv/FlagCX
-export LD_LIBRARY_PATH="$FLAGCX_PATH/build/lib:/usr/local/corex/lib64${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+export LD_LIBRARY_PATH="/workspace/driver-extracted/corex/lib64:$FLAGCX_PATH/build/lib:/usr/local/corex/lib64${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
 export VLLM_ENGINE_ITERATION_TIMEOUT_S=72000
 export VLLM_RPC_TIMEOUT=72000000
 export VLLM_EXECUTE_MODEL_TIMEOUT_SECONDS=7200
@@ -155,7 +155,7 @@ export VLLM_EXECUTE_MODEL_TIMEOUT_SECONDS=7200
 python -c 'import vllm; print(vllm.__version__, vllm.__file__)'
 ```
 
-应导入 0.32.0。FlagCX 使用本机已有的通信库，后面的 TP4 依赖它。如果新终端需要第 2 节的缺库补齐，先执行那条 LD_LIBRARY_PATH export。新开终端 A 时重新执行本节设置；终端 B 仅执行 curl。
+应导入 0.32.0。FlagCX 使用本机已有的通信库，后面的 TP4 依赖它。第 2 节解包得到的目录必须保持在库搜索路径最前面：当前镜像与驱动包中的 `libcudart.so.10.2.89` 文件名相同、内容不同，将 `/usr/local/corex/lib64` 放在解包目录前会使最小 Graph 测试在 `capture_begin()` 报 `ixErrorNotSupported`。运行 Graph 前必须完成第 2 节的解包，即使 `ldd` 没有提示缺库。新开终端 A 时重新执行本节设置；终端 B 仅执行 curl。
 
 ## 7. 新环境 4B 验证
 
@@ -199,3 +199,5 @@ vllm serve /mnt/share/user_homes/models/Qwen3.6-35B-A3B/ \
 大模型先使用此前本机验证过的 4096 上下文和显存预算；你的 32768 配置尚未按本轮参数验证。`--language-model-only` 用于纯文本。四张卡都要空闲，35B-A3B 权重也不能按 3B 估算显存。
 
 此前 4B、27B、35B eager 的[实际验证记录](../records/u180-direct-install-20261104/README.md)继续保留。历史实测使用端口 8060 和默认 temperature；本页按你的示例改成 8070 和 temperature=1.0，仅检查指令语法，没有重跑，不把调整后的组合写成已实测。
+
+2026-11-05 新增[27B / 35B-A3B 原始图文适配测试步骤与结果](iluvatar-vllm032-adaptation-gate-test.md)：使用 TP4、32768 上下文和完整多模态模型，分别运行 eager 与 FULL_DECODE_ONLY。共 104 条请求，文本全部通过，图片存在失败，详细结果和原始 JSON 独立记录。
