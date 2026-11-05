@@ -1,0 +1,182 @@
+{
+  "sample_utc": "20261105T085410Z",
+  "cache_files_by_minute_utc": {
+    "08:00": 408,
+    "08:01": 272,
+    "08:02": 232,
+    "08:03": 355,
+    "08:04": 265,
+    "08:05": 234,
+    "08:06": 88,
+    "08:07": 202,
+    "08:08": 146,
+    "08:09": 114,
+    "08:10": 153,
+    "08:11": 151,
+    "08:12": 192,
+    "08:13": 181,
+    "08:14": 346,
+    "08:15": 595,
+    "08:16": 952,
+    "08:17": 456,
+    "08:18": 179,
+    "08:19": 381,
+    "08:20": 326,
+    "08:21": 509,
+    "08:22": 613,
+    "08:23": 224,
+    "08:24": 618,
+    "08:25": 760,
+    "08:26": 322,
+    "08:27": 242,
+    "08:28": 251,
+    "08:29": 120,
+    "08:30": 146,
+    "08:31": 176,
+    "08:32": 353,
+    "08:33": 288,
+    "08:34": 557,
+    "08:35": 275,
+    "08:36": 647,
+    "08:37": 964,
+    "08:38": 819,
+    "08:39": 665,
+    "08:40": 976,
+    "08:41": 835,
+    "08:42": 979,
+    "08:43": 377,
+    "08:44": 509,
+    "08:45": 736,
+    "08:46": 728,
+    "08:47": 249,
+    "08:48": 304,
+    "08:49": 294,
+    "08:50": 408,
+    "08:51": 140,
+    "08:52": 72,
+    "08:53": 60,
+    "08:54": 66
+  },
+  "cache_kernel_names": [
+    [
+      "mean_kernel_dim_low",
+      272
+    ],
+    [
+      "linear_kernel",
+      270
+    ],
+    [
+      "mul_func_kernel_rank_3_stride_constexpr",
+      270
+    ],
+    [
+      "chunk_fwd_kernel_o",
+      144
+    ],
+    [
+      "chunk_scaled_dot_kkt_fwd_kernel",
+      108
+    ],
+    [
+      "moe_align_block_size_stage1",
+      100
+    ],
+    [
+      "where_inner_kernel_rank_2_stride_constexpr",
+      94
+    ],
+    [
+      "fill_scalar_func_kernel_rank_1",
+      91
+    ],
+    [
+      "mul_func_kernel_rank_2_stride_constexpr",
+      79
+    ],
+    [
+      "add_func_no_alpha_kernel_rank_1",
+      66
+    ],
+    [
+      "_index_jit_function",
+      56
+    ],
+    [
+      "add_func_tensor_scalar_kernel_rank_1",
+      54
+    ],
+    [
+      "rsqrt_func_kernel_rank_1",
+      52
+    ],
+    [
+      "merge_16x16_to_64x64_inverse_kernel",
+      48
+    ],
+    [
+      "chunk_gated_delta_rule_fwd_kernel_h_blockdim64_gcu",
+      48
+    ],
+    [
+      "sigmoid_forward_kernel_rank_1",
+      48
+    ],
+    [
+      "mul_func_kernel_rank_1",
+      40
+    ],
+    [
+      "fused_moe_kernel",
+      40
+    ],
+    [
+      "sub_func_no_alpha_kernel_rank_1",
+      38
+    ],
+    [
+      "recompute_w_u_fwd_kernel",
+      36
+    ],
+    [
+      "lt_func_scalar_kernel_rank_1",
+      33
+    ],
+    [
+      "_topp_sb_step_kernel",
+      32
+    ],
+    [
+      "where_inner_kernel_rank_1_stride_constexpr",
+      31
+    ],
+    [
+      "sub_func_tensor_scalar_kernel_rank_1",
+      30
+    ],
+    [
+      "pow_func_tensor_scalar_kernel_rank_1",
+      28
+    ],
+    [
+      "floor_div_func_tensor_scalar_kernel_rank_1",
+      26
+    ],
+    [
+      "clamp_func_min_kernel_rank_1",
+      26
+    ],
+    [
+      "add_func_no_alpha_kernel_rank_2_stride_constexpr",
+      26
+    ],
+    [
+      "_topk_topp_kernel",
+      24
+    ],
+    [
+      "zeros_kernel",
+      23
+    ]
+  ]
+}

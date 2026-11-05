@@ -1,0 +1,54 @@
+{
+  "test_ports": {
+    "8070": "free",
+    "8071": "free",
+    "8072": "free"
+  },
+  "active_workers_in_private_container": [],
+  "visible_devices": [
+    {
+      "device": 0,
+      "free_MiB": 41765.0,
+      "total_MiB": 41846.0
+    },
+    {
+      "device": 1,
+      "free_MiB": 41765.0,
+      "total_MiB": 41846.0
+    },
+    {
+      "device": 2,
+      "free_MiB": 41765.0,
+      "total_MiB": 41846.0
+    },
+    {
+      "device": 3,
+      "free_MiB": 41765.0,
+      "total_MiB": 41846.0
+    },
+    {
+      "device": 4,
+      "free_MiB": 10852.15234375,
+      "total_MiB": 41846.0
+    },
+    {
+      "device": 5,
+      "free_MiB": 41765.0,
+      "total_MiB": 41846.0
+    },
+    {
+      "device": 6,
+      "free_MiB": 41765.0,
+      "total_MiB": 41846.0
+    },
+    {
+      "device": 7,
+      "free_MiB": 41765.0,
+      "total_MiB": 41846.0
+    }
+  ],
+  "previous_gpu4_services_health": {
+    "18080": 200,
+    "18081": 200
+  }
+}

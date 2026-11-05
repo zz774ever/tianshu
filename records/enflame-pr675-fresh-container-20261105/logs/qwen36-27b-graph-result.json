@@ -1,0 +1,17 @@
+{
+  "case": "qwen36-27b-graph",
+  "started_utc": "2026-11-05T08:20:49.441460+00:00",
+  "command": "source /workspace/enflame-test-env.sh\nexport FLAGGEMS_ENABLE_OPLIST_PATH=/test-output/logs/qwen36-27b-graph-flaggems-ops.txt\nset -o pipefail\nvllm serve /models/Qwen3.6-27B \\\n  -tp 2 --served-model-name qwen --host 127.0.0.1 --port 8071 \\\n  --dtype bfloat16 --max-model-len 32768 \\\n  --gpu-memory-utilization 0.94 \\\n  --compilation-config '{\"custom_ops\":[\"none\",\"+SiluAndMul\"]}'",
+  "status": "failed",
+  "port": 8071,
+  "tops_visible_devices": "0,1",
+  "diagnostic_environment": {
+    "VLLM_FL_DISPATCH_DEBUG": "1",
+    "VLLM_FL_LOG_LEVEL": "DEBUG"
+  },
+  "server_pid": 139958,
+  "error": "RuntimeError('Server exited before ready: 1')",
+  "server_exit_code": 1,
+  "finished_utc": "2026-11-05T08:23:29.452187+00:00",
+  "total_seconds": 160.01
+}

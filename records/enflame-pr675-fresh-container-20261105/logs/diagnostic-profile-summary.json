@@ -1,0 +1,124 @@
+{
+  "note": "20-second active Python stack samples; inclusive categories overlap and are not end-to-end latency attribution.",
+  "profiles": [
+    {
+      "file": "diagnostic-qwen36-35b-a3b-eager-long-timeout-20261105T085410Z-profile.txt",
+      "samples": 708,
+      "inclusive_categories": {
+        "fused_moe": 37,
+        "cpu_sampling_detour": 494,
+        "all_reduce": 1,
+        "input_preparation": 2
+      },
+      "top_leaves": [
+        [
+          "decorated (torch_gcu/transfer_to_gcu.py:154)",
+          473
+        ],
+        [
+          "apply_top_k_top_p_pytorch (vllm/v1/sample/ops/topk_topp_sampler.py:494)",
+          38
+        ],
+        [
+          "decorated (torch_gcu/transfer_to_gcu.py:156)",
+          19
+        ],
+        [
+          "",
+          7
+        ],
+        [
+          "__call__ (triton_gcu/triton/backend.py:656)",
+          4
+        ],
+        [
+          "forward_native (vllm/model_executor/layers/layernorm.py:165)",
+          4
+        ],
+        [
+          "current_stream (torch_gcu/gcu/__init__.py:746)",
+          4
+        ],
+        [
+          "__torch_function__ (vllm/model_executor/parameter.py:124)",
+          3
+        ],
+        [
+          "run (flag_gems/utils/libentry.py:1609)",
+          3
+        ],
+        [
+          "get_simultaneous (vllm/v1/worker/workspace.py:203)",
+          3
+        ],
+        [
+          "heuristics_for_tile_size (flag_gems/runtime/backend/_enflame/gcu300/utils/shape_utils.py:38)",
+          3
+        ],
+        [
+          "unsqueeze (flag_gems/ops/unsqueeze.py:54)",
+          3
+        ]
+      ]
+    },
+    {
+      "file": "diagnostic-qwen36-35b-a3b-graph-20261105T085410Z-profile.txt",
+      "samples": 214,
+      "inclusive_categories": {
+        "rpc_wait": 45,
+        "cpu_sampling_detour": 158,
+        "input_preparation": 1
+      },
+      "top_leaves": [
+        [
+          "decorated (torch_gcu/transfer_to_gcu.py:154)",
+          158
+        ],
+        [
+          "sched_yield (vllm/distributed/utils.py:46)",
+          13
+        ],
+        [
+          "memory_fence (vllm/distributed/device_communicators/shm_broadcast.py:100)",
+          9
+        ],
+        [
+          "acquire_read (vllm/distributed/device_communicators/shm_broadcast.py:864)",
+          8
+        ],
+        [
+          "check (vllm/distributed/device_communicators/shm_broadcast.py:844)",
+          4
+        ],
+        [
+          "acquire_read (vllm/distributed/device_communicators/shm_broadcast.py:856)",
+          3
+        ],
+        [
+          "wait (vllm/distributed/device_communicators/shm_broadcast.py:208)",
+          3
+        ],
+        [
+          "run (triton_gcu/triton/toolkit.py:144)",
+          2
+        ],
+        [
+          "wait (vllm/distributed/device_communicators/shm_broadcast.py:195)",
+          1
+        ],
+        [
+          "acquire_read (vllm/distributed/device_communicators/shm_broadcast.py:866)",
+          1
+        ],
+        [
+          "replay (torch_gcu/gcu/graphs.py:96)",
+          1
+        ],
+        [
+          "_execute_child (subprocess.py:1894)",
+          1
+        ]
+      ]
+    }
+  ]
+}

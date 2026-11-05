@@ -1,0 +1,55 @@
+{
+  "case": "qwen36-27b-eager",
+  "started_utc": "2026-11-05T07:59:03.958985+00:00",
+  "command": "source /workspace/enflame-test-env.sh\nset -o pipefail\nvllm serve /models/Qwen3.6-27B \\\n  -tp 2 --served-model-name qwen --host 127.0.0.1 --port 8070 \\\n  --dtype bfloat16 --max-model-len 32768 \\\n  --gpu-memory-utilization 0.94 --enforce-eager \\\n  --compilation-config '{\"custom_ops\":[\"none\",\"+SiluAndMul\"]}'",
+  "status": "failed",
+  "server_pid": 32249,
+  "startup_seconds": 1120.042,
+  "models": {
+    "object": "list",
+    "data": [
+      {
+        "id": "qwen",
+        "object": "model",
+        "created": 1793866664,
+        "owned_by": "vllm",
+        "root": "/models/Qwen3.6-27B",
+        "parent": null,
+        "max_model_len": 32768,
+        "permission": [
+          {
+            "id": "modelperm-8dc8b5ad1d376db7",
+            "object": "model_permission",
+            "created": 1793866664,
+            "allow_create_engine": false,
+            "allow_sampling": true,
+            "allow_logprobs": true,
+            "allow_search_indices": false,
+            "allow_view": true,
+            "allow_fine_tuning": false,
+            "organization": "*",
+            "group": null,
+            "is_blocking": false
+          }
+        ]
+      }
+    ]
+  },
+  "requests": [
+    {
+      "kind": "text",
+      "passed": false,
+      "seconds": 600.007,
+      "error": "TimeoutError('timed out')"
+    },
+    {
+      "kind": "image",
+      "passed": false,
+      "seconds": 600.101,
+      "error": "TimeoutError('timed out')"
+    }
+  ],
+  "server_exit_code": 0,
+  "finished_utc": "2026-11-05T08:27:51.834383+00:00",
+  "total_seconds": 1727.875
+}

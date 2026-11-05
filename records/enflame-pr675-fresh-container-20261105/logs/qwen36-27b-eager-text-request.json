@@ -1,0 +1,14 @@
+{
+  "model": "qwen",
+  "messages": [
+    {
+      "role": "user",
+      "content": "详细介绍下人工智能"
+    }
+  ],
+  "temperature": 1.0,
+  "max_tokens": 256,
+  "chat_template_kwargs": {
+    "enable_thinking": false
+  }
+}

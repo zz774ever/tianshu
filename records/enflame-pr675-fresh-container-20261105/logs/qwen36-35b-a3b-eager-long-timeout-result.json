@@ -1,0 +1,81 @@
+{
+  "case": "qwen36-35b-a3b-eager-long-timeout",
+  "started_utc": "2026-11-05T08:48:26.331764+00:00",
+  "command": "source /workspace/enflame-test-env.sh\nexport FLAGGEMS_ENABLE_OPLIST_PATH=/test-output/logs/qwen36-35b-a3b-eager-long-timeout-flaggems-ops.txt\nset -o pipefail\nvllm serve /models/Qwen3.6-35B-A3B \\\n  -tp 2 --served-model-name qwen --host 127.0.0.1 --port 8072 \\\n  --dtype bfloat16 --max-model-len 32768 \\\n  --gpu-memory-utilization 0.94 --enforce-eager \\\n  --compilation-config '{\"custom_ops\":[\"none\",\"+SiluAndMul\"]}'",
+  "status": "passed",
+  "port": 8072,
+  "tops_visible_devices": "2,3",
+  "script_case": "qwen36-35b-a3b-eager",
+  "request_timeout_seconds": 1800,
+  "diagnostic_environment": {
+    "VLLM_FL_DISPATCH_DEBUG": "1",
+    "VLLM_FL_LOG_LEVEL": "DEBUG"
+  },
+  "server_pid": 381535,
+  "startup_seconds": 220.012,
+  "models": {
+    "object": "list",
+    "data": [
+      {
+        "id": "qwen",
+        "object": "model",
+        "created": 1793868726,
+        "owned_by": "vllm",
+        "root": "/models/Qwen3.6-35B-A3B",
+        "parent": null,
+        "max_model_len": 32768,
+        "permission": [
+          {
+            "id": "modelperm-a427c513e97c6783",
+            "object": "model_permission",
+            "created": 1793868726,
+            "allow_create_engine": false,
+            "allow_sampling": true,
+            "allow_logprobs": true,
+            "allow_search_indices": false,
+            "allow_view": true,
+            "allow_fine_tuning": false,
+            "organization": "*",
+            "group": null,
+            "is_blocking": false
+          }
+        ]
+      }
+    ]
+  },
+  "requests": [
+    {
+      "kind": "text",
+      "http_status": 200,
+      "seconds": 263.97,
+      "passed": true,
+      "content": "**人工智能（Artificial Intelligence，简称 AI）** 是计算机科学的一个分支，旨在开发能够模拟、延伸和扩展人类智能的理论、方法、技术及应用系统。简单来说，就是让机器像人一样“思考”、“学习”和“行动”。\n\n以下是对人工智能的详细介绍，涵盖其定义、核心分支、关键技术、应用场景、发展历程以及面临的挑战。\n\n---\n\n### 1. 核心定义与目标\n人工智能的核心目标是创造智能机器，使其具备以下能力：\n*   **感知能力**：如视觉识别（计算机视觉）、听觉识别（语音识别）。\n*   **理解能力**：如自然语言处理（理解人类语言）。\n*   **推理与决策能力**：如逻辑推理、游戏策略制定。\n*   **学习能力**：从数据中自动发现规律并改进性能（机器学习）。\n*   **行动能力**：如机器人控制、自动驾驶。\n\n---\n\n### 2. 人工智能的主要分支\nAI 是一个广泛的领域，主要包含以下几个子领域：\n\n#### (1) 机器学习（Machine Learning, ML）\n这是当前 AI 发展的核心驱动力。它不依靠显式编程指令，而是通过算法让计算机从数据中学习模式。\n*  ",
+      "finish_reason": "length",
+      "usage": {
+        "prompt_tokens": 15,
+        "total_tokens": 271,
+        "completion_tokens": 256,
+        "prompt_tokens_details": null,
+        "completion_tokens_details": null
+      }
+    },
+    {
+      "kind": "image",
+      "http_status": 200,
+      "seconds": 317.653,
+      "passed": true,
+      "content": "这张图片是一幅简洁的几何线条画，由一个正方形和四个圆形组成，全部用黑色细线绘制在纯白背景上，无任何填充色或阴影。\n\n以下是详细描述：\n\n- **中心元素**：画面中央有一个正方形，四条边水平与垂直对齐，构成整个构图的骨架。\n  \n- **四个圆形**：\n  - 每个圆形都与正方形的一个角相切（即圆与正方形在该角处接触）。\n  - 四个圆形大小不一，形成视觉上的不对称美感：\n    - **左下角**：最大的一个圆，完全包围了正方形的左下角区域，并与该角相切。\n    - **右上角**：第二大的圆，位于正方形的右上方，与该角相切。\n    - **左上角**：较小的圆，位于正方形左上角外侧，与该角相切。\n    - **右下角**：最小的圆，位于正方形右下角外侧，与该角相切。\n\n- **整体布局**：\n  - 图形呈现出一种动态平衡——虽然四个圆大小不同，但它们在正方形四角“对称分布”，形成稳定的视觉结构。\n  - 圆形之间互不重叠，仅通过正方形角点建立联系。\n",
+      "finish_reason": "length",
+      "usage": {
+        "prompt_tokens": 174,
+        "total_tokens": 430,
+        "completion_tokens": 256,
+        "prompt_tokens_details": null,
+        "completion_tokens_details": null
+      }
+    }
+  ],
+  "server_exit_code": 0,
+  "finished_utc": "2026-11-05T08:57:32.144436+00:00",
+  "total_seconds": 545.812
+}

@@ -1,0 +1,25 @@
+{
+  "model": "qwen",
+  "messages": [
+    {
+      "role": "user",
+      "content": [
+        {
+          "type": "image_url",
+          "image_url": {
+            "url": "https://qianwen-res.oss-accelerate.aliyuncs.com/Qwen3.5/demo/CI_Demo/mathv-1327.jpg"
+          }
+        },
+        {
+          "type": "text",
+          "text": "描述一下这张图片"
+        }
+      ]
+    }
+  ],
+  "temperature": 1.0,
+  "max_tokens": 256,
+  "chat_template_kwargs": {
+    "enable_thinking": false
+  }
+}

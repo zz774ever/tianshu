@@ -1,0 +1,81 @@
+{
+  "case": "qwen36-27b-eager-long-timeout",
+  "started_utc": "2026-11-05T08:28:44.476878+00:00",
+  "command": "source /workspace/enflame-test-env.sh\nexport FLAGGEMS_ENABLE_OPLIST_PATH=/test-output/logs/qwen36-27b-eager-long-timeout-flaggems-ops.txt\nset -o pipefail\nvllm serve /models/Qwen3.6-27B \\\n  -tp 2 --served-model-name qwen --host 127.0.0.1 --port 8070 \\\n  --dtype bfloat16 --max-model-len 32768 \\\n  --gpu-memory-utilization 0.94 --enforce-eager \\\n  --compilation-config '{\"custom_ops\":[\"none\",\"+SiluAndMul\"]}'",
+  "status": "passed",
+  "port": 8070,
+  "tops_visible_devices": "5,6",
+  "script_case": "qwen36-27b-eager",
+  "request_timeout_seconds": 1800,
+  "diagnostic_environment": {
+    "VLLM_FL_DISPATCH_DEBUG": "1",
+    "VLLM_FL_LOG_LEVEL": "DEBUG"
+  },
+  "server_pid": 204546,
+  "startup_seconds": 160.01,
+  "models": {
+    "object": "list",
+    "data": [
+      {
+        "id": "qwen",
+        "object": "model",
+        "created": 1793867484,
+        "owned_by": "vllm",
+        "root": "/models/Qwen3.6-27B",
+        "parent": null,
+        "max_model_len": 32768,
+        "permission": [
+          {
+            "id": "modelperm-91b0f04be11dff5d",
+            "object": "model_permission",
+            "created": 1793867484,
+            "allow_create_engine": false,
+            "allow_sampling": true,
+            "allow_logprobs": true,
+            "allow_search_indices": false,
+            "allow_view": true,
+            "allow_fine_tuning": false,
+            "organization": "*",
+            "group": null,
+            "is_blocking": false
+          }
+        ]
+      }
+    ]
+  },
+  "requests": [
+    {
+      "kind": "text",
+      "http_status": 200,
+      "seconds": 145.167,
+      "passed": true,
+      "content": "**人工智能（Artificial Intelligence，简称 AI）** 是计算机科学的一个分支，旨在开发能够模拟、延伸和扩展人类智能的理论、方法、技术及应用系统。简单来说，就是让机器像人一样“思考”和“行动”。\n\n以下从**定义与核心概念**、**主要分类**、**关键技术**、**应用领域**、**挑战与伦理**以及**未来展望**六个维度为您详细介绍：\n\n---\n\n### 1. 定义与核心概念\n\nAI 的核心目标不是创造有意识的生命，而是创造能够执行特定任务的智能系统。它依赖于数据、算法和计算能力。\n\n*   **感知（Perception）**：机器通过传感器或数据输入来“看”、“听”和理解世界（如图像识别、语音识别）。\n*   **推理（Reasoning）**：基于数据进行逻辑判断、预测或决策（如下棋、医疗诊断）。\n*   **学习（Learning）**：通过经验改进性能，无需显式编程（即机器学习）。\n*   **行动（Action）**：将决策转化为物理动作或数字输出（如机器人移动、生成文本）。\n\n---\n\n### 2. 人工智能的主要分类\n\n#### 按能力水平划分：\n1. ",
+      "finish_reason": "length",
+      "usage": {
+        "prompt_tokens": 15,
+        "total_tokens": 271,
+        "completion_tokens": 256,
+        "prompt_tokens_details": null,
+        "completion_tokens_details": null
+      }
+    },
+    {
+      "kind": "image",
+      "http_status": 200,
+      "seconds": 128.025,
+      "passed": true,
+      "content": "这张图片是一幅简洁的几何图形组合，由一个正方形和四个圆形构成，全部以黑色细线勾勒在纯白背景上，无任何填充色或阴影。\n\n具体结构如下：\n\n- **中心元素**：一个正方形位于画面中央，四边水平垂直，线条清晰。\n- **四个圆形**：\n  - 两个较大的圆分别位于正方形的左下角和右上角，部分覆盖正方形的边。\n  - 两个较小的圆分别位于正方形的左上角和右下角，同样与正方形的边相交或相切。\n  - 所有圆都与正方形的边有接触（可能是相切或相交），但彼此之间没有重叠。\n  - 圆的分布呈现出一种对称性——左上小圆与右下小圆对称，左下大圆与右上大圆对称。\n\n整体构图具有平衡感和几何美感，类似设计草图、LOGO原型或数学示意图。风格极简，强调形状之间的关系和空间布局。\n\n这幅图可能用于演示几何关系、视觉设计原理，或作为抽象艺术表达。",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 174,
+        "total_tokens": 396,
+        "completion_tokens": 222,
+        "prompt_tokens_details": null,
+        "completion_tokens_details": null
+      }
+    }
+  ],
+  "server_exit_code": 0,
+  "finished_utc": "2026-11-05T08:33:57.542457+00:00",
+  "total_seconds": 313.065
+}

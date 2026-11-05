@@ -1,0 +1,58 @@
+{
+  "case": "qwen3-4b-eager",
+  "started_utc": "2026-11-05T07:46:25.182496+00:00",
+  "command": "source /workspace/enflame-test-env.sh\nset +e\nset -o pipefail\n\nvllm serve /models/Qwen3-4B \\\n  --served-model-name qwen --host 127.0.0.1 --port 8070 \\\n  --dtype bfloat16 --enforce-eager \\\n  --max-model-len 4096 --max-num-seqs 4 \\\n  --max-num-batched-tokens 512 --gpu-memory-utilization 0.70",
+  "status": "passed",
+  "server_pid": 1547,
+  "startup_seconds": 400.017,
+  "models": {
+    "object": "list",
+    "data": [
+      {
+        "id": "qwen",
+        "object": "model",
+        "created": 1793865185,
+        "owned_by": "vllm",
+        "root": "/models/Qwen3-4B",
+        "parent": null,
+        "max_model_len": 4096,
+        "permission": [
+          {
+            "id": "modelperm-b08da3818043228c",
+            "object": "model_permission",
+            "created": 1793865185,
+            "allow_create_engine": false,
+            "allow_sampling": true,
+            "allow_logprobs": true,
+            "allow_search_indices": false,
+            "allow_view": true,
+            "allow_fine_tuning": false,
+            "organization": "*",
+            "group": null,
+            "is_blocking": false
+          }
+        ]
+      }
+    ]
+  },
+  "requests": [
+    {
+      "kind": "text",
+      "http_status": 200,
+      "seconds": 281.056,
+      "passed": true,
+      "content": "人工智能（Artificial Intelligence，简称 AI）是一个涵盖广泛的技术领域，旨在使机器能够执行通常需要人类智能的任务。AI 不仅仅是一个简单的“机器人”，而是一个复杂的、多学科交叉的系统，融合了计算机科学、数学、统计学、神经科学、认知心理学等多个学科的知识。\n\n---\n\n## 一、人工智能的定义\n\n人工智能是计算机科学的一个分支，致力于开发能够执行需要人类智能的任务的系统或机器。这些任务包括但不限于：\n\n- 逻辑推理\n- 问题解决\n- 语言理解\n- 视觉识别\n- 学习能力\n- 自动控制\n- 情感计算\n\nAI 的目标是让机器具备类似人类的智能，甚至在某些方面超越人类。\n\n---\n\n## 二、人工智能的类型\n\n根据不同的标准，人工智能可以分为多种类型：\n\n### 1. **弱人工智能（Narrow AI / Narrow Artificial Intelligence, NAI）**\n- **特点**：只能完成特定任务，如语音识别、图像识别、推荐系统等。\n- **例子**：\n  - 语音助手（如 Siri、Alexa）\n  - 图像识别系统（如人脸识别、自动驾驶）\n  - 搜索引擎（如 Google、Bing）\n",
+      "finish_reason": "length",
+      "usage": {
+        "prompt_tokens": 15,
+        "total_tokens": 271,
+        "completion_tokens": 256,
+        "prompt_tokens_details": null,
+        "completion_tokens_details": null
+      }
+    }
+  ],
+  "server_exit_code": 0,
+  "finished_utc": "2026-11-05T07:57:53.185247+00:00",
+  "total_seconds": 688.003
+}

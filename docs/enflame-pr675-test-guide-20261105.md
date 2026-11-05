@@ -21,13 +21,13 @@ sha256:f21e53101ffcf00fa5b70b39913bd401be93c0d1834c0ae8d07684bf0690bc88
 
 1. 这是 **0.28 依赖镜像**，PR 675 要求 **0.32.0 empty 构建**。先升级 vLLM，再安装 PR；不能直接执行 PR 的 setup 脚本然后期待它自动升级 vLLM。
 2. 燧原选择卡使用 `TOPS_VISIBLE_DEVICES`，不是沿用天数的 `CUDA_VISIBLE_DEVICES`。大模型按已有适配记录使用 **TP2**。
-3. 35B Graph 需要显式传入 `{"custom_ops":["none","+SiluAndMul"]}`。大小写必须一致。不能把天数的 `{"mode":0,"cudagraph_mode":"FULL_DECODE_ONLY"}` 当作燧原已经验证过的配置。
+3. 35B Graph 的历史适配配置需要显式传入 `{"custom_ops":["none","+SiluAndMul"]}`，大小写必须一致。本次 27B 的默认 Inductor Graph 配置在 FL SiLU 的 dtype 推导中实际启动失败；随后在 GCU 上实测 `mode=0 / FULL_DECODE_ONLY`，35/35 捕获完成且图文请求通过。下文 27B 使用这个经过本轮验证的配置。它保留 decode Graph，但不验证 Inductor 模型编译。
 4. TP2 需要 **FlagCX 动态库和 Python wrapper**。当前机器已有匹配组件，本教程复用该 wrapper，并链接新容器镜像里的 FlagCX 库；只设置一个不存在的 `FLAGCX_PATH` 不够。
 5. 单纯用 `--no-deps` 升级 vLLM 可能缺少 0.32 的新增依赖。本教程单独解析 common 依赖，以约束保护厂商运行时，随后恢复并校验 FlagTree 编译器文件。
 6. 本机实际宿主驱动是 **1.9.10**，仓库历史镜像说明写的是 **1.10.6**。已有设备和服务可用，不能因此把本机驱动写成 1.10.6；本教程不要求更新宿主驱动。
-7. **当前适配容器并不满足全部官方 0.32 依赖声明。** 例如已安装 Transformers 5.6.0，而该固定 vLLM 提交要求 `>=5.16.1,<5.20.0`；本次通过 GitHub 官方源码再次核对。这是实际环境问题，即使已有服务能生成，也不能宣称依赖完整通过。下文按官方 common 依赖补齐，补齐后的组合仍需你重新执行模型测试。
+7. **此前适配容器并不满足全部官方 0.32 依赖声明。** 例如已安装 Transformers 5.6.0，而该固定 vLLM 提交要求 `>=5.16.1,<5.20.0`。本次新容器已按下文安装 common 依赖，升级至 Transformers 5.19.0，全部必选依赖检查通过；未修改原适配容器的依赖。
 
-本次直接核验了 PR、镜像 manifest、已安装版本、8 张设备的属性、两个编译器/算子文件校验器、真实 TP2 all-reduce、common 依赖解析 dry-run，以及现有大模型服务的健康检查和少量生成请求。**没有在本次新建容器中重跑整套安装及四组大模型测试，不能保证尚未执行的部分全部通过。** 每个检查点失败时先保留日志，再定位问题。
+本次已从固定 digest 的官方镜像新建 `test_plugin_32_enflame_20261105_manual` 容器，实际完成安装、编译器文件校验、完整环境门禁、真实 TP2 all-reduce 和 4B 的 256-token 请求。大模型各组结果见第 11 节及配套新容器实测记录。每个检查点失败时先保留日志，再定位问题；旧服务短请求和历史 Gate 不计入本轮通过项。
 
 ## 1. 环境记录
 
@@ -54,14 +54,14 @@ sha256:f21e53101ffcf00fa5b70b39913bd401be93c0d1834c0ae8d07684bf0690bc88
 | Python | 3.12.8 | 保留 |
 | vLLM | 0.28.0+empty | 0.32.0+empty |
 | vLLM 源码 | 0.28 基线 | `5df63a7203cdb9328d824a27b682e77c7b9928be` |
-| vllm-plugin-FL | 新容器内实际读取，不猜测 | PR 675 固定提交，见上文 |
+| vllm-plugin-FL | 本次原始镜像未安装 | PR 675 固定提交，见上文 |
 | PyTorch | 2.11.0+cpu | 保留 |
 | torch-gcu | 2.11.0+3.8.20260713 | 保留 |
 | FlagTree | 0.7.0+enflame3.6 | 保留并校验实际文件 |
 | triton-gcu | 3.6.0+1.0.20260722 | 保留 |
 | FlagGems | 5.4.0 | 保留 |
-| FlagCX | 当前适配容器为 0.13.0；新容器再次核查 | 同时验证 wrapper 和库 |
-| FlagGems-vllm | 新容器实际读取 | helper 固定 `b5c2c2249319277ccda4d41aa0f65164bd9b2a19` |
+| FlagCX | 新容器原始版本 0.13.0 | 同时验证 wrapper 和库 |
+| FlagGems-vllm | 本次通过 helper 安装 | helper 固定 `b5c2c2249319277ccda4d41aa0f65164bd9b2a19` |
 | OpenAI SDK / pandas | 3.28.0 / 3.0.6 | 保留 |
 
 `torch` 的 `+cpu` 是这个厂商发行包的版本字符串，实际由 `torch_gcu` 在 GCU 上运行。FlagTree 提供 `triton` Python 命名空间，`pip show triton` 查不到独立发行包可以是正常状态。辅助算子的 release 为 v0.2.0，但其包元数据仍显示 0.1.0，必须检查来源提交，不能只看版本号。
@@ -161,11 +161,11 @@ cat /etc/os-release
 python -m pip show vllm vllm-plugin-fl torch torch-gcu flagtree triton-gcu flag-gems flagcx numpy openai pandas
 python -m pip freeze > /test-output/logs/packages-before.txt
 
-git clone --branch 0.5.0-dev \
+git -c http.version=HTTP/1.1 clone --depth 1 --branch 0.5.0-dev \
   https://github.com/flagos-ai/vllm-plugin-FL.git \
   /workspace/vllm-plugin-FL-pr675
 cd /workspace/vllm-plugin-FL-pr675
-git fetch origin refs/pull/675/head
+git -c http.version=HTTP/1.1 fetch --depth 1 origin 5efa61dc4e9f86dc18d265adaa0cb9dc60397322
 git checkout --detach 5efa61dc4e9f86dc18d265adaa0cb9dc60397322
 test "$(git rev-parse HEAD)" = 5efa61dc4e9f86dc18d265adaa0cb9dc60397322
 git rev-parse HEAD | tee /test-output/logs/plugin-commit.txt
@@ -178,9 +178,11 @@ python docker/enflame/verify_index_fill.py | tee /test-output/logs/index-fill-be
 
 GitHub 网络失败时，可以将 clone / fetch URL 改为你网络可用的代理，例如 `https://gh-proxy.com/https://github.com/...`；固定提交校验仍保留。不必修改宿主全局 Git 配置。
 
+从新容器实测时，首次完整 clone 遇到 `GnuTLS recv error (-110)`。这里改为单命令 HTTP/1.1、浅克隆，并直接浅获取固定提交；这些选项只影响该次 Git 命令，不修改全局设置。网络中断后先核对专用目录是否完整，再重试。
+
 ### 可选：记录原始 0.28 的 4B 基线
 
-先完成下面第 5.1 节的运行环境脚本和单卡检查，再执行第 6 节的 4B 命令，此时还没有安装 PR。基线成败取决于镜像原插件是否存在且接口匹配。
+本次实际读取的原始镜像没有 `vllm-plugin-fl`，因此原始 0.28 的 FL 基线未具备运行条件，没有将它记为通过。只有你实际检查发现镜像含有匹配插件时，才先完成下面第 5.1 节的运行环境脚本和单卡检查，再执行第 6 节的 4B 命令，记录升级前基线。
 
 若插件缺失、接口不匹配或无法启动，保存完整报错，将基线记为 FAIL 或未具备运行条件；不要套用天数的 `FusedMoE` 报错作为燧原既定结论。停止基线服务后，再执行第 5.2 节升级。
 
@@ -271,9 +273,9 @@ VLLM_TARGET_DEVICE=empty \
 
 若 resolver 报约束冲突，先停止并保存日志；不要删除厂商约束强行安装普通 CUDA 的 torch / Triton。`requirements/common.txt` 是本次升级需要补齐的依赖，`--no-deps` 仅用于随后安装 vLLM 本体和插件。不要设置 `VLLM_VERSION_OVERRIDE=0.32.0`，这个源码版本的 override 分支会绕过追加 `+empty` 的逻辑，导致 PR 的版本门禁不通过。
 
-这里可能把 Transformers 等升级到与当前在线服务不同的版本。当前在线服务的成功结果不能替代新依赖组合的复现结果；本次没有实际执行这一安装事务。
+这里会把 Transformers 等升级到与原适配容器在线服务不同的版本。本次新容器安装已成功，Transformers 为 5.19.0、tokenizers 为 0.23.3；原适配容器未升级。
 
-本次在现有容器中使用上述厂商约束、官方 PyPI，执行 common 依赖的 `pip install --dry-run` 成功，未执行安装。解析结果包括 Transformers 5.19.0 和上游 Triton 3.6.0，确认下面恢复 FlagTree 的步骤确有必要。新容器的依赖差异仍以实际安装日志和最终门禁为准。
+新容器安装 common 依赖时实际引入了上游 Triton 3.6.0，随后按下文恢复厂商 FlagTree。新容器的依赖差异以实际安装日志和最终门禁为准。
 
 common 依赖可能安装上游 Triton 并覆盖 FlagTree 的同名文件。按照燧原镜像配方，恢复固定版本、固定哈希的编译器：
 
@@ -310,6 +312,17 @@ hash -r
 ```
 
 helper 会核对固定来源提交。网络中断时修复网络后重试这一条；不要以“已经装过 0.1.0”为由跳过来源检查。
+
+本机直连 GitHub 下载较慢，安装 helper 时可使用仅对本次进程生效的代理重试，不执行 `git config --global`：
+
+```bash
+env GIT_CONFIG_COUNT=1 \
+  GIT_CONFIG_KEY_0=url.https://gh-proxy.com/https://github.com/.insteadOf \
+  GIT_CONFIG_VALUE_0=https://github.com/ \
+  python .github/scripts/install_flaggems_vllm.py
+```
+
+helper 仍检查官方仓库 URL 和固定提交；这里仅改变 Git 下载通道。浅克隆的插件 metadata 可能显示 `0.0.0+g5efa61dc4`，因此以固定提交与导入路径作为插件来源依据。
 
 ### 5.4 补齐 FlagCX 布局并核查
 
@@ -381,9 +394,10 @@ for package, wanted in expected.items():
     print(package, actual)
     assert actual == wanted, (package, actual, wanted)
 
-parsed = Version(vllm.__version__)
+parsed = Version(metadata.version('vllm'))
 assert parsed.base_version == '0.32.0'
 assert 'empty' in (parsed.local or '').split('.')
+assert Version(vllm.__version__).base_version == parsed.base_version
 dependency_errors = []
 for declaration in metadata.requires('vllm') or []:
     requirement = Requirement(declaration)
@@ -417,7 +431,8 @@ ctypes.CDLL(library)
 bridge = flagcx.FLAGCXLibrary(library)
 print('FlagCX wrapper:', bridge.__class__.__module__)
 print('FlagCX handle:', bool(getattr(bridge, 'devHandle', None)))
-print('vLLM:', vllm.__version__, vllm.__file__)
+print('vLLM metadata:', metadata.version('vllm'))
+print('vLLM import:', vllm.__version__, vllm.__file__)
 print('plugin:', commit, vllm_fl.__file__)
 print('platform:', current_platform.device_type, current_platform.vendor_name)
 print('Triton:', triton.__version__, triton.__file__)
@@ -430,6 +445,8 @@ python -m pip freeze > /test-output/logs/packages-after.txt
 ```
 
 这仍然只是环境门禁，下一步验证真实 TP2 collective，再进行模型生成。不要直接调用共享容器的 e2e runner，它可能清理同容器其他 vLLM 进程。
+
+新容器实测发现，官方源码构建时只将 `+empty` 追加到发行包版本，源码中的 `_version.py` 仍可为 `0.32.0`。因此检查 `metadata.version('vllm')` 的 empty 标记，同时核对导入版本的基础版本；不要为通过检查手改 `_version.py`。
 
 ### 5.6 验证真实 TP2 FlagCX 通信
 
@@ -464,7 +481,7 @@ torchrun --standalone --nnodes=1 --nproc-per-node=2 \
   2>&1 | tee /test-output/logs/flagcx-tp2.log
 ```
 
-本次已用相同通信逻辑、当前 PR、当前匹配的 FlagCX wrapper / 库，在逻辑卡 `5,6` 上实际通过，两个 rank 都返回全 3，进程退出码为 0。新容器仍需自行跑这一项。
+本次新容器已用上述通信逻辑、当前 PR、匹配的 FlagCX wrapper / 镜像内库，在逻辑卡 `5,6` 上实际通过，两个 rank 都返回全 3，进程退出码为 0。你手工复现时仍需执行这一项。
 
 ## 6. 升级后先验证 Qwen3-4B eager
 
@@ -478,6 +495,7 @@ set -o pipefail
 python - <<'PY'
 import socket
 with socket.socket() as listener:
+    listener.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     listener.bind(('0.0.0.0', 8070))
 print('端口 8070 空闲')
 PY
@@ -490,9 +508,11 @@ vllm serve /models/Qwen3-4B \
   2>&1 | tee /test-output/logs/qwen3-4b-eager-server.log
 ```
 
-4B 不传 `-tp`，使用可见集合中的第一张卡。4096 是先检查安装和生成的小模型冒烟配置；本次没有重新运行这组，不能写成已经通过。
+4B 不传 `-tp`，使用可见集合中的第一张卡。4096 是先检查安装和生成的小模型冒烟配置。本次新容器该组已通过：冷启动 400.017 秒，首次请求 281.056 秒，HTTP 200，生成 256 tokens，内容正常介绍人工智能。首次冷编译耗时不能作为稳定性能数据。
 
 从服务测试阶段起关闭交互 shell 的 `errexit`，方便 Ctrl+C 停服后继续下一组。安装和环境检查阶段的任一报错仍应先处理，不能跳过。
+
+端口预检启用 `SO_REUSEADDR`，避免上一轮正常停服后的 TCP TIME_WAIT 被误判为仍有监听服务；真实监听占用仍会导致绑定失败。不要为释放端口停止其他人的服务。
 
 在 **另一个宿主终端 B** 进入同一个新容器：
 
@@ -508,7 +528,7 @@ curl --noproxy '*' --fail-with-body -sS --max-time 10 \
 curl --noproxy '*' --fail-with-body -sS --max-time 10 \
   http://127.0.0.1:8070/v1/models
 
-curl --noproxy '*' --fail-with-body -sS --max-time 600 \
+curl --noproxy '*' --fail-with-body -sS --max-time 1800 \
   http://127.0.0.1:8070/v1/chat/completions \
   -H 'Content-Type: application/json' \
   -d '{
@@ -526,9 +546,25 @@ python -m json.tool /test-output/logs/qwen3-4b-eager-text.json
 
 内容位于 `choices[0].message.content`。非流式请求在生成完成后返回。完成后在终端 A 按 Ctrl+C，确认本次服务退出、端口空闲、显存释放，再启动下一组。
 
+本次 4B 首次请求约 281 秒；27B eager 首次冷启动约 1120 秒，就绪后的两条请求又在 600 秒客户端预算内未返回，均记为超时失败。日志显示编译活动及后续持续生成，不能据此认定引擎崩溃。教程因此将客户端预算改为 1800 秒；重试保留 `max_tokens=256`、原问题/原图、TP2/32768/0.94，原失败单独留档。扩大客户端超时不代表已经证明模型推理成功，最终以实际返回为准。
+
 ## 7. Qwen3.6-27B 测试
 
 以下使用 TP2、最大长度 32768、显存比例 0.94，与本机已有大模型 Gate 服务的主要容量参数一致。eager 和 Graph 保持同一套参数方便比较；没有空闲两卡时不要强行启动。
+
+默认依次执行，端口为 8070。若另有空闲两卡，可在同一新容器内用不同终端并行执行不同组。只为对应进程指定卡号和端口，不修改容器默认配置。例如在宿主分别进入两个服务端终端：
+
+```bash
+docker exec -it -e TOPS_VISIBLE_DEVICES=0,1 -e TEST_PORT=8071 \
+  test_plugin_32_enflame_20261105 bash
+```
+
+```bash
+docker exec -it -e TOPS_VISIBLE_DEVICES=2,3 -e TEST_PORT=8072 \
+  test_plugin_32_enflame_20261105 bash
+```
+
+第一个执行 7.2 的 27B Graph，第二个执行 8.1 的 35B eager。各自的客户端终端也要设置对应 `TEST_PORT=8071` 或 `8072` 和正确的 `CASE`，再执行第 9 节。每组服务启动前按第 10 节指定独立算子记录文件，避免并行服务覆盖同一文件。只停止自己这一组的服务进程，不使用 `pkill`。本次实测后半程正是按该布局并行；卡 `5,6` 上的 27B eager 保持运行。
 
 ### 7.1 eager
 
@@ -538,7 +574,7 @@ python -m json.tool /test-output/logs/qwen3-4b-eager-text.json
 source /workspace/enflame-test-env.sh
 set -o pipefail
 vllm serve /models/Qwen3.6-27B \
-  -tp 2 --served-model-name qwen --host 127.0.0.1 --port 8070 \
+  -tp 2 --served-model-name qwen --host 127.0.0.1 --port "${TEST_PORT:-8070}" \
   --dtype bfloat16 --max-model-len 32768 \
   --gpu-memory-utilization 0.94 --enforce-eager \
   --compilation-config '{"custom_ops":["none","+SiluAndMul"]}' \
@@ -549,20 +585,22 @@ vllm serve /models/Qwen3.6-27B \
 
 ### 7.2 Graph
 
+本次默认 `VLLM_COMPILE / FULL_AND_PIECEWISE` 加显式 FL SiLU 的启动实际失败：Dynamo 进入辅助算子的 `elementwise_dtypes` 后报 `torch.* op returned non-Tensor`。这里改用独立验证通过的 decode Graph 配置，保留 FL SiLU、精度仿真和完整多模态模型，不修改后端源码。
+
 终端 A：
 
 ```bash
 source /workspace/enflame-test-env.sh
 set -o pipefail
 vllm serve /models/Qwen3.6-27B \
-  -tp 2 --served-model-name qwen --host 127.0.0.1 --port 8070 \
+  -tp 2 --served-model-name qwen --host 127.0.0.1 --port "${TEST_PORT:-8070}" \
   --dtype bfloat16 --max-model-len 32768 \
   --gpu-memory-utilization 0.94 \
-  --compilation-config '{"custom_ops":["none","+SiluAndMul"]}' \
+  --compilation-config '{"mode":0,"cudagraph_mode":"FULL_DECODE_ONLY","custom_ops":["none","+SiluAndMul"]}' \
   2>&1 | tee /test-output/logs/qwen36-27b-graph-server.log
 ```
 
-Graph 组不传 `--enforce-eager`，保留 `TORCHINDUCTOR_EMULATE_PRECISION_CASTS=1`。这里沿用燧原 PR 的编译/Graph 配置路径，不额外强行指定天数的 mode 0。必须在日志中确认实际发生 Graph capture，不能仅凭省略 eager 参数就填“Graph 通过”。
+Graph 组不传 `--enforce-eager`，保留 `TORCHINDUCTOR_EMULATE_PRECISION_CASTS=1`。本次在 GCU 上观察到两 worker 完成 `Capturing CUDA graphs (decode, FULL): 35/35`，随后两条请求均 HTTP 200，文本 256 tokens、图像 222 tokens。启动约 1360 秒，含 JIT 预热和冷捕获；这不是完整 Inductor + mixed prefill/decode Graph 通过。你复现时仍需在日志中确认实际 capture 完成。
 
 服务就绪后，终端 B 设置 `CASE=qwen36-27b-graph` 并执行第 9 节。完成后停止服务。
 
@@ -576,7 +614,7 @@ Graph 组不传 `--enforce-eager`，保留 `TORCHINDUCTOR_EMULATE_PRECISION_CAST
 source /workspace/enflame-test-env.sh
 set -o pipefail
 vllm serve /models/Qwen3.6-35B-A3B \
-  -tp 2 --served-model-name qwen --host 127.0.0.1 --port 8070 \
+  -tp 2 --served-model-name qwen --host 127.0.0.1 --port "${TEST_PORT:-8070}" \
   --dtype bfloat16 --max-model-len 32768 \
   --gpu-memory-utilization 0.94 --enforce-eager \
   --compilation-config '{"custom_ops":["none","+SiluAndMul"]}' \
@@ -593,7 +631,7 @@ vllm serve /models/Qwen3.6-35B-A3B \
 source /workspace/enflame-test-env.sh
 set -o pipefail
 vllm serve /models/Qwen3.6-35B-A3B \
-  -tp 2 --served-model-name qwen --host 127.0.0.1 --port 8070 \
+  -tp 2 --served-model-name qwen --host 127.0.0.1 --port "${TEST_PORT:-8070}" \
   --dtype bfloat16 --max-model-len 32768 \
   --gpu-memory-utilization 0.94 \
   --compilation-config '{"custom_ops":["none","+SiluAndMul"]}' \
@@ -612,15 +650,16 @@ vllm serve /models/Qwen3.6-35B-A3B \
 
 ```bash
 export CASE=qwen36-27b-eager
+export TEST_PORT="${TEST_PORT:-8070}"
 mkdir -p /test-output/logs
 
 curl --noproxy '*' --fail-with-body -sS --max-time 10 \
-  http://127.0.0.1:8070/health
+  "http://127.0.0.1:$TEST_PORT/health"
 curl --noproxy '*' --fail-with-body -sS --max-time 10 \
-  http://127.0.0.1:8070/v1/models
+  "http://127.0.0.1:$TEST_PORT/v1/models"
 
-curl --noproxy '*' --fail-with-body -sS --max-time 600 \
-  http://127.0.0.1:8070/v1/chat/completions \
+curl --noproxy '*' --fail-with-body -sS --max-time 1800 \
+  "http://127.0.0.1:$TEST_PORT/v1/chat/completions" \
   -H 'Content-Type: application/json' \
   -d '{
     "model":"qwen",
@@ -633,8 +672,8 @@ curl --noproxy '*' --fail-with-body -sS --max-time 600 \
   -w '\n文本请求：HTTP %{http_code}，耗时 %{time_total} 秒\n' &
 text_pid=$!
 
-curl --noproxy '*' --fail-with-body -sS --max-time 600 \
-  http://127.0.0.1:8070/v1/chat/completions \
+curl --noproxy '*' --fail-with-body -sS --max-time 1800 \
+  "http://127.0.0.1:$TEST_PORT/v1/chat/completions" \
   -H 'Content-Type: application/json' \
   -d '{
     "model":"qwen",
@@ -731,14 +770,28 @@ export VLLM_FL_LOG_LEVEL=DEBUG
 
 建议每组保存：服务启动命令、选卡、插件提交、软件快照、capture 日志、HTTP 状态/耗时、原始返回 JSON 和算子记录。宿主日志位于 `/root/enflame-test-20261105/logs`。
 
-| 本次待复现项目 | 启动 | 文本 | 图像 | Graph capture | 算子证据 |
+| 本次新容器实测项目 | 启动 | 文本 | 图像 | Graph capture | 算子证据 |
 |---|---|---|---|---|---|
-| 原始 0.28 / 4B eager（可选） | 待填 | 待填 | 不适用 | 不适用 | 待填 |
-| 升级后 4B eager | 待填 | 待填 | 不适用 | 不适用 | 待填 |
-| 升级后 27B TP2 eager | 待填 | 待填 | 待填 | 不适用 | 待填 |
-| 升级后 27B TP2 Graph | 待填 | 待填 | 待填 | 待填 | 待填 |
-| 升级后 35B-A3B TP2 eager | 待填 | 待填 | 待填 | 不适用 | 待填 |
-| 升级后 35B-A3B TP2 Graph | 待填 | 待填 | 待填 | 待填 | 待填 |
+| 原始 0.28 / FL 4B 基线 | 未具备条件：镜像未安装 FL | 未执行 | 不适用 | 不适用 | 不适用 |
+| 升级后 4B eager | PASS | HTTP 200 | 不适用 | 不适用 | 启用/调用记录，未逐核 profile |
+| 升级后 27B TP2 eager，1800 秒预算重试 | PASS | HTTP 200 | HTTP 200 | 不适用 | FL SiLU 运行时调度 |
+| 27B 原默认 Inductor Graph + FL SiLU | FAIL | 未执行 | 未执行 | 未完成 | dtype 推导追踪报错 |
+| 27B TP2 FULL_DECODE_ONLY，mode 0 | PASS | HTTP 200 | HTTP 200 | FULL 35/35 | FL SiLU 运行时调度 |
+| 35B-A3B TP2 eager，1800 秒预算重试 | PASS | HTTP 200 | HTTP 200 | 不适用 | FL MoE 运行时调度 |
+| 35B-A3B TP2 Inductor Graph + FL SiLU | PASS | HTTP 200 | HTTP 200 | PIECEWISE 51/51、FULL 35/35 | FL SiLU / MoE 运行时调度 |
+
+上述是本次执行结果，不是供手工填写的空表。你重新执行时另建记录，不覆盖本轮结果。27B eager 首轮两请求超时、35B eager 首轮图像超时仍保留为失败，不因重试成功而改写。
+
+### 11.1 600 秒超时是否正常：实测定位
+
+不能把这次超时当作稳定推理的正常表现，也不能将提高超时预算称为性能修复。本次定位到以下事实：
+
+- 27B eager 首次就绪约 1120 秒，两请求 600 秒均未返回；保留编译缓存后，同模型参数重启就绪约 160 秒，文本/图像约 145/128 秒返回。35B eager 首轮约 546 秒返回文本、图像超过 600 秒；缓存重试约 264/318 秒均返回。请求长度、问题、图片和模型参数没有降低。
+- 初次请求期间可见活跃的厂商编译器、持续产生的 Triton 缓存文件。35B Graph 日志还明确报告 `Triton kernel JIT compilation during inference ... causes a latency spike`，涉及采样、线性和图像位置编码等形状。`/health` 就绪不表示真实图文请求的所有内核已预热；eager 还会关闭通用 JIT warmup。冷编译是超时的重要原因，预热覆盖不足是需要记录的适配问题。
+- PR 的 GCU top-k/top-p 兼容路径会将 logits 拷至 CPU 过滤，再回传 GCU。20 秒活跃 Python 采样中，35B eager 有 494/708、Graph 有 158/214 个样本位于该路径；其中多数停在 `.to()` 调用，包含等待前面 GPU 工作，不能据此说“70% 时间在 CPU 排序”。
+- 对相同 248320 词表、`top_k=20 / top_p=0.95`、CPU 单线程的独立分段微测：batch 1 总计约 27.23 ms，batch 2 约 57.28 ms，其中 batch 2 CPU 过滤约 56.20 ms，双向拷贝合计约 1.08 ms。该开销真实存在，但单独不能解释数百秒；不能把它误判为全部根因，也不能通过关闭采样过滤伪装提速。
+
+因此 1800 秒只用于容纳首次编译的功能复现。建议首次图文请求作为预热单独保存，然后在同一服务、相同请求参数下再执行一次第 9 节，给 `CASE` 增加 `-warm` 后缀保存新响应。若预热后仍反复超时，应按性能问题继续定位，不计作该预算内通过。本轮缓存重试证明功能可用，没有完成逐 GCU 内核的完整时延归因，不能宣称性能已经优化正常。原始采样、微测和日志见配套新容器实测记录的证据清单。
 
 本机历史原始 Gate JSON 已逐项读取：27B eager、27B Graph、35B Graph 各 26/26；35B eager 为 25/26，单文本的原始语义/顺序检查未通过，原因是答案缺少 `limitations` 字面关键词。历史文档记录该例外被接受，但本次复现仍须如实填写你的结果，不能写成历史 104/104。
 

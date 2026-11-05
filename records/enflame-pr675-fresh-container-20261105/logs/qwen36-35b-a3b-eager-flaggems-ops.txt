@@ -1,0 +1,21 @@
+[DEBUG] flag_gems.ops.slice.slice: GEMS SLICE
+[DEBUG] flag_gems.ops.unsqueeze.unsqueeze: GEMS UNSQUEEZE
+[DEBUG] flag_gems.ops._has_compatible_shallow_copy_type._has_compatible_shallow_copy_type: GEMS _HAS_COMPATIBLE_SHALLOW_COPY_TYPE
+[DEBUG] flag_gems.ops.narrow.narrow: GEMS NARROW
+[DEBUG] flag_gems.ops.expand_as.expand_as: GEMS EXPAND_AS
+[DEBUG] flag_gems.ops.unfold.unfold: GEMS UNFOLD
+[DEBUG] flag_gems.ops.chunk.chunk: GEMS CHUNK
+[DEBUG] flag_gems.ops.flatten.flatten: GEMS FLATTEN
+[DEBUG] flag_gems.ops._reshape_alias._reshape_alias: GEMS _RESHAPE_ALIAS
+[DEBUG] flag_gems.ops.unbind.unbind: GEMS UNBIND
+[DEBUG] flag_gems.ops.split_with_sizes.split_with_sizes: GEMS SPLIT_WITH_SIZES
+[DEBUG] flag_gems.ops.resolve_conj.resolve_conj: GEMS RESOLVE_CONJ
+[DEBUG] flag_gems.ops.resolve_neg.resolve_neg: GEMS RESOLVE_NEG
+[DEBUG] vllm_fl.dispatch.ops.silu_and_mul: default.flagos
+[DEBUG] vllm_fl.dispatch.ops.topk_softmax: default.flagos
+[DEBUG] vllm_fl.dispatch.ops.moe_align_block_size: default.flagos
+[DEBUG] vllm_fl.dispatch.ops.invoke_fused_moe_triton_kernel: default.flagos
+[DEBUG] vllm_fl.dispatch.ops.moe_sum: default.flagos
+[DEBUG] flag_gems.ops.alias.alias: GEMS ALIAS
+[DEBUG] flag_gems.ops.transpose.transpose: GEMS TRANSPOSE
+[DEBUG] flag_gems.ops.diff.diff: GEMS DIFF

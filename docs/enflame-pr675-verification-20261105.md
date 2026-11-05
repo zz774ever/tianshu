@@ -1,8 +1,14 @@
 # 燧原教程核验记录：2026-11-05
 
-教程：[燧原 S60 PR 675 测试步骤](enflame-pr675-test-guide-20261105.md)。
+教程：`/root/enflame-pr675-test-guide-20261105.md`。
 
-## 本次直接执行
+## 后续更新：已开始新容器逐条实测
+
+用户要求实际建容器后，本次已使用固定 digest 的官方镜像创建独立容器，先在空闲卡 `5,6` 执行，用户通知 `0–3` 空闲后重新检查并并行验证。安装、全部必选依赖检查、编译器文件校验、真实 TP2 all-reduce、4B 及修正后四组大模型图文请求均已通过。27B 原 Inductor Graph 配置实际启动失败，推荐改为实测 FULL_DECODE_ONLY；35B 保留 Inductor Graph 并完成两类捕获。首次 eager 超时保留为失败，缓存重试成功不改写原结果。发现并修正了网络下载重试、发行包与导入版本的检查差异、端口预检等文档问题，并增加超时采样和分段微测证据。
+
+新容器的完整结果、实际配置及失败记录见 [新容器逐步实测记录](enflame-pr675-fresh-container-test-20261105.md)。下文保留的是此前核验阶段的证据和限制；“没有新建容器”等描述只属于该较早阶段。不得将下文的旧服务短请求、历史 Gate 数字混入新容器结果。
+
+## 前期直接执行
 
 - GitHub PR API：PR 675 为 `feat(enflame): adapt S60 backend to vLLM 0.32.0`，open，head 为 `5efa61dc4e9f86dc18d265adaa0cb9dc60397322`；本地 `/workspace/pr675-fix` HEAD 相同。
 - Harbor：使用匿名 pull token 获取官方 `v0.28.0-enflame-ci` manifest，响应 digest 和对响应体自行计算的 SHA-256 均为 `f21e53101ffcf00fa5b70b39913bd401be93c0d1834c0ae8d07684bf0690bc88`。
@@ -23,7 +29,7 @@
 
 因此教程单独安装 common 依赖并在最终门禁逐条检查 vLLM 必选依赖。依赖解析 dry-run 已观察到需要升级 Transformers、requests、tokenizers、aiohttp 等。没有实际升级当前容器，也没有将当前在线服务结果当作升级后结果。
 
-## 本次 HTTP 短请求
+## 前期 HTTP 短请求
 
 在已有服务上执行，沿用原问题和原图像 URL，`max_tokens=32`、`temperature=0`、`enable_thinking=false`。没有重启或修改这些服务。
 
@@ -53,7 +59,7 @@
 
 教程最终 26 个 Bash 代码块通过 `bash -n`，6 个内嵌 Python 片段通过 AST 语法解析。
 
-本次没有新拉取完整镜像层、创建新容器、执行安装、启动 4B 或重跑完整四组大模型。对 Docker inspect 和部分批量执行形式的尝试被当前运行环境权限限制拒绝，因此不能声称已经从零逐条执行教程。用户在宿主终端执行的 Docker 命令保留明确检查点。
+前期核验时没有新拉取完整镜像层、创建新容器、执行安装、启动 4B 或重跑完整四组大模型。对 Docker inspect 和部分批量执行形式的尝试被当前运行环境权限限制拒绝，因此当时不能声称已经从零逐条执行教程。后续复用已存在的隔离 daemon 创建了新容器；实际安装和模型结果另见上方链接，不覆盖本段历史边界。
 
 common 依赖解析 dry-run 已完成，退出码 0。使用官方 PyPI 和与教程相同的厂商约束，未安装任何包。拟安装：aiohttp 3.14.5、certifi 2026.10.23、mcp 2.3.0、mcp-types 2.3.0、oss-harmony 0.0.12、pillow 13.0.0、requests 2.34.2、safetensors 0.8.0、tokenizers 0.23.3、transformers 5.19.0、triton 3.6.0、yarl 1.25.1。
 
