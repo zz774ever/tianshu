@@ -1,0 +1,54 @@
+{
+  "flagtree": "0.7.0+iluvatar3.6",
+  "triton": "3.6.0",
+  "module": "/usr/local/lib/python3.12/site-packages/triton/__init__.py",
+  "device": "Iluvatar BI-V150",
+  "target": "GPUTarget(backend='corex', arch=71, warp_size=64)",
+  "results": [
+    {
+      "dtype": "torch.float32",
+      "count": 1,
+      "passed": true
+    },
+    {
+      "dtype": "torch.float32",
+      "count": 257,
+      "passed": true
+    },
+    {
+      "dtype": "torch.float32",
+      "count": 100003,
+      "passed": true
+    },
+    {
+      "dtype": "torch.float16",
+      "count": 1,
+      "passed": true
+    },
+    {
+      "dtype": "torch.float16",
+      "count": 257,
+      "passed": true
+    },
+    {
+      "dtype": "torch.float16",
+      "count": 100003,
+      "passed": true
+    },
+    {
+      "dtype": "torch.bfloat16",
+      "count": 1,
+      "passed": true
+    },
+    {
+      "dtype": "torch.bfloat16",
+      "count": 257,
+      "passed": true
+    },
+    {
+      "dtype": "torch.bfloat16",
+      "count": 100003,
+      "passed": true
+    }
+  ]
+}

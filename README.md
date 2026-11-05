@@ -13,7 +13,19 @@
 - 27B eager / Graph 均 26/26；35B-A3B eager 25/26；35B-A3B Graph 启动失败，26 请求未执行。总计实际执行 78、通过 77，不是四轮全部通过。
 - 原始脚本、图片、断言未改，不重装、不建 venv、不录屏、不另存完整服务日志。功能门禁不等于 NVIDIA 精度对齐。
 
-## 最新图文门禁（2026-11-05）
+## Iluvatar FlagTree 0.7 升级与复测（2026-11-05）
+
+- [完整升级核验、测试步骤与结果](docs/iluvatar-vllm032-flagtree070-retest.md)：`test_plugin_28` 已升级到 `0.7.0+iluvatar3.6`，377 个安装文件与新版 wheel 逐个校验一致；Triton 模块仍标为 3.6.0，原因与正确版本查询方式已写入教程。
+- [升级命令及版本解释](docs/iluvatar-vllm032-fresh-machine-setup.md#51-升级天数版-flagtree-至-07)，[20 份原始 JSON 与核验证据](records/u180-flagtree070-gates-20261105/README.md)。
+
+| 模型 | eager | FULL_DECODE_ONLY |
+| --- | ---: | ---: |
+| Qwen3.6-27B | 26/26 | 26/26 |
+| Qwen3.6-35B-A3B | 26/26 | 26/26 |
+
+原始 20/20 场景、104/104 请求通过，其中文本 52/52、图片 52/52；两轮 Graph 均捕获 35/35。只替换 FlagTree，没有修改用例或推理源码。35B Graph 的 TLE 编译诊断及原算子回退分支已单独记录；本轮通过不能证明偶发 OCR 问题的唯一根因。下方旧版失败记录完整保留。
+
+## Iluvatar 原始 0.6.2 图文门禁（2026-11-05）
 
 - [完整测试步骤与结果说明](docs/iluvatar-vllm032-adaptation-gate-test.md)：硬件和软件环境、库路径、两个模型 eager / CUDA Graph 的启动命令、原始测试执行步骤、判定标准和失败样例。
 - [20 份原始 JSON 结果索引](records/u180-adaptation-gates-20261105/README.md)及 [SHA-256 清单](records/u180-adaptation-gates-20261105/manifest.json)。
@@ -69,7 +81,7 @@
 - 相关单元回归为 **157 passed、1 warning**，本地依赖栈核验通过。
 - 此前阶段的大模型复测（历史配置）：27B graph 为 26/26；35B eager、graph 各为 25/26，同一图片 OCR 失败。
 - 35B OCR 输出不稳定的归因尚未确定；按用户要求停止深入排查，保留失败证据。
-- 完整 104 请求全部通过、NVIDIA 逐 token 对照和远端硬件 CI 尚未达成。
+- 截至该历史阶段，完整 104 请求全部通过、NVIDIA 逐 token 对照和远端硬件 CI 尚未达成；2026-11-05 FlagTree 0.7 的图文门禁复测另见本页上方独立记录。
 
 这是带已知问题的阶段交付，不能表述为完整适配验收通过或发布声明。
 

@@ -1,5 +1,7 @@
 # 天数 vLLM 0.32：27B / 35B-A3B 图文适配测试
 
+本页保留 FlagTree `0.6.2a3+iluvatar3.6` 的历史测试。当前容器已按用户要求升级至 `0.7.0+iluvatar3.6`，升级步骤与新一轮结果见[FlagTree 0.7 复测记录](iluvatar-vllm032-flagtree070-retest.md)，两轮结果分别归档。
+
 日期：2026-11-05。测试容器：`test_plugin_28`。使用仓库原有的 `tools/adaptation-gate-cases`，分别验证两个模型的 eager 和 CUDA Graph 模式。本轮不重新安装、不创建 venv、不修改测试图片或通过条件、不录制终端，也不另存服务日志；保留测试脚本生成的 JSON 结果。
 
 ## 1. 测试环境

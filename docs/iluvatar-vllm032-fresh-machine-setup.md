@@ -1,8 +1,8 @@
 # 教程二：官方天数镜像安装 vLLM 0.32，直接做文本问答
 
-更新：2026-11-04。针对当前天数机器。只在宿主执行 Docker 命令，安装和测试都在容器里进行。**不建 venv，不下载教程仓库，不录制终端，不保存日志。输出直接显示，自行截图。**
+更新：2026-11-05。针对当前天数机器。只在宿主执行 Docker 命令，安装和测试都在容器里进行。**不建 venv，不下载教程仓库，不录制终端，不保存日志。输出直接显示，自行截图。**
 
-终端 A 启动服务，终端 B 进入同一个容器执行 curl。所有文本问答统一使用问题：**详细介绍下人工智能**。本次仅修改指令并检查语法，不重新运行模型，下面步骤由你手动执行。
+终端 A 启动服务，终端 B 进入同一个容器执行 curl。所有手工文本问答统一使用问题：**详细介绍下人工智能**。第 5.1 节补充当前容器已执行的 FlagTree 0.7 升级；图文原始门禁的重新测试另见[测试说明](iluvatar-vllm032-flagtree070-retest.md)。
 
 ## 1. 拉取官方镜像、创建容器
 
@@ -137,6 +137,44 @@ hash -r
 
 Git 设置只写入容器。helper 下载并核对固定提交。此前验证的 PR 674 提交是 `c17d866e08b583f63998cbd47bc39fe3e57efce0`；PR 后续更新需重新验证。
 
+### 5.1 升级天数版 FlagTree 至 0.7
+
+2026-11-05 已按用户要求在 `test_plugin_28` 的系统 Python 执行，从 `0.6.2a3+iluvatar3.6` 升级到 `0.7.0+iluvatar3.6`。旧 agent 容器此前已单独升级；容器间不会自动同步。两版的 `triton.__version__` 都是 `3.6.0`，须以 `importlib.metadata.version("flagtree")` 区分发行版本。
+
+先停止该容器中需要使用 FlagTree 的本轮服务；已安装目标版本则无需重复安装。在容器执行，使用 FlagOS 包仓库的天数 Python 3.12 / x86_64 wheel：
+
+```bash
+cd /workspace
+mkdir -p sources/flagtree-0.7.0-iluvatar
+cd sources/flagtree-0.7.0-iluvatar
+export FLAGTREE_WHEEL=flagtree-0.7.0+iluvatar3.6-cp312-cp312-linux_x86_64.whl
+export FLAGTREE_BASE=https://resource.flagos.net/repository/flagos-pypi-hosted
+curl --fail --location --connect-timeout 10 --max-time 300 \
+  -o "$FLAGTREE_WHEEL" \
+  "$FLAGTREE_BASE/packages/flagtree/0.7.0+iluvatar3.6/$FLAGTREE_WHEEL"
+echo "af6a7c9eddf167441fd872c3e6d673e9da572608dee79dba655b0775db740176  $FLAGTREE_WHEEL" \
+  | sha256sum --check -
+```
+
+确认校验通过，再执行安装和新进程版本核验：
+
+```bash
+python -m pip install --no-deps --no-index "$FLAGTREE_WHEEL"
+python -c 'from importlib.metadata import version; import triton; print("FlagTree:", version("flagtree")); print("Triton:", triton.__version__, triton.__file__)'
+```
+
+应输出 FlagTree `0.7.0+iluvatar3.6`、Triton `3.6.0`。本轮实际安装复用了已在旧 agent 容器下载并核实的同一 wheel，重新核对 SHA-256 后安装；上述下载命令供新机器复现。`--no-deps` 只替换 FlagTree，不重装 CoreX PyTorch、FlagGems、vLLM 或插件。升级前后包清单核对显示仅 FlagTree 版本变化，Torch 文件哈希相同。新进程下 FP32 / FP16 / BF16、长度 1 / 257 / 100003 的最小编译加法共 9 项通过；这只是设备编译检查，模型测试结果单独记录。
+
+当前测试容器的旧安装快照、旧 wheel、前后包清单和回退方法位于 `/workspace/adaptation-gate-upgrade-20261105/` 及 `/workspace/sources/flagtree-0.7.0-iluvatar/`。旧服务不会自动改用新版本，必须重启；本轮复测服务均为升级后的新进程。
+
+#### 为什么升级后 Triton 仍显示 3.6.0
+
+已直接解包核对新旧两个 wheel：它们的 `METADATA` 分别声明 FlagTree `0.6.2a3+iluvatar3.6` 和 `0.7.0+iluvatar3.6`，但各自的 `triton/__init__.py` 都明确写着 `__version__ = '3.6.0'`。FlagTree 是从 Triton 派生的编译器，发行版继续提供 `triton` 导入命名空间；FlagTree 发行号与该模块版本号不同。`flagtree/__init__.py` 还通过 `from triton import __version__` 导出同一值，所以 `flagtree.__version__` 也不能用于查询本次发行号。
+
+本机的 `triton`、`flagtree` 两个导入命名空间均归 `flagtree` 分发包所有，没有独立的 `triton` 分发包。已将安装后的 377 个包文件逐个与 0.7 wheel 比较 SHA-256，全部一致，零缺失、零差异。核心 `triton/_C/libtriton.so` 的哈希已由旧版的 `508b9492…` 改为新版的 `5757e276…`，并与新版 wheel 一致。这证明编译器文件已替换，不只更新了版本标签。完整证据见[安装核验 JSON](../records/u180-flagtree070-gates-20261105/installation-verification.json)及[核验脚本](../records/u180-flagtree070-gates-20261105/verify_installation.py)。
+
+日常检查使用上面的 `importlib.metadata.version("flagtree")`；不要根据 `triton.__version__` 是否改变判断升级成败。模型复测见[0.7 复测记录](iluvatar-vllm032-flagtree070-retest.md)。
+
 ## 6. 新环境运行设置
 
 终端 A 执行：
@@ -201,3 +239,5 @@ vllm serve /mnt/share/user_homes/models/Qwen3.6-35B-A3B/ \
 此前 4B、27B、35B eager 的[实际验证记录](../records/u180-direct-install-20261104/README.md)继续保留。历史实测使用端口 8060 和默认 temperature；本页按你的示例改成 8070 和 temperature=1.0，仅检查指令语法，没有重跑，不把调整后的组合写成已实测。
 
 2026-11-05 新增[27B / 35B-A3B 原始图文适配测试步骤与结果](iluvatar-vllm032-adaptation-gate-test.md)：使用 TP4、32768 上下文和完整多模态模型，分别运行 eager 与 FULL_DECODE_ONLY。共 104 条请求，文本全部通过，图片存在失败，详细结果和原始 JSON 独立记录。
+
+同日按第 5.1 节将当前容器升级到 FlagTree `0.7.0+iluvatar3.6` 后，重新执行同一四轮原始图文门禁，20/20 场景、104/104 请求通过，两轮 Graph 均完成 35/35 捕获。完整[升级核验、复测步骤与结果](iluvatar-vllm032-flagtree070-retest.md)另页记录，保留旧版失败，不把一次复测通过当作偶发 OCR 根因已证明。

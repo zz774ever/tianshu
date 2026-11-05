@@ -1,0 +1,210 @@
+[
+  {
+    "model": "Qwen3.6-27B",
+    "mode": "eager",
+    "started_at": "2026-11-05T15:22:13.038658",
+    "finished_at": "2026-11-05T15:33:28.111122",
+    "client_exit": 0,
+    "timed_out": false,
+    "elapsed_seconds": 675.07,
+    "reports": [
+      {
+        "scenario": "image_concurrent_8",
+        "path": "results/Qwen3.6-27B-eager/Qwen3.6-27B/port-8132/image_concurrent_8.json",
+        "request_count": 8,
+        "passed_count": 8,
+        "failed_count": 0,
+        "passed": true
+      },
+      {
+        "scenario": "image_single",
+        "path": "results/Qwen3.6-27B-eager/Qwen3.6-27B/port-8132/image_single.json",
+        "request_count": 1,
+        "passed_count": 1,
+        "failed_count": 0,
+        "passed": true
+      },
+      {
+        "scenario": "mixed_concurrent_8",
+        "path": "results/Qwen3.6-27B-eager/Qwen3.6-27B/port-8132/mixed_concurrent_8.json",
+        "request_count": 8,
+        "passed_count": 8,
+        "failed_count": 0,
+        "passed": true
+      },
+      {
+        "scenario": "text_concurrent_8",
+        "path": "results/Qwen3.6-27B-eager/Qwen3.6-27B/port-8132/text_concurrent_8.json",
+        "request_count": 8,
+        "passed_count": 8,
+        "failed_count": 0,
+        "passed": true
+      },
+      {
+        "scenario": "text_single",
+        "path": "results/Qwen3.6-27B-eager/Qwen3.6-27B/port-8132/text_single.json",
+        "request_count": 1,
+        "passed_count": 1,
+        "failed_count": 0,
+        "passed": true
+      }
+    ],
+    "passed": true
+  },
+  {
+    "model": "Qwen3.6-27B",
+    "mode": "graph",
+    "started_at": "2026-11-05T15:33:36.881676",
+    "finished_at": "2026-11-05T15:41:03.932320",
+    "client_exit": 0,
+    "timed_out": false,
+    "elapsed_seconds": 447.05,
+    "reports": [
+      {
+        "scenario": "image_concurrent_8",
+        "path": "results/Qwen3.6-27B-graph/Qwen3.6-27B/port-8132/image_concurrent_8.json",
+        "request_count": 8,
+        "passed_count": 8,
+        "failed_count": 0,
+        "passed": true
+      },
+      {
+        "scenario": "image_single",
+        "path": "results/Qwen3.6-27B-graph/Qwen3.6-27B/port-8132/image_single.json",
+        "request_count": 1,
+        "passed_count": 1,
+        "failed_count": 0,
+        "passed": true
+      },
+      {
+        "scenario": "mixed_concurrent_8",
+        "path": "results/Qwen3.6-27B-graph/Qwen3.6-27B/port-8132/mixed_concurrent_8.json",
+        "request_count": 8,
+        "passed_count": 8,
+        "failed_count": 0,
+        "passed": true
+      },
+      {
+        "scenario": "text_concurrent_8",
+        "path": "results/Qwen3.6-27B-graph/Qwen3.6-27B/port-8132/text_concurrent_8.json",
+        "request_count": 8,
+        "passed_count": 8,
+        "failed_count": 0,
+        "passed": true
+      },
+      {
+        "scenario": "text_single",
+        "path": "results/Qwen3.6-27B-graph/Qwen3.6-27B/port-8132/text_single.json",
+        "request_count": 1,
+        "passed_count": 1,
+        "failed_count": 0,
+        "passed": true
+      }
+    ],
+    "passed": true
+  },
+  {
+    "model": "Qwen3.6-35B-A3B",
+    "mode": "eager",
+    "started_at": "2026-11-05T15:41:12.376193",
+    "finished_at": "2026-11-05T15:50:11.438510",
+    "client_exit": 0,
+    "timed_out": false,
+    "elapsed_seconds": 539.06,
+    "reports": [
+      {
+        "scenario": "image_concurrent_8",
+        "path": "results/Qwen3.6-35B-A3B-eager/Qwen3.6-35B-A3B/port-8132/image_concurrent_8.json",
+        "request_count": 8,
+        "passed_count": 8,
+        "failed_count": 0,
+        "passed": true
+      },
+      {
+        "scenario": "image_single",
+        "path": "results/Qwen3.6-35B-A3B-eager/Qwen3.6-35B-A3B/port-8132/image_single.json",
+        "request_count": 1,
+        "passed_count": 1,
+        "failed_count": 0,
+        "passed": true
+      },
+      {
+        "scenario": "mixed_concurrent_8",
+        "path": "results/Qwen3.6-35B-A3B-eager/Qwen3.6-35B-A3B/port-8132/mixed_concurrent_8.json",
+        "request_count": 8,
+        "passed_count": 8,
+        "failed_count": 0,
+        "passed": true
+      },
+      {
+        "scenario": "text_concurrent_8",
+        "path": "results/Qwen3.6-35B-A3B-eager/Qwen3.6-35B-A3B/port-8132/text_concurrent_8.json",
+        "request_count": 8,
+        "passed_count": 8,
+        "failed_count": 0,
+        "passed": true
+      },
+      {
+        "scenario": "text_single",
+        "path": "results/Qwen3.6-35B-A3B-eager/Qwen3.6-35B-A3B/port-8132/text_single.json",
+        "request_count": 1,
+        "passed_count": 1,
+        "failed_count": 0,
+        "passed": true
+      }
+    ],
+    "passed": true
+  },
+  {
+    "model": "Qwen3.6-35B-A3B",
+    "mode": "graph",
+    "started_at": "2026-11-05T15:50:20.261737",
+    "finished_at": "2026-11-05T16:03:20.355971",
+    "client_exit": 0,
+    "timed_out": false,
+    "elapsed_seconds": 780.09,
+    "reports": [
+      {
+        "scenario": "image_concurrent_8",
+        "path": "results/Qwen3.6-35B-A3B-graph/Qwen3.6-35B-A3B/port-8132/image_concurrent_8.json",
+        "request_count": 8,
+        "passed_count": 8,
+        "failed_count": 0,
+        "passed": true
+      },
+      {
+        "scenario": "image_single",
+        "path": "results/Qwen3.6-35B-A3B-graph/Qwen3.6-35B-A3B/port-8132/image_single.json",
+        "request_count": 1,
+        "passed_count": 1,
+        "failed_count": 0,
+        "passed": true
+      },
+      {
+        "scenario": "mixed_concurrent_8",
+        "path": "results/Qwen3.6-35B-A3B-graph/Qwen3.6-35B-A3B/port-8132/mixed_concurrent_8.json",
+        "request_count": 8,
+        "passed_count": 8,
+        "failed_count": 0,
+        "passed": true
+      },
+      {
+        "scenario": "text_concurrent_8",
+        "path": "results/Qwen3.6-35B-A3B-graph/Qwen3.6-35B-A3B/port-8132/text_concurrent_8.json",
+        "request_count": 8,
+        "passed_count": 8,
+        "failed_count": 0,
+        "passed": true
+      },
+      {
+        "scenario": "text_single",
+        "path": "results/Qwen3.6-35B-A3B-graph/Qwen3.6-35B-A3B/port-8132/text_single.json",
+        "request_count": 1,
+        "passed_count": 1,
+        "failed_count": 0,
+        "passed": true
+      }
+    ],
+    "passed": true
+  }
+]

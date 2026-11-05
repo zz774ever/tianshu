@@ -1,0 +1,50 @@
+{
+  "date": "2026-11-05",
+  "container": "test_plugin_28",
+  "evidence_type": "Observations from live terminal output; no separate server log or terminal recording was saved.",
+  "graph_capture": [
+    {
+      "model": "Qwen3.6-27B",
+      "mode": "FULL_DECODE_ONLY",
+      "observed_progress": "Capturing CUDA graphs (decode, FULL): 100% 35/35",
+      "application_startup_complete": true
+    },
+    {
+      "model": "Qwen3.6-35B-A3B",
+      "mode": "FULL_DECODE_ONLY",
+      "observed_progress": "Capturing CUDA graphs (decode, FULL): 100% 35/35",
+      "application_startup_complete": true
+    }
+  ],
+  "warnings": [
+    "27B Graph: replay benchmarker unavailable; fell back to event timing.",
+    "27B Graph: shared-memory broadcast wait warning during capture; capture and startup subsequently completed.",
+    "35B Graph: compiler diagnostic from moe_align_block_size.py:178: iluvatar_tle.distributed_barrier requires cooperative grid launch. Original operator catches exceptions in its TLE path and falls back to the existing four-stage implementation.",
+    "35B Graph: replay benchmarker unavailable; fell back to event timing."
+  ],
+  "shutdown_observations": [
+    {
+      "model": "Qwen3.6-27B",
+      "mode": "graph",
+      "at": "2026-11-05T15:41:04",
+      "message": "AsyncLLM output_handler failed / EngineDeadError after all 26 requests completed and the runner initiated SIGINT shutdown.",
+      "client_exit": 0
+    },
+    {
+      "model": "Qwen3.6-35B-A3B",
+      "mode": "eager",
+      "at": "2026-11-05T15:50:11",
+      "message": "AsyncLLM output_handler failed / EngineDeadError after all 26 requests completed and the runner initiated SIGINT shutdown.",
+      "client_exit": 0
+    }
+  ],
+  "live_compiler_mapping_check": {
+    "worker_pid": 804655,
+    "model": "Qwen3.6-35B-A3B",
+    "mode": "eager",
+    "path": "/usr/local/lib/python3.12/site-packages/triton/_C/libtriton.so",
+    "installed_inode": 149554127,
+    "all_loaded_mappings_match_installed_inode": true,
+    "deleted_mapping_present": false
+  }
+}

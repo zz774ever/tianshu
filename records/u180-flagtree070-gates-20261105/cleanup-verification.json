@@ -1,0 +1,26 @@
+{
+  "port_8132_released": true,
+  "selected_gpus": [
+    {
+      "physical_gpu": 0,
+      "free_mib": 32424,
+      "total_mib": 32768
+    },
+    {
+      "physical_gpu": 1,
+      "free_mib": 32564,
+      "total_mib": 32768
+    },
+    {
+      "physical_gpu": 2,
+      "free_mib": 32564,
+      "total_mib": 32768
+    },
+    {
+      "physical_gpu": 3,
+      "free_mib": 32564,
+      "total_mib": 32768
+    }
+  ],
+  "check_method": "torch.cuda.mem_get_info; temporary query process exits after this check"
+}

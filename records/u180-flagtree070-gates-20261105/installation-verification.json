@@ -1,0 +1,78 @@
+{
+  "distribution_version": "0.7.0+iluvatar3.6",
+  "distribution_metadata_path": "/usr/local/lib/python3.12/site-packages/flagtree-0.7.0+iluvatar3.6.dist-info",
+  "triton_import_version": "3.6.0",
+  "triton_import_path": "/usr/local/lib/python3.12/site-packages/triton/__init__.py",
+  "installed_from": {
+    "archive_info": {
+      "hash": "sha256=af6a7c9eddf167441fd872c3e6d673e9da572608dee79dba655b0775db740176",
+      "hashes": {
+        "sha256": "af6a7c9eddf167441fd872c3e6d673e9da572608dee79dba655b0775db740176"
+      }
+    },
+    "url": "file:///workspace/sources/flagtree-0.7.0-iluvatar/flagtree-0.7.0%2Biluvatar3.6-cp312-cp312-linux_x86_64.whl"
+  },
+  "module_owners": {
+    "triton": [
+      "flagtree"
+    ],
+    "flagtree": [
+      "flagtree"
+    ]
+  },
+  "standalone_triton_distributions": [],
+  "wheel_details": [
+    {
+      "filename": "flagtree-0.6.2a3+iluvatar3.6-cp312-cp312-linux_x86_64.whl",
+      "sha256": "d69473c21763d1c573da2e0f0548fbac006a86d3810f7edecbf55eb5f4908ba2",
+      "distribution_name": "flagtree",
+      "distribution_version": "0.6.2a3+iluvatar3.6",
+      "summary": "A unified compiler supporting multiple AI chip backends for custom Deep Learning operations, which is forked from triton-lang/triton.",
+      "triton_version_assignment": "__version__ = '3.6.0'",
+      "flagtree_init": "\"\"\"FlagPrism debugger and profiler components bundled with FlagTree.\"\"\"\n\n# FlagPrism: expose the host package namespace used by the external components.\nfrom triton import __version__\n\n__all__ = [\"__version__\"]\n",
+      "compiler_libraries": [
+        {
+          "path": "triton/_C/iluvatarTritonPlugin.so",
+          "sha256": "954c50ba660cfea81643a51ad4c01c82b2ee48abcb815b85549673c1b8b15d02"
+        },
+        {
+          "path": "triton/_C/libtriton.so",
+          "sha256": "508b94925d040c8481a2ee221e1793d279fd0041c9714829431662504e1f7b10"
+        },
+        {
+          "path": "triton/instrumentation/libPrintLoadStoreMemSpaces.so",
+          "sha256": "91f835975e0ea99ecc732ca36b9740fb5bd98bfa65852c7864e19c060ec5aee8"
+        }
+      ]
+    },
+    {
+      "filename": "flagtree-0.7.0+iluvatar3.6-cp312-cp312-linux_x86_64.whl",
+      "sha256": "af6a7c9eddf167441fd872c3e6d673e9da572608dee79dba655b0775db740176",
+      "distribution_name": "flagtree",
+      "distribution_version": "0.7.0+iluvatar3.6",
+      "summary": "A unified compiler supporting multiple AI chip backends for custom Deep Learning operations, which is forked from triton-lang/triton.",
+      "triton_version_assignment": "__version__ = '3.6.0'",
+      "flagtree_init": "\"\"\"FlagPrism debugger and profiler components bundled with FlagTree.\"\"\"\n\n# FlagPrism: expose the host package namespace used by the external components.\nfrom triton import __version__\n\n__all__ = [\"__version__\"]\n",
+      "compiler_libraries": [
+        {
+          "path": "triton/_C/iluvatarTritonPlugin.so",
+          "sha256": "954c50ba660cfea81643a51ad4c01c82b2ee48abcb815b85549673c1b8b15d02"
+        },
+        {
+          "path": "triton/_C/libflagcx.so",
+          "sha256": "dbe8dad69756946fed8534f02350363bd68f715460ca731e127b9105b35e2d93"
+        },
+        {
+          "path": "triton/_C/libtriton.so",
+          "sha256": "5757e276d87720917e9b9be2042039298d9dad3df90f203edadb07aca4b67ee0"
+        },
+        {
+          "path": "triton/instrumentation/libPrintLoadStoreMemSpaces.so",
+          "sha256": "91f835975e0ea99ecc732ca36b9740fb5bd98bfa65852c7864e19c060ec5aee8"
+        }
+      ]
+    }
+  ],
+  "installed_payload_files_checked": 377,
+  "installed_payload_mismatches": []
+}
