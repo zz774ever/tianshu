@@ -1,5 +1,12 @@
 # vLLM 0.32 适配记录
 
+## S60 当前环境门禁复测（2026-11-05）
+
+- [本机环境、完整步骤与真实结果](docs/s60-adaptation-gates-20261105-current.md)：当前 S60/GCU、TP2；与下方 Iluvatar 参考机器结果分开记录。
+- [四轮尝试与 15 份实际原始 JSON 汇总](records/s60-adaptation-gates-20261105-current/README.md)及 [SHA-256 清单和捕获观察](records/s60-adaptation-gates-20261105-current/manifest.json)。
+- 27B eager / Graph 均 26/26；35B-A3B eager 25/26；35B-A3B Graph 启动失败，26 请求未执行。总计实际执行 78、通过 77，不是四轮全部通过。
+- 原始脚本、图片、断言未改，不重装、不建 venv、不录屏、不另存完整服务日志。功能门禁不等于 NVIDIA 精度对齐。
+
 ## 最新图文门禁（2026-11-05）
 
 - [完整测试步骤与结果说明](docs/iluvatar-vllm032-adaptation-gate-test.md)：硬件和软件环境、库路径、两个模型 eager / CUDA Graph 的启动命令、原始测试执行步骤、判定标准和失败样例。
