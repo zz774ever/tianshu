@@ -1,0 +1,35 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.11, pytest-8.4.1, pluggy-1.6.0 -- /usr/local/bin/python
+metadata: {'Python': '3.12.11', 'Platform': 'Linux-5.4.0-148-generic-x86_64-with-glibc2.39', 'Packages': {'pytest': '8.4.1', 'pluggy': '1.6.0'}, 'Plugins': {'timeout': '2.4.0', 'anyio': '4.14.2', 'json-report': '1.5.0', 'metadata': '3.1.1', 'cov': '7.1.0'}}
+rootdir: /opt/vllm-plugin-FL
+configfile: pyproject.toml
+plugins: timeout-2.4.0, anyio-4.14.2, json-report-1.5.0, metadata-3.1.1, cov-7.1.0
+collecting ... collected 2 items
+
+test_text.py::test_text_single PASSED
+test_text.py::test_text_concurrent_8 PASSED
+
+============================== 2 passed in 38.02s ==============================
+============================= test session starts ==============================
+platform linux -- Python 3.12.11, pytest-8.4.1, pluggy-1.6.0 -- /usr/local/bin/python
+metadata: {'Python': '3.12.11', 'Platform': 'Linux-5.4.0-148-generic-x86_64-with-glibc2.39', 'Packages': {'pytest': '8.4.1', 'pluggy': '1.6.0'}, 'Plugins': {'timeout': '2.4.0', 'anyio': '4.14.2', 'json-report': '1.5.0', 'metadata': '3.1.1', 'cov': '7.1.0'}}
+rootdir: /opt/vllm-plugin-FL
+configfile: pyproject.toml
+plugins: timeout-2.4.0, anyio-4.14.2, json-report-1.5.0, metadata-3.1.1, cov-7.1.0
+collecting ... collected 2 items
+
+test_image.py::test_image_single PASSED
+test_image.py::test_image_concurrent_8 PASSED
+
+============================== 2 passed in 31.85s ==============================
+============================= test session starts ==============================
+platform linux -- Python 3.12.11, pytest-8.4.1, pluggy-1.6.0 -- /usr/local/bin/python
+metadata: {'Python': '3.12.11', 'Platform': 'Linux-5.4.0-148-generic-x86_64-with-glibc2.39', 'Packages': {'pytest': '8.4.1', 'pluggy': '1.6.0'}, 'Plugins': {'timeout': '2.4.0', 'anyio': '4.14.2', 'json-report': '1.5.0', 'metadata': '3.1.1', 'cov': '7.1.0'}}
+rootdir: /opt/vllm-plugin-FL
+configfile: pyproject.toml
+plugins: timeout-2.4.0, anyio-4.14.2, json-report-1.5.0, metadata-3.1.1, cov-7.1.0
+collecting ... collected 1 item
+
+test_mix_text_image.py::test_mix_text_image_concurrent_8 PASSED
+
+============================== 1 passed in 11.35s ==============================

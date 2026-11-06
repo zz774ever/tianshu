@@ -1,0 +1,3 @@
+Finished: mode=graph model=Qwen3.6-27B exit=0 results=/results/Qwen3.6-27B-graph
+Finished: mode=eager model=Qwen3.6-27B exit=0 results=/results/Qwen3.6-27B-eager
+Finished: mode=graph model=Qwen3.6-35B-A3B exit=1 results=/results/Qwen3.6-35B-A3B-graph

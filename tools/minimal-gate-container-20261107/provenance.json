@@ -1,0 +1,12 @@
+{
+  "base_image": "harbor.baai.ac.cn/plugin/vllm-plugin-fl@sha256:eb904d40a92e9769f358f4d81c8043acfbc30b1b077f0a31210be6316ec0cf18",
+  "plugin_commit": "7a94aeec80fbb795d5596569eb7d40cfe5460106",
+  "vllm_tag": "v0.32.0",
+  "flaggems_version": "5.5.0.dev0",
+  "flaggems_commit": "2bcfe2656dad0b654077fcfe7d66e6a93542afab",
+  "flaggems_vllm_commit": "b434eafb1715849d1019ddcd480c5fc39461665c",
+  "flagtree_version": "0.7.0+iluvatar3.6",
+  "flagcx_runtime_source_commit": "6143384797219733aee89bd3118b2cb184ad4959",
+  "flagcx_runtime_files": ["build/lib/libflagcx.so", "plugin/interservice/flagcx_wrapper.py", "LICENSE"],
+  "python_environment": "system Python; no virtual environment"
+}

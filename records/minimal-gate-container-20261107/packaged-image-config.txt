@@ -1,0 +1,1 @@
+{"io.flagos.gate.known-quality-failure":"true","org.opencontainers.image.description":"PR674 minimal system-Python adaptation gate environment; external models and matching Iluvatar driver required","org.opencontainers.image.ref.name":"ubuntu","org.opencontainers.image.version":"24.04"} "/opt/gate" ["/bin/bash"]

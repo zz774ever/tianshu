@@ -1,5 +1,10 @@
 # vLLM 0.32 适配记录
 
+## 系统 Python 新容器最小 gate 复现
+
+[搭建、最终环境与 27B/35B Graph/Eager 实测记录](docs/iluvatar-pr674-minimal-container-20261107.md)。直接使用系统 Python，不创建 venv；只运行 adaptation-gate-cases。
+
+
 ## Iluvatar PR #674 / FlagGems 5.5 复现（2026-11-07）
 
 - **[当前固定版本的环境搭建与四轮 gate 复现教程](docs/iluvatar-pr674-gems55-gate-reproduction.md)**：新容器、FlagTree 0.7 / FlagGems 5.5.0.dev0 / FlagGems-vllm、EMPTY vLLM 0.32、FlagCX、实际导入检查，以及其他机器需要改和不需要复制的设置。

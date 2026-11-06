@@ -1,0 +1,241 @@
+{
+  "container_name": "fl-gate-minimal-20261107",
+  "plugin_commit": "7a94aeec80fbb795d5596569eb7d40cfe5460106",
+  "system_python": true,
+  "virtual_environment": false,
+  "requests": 104,
+  "passed_count": 104,
+  "all_passed": true,
+  "rounds": [
+    {
+      "model": "Qwen3.6-27B",
+      "mode": "graph",
+      "requests": 26,
+      "passed_count": 26,
+      "exit_code": 0,
+      "passed": true,
+      "failed_requests": [],
+      "times": {
+        "started": "2026-11-07T02:37:16+08:00",
+        "ready": "2026-11-07T02:46:48+08:00",
+        "gate-finished": "2026-11-07T02:48:12+08:00",
+        "finished": "2026-11-07T02:48:37+08:00"
+      },
+      "startup_seconds": 572.0,
+      "gate_seconds": 84.0,
+      "total_seconds": 681.0,
+      "cases": {
+        "image_concurrent_8": {
+          "request_count": 8,
+          "passed_count": 8,
+          "failed_count": 0,
+          "passed": true
+        },
+        "image_single": {
+          "request_count": 1,
+          "passed_count": 1,
+          "failed_count": 0,
+          "passed": true
+        },
+        "mixed_concurrent_8": {
+          "request_count": 8,
+          "passed_count": 8,
+          "failed_count": 0,
+          "passed": true
+        },
+        "text_concurrent_8": {
+          "request_count": 8,
+          "passed_count": 8,
+          "failed_count": 0,
+          "passed": true
+        },
+        "text_single": {
+          "request_count": 1,
+          "passed_count": 1,
+          "failed_count": 0,
+          "passed": true
+        }
+      }
+    },
+    {
+      "model": "Qwen3.6-27B",
+      "mode": "eager",
+      "requests": 26,
+      "passed_count": 26,
+      "exit_code": 0,
+      "passed": true,
+      "failed_requests": [],
+      "times": {
+        "started": "2026-11-07T02:48:37+08:00",
+        "ready": "2026-11-07T02:57:33+08:00",
+        "gate-finished": "2026-11-07T03:02:23+08:00",
+        "finished": "2026-11-07T03:02:27+08:00"
+      },
+      "startup_seconds": 536.0,
+      "gate_seconds": 290.0,
+      "total_seconds": 830.0,
+      "cases": {
+        "image_concurrent_8": {
+          "request_count": 8,
+          "passed_count": 8,
+          "failed_count": 0,
+          "passed": true
+        },
+        "image_single": {
+          "request_count": 1,
+          "passed_count": 1,
+          "failed_count": 0,
+          "passed": true
+        },
+        "mixed_concurrent_8": {
+          "request_count": 8,
+          "passed_count": 8,
+          "failed_count": 0,
+          "passed": true
+        },
+        "text_concurrent_8": {
+          "request_count": 8,
+          "passed_count": 8,
+          "failed_count": 0,
+          "passed": true
+        },
+        "text_single": {
+          "request_count": 1,
+          "passed_count": 1,
+          "failed_count": 0,
+          "passed": true
+        }
+      }
+    },
+    {
+      "model": "Qwen3.6-35B-A3B",
+      "mode": "graph",
+      "requests": 26,
+      "passed_count": 26,
+      "exit_code": 0,
+      "passed": true,
+      "failed_requests": [],
+      "times": {
+        "started": "2026-11-07T03:27:36+08:00",
+        "ready": "2026-11-07T03:37:18+08:00",
+        "gate-finished": "2026-11-07T03:38:15+08:00",
+        "finished": "2026-11-07T03:38:19+08:00"
+      },
+      "startup_seconds": 582.0,
+      "gate_seconds": 57.0,
+      "total_seconds": 643.0,
+      "cases": {
+        "image_concurrent_8": {
+          "request_count": 8,
+          "passed_count": 8,
+          "failed_count": 0,
+          "passed": true
+        },
+        "image_single": {
+          "request_count": 1,
+          "passed_count": 1,
+          "failed_count": 0,
+          "passed": true
+        },
+        "mixed_concurrent_8": {
+          "request_count": 8,
+          "passed_count": 8,
+          "failed_count": 0,
+          "passed": true
+        },
+        "text_concurrent_8": {
+          "request_count": 8,
+          "passed_count": 8,
+          "failed_count": 0,
+          "passed": true
+        },
+        "text_single": {
+          "request_count": 1,
+          "passed_count": 1,
+          "failed_count": 0,
+          "passed": true
+        }
+      }
+    },
+    {
+      "model": "Qwen3.6-35B-A3B",
+      "mode": "eager",
+      "requests": 26,
+      "passed_count": 26,
+      "exit_code": 0,
+      "passed": true,
+      "failed_requests": [],
+      "times": {
+        "started": "2026-11-07T03:15:26+08:00",
+        "ready": "2026-11-07T03:23:57+08:00",
+        "gate-finished": "2026-11-07T03:26:55+08:00",
+        "finished": "2026-11-07T03:26:59+08:00"
+      },
+      "startup_seconds": 511.0,
+      "gate_seconds": 178.0,
+      "total_seconds": 693.0,
+      "cases": {
+        "image_concurrent_8": {
+          "request_count": 8,
+          "passed_count": 8,
+          "failed_count": 0,
+          "passed": true
+        },
+        "image_single": {
+          "request_count": 1,
+          "passed_count": 1,
+          "failed_count": 0,
+          "passed": true
+        },
+        "mixed_concurrent_8": {
+          "request_count": 8,
+          "passed_count": 8,
+          "failed_count": 0,
+          "passed": true
+        },
+        "text_concurrent_8": {
+          "request_count": 8,
+          "passed_count": 8,
+          "failed_count": 0,
+          "passed": true
+        },
+        "text_single": {
+          "request_count": 1,
+          "passed_count": 1,
+          "failed_count": 0,
+          "passed": true
+        }
+      }
+    }
+  ],
+  "first_complete_run": {
+    "requests": 104,
+    "passed_count": 103,
+    "all_passed": false
+  },
+  "known_quality_failure_observed": true,
+  "known_quality_failure_root_cause_resolved": false,
+  "first_attempt_failed_requests": [
+    {
+      "scenario": "text_concurrent_8",
+      "request_id": "text-01",
+      "text": "4ally",
+      "error": null,
+      "checks": {
+        "non_empty": true,
+        "minimum_length": true,
+        "expected_semantics": false,
+        "expected_order": false,
+        "no_bang_triplet": true,
+        "no_mojibake": true,
+        "no_control_characters": true,
+        "no_long_character_run": true,
+        "no_repeated_word_run": true,
+        "no_repeated_phrase": true
+      },
+      "model": "Qwen3.6-35B-A3B",
+      "mode": "graph"
+    }
+  ],
+  "executed_gate_requests_including_repeat": 130
+}

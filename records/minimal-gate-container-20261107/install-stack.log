@@ -1,0 +1,110 @@
+FlagCX-runtime-6143384.tar.gz: OK
+FlagGems-v5.5.0.dev0.tar.gz: OK
+FlagGems-vllm-b434eaf.tar.gz: OK
+vllm-plugin-FL-7a94aee.tar.gz: OK
+vllm-v0.32.0.tar.gz: OK
+flagtree-0.7.0+iluvatar3.6-cp312-cp312-linux_x86_64.whl: OK
+Looking in indexes: https://pypi.tuna.tsinghua.edu.cn/simple
+Collecting wheel==0.48.0
+  Downloading wheel-0.48.0-py3-none-any.whl (33 kB)
+Installing collected packages: wheel
+Successfully installed wheel-0.48.0
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+
+[notice] A new release of pip is available: 26.1.2 -> 26.3
+[notice] To update, run: pip install --upgrade pip
+Looking in indexes: https://pypi.tuna.tsinghua.edu.cn/simple
+Processing ./flagtree-0.7.0+iluvatar3.6-cp312-cp312-linux_x86_64.whl
+Installing collected packages: flagtree
+  Attempting uninstall: flagtree
+    Found existing installation: flagtree 0.6.2a3+iluvatar3.6
+    Uninstalling flagtree-0.6.2a3+iluvatar3.6:
+      Successfully uninstalled flagtree-0.6.2a3+iluvatar3.6
+Successfully installed flagtree-0.7.0+iluvatar3.6
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+
+[notice] A new release of pip is available: 26.1.2 -> 26.3
+[notice] To update, run: pip install --upgrade pip
+Looking in indexes: https://pypi.tuna.tsinghua.edu.cn/simple
+Processing /tmp/gate-build/vllm-0.32.0
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Building wheels for collected packages: vllm
+  Building wheel for vllm (pyproject.toml): started
+  Building wheel for vllm (pyproject.toml): finished with status 'done'
+  Created wheel for vllm: filename=vllm-0.32.0+empty-cp312-cp312-linux_x86_64.whl size=11015730 sha256=9666dd50621a475e0433594ce822eb71cabdb29cea9aeeeba429a90ed680dd0a
+  Stored in directory: /tmp/pip-ephem-wheel-cache-tvlbacue/wheels/58/93/7d/c0d3710a4162e6440b18fd722a62e929b3ba9cad3af51c1524
+Successfully built vllm
+Installing collected packages: vllm
+  Attempting uninstall: vllm
+    Found existing installation: vllm 0.28.0+empty
+    Uninstalling vllm-0.28.0+empty:
+      Successfully uninstalled vllm-0.28.0+empty
+Successfully installed vllm-0.32.0+empty
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+
+[notice] A new release of pip is available: 26.1.2 -> 26.3
+[notice] To update, run: pip install --upgrade pip
+Looking in indexes: https://pypi.tuna.tsinghua.edu.cn/simple
+Processing /tmp/gate-build/FlagGems-5.5.0.dev0
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Building wheels for collected packages: flag_gems
+  Building wheel for flag_gems (pyproject.toml): started
+  Building wheel for flag_gems (pyproject.toml): finished with status 'done'
+  Created wheel for flag_gems: filename=flag_gems-5.5.0.dev0-py3-none-any.whl size=9081491 sha256=a5d691047acd4086cd94d565a8c86d9d174d69bcef7c76e20216038106709e84
+  Stored in directory: /tmp/pip-ephem-wheel-cache-03et3qy2/wheels/1f/1e/82/946d2bf7797598dbacbe69b6bc1255e931fe28d18f1e00718c
+Successfully built flag_gems
+Installing collected packages: flag_gems
+  Attempting uninstall: flag_gems
+    Found existing installation: flag_gems 5.3.5
+    Uninstalling flag_gems-5.3.5:
+      Successfully uninstalled flag_gems-5.3.5
+Successfully installed flag_gems-5.5.0.dev0
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+
+[notice] A new release of pip is available: 26.1.2 -> 26.3
+[notice] To update, run: pip install --upgrade pip
+Looking in indexes: https://pypi.tuna.tsinghua.edu.cn/simple
+Processing /tmp/gate-build/FlagGems-vllm-b434eafb1715849d1019ddcd480c5fc39461665c
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Building wheels for collected packages: flaggems_vllm
+  Building wheel for flaggems_vllm (pyproject.toml): started
+  Building wheel for flaggems_vllm (pyproject.toml): finished with status 'done'
+  Created wheel for flaggems_vllm: filename=flaggems_vllm-0.3.0.dev1-py3-none-any.whl size=1918850 sha256=7c9a173ba8a3d7660767a9f5decd47278d1cde38347df4b719b352dd1527d0d4
+  Stored in directory: /tmp/pip-ephem-wheel-cache-yd525rat/wheels/42/e9/34/fa9686646e700af6a420301a4fba355d4ac4142de680fa4f63
+Successfully built flaggems_vllm
+Installing collected packages: flaggems_vllm
+Successfully installed flaggems_vllm-0.3.0.dev1
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+
+[notice] A new release of pip is available: 26.1.2 -> 26.3
+[notice] To update, run: pip install --upgrade pip
+Looking in indexes: https://pypi.tuna.tsinghua.edu.cn/simple
+Obtaining file:///opt/vllm-plugin-FL
+  Checking if build backend supports build_editable: started
+  Checking if build backend supports build_editable: finished with status 'done'
+  Preparing editable metadata (pyproject.toml): started
+  Preparing editable metadata (pyproject.toml): finished with status 'done'
+Building wheels for collected packages: vllm-plugin-fl
+  Building editable for vllm-plugin-fl (pyproject.toml): started
+  Building editable for vllm-plugin-fl (pyproject.toml): finished with status 'done'
+  Created wheel for vllm-plugin-fl: filename=vllm_plugin_fl-0.0.0+g7a94aeec8-0.editable-py3-none-any.whl size=11685 sha256=1aac0d75ab8875572619f03ef7910526b77ac654d61ba4314f21d529b0d6a7c9
+  Stored in directory: /tmp/pip-ephem-wheel-cache-opfws0gx/wheels/94/50/b1/067fdff632a8cf9683490526eb4e01f49e41be91caa8e4e9a2
+Successfully built vllm-plugin-fl
+Installing collected packages: vllm-plugin-fl
+  Attempting uninstall: vllm-plugin-fl
+    Found existing installation: vllm-plugin-fl 0.3.0rc0+g13eb9be69
+    Uninstalling vllm-plugin-fl-0.3.0rc0+g13eb9be69:
+      Successfully uninstalled vllm-plugin-fl-0.3.0rc0+g13eb9be69
+Successfully installed vllm-plugin-fl-0.0.0+g7a94aeec8
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+
+[notice] A new release of pip is available: 26.1.2 -> 26.3
+[notice] To update, run: pip install --upgrade pip
+STACK_INSTALL_COMPLETE

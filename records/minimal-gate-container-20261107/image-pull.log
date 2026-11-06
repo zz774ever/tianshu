@@ -1,0 +1,106 @@
+harbor.baai.ac.cn/plugin/vllm-plugin-fl@sha256:eb904d40a92e9769f358f4d81c8043acfbc30b1b077f0a31210be6316ec0cf18: Pulling from plugin/vllm-plugin-fl
+e87500e69896: Pulling fs layer
+cd2519626c03: Pulling fs layer
+d596b1397d0d: Pulling fs layer
+aa4623bc3dd9: Pulling fs layer
+bae5bc3d5c86: Pulling fs layer
+96a339185d46: Pulling fs layer
+e8720c529e3d: Pulling fs layer
+b76e33a293ff: Pulling fs layer
+0eae78414c08: Pulling fs layer
+1c7e8e5bf9d7: Pulling fs layer
+64f552390398: Pulling fs layer
+2a0a2d6dff22: Pulling fs layer
+ab1c69bbea88: Pulling fs layer
+b3aad7955c25: Pulling fs layer
+96a339185d46: Waiting
+7cd33bf78b0b: Pulling fs layer
+b76e33a293ff: Waiting
+aa49df32ad68: Pulling fs layer
+57ecc9d0443b: Pulling fs layer
+e8720c529e3d: Waiting
+bae5bc3d5c86: Waiting
+a36a3004e994: Pulling fs layer
+7dee80a74a02: Pulling fs layer
+1c7e8e5bf9d7: Waiting
+cc2d1e6e1c60: Pulling fs layer
+64f552390398: Waiting
+0eae78414c08: Waiting
+102e2a6fb468: Pulling fs layer
+ab1c69bbea88: Waiting
+b3aad7955c25: Waiting
+603e40cd231b: Pulling fs layer
+2a0a2d6dff22: Waiting
+57ecc9d0443b: Waiting
+603e40cd231b: Waiting
+102e2a6fb468: Waiting
+cc2d1e6e1c60: Waiting
+d596b1397d0d: Verifying Checksum
+d596b1397d0d: Download complete
+e87500e69896: Verifying Checksum
+e87500e69896: Download complete
+cd2519626c03: Verifying Checksum
+cd2519626c03: Download complete
+e87500e69896: Pull complete
+aa4623bc3dd9: Verifying Checksum
+aa4623bc3dd9: Download complete
+96a339185d46: Verifying Checksum
+96a339185d46: Download complete
+bae5bc3d5c86: Verifying Checksum
+bae5bc3d5c86: Download complete
+b76e33a293ff: Verifying Checksum
+b76e33a293ff: Download complete
+0eae78414c08: Verifying Checksum
+0eae78414c08: Download complete
+e8720c529e3d: Verifying Checksum
+e8720c529e3d: Download complete
+64f552390398: Verifying Checksum
+64f552390398: Download complete
+2a0a2d6dff22: Verifying Checksum
+2a0a2d6dff22: Download complete
+1c7e8e5bf9d7: Verifying Checksum
+1c7e8e5bf9d7: Download complete
+b3aad7955c25: Verifying Checksum
+b3aad7955c25: Download complete
+cd2519626c03: Pull complete
+d596b1397d0d: Pull complete
+aa4623bc3dd9: Pull complete
+bae5bc3d5c86: Pull complete
+96a339185d46: Pull complete
+e8720c529e3d: Pull complete
+b76e33a293ff: Pull complete
+0eae78414c08: Pull complete
+1c7e8e5bf9d7: Pull complete
+64f552390398: Pull complete
+2a0a2d6dff22: Pull complete
+aa49df32ad68: Verifying Checksum
+aa49df32ad68: Download complete
+57ecc9d0443b: Verifying Checksum
+57ecc9d0443b: Download complete
+a36a3004e994: Verifying Checksum
+a36a3004e994: Download complete
+7dee80a74a02: Verifying Checksum
+7dee80a74a02: Download complete
+cc2d1e6e1c60: Verifying Checksum
+cc2d1e6e1c60: Download complete
+102e2a6fb468: Verifying Checksum
+102e2a6fb468: Download complete
+603e40cd231b: Verifying Checksum
+603e40cd231b: Download complete
+7cd33bf78b0b: Verifying Checksum
+7cd33bf78b0b: Download complete
+ab1c69bbea88: Verifying Checksum
+ab1c69bbea88: Download complete
+ab1c69bbea88: Pull complete
+b3aad7955c25: Pull complete
+7cd33bf78b0b: Pull complete
+aa49df32ad68: Pull complete
+57ecc9d0443b: Pull complete
+a36a3004e994: Pull complete
+7dee80a74a02: Pull complete
+cc2d1e6e1c60: Pull complete
+102e2a6fb468: Pull complete
+603e40cd231b: Pull complete
+Digest: sha256:eb904d40a92e9769f358f4d81c8043acfbc30b1b077f0a31210be6316ec0cf18
+Status: Downloaded newer image for harbor.baai.ac.cn/plugin/vllm-plugin-fl@sha256:eb904d40a92e9769f358f4d81c8043acfbc30b1b077f0a31210be6316ec0cf18
+harbor.baai.ac.cn/plugin/vllm-plugin-fl@sha256:eb904d40a92e9769f358f4d81c8043acfbc30b1b077f0a31210be6316ec0cf18

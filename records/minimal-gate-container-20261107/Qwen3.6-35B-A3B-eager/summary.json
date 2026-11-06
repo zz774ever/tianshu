@@ -1,0 +1,36 @@
+{
+  "passed": true,
+  "requests": 26,
+  "cases": {
+    "text_concurrent_8": {
+      "request_count": 8,
+      "passed_count": 8,
+      "failed_count": 0,
+      "passed": true
+    },
+    "image_single": {
+      "request_count": 1,
+      "passed_count": 1,
+      "failed_count": 0,
+      "passed": true
+    },
+    "mixed_concurrent_8": {
+      "request_count": 8,
+      "passed_count": 8,
+      "failed_count": 0,
+      "passed": true
+    },
+    "image_concurrent_8": {
+      "request_count": 8,
+      "passed_count": 8,
+      "failed_count": 0,
+      "passed": true
+    },
+    "text_single": {
+      "request_count": 1,
+      "passed_count": 1,
+      "failed_count": 0,
+      "passed": true
+    }
+  }
+}

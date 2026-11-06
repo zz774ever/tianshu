@@ -1,0 +1,21 @@
+{
+  "tools/adaptation-gate-cases/.gitignore": "7645804dd283031116aa9a974852b2a8bf7d40016bd91d8303b2cb97415b6885",
+  "tools/adaptation-gate-cases/README.md": "2eaec5b90c94b901daf1991d1eb2e60461a6236bdfd3cfb29288a0df698bd4d1",
+  "tools/adaptation-gate-cases/case_utils.py": "c8554aac662742a3f7aa1421044b017a2e60cece301fe92d5144b19e8a6bffd5",
+  "tools/adaptation-gate-cases/generate_images.py": "7251d0f01f1e8c605bd1df40e85e3d57a99010f289326806246e1a274742f84a",
+  "tools/adaptation-gate-cases/images/image_01.png": "4391e75143bee45b97ce0fa7a784fc929e29d17fddc3f6ad5842d9e16e1251c0",
+  "tools/adaptation-gate-cases/images/image_02.png": "8c06f3fca0eff7f564b87f05bcd918b3b082af3518906d20c5e0d331c105a561",
+  "tools/adaptation-gate-cases/images/image_03.png": "72b8c421ad39c3c39eb00417e5e4248e48db8026bc3534a8bc5b6016f93f6b5d",
+  "tools/adaptation-gate-cases/images/image_04.png": "3ff8052cf808cfda050cc80626cf9b6c627f001d153576ba2b5f4198fcf86a19",
+  "tools/adaptation-gate-cases/images/image_05.png": "197185d21a8fd09bc501381a5f0fac34be6799a4239b068435f8b039a1e15e5b",
+  "tools/adaptation-gate-cases/images/image_06.png": "9f80415980912348c1b2793eb48e6e05c6b1c90d66e7bbc056876ba650d844e4",
+  "tools/adaptation-gate-cases/images/image_07.png": "5ed527a8339091516c45fc0d0db82ab765db501d6857b6a294763efabbf437f3",
+  "tools/adaptation-gate-cases/images/image_08.png": "162dc14222db050f8f149b2601c742145612f26dc77af43e9311dcadd0169d6f",
+  "tools/adaptation-gate-cases/run_serve.sh": "8c00d35c2d2ee23eb9702cb88fb70ea74cab84e43eba9f260139c5c559acb702",
+  "tools/adaptation-gate-cases/run_serve_eager.sh": "b23fc53260331fb84fd02c6a9fa7c612892290eb43fbb9f5da7cd4f7903c363b",
+  "tools/adaptation-gate-cases/run_serve_graph.sh": "b428e38284a670c3dfc17760a7515d3a051598163928406928211cc5858bd7ac",
+  "tools/adaptation-gate-cases/run_test.sh": "ecdb52f2e78a4918ab17f766c274e91e24dc174a29accd105eae17cd87bda3f7",
+  "tools/adaptation-gate-cases/test_image.py": "650ba67da5bd90834ddf4a2fa2aafd65cb41b02793881436cd214333ad5fa092",
+  "tools/adaptation-gate-cases/test_mix_text_image.py": "d69113a0069558a940bd1e45c230a4baff00c58467d261f72e9377d20f57f0fd",
+  "tools/adaptation-gate-cases/test_text.py": "a24193d43458cb699606bf1caeff3b45c28e4cf3bc9dc3583b67d19d99554b21"
+}

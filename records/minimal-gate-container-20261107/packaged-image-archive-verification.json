@@ -1,0 +1,15 @@
+{
+  "archive": "iluvatar-gate-pr674-7a94aee-gems55-20261107.tar",
+  "bytes": 55469534720,
+  "image_id": "sha256:44423fa86ea29b0350aa68484f0870cb4101724d939f1b2f9263e8919c0a3309",
+  "layers": 23,
+  "required_container_files_present": [
+    "opt/gate/gate-env.sh",
+    "opt/gate/validation-summary.json",
+    "opt/vllm-plugin-FL/tools/adaptation-gate-cases/run_test.sh",
+    "opt/FlagCX/build/lib/libflagcx.so",
+    "opt/FlagCX/plugin/interservice/flagcx_wrapper.py"
+  ],
+  "external_mount_contents_absent_from_new_layer": true,
+  "validation_summary_preserves_known_issue": true
+}

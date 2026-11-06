@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "/tmp/check-runtime-graph.py", line 10, in <module>
+    with torch.cuda.graph(graph, stream=stream):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/torch/cuda/graphs.py", line 260, in __enter__
+    self.cuda_graph.capture_begin(
+  File "/usr/local/lib/python3.12/site-packages/torch/cuda/graphs.py", line 119, in capture_begin
+    super().capture_begin(pool=pool, capture_error_mode=capture_error_mode)
+torch.AcceleratorError: CUDA error: operation not supported
+Search for `ixErrorNotSupported' in https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html for more information.
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+

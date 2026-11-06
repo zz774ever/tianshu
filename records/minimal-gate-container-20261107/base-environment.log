@@ -1,0 +1,54 @@
+{
+  "python": "3.12.11 (main, Jul 31 2025, 06:45:11) [GCC 13.3.0]",
+  "executable": "/usr/local/bin/python",
+  "prefix": "/usr/local",
+  "base_prefix": "/usr/local",
+  "platform": "Linux-5.4.0-148-generic-x86_64-with-glibc2.39",
+  "packages": {
+    "torch": "2.10.0+corex.4.5.0",
+    "vllm": "0.28.0+empty",
+    "vllm-plugin-fl": "0.3.0rc0+g13eb9be69",
+    "flag-gems": "5.3.5",
+    "flaggems-vllm": null,
+    "flagtree": "0.6.2a3+iluvatar3.6",
+    "setuptools": "80.10.2",
+    "setuptools-scm": "10.2.1",
+    "wheel": null,
+    "numpy": "1.26.4",
+    "transformers": "5.14.1",
+    "tokenizers": "0.22.2",
+    "huggingface-hub": "1.24.0",
+    "compressed-tensors": "0.15.0.1",
+    "fastapi": "0.139.2",
+    "starlette": "1.3.1",
+    "pydantic": "2.13.4",
+    "mcp": "1.28.1",
+    "mistral-common": "1.11.3",
+    "opencv-python-headless": "4.11.0.86",
+    "xgrammar": "0.2.3",
+    "openai": "2.46.0",
+    "pillow": "12.3.0",
+    "pytest": "8.4.1",
+    "apache-tvm-ffi": "0.1.12",
+    "model-hosting-container-standards": "0.1.16",
+    "safetensors": "0.8.0",
+    "aiohttp": "3.14.3",
+    "requests": "2.34.2",
+    "httpx": "0.28.1",
+    "uvicorn": "0.51.0",
+    "einops": "0.8.2",
+    "packaging": "26.2",
+    "pybind11": "3.1.0",
+    "PyYAML": "6.0.1",
+    "sqlalchemy": "2.0.48",
+    "modelscope": "1.39.1"
+  }
+}
+torch_import /usr/local/lib/python3.12/site-packages/torch/__init__.py
+cuda_available False
+cuda_device_count 4
+Traceback (most recent call last):
+  File "/input/inspect-env.py", line 33, in <module>
+    assert torch.cuda.is_available()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
