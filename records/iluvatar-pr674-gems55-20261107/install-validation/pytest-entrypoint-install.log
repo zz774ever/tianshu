@@ -1,0 +1,12 @@
+Looking in indexes: https://mirrors.aliyun.com/pypi/simple
+Collecting pytest==8.4.1
+  Downloading https://mirrors.aliyun.com/pypi/packages/29/16/c8a903f4c4dffe7a12843191437d7cd8e32751d5de349d45d3fe69544e87/pytest-8.4.1-py3-none-any.whl (365 kB)
+Installing collected packages: pytest
+  Attempting uninstall: pytest
+    Found existing installation: pytest 8.4.1
+    Not uninstalling pytest at /usr/local/lib/python3.12/site-packages, outside environment /workspace/gate-repro-setup-validation-20261107/venv
+    Can't uninstall 'pytest'. No files were found to uninstall.
+Successfully installed pytest-8.4.1
+
+[notice] A new release of pip is available: 25.0.1 -> 26.3
+[notice] To update, run: python -m pip install --upgrade pip

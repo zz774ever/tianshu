@@ -1,0 +1,26 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.11, pytest-8.4.1, pluggy-1.6.0 -- /workspace/envs/iluvatar-gate-gems55-20261106/bin/python
+metadata: {'Python': '3.12.11', 'Platform': 'Linux-5.4.0-148-generic-x86_64-with-glibc2.39', 'Packages': {'pytest': '8.4.1', 'pluggy': '1.6.0'}, 'Plugins': {'timeout': '2.4.0', 'json-report': '1.5.0', 'metadata': '3.1.1', 'cov': '7.1.0', 'anyio': '4.14.2'}}
+rootdir: /workspace/pr674-retest-7a94aee-20261106-2328
+configfile: pyproject.toml
+plugins: timeout-2.4.0, json-report-1.5.0, metadata-3.1.1, cov-7.1.0, anyio-4.14.2
+collecting ... collected 10 items
+
+tests/unit_tests/test_iluvatar_mrope.py::test_patch_is_vendor_scoped_and_idempotent[iluvatar] PASSED [ 10%]
+tests/unit_tests/test_iluvatar_mrope.py::test_patch_is_vendor_scoped_and_idempotent[nvidia] PASSED [ 20%]
+tests/unit_tests/test_iluvatar_mrope.py::test_patch_is_vendor_scoped_and_idempotent[metax] PASSED [ 30%]
+tests/unit_tests/test_iluvatar_mrope.py::test_cpu_input_preserves_original_dispatch PASSED [ 40%]
+tests/unit_tests/test_iluvatar_mrope.py::test_implementation_changes_compilation_factors PASSED [ 50%]
+tests/unit_tests/test_iluvatar_mrope.py::test_invalid_implementation_is_rejected PASSED [ 60%]
+tests/unit_tests/test_iluvatar_mrope.py::test_mrope_matches_native_and_preserves_inputs[False-False] PASSED [ 70%]
+tests/unit_tests/test_iluvatar_mrope.py::test_mrope_matches_native_and_preserves_inputs[False-True] PASSED [ 80%]
+tests/unit_tests/test_iluvatar_mrope.py::test_mrope_matches_native_and_preserves_inputs[True-False] PASSED [ 90%]
+tests/unit_tests/test_iluvatar_mrope.py::test_mrope_matches_native_and_preserves_inputs[True-True] PASSED [100%]
+
+=============================== warnings summary ===============================
+../envs/iluvatar-gate-gems55-20261106/lib/python3.12/site-packages/flag_gems/utils/libentry.py:413
+  /workspace/envs/iluvatar-gate-gems55-20261106/lib/python3.12/site-packages/flag_gems/utils/libentry.py:413: RuntimeWarning: active Triton backend does not provide a registered replay benchmarker; falling back to event timing
+    resolved_benchmark = resolve_benchmarker(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+======================== 10 passed, 1 warning in 12.09s ========================

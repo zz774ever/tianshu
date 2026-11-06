@@ -1,0 +1,92 @@
+{
+  "python": "/workspace/envs/iluvatar-gate-gems55-20261106/bin/python",
+  "packages": {
+    "vllm": {
+      "version": "0.32.0+empty",
+      "directory": "/workspace/envs/iluvatar-gate-gems55-20261106/lib/python3.12/site-packages",
+      "direct_url": {
+        "dir_info": {},
+        "url": "file:///workspace/builds/vllm-0.32.0"
+      }
+    },
+    "torch": {
+      "version": "2.10.0+corex.4.5.0",
+      "directory": "/usr/local/lib/python3.12/site-packages",
+      "direct_url": {
+        "archive_info": {
+          "hash": "sha256=d693979a8812f8c5e7ad0792e9878438fd645b9d25e5a76b49f92f23965b109c",
+          "hashes": {
+            "sha256": "d693979a8812f8c5e7ad0792e9878438fd645b9d25e5a76b49f92f23965b109c"
+          }
+        },
+        "url": "file:///tmp/torch-2.10.0%2Bcorex.4.5.0-cp312-cp312-linux_x86_64.whl"
+      }
+    },
+    "flagtree": {
+      "version": "0.7.0+iluvatar3.6",
+      "directory": "/usr/local/lib/python3.12/site-packages",
+      "direct_url": {
+        "archive_info": {
+          "hash": "sha256=af6a7c9eddf167441fd872c3e6d673e9da572608dee79dba655b0775db740176",
+          "hashes": {
+            "sha256": "af6a7c9eddf167441fd872c3e6d673e9da572608dee79dba655b0775db740176"
+          }
+        },
+        "url": "file:///workspace/sources/flagtree-0.7.0-iluvatar/flagtree-0.7.0%2Biluvatar3.6-cp312-cp312-linux_x86_64.whl"
+      }
+    },
+    "flag-gems": {
+      "version": "5.5.0.dev0",
+      "directory": "/workspace/envs/iluvatar-gate-gems55-20261106/lib/python3.12/site-packages",
+      "direct_url": {
+        "dir_info": {},
+        "url": "file:///workspace/sources/FlagGems-5.5.0.dev0"
+      }
+    },
+    "flaggems-vllm": {
+      "version": "0.3.0.dev1",
+      "directory": "/workspace/envs/iluvatar-gate-gems55-20261106/lib/python3.12/site-packages",
+      "direct_url": {
+        "dir_info": {},
+        "url": "file:///workspace/sources/FlagGems-vllm-b434eafb1715849d1019ddcd480c5fc39461665c"
+      }
+    },
+    "transformers": {
+      "version": "5.14.1",
+      "directory": "/usr/local/lib/python3.12/site-packages",
+      "direct_url": null
+    },
+    "numpy": {
+      "version": "1.26.4",
+      "directory": "/usr/local/lib/python3.12/site-packages",
+      "direct_url": null
+    }
+  },
+  "modules": {
+    "vllm": "/workspace/envs/iluvatar-gate-gems55-20261106/lib/python3.12/site-packages/vllm/__init__.py",
+    "vllm_fl": "/workspace/pr674-retest-7a94aee-20261106-2328/vllm_fl/__init__.py",
+    "torch": "/usr/local/lib/python3.12/site-packages/torch/__init__.py",
+    "triton": "/usr/local/lib/python3.12/site-packages/triton/__init__.py",
+    "flag_gems": "/workspace/envs/iluvatar-gate-gems55-20261106/lib/python3.12/site-packages/flag_gems/__init__.py",
+    "flaggems_vllm": "/workspace/envs/iluvatar-gate-gems55-20261106/lib/python3.12/site-packages/flaggems_vllm/__init__.py"
+  },
+  "environment": {
+    "RETEST_REPO": "/workspace/pr674-retest-7a94aee-20261106-2328",
+    "CUDA_VISIBLE_DEVICES": "4,5,6,7",
+    "COREX_VISIBLE_DEVICES": "4,5,6,7",
+    "VLLM_PLUGINS": "fl",
+    "USE_FLAGGEMS": "1",
+    "GEMS_VENDOR": "iluvatar",
+    "VLLM_FL_FLAGOS_BLACKLIST_APPEND": "slice,mm,mm_out",
+    "MODEL_PATH": "/mnt/share/user_homes/models/Qwen3.6-27B",
+    "TENSOR_PARALLEL_SIZE": "4",
+    "MAX_MODEL_LEN": "32768",
+    "PORT": "8145",
+    "PYTHONPATH": "/workspace/pr674-retest-7a94aee-20261106-2328",
+    "LD_LIBRARY_PATH": "/mnt/share/user_homes/iluv/FlagCX/build/lib:/usr/local/corex/lib64:/usr/local/openmpi/lib:/usr/local/lib:/usr/local/corex/lib64:/usr/local/openmpi/lib:/usr/local/lib:/usr/local/lib:/usr/local/openmpi/lib:",
+    "VLLM_CACHE_ROOT": "/workspace/adapt-logs/pr674-7a94aee-retest-20261106-2328/compile-cache",
+    "VLLM_DISABLE_COMPILE_CACHE": null,
+    "VLLM_FL_ILUVATAR_MROPE_IMPL": null
+  },
+  "helper_source_note": "Installed from local source archive named FlagGems-vllm-b434eafb1715849d1019ddcd480c5fc39461665c; no .git metadata, see direct_url for installation origin."
+}

@@ -1,0 +1,26 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.11, pytest-8.4.1, pluggy-1.6.0 -- /workspace/gate-repro-setup-validation-20261107/venv/bin/python
+metadata: {'Python': '3.12.11', 'Platform': 'Linux-5.4.0-148-generic-x86_64-with-glibc2.39', 'Packages': {'pytest': '8.4.1', 'pluggy': '1.6.0'}, 'Plugins': {'timeout': '2.4.0', 'json-report': '1.5.0', 'metadata': '3.1.1', 'cov': '7.1.0', 'anyio': '4.14.2'}}
+rootdir: /workspace/gate-repro-setup-validation-20261107/src/vllm-plugin-FL
+configfile: pyproject.toml
+plugins: timeout-2.4.0, json-report-1.5.0, metadata-3.1.1, cov-7.1.0, anyio-4.14.2
+collecting ... collected 10 items
+
+gate-repro-setup-validation-20261107/src/vllm-plugin-FL/tests/unit_tests/test_iluvatar_mrope.py::test_patch_is_vendor_scoped_and_idempotent[iluvatar] PASSED [ 10%]
+gate-repro-setup-validation-20261107/src/vllm-plugin-FL/tests/unit_tests/test_iluvatar_mrope.py::test_patch_is_vendor_scoped_and_idempotent[nvidia] PASSED [ 20%]
+gate-repro-setup-validation-20261107/src/vllm-plugin-FL/tests/unit_tests/test_iluvatar_mrope.py::test_patch_is_vendor_scoped_and_idempotent[metax] PASSED [ 30%]
+gate-repro-setup-validation-20261107/src/vllm-plugin-FL/tests/unit_tests/test_iluvatar_mrope.py::test_cpu_input_preserves_original_dispatch PASSED [ 40%]
+gate-repro-setup-validation-20261107/src/vllm-plugin-FL/tests/unit_tests/test_iluvatar_mrope.py::test_implementation_changes_compilation_factors PASSED [ 50%]
+gate-repro-setup-validation-20261107/src/vllm-plugin-FL/tests/unit_tests/test_iluvatar_mrope.py::test_invalid_implementation_is_rejected PASSED [ 60%]
+gate-repro-setup-validation-20261107/src/vllm-plugin-FL/tests/unit_tests/test_iluvatar_mrope.py::test_mrope_matches_native_and_preserves_inputs[False-False] PASSED [ 70%]
+gate-repro-setup-validation-20261107/src/vllm-plugin-FL/tests/unit_tests/test_iluvatar_mrope.py::test_mrope_matches_native_and_preserves_inputs[False-True] PASSED [ 80%]
+gate-repro-setup-validation-20261107/src/vllm-plugin-FL/tests/unit_tests/test_iluvatar_mrope.py::test_mrope_matches_native_and_preserves_inputs[True-False] PASSED [ 90%]
+gate-repro-setup-validation-20261107/src/vllm-plugin-FL/tests/unit_tests/test_iluvatar_mrope.py::test_mrope_matches_native_and_preserves_inputs[True-True] PASSED [100%]
+
+=============================== warnings summary ===============================
+gate-repro-setup-validation-20261107/venv/lib/python3.12/site-packages/flag_gems/utils/libentry.py:413
+  /workspace/gate-repro-setup-validation-20261107/venv/lib/python3.12/site-packages/flag_gems/utils/libentry.py:413: RuntimeWarning: active Triton backend does not provide a registered replay benchmarker; falling back to event timing
+    resolved_benchmark = resolve_benchmarker(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+======================== 10 passed, 1 warning in 12.31s ========================

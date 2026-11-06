@@ -1,5 +1,15 @@
 # vLLM 0.32 适配记录
 
+## Iluvatar PR #674 / FlagGems 5.5 复现（2026-11-07）
+
+- **[当前固定版本的环境搭建与四轮 gate 复现教程](docs/iluvatar-pr674-gems55-gate-reproduction.md)**：新容器、FlagTree 0.7 / FlagGems 5.5.0.dev0 / FlagGems-vllm、EMPTY vLLM 0.32、FlagCX、实际导入检查，以及其他机器需要改和不需要复制的设置。
+- [配套安装、预检查和测试脚本](tools/gate-repro-20261107/)；[原始结果与日志证据](records/iluvatar-pr674-gems55-20261107/README.md)。
+- 插件固定为 `7a94aee`；Qwen3.6-27B 与 Qwen3.6-35B-A3B 的 Graph / Eager **四轮均 26/26，合计 104/104 请求通过**。Graph 使用 `cudagraph_capture_sizes=[1,2,4,8,16,32]`，保留 `slice,mm,mm_out` 排除项。
+- 本次还在独立 venv 执行教程安装与检查。普通新容器驱动预检查通过时不需要旧机器的驱动提取/替换步骤。当前依赖仍有声明冲突，功能 gate 不等于 NVIDIA 精度对齐；验证范围详见教程。
+
+以下为按日期保留的其他平台及此前配置记录，新教程中的版本、路径和命令不与旧教程混用。
+
+
 ## 燧原 S60 官方镜像手动测试教程（2026-11-05）
 
 - [完整操作步骤：官方镜像、建容器、升级 PR 675、4B 与两模型 eager / Graph、图文请求](docs/enflame-pr675-test-guide-20261105.md)。

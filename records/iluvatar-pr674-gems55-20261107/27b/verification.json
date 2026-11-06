@@ -1,0 +1,137 @@
+{
+  "commit": "7a94aeec80fbb795d5596569eb7d40cfe5460106",
+  "unit_exit_code": 0,
+  "overall_exit_code": 0,
+  "modes": {
+    "graph": {
+      "exit_code": 0,
+      "started_at": "2026-11-06T23:29:59+08:00",
+      "ready_at": "2026-11-06T23:40:01+08:00",
+      "gate_finished_at": "2026-11-06T23:41:26+08:00",
+      "cleanup_finished_at": "2026-11-06T23:41:30+08:00",
+      "cases": {
+        "image_concurrent_8": {
+          "request_count": 8,
+          "passed_count": 8,
+          "failed_count": 0,
+          "passed": true,
+          "file": "/workspace/adapt-logs/pr674-7a94aee-retest-20261106-2328/graph/results/Qwen3.6-27B/port-8145/image_concurrent_8.json"
+        },
+        "image_single": {
+          "request_count": 1,
+          "passed_count": 1,
+          "failed_count": 0,
+          "passed": true,
+          "file": "/workspace/adapt-logs/pr674-7a94aee-retest-20261106-2328/graph/results/Qwen3.6-27B/port-8145/image_single.json"
+        },
+        "mixed_concurrent_8": {
+          "request_count": 8,
+          "passed_count": 8,
+          "failed_count": 0,
+          "passed": true,
+          "file": "/workspace/adapt-logs/pr674-7a94aee-retest-20261106-2328/graph/results/Qwen3.6-27B/port-8145/mixed_concurrent_8.json"
+        },
+        "text_concurrent_8": {
+          "request_count": 8,
+          "passed_count": 8,
+          "failed_count": 0,
+          "passed": true,
+          "file": "/workspace/adapt-logs/pr674-7a94aee-retest-20261106-2328/graph/results/Qwen3.6-27B/port-8145/text_concurrent_8.json"
+        },
+        "text_single": {
+          "request_count": 1,
+          "passed_count": 1,
+          "failed_count": 0,
+          "passed": true,
+          "file": "/workspace/adapt-logs/pr674-7a94aee-retest-20261106-2328/graph/results/Qwen3.6-27B/port-8145/text_single.json"
+        }
+      },
+      "request_count": 26,
+      "passed_count": 26,
+      "server_pid": 2019309,
+      "server_stopped": true
+    },
+    "eager": {
+      "exit_code": 0,
+      "started_at": "2026-11-06T23:41:30+08:00",
+      "ready_at": "2026-11-06T23:44:11+08:00",
+      "gate_finished_at": "2026-11-06T23:48:02+08:00",
+      "cleanup_finished_at": "2026-11-06T23:48:06+08:00",
+      "cases": {
+        "image_concurrent_8": {
+          "request_count": 8,
+          "passed_count": 8,
+          "failed_count": 0,
+          "passed": true,
+          "file": "/workspace/adapt-logs/pr674-7a94aee-retest-20261106-2328/eager/results/Qwen3.6-27B/port-8145/image_concurrent_8.json"
+        },
+        "image_single": {
+          "request_count": 1,
+          "passed_count": 1,
+          "failed_count": 0,
+          "passed": true,
+          "file": "/workspace/adapt-logs/pr674-7a94aee-retest-20261106-2328/eager/results/Qwen3.6-27B/port-8145/image_single.json"
+        },
+        "mixed_concurrent_8": {
+          "request_count": 8,
+          "passed_count": 8,
+          "failed_count": 0,
+          "passed": true,
+          "file": "/workspace/adapt-logs/pr674-7a94aee-retest-20261106-2328/eager/results/Qwen3.6-27B/port-8145/mixed_concurrent_8.json"
+        },
+        "text_concurrent_8": {
+          "request_count": 8,
+          "passed_count": 8,
+          "failed_count": 0,
+          "passed": true,
+          "file": "/workspace/adapt-logs/pr674-7a94aee-retest-20261106-2328/eager/results/Qwen3.6-27B/port-8145/text_concurrent_8.json"
+        },
+        "text_single": {
+          "request_count": 1,
+          "passed_count": 1,
+          "failed_count": 0,
+          "passed": true,
+          "file": "/workspace/adapt-logs/pr674-7a94aee-retest-20261106-2328/eager/results/Qwen3.6-27B/port-8145/text_single.json"
+        }
+      },
+      "request_count": 26,
+      "passed_count": 26,
+      "server_pid": 2064811,
+      "server_stopped": true
+    }
+  },
+  "long_text": {
+    "vocab_size": 248320,
+    "requests": [
+      {
+        "index": 0,
+        "token_count": 309,
+        "token_ids_valid": true,
+        "finish_reason": "stop",
+        "missing_required_terms": [],
+        "visible_text_characters": 1937,
+        "latency_seconds": 16.618
+      },
+      {
+        "index": 1,
+        "token_count": 309,
+        "token_ids_valid": true,
+        "finish_reason": "stop",
+        "missing_required_terms": [],
+        "visible_text_characters": 1937,
+        "latency_seconds": 11.705
+      }
+    ],
+    "token_sequences_identical": true
+  },
+  "ports_available": {
+    "8144": true,
+    "8145": true
+  },
+  "worktree_clean": true,
+  "source_archives": {
+    "FlagGems-v5.5.0.dev0.tar.gz": "b99408419aa0c66ca2ea7644438a7287194841d2daef860d756ec05c27ad680f",
+    "FlagGems-vllm-b434eaf.tar.gz": "827d65c8aa9d25a7c4ca8f4953d7eae56fa25808717c7755d91e5862061b10f3"
+  },
+  "passed": true
+}

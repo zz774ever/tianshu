@@ -1,0 +1,464 @@
+/workspace/envs/iluvatar-gate-gems55-20261106/lib/python3.12/site-packages/flag_gems/utils/libentry.py:730: DeprecationWarning: use_cuda_graph is deprecated; use benchmark_mode='replay' or benchmark_mode='event'
+  super().__init__(*args, **kwargs)
+/workspace/envs/iluvatar-gate-gems55-20261106/lib/python3.12/site-packages/flag_gems/utils/libentry.py:413: RuntimeWarning: active Triton backend does not provide a registered replay benchmarker; falling back to event timing
+  resolved_benchmark = resolve_benchmarker(
+[Note] No specialized common operators were found for the iluvatar, generic common operators will be used by default.
+/usr/local/lib/python3.12/site-packages/torch/jit/_script.py:362: DeprecationWarning: `torch.jit.script_method` is deprecated. Please switch to `torch.compile` or `torch.export`.
+  warnings.warn(
+Failed to import from vllm._C: ModuleNotFoundError("No module named 'vllm._C'")
+[2026-11-06 23:41:45] [INFO] [vllm_fl.dispatch.backends.vendor.iluvatar.iluvatar] patch_sampler_compile_for_iluvatar: unwrapped topk_topp_sampler.compiled_random_sample
+[2026-11-06 23:41:45] [INFO] [vllm_fl.dispatch.backends.vendor.iluvatar.iluvatar] patch_sampler_compile_for_iluvatar: unwrapped logprobs.batched_count_greater_than
+[2026-11-06 23:41:45] [INFO] [vllm_fl.dispatch.backends.vendor.iluvatar.iluvatar] patch_torch_inductor_for_iluvatar: backend '['iluvatar']' already supports target='cuda', no GPUTarget remap needed.
+(APIServer pid=2064811) INFO 11-06 23:41:45 [api_utils.py:347] 
+(APIServer pid=2064811) INFO 11-06 23:41:45 [api_utils.py:347]        █     █     █▄   ▄█
+(APIServer pid=2064811) INFO 11-06 23:41:45 [api_utils.py:347]  ▄▄ ▄█ █     █     █ ▀▄▀ █  version 0.32.0
+(APIServer pid=2064811) INFO 11-06 23:41:45 [api_utils.py:347]   █▄█▀ █     █     █     █  model   /mnt/share/user_homes/models/Qwen3.6-27B
+(APIServer pid=2064811) INFO 11-06 23:41:45 [api_utils.py:347]    ▀▀  ▀▀▀▀▀ ▀▀▀▀▀ ▀     ▀
+(APIServer pid=2064811) INFO 11-06 23:41:45 [api_utils.py:347] 
+(APIServer pid=2064811) INFO 11-06 23:41:45 [api_utils.py:286] non-default args: {'model_tag': '/mnt/share/user_homes/models/Qwen3.6-27B', 'host': '127.0.0.1', 'port': 8145, 'model': '/mnt/share/user_homes/models/Qwen3.6-27B', 'trust_remote_code': True, 'allowed_local_media_path': '/workspace/pr674-retest-7a94aee-20261106-2328/tools/adaptation-gate-cases/images', 'max_model_len': 32768, 'enforce_eager': True, 'served_model_name': ['qwen-pr674-7a94aee-retest'], 'tensor_parallel_size': 4}
+(APIServer pid=2064811) WARNING 11-06 23:41:45 [interface.py:1457] Unknown vLLM environment variable detected: VLLM_FL_FLAGOS_BLACKLIST_APPEND
+(APIServer pid=2064811) INFO 11-06 23:41:45 [model.py:733] Resolved architecture: Qwen3_5ForConditionalGeneration
+(APIServer pid=2064811) INFO 11-06 23:41:45 [model.py:2152] Using max model len 32768
+(APIServer pid=2064811) INFO 11-06 23:41:46 [config.py:688] Mamba cache mode is set to 'align' for Qwen3_5ForConditionalGeneration by default when prefix caching is enabled
+(APIServer pid=2064811) WARNING 11-06 23:41:46 [vllm.py:1703] Enforce eager set, disabling torch.compile, CUDAGraphs, and JIT kernel warmup. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none and --kernel_config.enable_jit_warmup=False
+(APIServer pid=2064811) WARNING 11-06 23:41:46 [vllm.py:1727] Inductor compilation was disabled by user settings, optimizations settings that are only active during inductor compilation will be ignored.
+(APIServer pid=2064811) INFO 11-06 23:41:46 [kernel.py:467] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native'], gelu_and_mul_sparse=['native'])
+(APIServer pid=2064811) INFO 11-06 23:41:46 [vllm.py:1929] Cudagraph is disabled under eager mode
+/workspace/envs/iluvatar-gate-gems55-20261106/lib/python3.12/site-packages/flag_gems/utils/libentry.py:730: DeprecationWarning: use_cuda_graph is deprecated; use benchmark_mode='replay' or benchmark_mode='event'
+  super().__init__(*args, **kwargs)
+/workspace/envs/iluvatar-gate-gems55-20261106/lib/python3.12/site-packages/flag_gems/utils/libentry.py:413: RuntimeWarning: active Triton backend does not provide a registered replay benchmarker; falling back to event timing
+  resolved_benchmark = resolve_benchmarker(
+[Note] No specialized common operators were found for the iluvatar, generic common operators will be used by default.
+/usr/local/lib/python3.12/site-packages/torch/jit/_script.py:362: DeprecationWarning: `torch.jit.script_method` is deprecated. Please switch to `torch.compile` or `torch.export`.
+  warnings.warn(
+(EngineCore pid=2064977) WARNING 11-06 23:42:11 [interface.py:371] Failed to import from vllm._C: ModuleNotFoundError("No module named 'vllm._C'")
+(EngineCore pid=2064977) INFO 11-06 23:42:12 [core.py:133] Initializing a V1 LLM engine (v0.32.0) with config: model='/mnt/share/user_homes/models/Qwen3.6-27B', speculative_config=None, tokenizer='/mnt/share/user_homes/models/Qwen3.6-27B', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=True, dtype=torch.bfloat16, max_seq_len=32768, download_dir=None, load_format=auto, tensor_parallel_size=4, pipeline_parallel_size=1, data_parallel_size=1, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=True, quantization=None, quantization_config=None, enforce_eager=True, aux_output_config=AuxOutputConfig(enable_return_routed_experts=False, max_bytes=None), kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, per_request_spec_decode_metrics='none', kv_cache_metrics=False, kv_cache_metrics_sample=0.01, custom_histogram_buckets=None, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False, jit_monitor_mode='warn', jit_monitor_verbose=False), seed=0, served_model_name=qwen-pr674-7a94aee-retest, enable_prefix_caching=True, enable_chunked_prefill=True, pooler_config=None, compilation_config={'mode': <CompilationMode.NONE: 0>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': ['all'], 'ir_enable_torch_wrap': False, 'splitting_ops': [], 'compile_mm_encoder': False, 'cudagraph_mm_encoder': False, 'encoder_cudagraph_token_budgets': [], 'encoder_cudagraph_max_vision_items_per_batch': 0, 'encoder_cudagraph_max_frames_per_batch': None, 'cudagraph_decoder_replay': True, 'decoder_replay_cudagraph_capture_sizes': [], 'decoder_replay_trim_threshold': 768, 'compile_sizes': [], 'compile_ranges_endpoints': [2048], 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'size_asserts': False, 'alignment_asserts': False, 'scalar_asserts': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.NONE: 0>, 'cudagraph_num_of_warmups': 0, 'cudagraph_capture_sizes': [], 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': True, 'pass_config': {'fuse_norm_quant': False, 'fuse_act_quant': False, 'fuse_attn_quant': False, 'fuse_allreduce_rms': False, 'enable_qk_norm_rope_fusion': False, 'fuse_rope_kvcache_cat_mla': False, 'fuse_act_padding': False, 'fuse_qk_norm_rope_kvcache': False}, 'max_cudagraph_capture_size': 0, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': True, 'static_all_moe_layers': []}, kernel_config=KernelConfig(ir_op_priority=IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native'], gelu_and_mul_sparse=['native']), enable_flashinfer_autotune=True, enable_rocm_segmented_attn_autotune=False, enable_cutedsl_warmup=True, enable_jit_warmup=False, moe_backend='auto', sparse_indexer_topk_backend='auto', linear_backend='auto', linear_backend_per_quant=None)
+(EngineCore pid=2064977) INFO 11-06 23:42:12 [multiproc_executor.py:153] DP group leader: node_rank=0, node_rank_within_dp=0, master_addr=127.0.0.1, mq_connect_ip=172.17.0.2 (local), world_size=4, local_world_size=4
+/workspace/envs/iluvatar-gate-gems55-20261106/lib/python3.12/site-packages/flag_gems/utils/libentry.py:730: DeprecationWarning: use_cuda_graph is deprecated; use benchmark_mode='replay' or benchmark_mode='event'
+  super().__init__(*args, **kwargs)
+/workspace/envs/iluvatar-gate-gems55-20261106/lib/python3.12/site-packages/flag_gems/utils/libentry.py:413: RuntimeWarning: active Triton backend does not provide a registered replay benchmarker; falling back to event timing
+  resolved_benchmark = resolve_benchmarker(
+/workspace/envs/iluvatar-gate-gems55-20261106/lib/python3.12/site-packages/flag_gems/utils/libentry.py:730: DeprecationWarning: use_cuda_graph is deprecated; use benchmark_mode='replay' or benchmark_mode='event'
+  super().__init__(*args, **kwargs)
+/workspace/envs/iluvatar-gate-gems55-20261106/lib/python3.12/site-packages/flag_gems/utils/libentry.py:730: DeprecationWarning: use_cuda_graph is deprecated; use benchmark_mode='replay' or benchmark_mode='event'
+  super().__init__(*args, **kwargs)
+/workspace/envs/iluvatar-gate-gems55-20261106/lib/python3.12/site-packages/flag_gems/utils/libentry.py:413: RuntimeWarning: active Triton backend does not provide a registered replay benchmarker; falling back to event timing
+  resolved_benchmark = resolve_benchmarker(
+/workspace/envs/iluvatar-gate-gems55-20261106/lib/python3.12/site-packages/flag_gems/utils/libentry.py:413: RuntimeWarning: active Triton backend does not provide a registered replay benchmarker; falling back to event timing
+  resolved_benchmark = resolve_benchmarker(
+/workspace/envs/iluvatar-gate-gems55-20261106/lib/python3.12/site-packages/flag_gems/utils/libentry.py:730: DeprecationWarning: use_cuda_graph is deprecated; use benchmark_mode='replay' or benchmark_mode='event'
+  super().__init__(*args, **kwargs)
+/workspace/envs/iluvatar-gate-gems55-20261106/lib/python3.12/site-packages/flag_gems/utils/libentry.py:413: RuntimeWarning: active Triton backend does not provide a registered replay benchmarker; falling back to event timing
+  resolved_benchmark = resolve_benchmarker(
+[Note] No specialized common operators were found for the iluvatar, generic common operators will be used by default.
+[Note] No specialized common operators were found for the iluvatar, generic common operators will be used by default.
+[Note] No specialized common operators were found for the iluvatar, generic common operators will be used by default.
+[Note] No specialized common operators were found for the iluvatar, generic common operators will be used by default.
+(APIServer pid=2064811) INFO 11-06 23:42:23 [base.py:280] Multi-modal warmup completed in 24.422s
+/usr/local/lib/python3.12/site-packages/torch/jit/_script.py:362: DeprecationWarning: `torch.jit.script_method` is deprecated. Please switch to `torch.compile` or `torch.export`.
+  warnings.warn(
+/usr/local/lib/python3.12/site-packages/torch/jit/_script.py:362: DeprecationWarning: `torch.jit.script_method` is deprecated. Please switch to `torch.compile` or `torch.export`.
+  warnings.warn(
+/usr/local/lib/python3.12/site-packages/torch/jit/_script.py:362: DeprecationWarning: `torch.jit.script_method` is deprecated. Please switch to `torch.compile` or `torch.export`.
+  warnings.warn(
+/usr/local/lib/python3.12/site-packages/torch/jit/_script.py:362: DeprecationWarning: `torch.jit.script_method` is deprecated. Please switch to `torch.compile` or `torch.export`.
+  warnings.warn(
+(VllmWorker-1 pid=2065155) WARNING 11-06 23:42:25 [interface.py:371] Failed to import from vllm._C: ModuleNotFoundError("No module named 'vllm._C'")
+(VllmWorker-3 pid=2065157) WARNING 11-06 23:42:25 [interface.py:371] Failed to import from vllm._C: ModuleNotFoundError("No module named 'vllm._C'")
+(VllmWorker-0 pid=2065154) WARNING 11-06 23:42:25 [interface.py:371] Failed to import from vllm._C: ModuleNotFoundError("No module named 'vllm._C'")
+(VllmWorker-2 pid=2065156) WARNING 11-06 23:42:25 [interface.py:371] Failed to import from vllm._C: ModuleNotFoundError("No module named 'vllm._C'")
+WARNING:root:Skipped registering operator: This is not allowed since there's already a kernel registered from python overriding ne_.Scalar's behavior for CUDA dispatch key and aten namespace.
+WARNING:root:Skipped registering operator: This is not allowed since there's already a kernel registered from python overriding ne_.Tensor's behavior for CUDA dispatch key and aten namespace.
+[2026-11-06 23:42:26] [INFO] [vllm_fl.dispatch.backends.vendor.iluvatar.iluvatar] patch_sampler_compile_for_iluvatar: unwrapped topk_topp_sampler.compiled_random_sample
+[2026-11-06 23:42:26] [INFO] [vllm_fl.dispatch.backends.vendor.iluvatar.iluvatar] patch_sampler_compile_for_iluvatar: unwrapped logprobs.batched_count_greater_than
+[2026-11-06 23:42:26] [INFO] [vllm_fl.dispatch.backends.vendor.iluvatar.iluvatar] patch_torch_inductor_for_iluvatar: backend '['iluvatar']' already supports target='cuda', no GPUTarget remap needed.
+WARNING:root:Skipped registering operator: This is not allowed since there's already a kernel registered from python overriding ne_.Scalar's behavior for CUDA dispatch key and aten namespace.
+WARNING:root:Skipped registering operator: This is not allowed since there's already a kernel registered from python overriding ne_.Tensor's behavior for CUDA dispatch key and aten namespace.
+[2026-11-06 23:42:26] [INFO] [vllm_fl.dispatch.backends.vendor.iluvatar.iluvatar] patch_sampler_compile_for_iluvatar: unwrapped topk_topp_sampler.compiled_random_sample
+[2026-11-06 23:42:26] [INFO] [vllm_fl.dispatch.backends.vendor.iluvatar.iluvatar] patch_sampler_compile_for_iluvatar: unwrapped logprobs.batched_count_greater_than
+[2026-11-06 23:42:26] [INFO] [vllm_fl.dispatch.backends.vendor.iluvatar.iluvatar] patch_torch_inductor_for_iluvatar: backend '['iluvatar']' already supports target='cuda', no GPUTarget remap needed.
+[2026-11-06 23:42:26] [INFO] [vllm_fl.dispatch.backends.vendor.iluvatar.v2_buffers] Iluvatar V2 buffers use explicit host-to-device copies instead of UVA
+[2026-11-06 23:42:26] [INFO] [vllm_fl.dispatch.backends.vendor.iluvatar.mrope] Iluvatar M-RoPE uses the opaque vLLM operation
+[2026-11-06 23:42:26] [INFO] [vllm_fl.dispatch.backends.vendor.iluvatar.iluvatar] patch_torch_inductor_for_iluvatar: backend '['iluvatar']' already supports target='cuda', no GPUTarget remap needed.
+(Worker pid=2065155) INFO 11-06 23:42:26 [parallel_state.py:1906] world_size=4 rank=1 local_rank=1 distributed_init_method=file:///tmp/vllm_dist_2c4c8de0a4ff4cf58b5ff2cb62369c7d backend=flagcx
+(Worker pid=2065155) WARNING 11-06 23:42:26 [parallel_state.py:1919] Distributed backend flagcx is not available; falling back to gloo.
+[2026-11-06 23:42:26] [INFO] [vllm_fl.dispatch.backends.vendor.iluvatar.v2_buffers] Iluvatar V2 buffers use explicit host-to-device copies instead of UVA
+[2026-11-06 23:42:26] [INFO] [vllm_fl.dispatch.backends.vendor.iluvatar.mrope] Iluvatar M-RoPE uses the opaque vLLM operation
+[2026-11-06 23:42:26] [INFO] [vllm_fl.dispatch.backends.vendor.iluvatar.iluvatar] patch_torch_inductor_for_iluvatar: backend '['iluvatar']' already supports target='cuda', no GPUTarget remap needed.
+(Worker pid=2065157) INFO 11-06 23:42:26 [parallel_state.py:1906] world_size=4 rank=3 local_rank=3 distributed_init_method=file:///tmp/vllm_dist_2c4c8de0a4ff4cf58b5ff2cb62369c7d backend=flagcx
+(Worker pid=2065157) WARNING 11-06 23:42:26 [parallel_state.py:1919] Distributed backend flagcx is not available; falling back to gloo.
+WARNING:root:Skipped registering operator: This is not allowed since there's already a kernel registered from python overriding ne_.Scalar's behavior for CUDA dispatch key and aten namespace.
+WARNING:root:Skipped registering operator: This is not allowed since there's already a kernel registered from python overriding ne_.Tensor's behavior for CUDA dispatch key and aten namespace.
+WARNING:root:Skipped registering operator: This is not allowed since there's already a kernel registered from python overriding ne_.Scalar's behavior for CUDA dispatch key and aten namespace.
+WARNING:root:Skipped registering operator: This is not allowed since there's already a kernel registered from python overriding ne_.Tensor's behavior for CUDA dispatch key and aten namespace.
+[2026-11-06 23:42:26] [INFO] [vllm_fl.dispatch.backends.vendor.iluvatar.iluvatar] patch_sampler_compile_for_iluvatar: unwrapped topk_topp_sampler.compiled_random_sample
+[2026-11-06 23:42:26] [INFO] [vllm_fl.dispatch.backends.vendor.iluvatar.iluvatar] patch_sampler_compile_for_iluvatar: unwrapped logprobs.batched_count_greater_than
+[2026-11-06 23:42:26] [INFO] [vllm_fl.dispatch.backends.vendor.iluvatar.iluvatar] patch_torch_inductor_for_iluvatar: backend '['iluvatar']' already supports target='cuda', no GPUTarget remap needed.
+[2026-11-06 23:42:26] [INFO] [vllm_fl.dispatch.backends.vendor.iluvatar.iluvatar] patch_sampler_compile_for_iluvatar: unwrapped topk_topp_sampler.compiled_random_sample
+[2026-11-06 23:42:26] [INFO] [vllm_fl.dispatch.backends.vendor.iluvatar.iluvatar] patch_sampler_compile_for_iluvatar: unwrapped logprobs.batched_count_greater_than
+[2026-11-06 23:42:26] [INFO] [vllm_fl.dispatch.backends.vendor.iluvatar.iluvatar] patch_torch_inductor_for_iluvatar: backend '['iluvatar']' already supports target='cuda', no GPUTarget remap needed.
+[2026-11-06 23:42:26] [INFO] [vllm_fl.dispatch.backends.vendor.iluvatar.v2_buffers] Iluvatar V2 buffers use explicit host-to-device copies instead of UVA
+[2026-11-06 23:42:26] [INFO] [vllm_fl.dispatch.backends.vendor.iluvatar.mrope] Iluvatar M-RoPE uses the opaque vLLM operation
+[2026-11-06 23:42:26] [INFO] [vllm_fl.dispatch.backends.vendor.iluvatar.iluvatar] patch_torch_inductor_for_iluvatar: backend '['iluvatar']' already supports target='cuda', no GPUTarget remap needed.
+(Worker pid=2065156) INFO 11-06 23:42:26 [parallel_state.py:1906] world_size=4 rank=2 local_rank=2 distributed_init_method=file:///tmp/vllm_dist_2c4c8de0a4ff4cf58b5ff2cb62369c7d backend=flagcx
+(Worker pid=2065156) WARNING 11-06 23:42:26 [parallel_state.py:1919] Distributed backend flagcx is not available; falling back to gloo.
+[2026-11-06 23:42:26] [INFO] [vllm_fl.dispatch.backends.vendor.iluvatar.v2_buffers] Iluvatar V2 buffers use explicit host-to-device copies instead of UVA
+[2026-11-06 23:42:26] [INFO] [vllm_fl.dispatch.backends.vendor.iluvatar.mrope] Iluvatar M-RoPE uses the opaque vLLM operation
+[2026-11-06 23:42:26] [INFO] [vllm_fl.dispatch.backends.vendor.iluvatar.iluvatar] patch_torch_inductor_for_iluvatar: backend '['iluvatar']' already supports target='cuda', no GPUTarget remap needed.
+(Worker pid=2065154) INFO 11-06 23:42:26 [parallel_state.py:1906] world_size=4 rank=0 local_rank=0 distributed_init_method=file:///tmp/vllm_dist_2c4c8de0a4ff4cf58b5ff2cb62369c7d backend=flagcx
+(Worker pid=2065154) WARNING 11-06 23:42:26 [parallel_state.py:1919] Distributed backend flagcx is not available; falling back to gloo.
+[Gloo] Rank 3 is connected to 3 peer ranks. Expected number of connected peer ranks is : 3
+[Gloo] Rank 0 is connected to 3 peer ranks. Expected number of connected peer ranks is : 3
+[Gloo] Rank 2 is connected to 3 peer ranks. Expected number of connected peer ranks is : 3
+[Gloo] Rank 1 is connected to 3 peer ranks. Expected number of connected peer ranks is : 3
+[Gloo] Rank 0 is connected to 3 peer ranks. Expected number of connected peer ranks is : 3
+[Gloo] Rank 2 is connected to 3 peer ranks. Expected number of connected peer ranks is : 3
+[Gloo] Rank 1 is connected to 3[Gloo] Rank  peer ranks. 3Expected number of connected peer ranks is :  is connected to 33
+ peer ranks. Expected number of connected peer ranks is : 3
+[Gloo] Rank [Gloo] Rank 12[Gloo] Rank  is connected to  is connected to 033 is connected to  peer ranks.  peer ranks. 3Expected number of connected peer ranks is : Expected number of connected peer ranks is :  peer ranks. 33Expected number of connected peer ranks is : 
+
+[Gloo] Rank 33
+ is connected to 3 peer ranks. Expected number of connected peer ranks is : 3
+libibverbs: Warning: couldn't open config directory '/etc/libibverbs.d'.
+libibverbs: Warning: couldn't open config directory '/etc/libibverbs.d'.
+libibverbs: Warning: couldn't open config directory '/etc/libibverbs.d'.
+libibverbs: Warning: couldn't open config directory '/etc/libibverbs.d'.
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+(Worker pid=2065154) INFO 11-06 23:42:27 [parallel_state.py:2350] rank 0 in world size 4 is assigned as DP rank 0, PP rank 0, PCP rank 0, TP rank 0, ETP rank 0, EP rank N/A, EPLB rank N/A
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+(Worker pid=2065154) WARNING 11-06 23:42:27 [buffer_utils.py:47] Pinned memory is not available on this platform; falling back to device memory for UVA buffers.
+(Worker_TP0 pid=2065154) INFO 11-06 23:42:28 [model_runner.py:392] Loading model from scratch...
+(Worker_TP0 pid=2065154) INFO 11-06 23:42:31 [mm_encoder_attention.py:372] Using AttentionBackendEnum.TORCH_SDPA for MMEncoderAttention.
+[2026-11-06 23:42:31] [INFO] [vllm_fl.dispatch.policy] Using custom config from '/workspace/pr674-retest-7a94aee-20261106-2328/vllm_fl/dispatch/config/iluvatar.yaml'
+[2026-11-06 23:42:32] [INFO] [vllm_fl.dispatch.policy] Using custom config from '/workspace/pr674-retest-7a94aee-20261106-2328/vllm_fl/dispatch/config/iluvatar.yaml'
+(Worker_TP0 pid=2065154) INFO 11-06 23:42:32 [qwen_gdn_linear_attn.py:221] Using Triton/FLA GDN prefill kernel (requested=auto, head_k_dim=128).
+[2026-11-06 23:42:32] [INFO] [vllm_fl.dispatch.policy] Using custom config from '/workspace/pr674-retest-7a94aee-20261106-2328/vllm_fl/dispatch/config/iluvatar.yaml'
+[2026-11-06 23:42:32] [INFO] [vllm_fl.dispatch.policy] Using custom config from '/workspace/pr674-retest-7a94aee-20261106-2328/vllm_fl/dispatch/config/iluvatar.yaml'
+/workspace/envs/iluvatar-gate-gems55-20261106/lib/python3.12/site-packages/flaggems_vllm/ops/FLA/parallel_nsa.py:39: ImportWarning: Flash Attention is not installed. Please install it via `pip install flash-attn --no-build-isolation`
+  warnings.warn(
+/workspace/envs/iluvatar-gate-gems55-20261106/lib/python3.12/site-packages/flaggems_vllm/ops/FLA/parallel_nsa.py:39: ImportWarning: Flash Attention is not installed. Please install it via `pip install flash-attn --no-build-isolation`
+  warnings.warn(
+/workspace/envs/iluvatar-gate-gems55-20261106/lib/python3.12/site-packages/flaggems_vllm/ops/FLA/parallel_nsa.py:39: ImportWarning: Flash Attention is not installed. Please install it via `pip install flash-attn --no-build-isolation`
+  warnings.warn(
+/workspace/envs/iluvatar-gate-gems55-20261106/lib/python3.12/site-packages/flaggems_vllm/ops/FLA/parallel_nsa.py:39: ImportWarning: Flash Attention is not installed. Please install it via `pip install flash-attn --no-build-isolation`
+  warnings.warn(
+[2026-11-06 23:42:33] [INFO] [vllm_fl.dispatch] Registering vendor backends for current platform: iluvatar
+[2026-11-06 23:42:33] [INFO] [vllm_fl.dispatch.manager] OpManager initialized: 12 ops with 25 implementations
+[2026-11-06 23:42:33] [INFO] [vllm_fl.dispatch.manager] Op 'attention_backend' using 'default.flagos' (kind=flagos, vendor=None)
+[2026-11-06 23:42:33] [INFO] [vllm_fl.dispatch.backends.flaggems.register_ops] FlagGems-vllm integration activated: package=/workspace/envs/iluvatar-gate-gems55-20261106/lib/python3.12/site-packages/flaggems_vllm/__init__.py
+[2026-11-06 23:42:33] [INFO] [vllm_fl.dispatch] Registering vendor backends for current platform: iluvatar
+[2026-11-06 23:42:33] [INFO] [vllm_fl.dispatch.manager] OpManager initialized: 12 ops with 25 implementations
+[2026-11-06 23:42:33] [INFO] [vllm_fl.dispatch.manager] Op 'attention_backend' using 'default.flagos' (kind=flagos, vendor=None)
+[2026-11-06 23:42:33] [INFO] [vllm_fl.dispatch] Registering vendor backends for current platform: iluvatar
+[2026-11-06 23:42:33] [INFO] [vllm_fl.dispatch.manager] OpManager initialized: 12 ops with 25 implementations
+[2026-11-06 23:42:33] [INFO] [vllm_fl.dispatch.manager] Op 'attention_backend' using 'default.flagos' (kind=flagos, vendor=None)
+[2026-11-06 23:42:33] [INFO] [vllm_fl.dispatch] Registering vendor backends for current platform: iluvatar
+[2026-11-06 23:42:33] [INFO] [vllm_fl.dispatch.manager] OpManager initialized: 12 ops with 25 implementations
+[2026-11-06 23:42:33] [INFO] [vllm_fl.dispatch.manager] Op 'attention_backend' using 'default.flagos' (kind=flagos, vendor=None)
+(Worker_TP0 pid=2065154) INFO 11-06 23:42:34 [base_loader.py:82] Initializing model took 6.360929 seconds
+(Worker_TP0 pid=2065154) INFO 11-06 23:42:34 [weight_utils.py:1108] Filesystem type for checkpoints: CEPH. Checkpoint size: 51.75 GiB. Available RAM: 482.72 GiB.
+(Worker_TP0 pid=2065154) INFO 11-06 23:42:34 [weight_utils.py:1131] Auto-prefetch is disabled because the filesystem (CEPH) is not a recognized network FS (NFS/Lustre). If you want to force prefetching, start vLLM with --safetensors-load-strategy=prefetch.
+
+Loading safetensors checkpoint shards:   0% Completed | 0/15 [00:00<?, ?it/s]
+
+Loading safetensors checkpoint shards:   7% Completed | 1/15 [00:00<00:12,  1.08it/s]
+
+Loading safetensors checkpoint shards:  13% Completed | 2/15 [00:02<00:13,  1.03s/it]
+
+Loading safetensors checkpoint shards:  20% Completed | 3/15 [00:03<00:12,  1.06s/it]
+
+Loading safetensors checkpoint shards:  27% Completed | 4/15 [00:04<00:11,  1.05s/it]
+
+Loading safetensors checkpoint shards:  33% Completed | 5/15 [00:05<00:10,  1.00s/it]
+
+Loading safetensors checkpoint shards:  40% Completed | 6/15 [00:06<00:09,  1.02s/it]
+
+Loading safetensors checkpoint shards:  47% Completed | 7/15 [00:07<00:09,  1.14s/it]
+
+Loading safetensors checkpoint shards:  53% Completed | 8/15 [00:08<00:07,  1.10s/it]
+
+Loading safetensors checkpoint shards:  60% Completed | 9/15 [00:09<00:06,  1.05s/it]
+
+Loading safetensors checkpoint shards:  67% Completed | 10/15 [00:10<00:05,  1.00s/it]
+
+Loading safetensors checkpoint shards:  73% Completed | 11/15 [00:11<00:03,  1.04it/s]
+(Worker_TP2 pid=2065156) INFO 11-06 23:42:46 [model_runner.py:424] Model loading took 12.92 GiB memory and 18.194638 seconds
+(Worker_TP2 pid=2065156) INFO 11-06 23:42:46 [interface.py:1096] Setting attention block size to 784 tokens to ensure that attention page size is >= mamba page size.
+(Worker_TP2 pid=2065156) INFO 11-06 23:42:46 [interface.py:1120] Padding mamba page size by 0.13% to ensure that mamba page size and attention page size are exactly equal.
+
+Loading safetensors checkpoint shards:  80% Completed | 12/15 [00:12<00:02,  1.03it/s]
+
+Loading safetensors checkpoint shards:  87% Completed | 13/15 [00:13<00:01,  1.04it/s]
+
+Loading safetensors checkpoint shards:  93% Completed | 14/15 [00:14<00:01,  1.07s/it]
+
+Loading safetensors checkpoint shards: 100% Completed | 15/15 [00:14<00:00,  1.25it/s]
+
+Loading safetensors checkpoint shards: 100% Completed | 15/15 [00:14<00:00,  1.02it/s]
+
+(Worker_TP0 pid=2065154) INFO 11-06 23:42:49 [default_loader.py:501] Loading weights took 14.68 seconds
+(Worker_TP1 pid=2065155) INFO 11-06 23:42:51 [model_runner.py:424] Model loading took 12.92 GiB memory and 23.140871 seconds
+(Worker_TP1 pid=2065155) INFO 11-06 23:42:51 [interface.py:1096] Setting attention block size to 784 tokens to ensure that attention page size is >= mamba page size.
+(Worker_TP1 pid=2065155) INFO 11-06 23:42:51 [interface.py:1120] Padding mamba page size by 0.13% to ensure that mamba page size and attention page size are exactly equal.
+(Worker_TP3 pid=2065157) INFO 11-06 23:42:51 [model_runner.py:424] Model loading took 12.92 GiB memory and 23.666450 seconds
+(Worker_TP3 pid=2065157) INFO 11-06 23:42:51 [interface.py:1096] Setting attention block size to 784 tokens to ensure that attention page size is >= mamba page size.
+(Worker_TP3 pid=2065157) INFO 11-06 23:42:51 [interface.py:1120] Padding mamba page size by 0.13% to ensure that mamba page size and attention page size are exactly equal.
+(Worker_TP0 pid=2065154) INFO 11-06 23:42:51 [model_runner.py:424] Model loading took 12.92 GiB memory and 23.850333 seconds
+(Worker_TP0 pid=2065154) INFO 11-06 23:42:51 [interface.py:1096] Setting attention block size to 784 tokens to ensure that attention page size is >= mamba page size.
+(Worker_TP0 pid=2065154) INFO 11-06 23:42:51 [interface.py:1120] Padding mamba page size by 0.13% to ensure that mamba page size and attention page size are exactly equal.
+(EngineCore pid=2064977) INFO 11-06 23:42:51 [torch_utils.py:295] Reducing Torch threads from 28 to 1 for serving. Set OMP_NUM_THREADS in the external environment to override.
+(EngineCore pid=2064977) INFO 11-06 23:42:51 [utils.py:347] Using LBNHC KV cache layout.
+(Worker_TP0 pid=2065154) INFO 11-06 23:43:01 [encoder_runner.py:131] Encoder cache will be initialized with a budget of 16384 tokens, and profiled with 1 image items of the maximum feature size.
+/workspace/envs/iluvatar-gate-gems55-20261106/lib/python3.12/site-packages/flag_gems/utils/libentry.py:413: RuntimeWarning: active Triton backend does not provide a registered replay benchmarker; falling back to event timing
+  resolved_benchmark = resolve_benchmarker(
+/workspace/envs/iluvatar-gate-gems55-20261106/lib/python3.12/site-packages/flag_gems/utils/libentry.py:413: RuntimeWarning: active Triton backend does not provide a registered replay benchmarker; falling back to event timing
+  resolved_benchmark = resolve_benchmarker(
+/workspace/envs/iluvatar-gate-gems55-20261106/lib/python3.12/site-packages/flag_gems/utils/libentry.py:413: RuntimeWarning: active Triton backend does not provide a registered replay benchmarker; falling back to event timing
+  resolved_benchmark = resolve_benchmarker(
+/workspace/envs/iluvatar-gate-gems55-20261106/lib/python3.12/site-packages/flag_gems/utils/libentry.py:413: RuntimeWarning: active Triton backend does not provide a registered replay benchmarker; falling back to event timing
+  resolved_benchmark = resolve_benchmarker(
+[2026-11-06 23:43:25] [INFO] [vllm_fl.dispatch.manager] Op 'silu_and_mul' using 'default.flagos' (kind=flagos, vendor=None)
+[2026-11-06 23:43:25] [INFO] [vllm_fl.dispatch.manager] Op 'silu_and_mul' using 'default.flagos' (kind=flagos, vendor=None)
+[2026-11-06 23:43:25] [INFO] [vllm_fl.dispatch.manager] Op 'silu_and_mul' using 'default.flagos' (kind=flagos, vendor=None)
+[2026-11-06 23:43:25] [INFO] [vllm_fl.dispatch.manager] Op 'silu_and_mul' using 'default.flagos' (kind=flagos, vendor=None)
+/workspace/envs/iluvatar-gate-gems55-20261106/lib/python3.12/site-packages/flag_gems/utils/libentry.py:413: RuntimeWarning: active Triton backend does not provide a registered replay benchmarker; falling back to event timing
+  resolved_benchmark = resolve_benchmarker(
+/workspace/envs/iluvatar-gate-gems55-20261106/lib/python3.12/site-packages/flag_gems/utils/libentry.py:413: RuntimeWarning: active Triton backend does not provide a registered replay benchmarker; falling back to event timing
+  resolved_benchmark = resolve_benchmarker(
+/workspace/envs/iluvatar-gate-gems55-20261106/lib/python3.12/site-packages/flag_gems/utils/libentry.py:413: RuntimeWarning: active Triton backend does not provide a registered replay benchmarker; falling back to event timing
+  resolved_benchmark = resolve_benchmarker(
+/workspace/envs/iluvatar-gate-gems55-20261106/lib/python3.12/site-packages/flag_gems/utils/libentry.py:413: RuntimeWarning: active Triton backend does not provide a registered replay benchmarker; falling back to event timing
+  resolved_benchmark = resolve_benchmarker(
+(EngineCore pid=2064977) INFO 11-06 23:43:33 [kv_cache_utils.py:2327] GPU KV cache size: 711,338 tokens, Maximum concurrency for 32,768 tokens per request: 21.71x
+(EngineCore pid=2064977) INFO 11-06 23:43:33 [kv_cache_utils.py:853] kv cache group sizes (784, 784, 784, 784)
+(EngineCore pid=2064977) INFO 11-06 23:43:33 [kv_cache_utils.py:854] kv lcm block sizes 784
+(Worker_TP1 pid=2065155) INFO 11-06 23:43:34 [qwen_triton_warmup.py:296] Warming up Qwen GDN Triton kernels for model_type=qwen3_5_text.
+(Worker_TP0 pid=2065154) INFO 11-06 23:43:34 [qwen_triton_warmup.py:296] Warming up Qwen GDN Triton kernels for model_type=qwen3_5_text.
+(Worker_TP3 pid=2065157) INFO 11-06 23:43:34 [qwen_triton_warmup.py:296] Warming up Qwen GDN Triton kernels for model_type=qwen3_5_text.
+(Worker_TP2 pid=2065156) INFO 11-06 23:43:34 [qwen_triton_warmup.py:296] Warming up Qwen GDN Triton kernels for model_type=qwen3_5_text.
+(Worker_TP1 pid=2065155) INFO 11-06 23:43:36 [qwen_vl_triton_warmup.py:57] Warmed position embedding and vision rotary kernels on grids=[(1, 16, 16), (1, 16, 2), (1, 2, 16), (1, 2, 2)].
+(Worker_TP0 pid=2065154) INFO 11-06 23:43:36 [qwen_vl_triton_warmup.py:57] Warmed position embedding and vision rotary kernels on grids=[(1, 16, 16), (1, 16, 2), (1, 2, 16), (1, 2, 2)].
+(Worker_TP2 pid=2065156) INFO 11-06 23:43:36 [qwen_vl_triton_warmup.py:57] Warmed position embedding and vision rotary kernels on grids=[(1, 16, 16), (1, 16, 2), (1, 2, 16), (1, 2, 2)].
+(Worker_TP1 pid=2065155) INFO 11-06 23:43:36 [qwen_vl_triton_warmup.py:102] Warmed M-RoPE Triton kernels.
+(Worker_TP0 pid=2065154) INFO 11-06 23:43:36 [qwen_vl_triton_warmup.py:102] Warmed M-RoPE Triton kernels.
+(Worker_TP1 pid=2065155) INFO 11-06 23:43:36 [mamba_triton_warmup.py:42] Warmed Mamba batch_memcpy_kernel.
+(Worker_TP0 pid=2065154) INFO 11-06 23:43:36 [mamba_triton_warmup.py:42] Warmed Mamba batch_memcpy_kernel.
+(Worker_TP3 pid=2065157) INFO 11-06 23:43:36 [qwen_vl_triton_warmup.py:57] Warmed position embedding and vision rotary kernels on grids=[(1, 16, 16), (1, 16, 2), (1, 2, 16), (1, 2, 2)].
+(Worker_TP2 pid=2065156) INFO 11-06 23:43:36 [qwen_vl_triton_warmup.py:102] Warmed M-RoPE Triton kernels.
+(Worker_TP2 pid=2065156) INFO 11-06 23:43:36 [mamba_triton_warmup.py:42] Warmed Mamba batch_memcpy_kernel.
+(Worker_TP3 pid=2065157) INFO 11-06 23:43:36 [qwen_vl_triton_warmup.py:102] Warmed M-RoPE Triton kernels.
+(Worker_TP3 pid=2065157) INFO 11-06 23:43:36 [mamba_triton_warmup.py:42] Warmed Mamba batch_memcpy_kernel.
+/workspace/envs/iluvatar-gate-gems55-20261106/lib/python3.12/site-packages/flag_gems/utils/libentry.py:413: RuntimeWarning: active Triton backend does not provide a registered replay benchmarker; falling back to event timing
+  resolved_benchmark = resolve_benchmarker(
+/workspace/envs/iluvatar-gate-gems55-20261106/lib/python3.12/site-packages/flag_gems/utils/libentry.py:413: RuntimeWarning: active Triton backend does not provide a registered replay benchmarker; falling back to event timing
+  resolved_benchmark = resolve_benchmarker(
+/workspace/envs/iluvatar-gate-gems55-20261106/lib/python3.12/site-packages/flag_gems/utils/libentry.py:413: RuntimeWarning: active Triton backend does not provide a registered replay benchmarker; falling back to event timing
+  resolved_benchmark = resolve_benchmarker(
+/workspace/envs/iluvatar-gate-gems55-20261106/lib/python3.12/site-packages/flag_gems/utils/libentry.py:413: RuntimeWarning: active Triton backend does not provide a registered replay benchmarker; falling back to event timing
+  resolved_benchmark = resolve_benchmarker(
+(Worker_TP3 pid=2065157) INFO 11-06 23:43:53 [jit_monitor.py:84] Kernel JIT monitor activated; monitored JIT compilations during inference will use mode=warn.
+(Worker_TP2 pid=2065156) INFO 11-06 23:43:53 [jit_monitor.py:84] Kernel JIT monitor activated; monitored JIT compilations during inference will use mode=warn.
+(Worker_TP0 pid=2065154) INFO 11-06 23:43:53 [jit_monitor.py:84] Kernel JIT monitor activated; monitored JIT compilations during inference will use mode=warn.
+(Worker_TP1 pid=2065155) INFO 11-06 23:43:53 [jit_monitor.py:84] Kernel JIT monitor activated; monitored JIT compilations during inference will use mode=warn.
+(Worker_TP0 pid=2065154) INFO 11-06 23:43:55 [torch_utils.py:295] Reducing Torch threads from 28 to 1 for serving. Set OMP_NUM_THREADS in the external environment to override.
+(EngineCore pid=2064977) INFO 11-06 23:43:55 [core.py:402] init engine (profile, create kv cache, warmup model) took 63.64 s
+(EngineCore pid=2064977) WARNING 11-06 23:44:05 [vllm.py:1703] Enforce eager set, disabling torch.compile, CUDAGraphs, and JIT kernel warmup. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none and --kernel_config.enable_jit_warmup=False
+(EngineCore pid=2064977) WARNING 11-06 23:44:05 [vllm.py:1727] Inductor compilation was disabled by user settings, optimizations settings that are only active during inductor compilation will be ignored.
+(EngineCore pid=2064977) INFO 11-06 23:44:05 [kernel.py:467] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native'], gelu_and_mul_sparse=['native'])
+(EngineCore pid=2064977) INFO 11-06 23:44:05 [vllm.py:1929] Cudagraph is disabled under eager mode
+/usr/local/lib/python3.12/contextlib.py:144: ResourceWarning: Unclosed context <zmq.Context() at 0x7d352fe17dd0>
+  next(self.gen)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+(APIServer pid=2064811) INFO 11-06 23:44:05 [entry.py:136] Supported tasks: ['generate']
+(APIServer pid=2064811) INFO 11-06 23:44:05 [factories.py:89] Scale-out endpoints are disabled. Restart vllm serve with --enable-scale-out to enable them.
+(APIServer pid=2064811) INFO 11-06 23:44:06 [hf.py:648] Detected the chat template content format to be 'openai'. You can set `--chat-template-content-format` to override this.
+(APIServer pid=2064811) WARNING 11-06 23:44:06 [model.py:1893] Default vLLM sampling parameters have been overridden by the model's `generation_config.json`: `{'temperature': 1.0, 'top_k': 20, 'top_p': 0.95}`. If this is not intended, please relaunch vLLM instance with `--generation-config vllm`.
+(APIServer pid=2064811) WARNING 11-06 23:44:06 [serving.py:262] The chat template requires system-first ordering, so inline system messages in /v1/messages requests (e.g. Claude Code's per-turn reminders) are merged into the leading system prompt. Each new one changes the prompt prefix, so the rest of the conversation misses the prefix cache. Pass a --chat-template that accepts non-leading system messages to avoid this.
+(APIServer pid=2064811) INFO 11-06 23:44:06 [entry.py:140] Starting vLLM server on http://127.0.0.1:8145
+(APIServer pid=2064811) INFO 11-06 23:44:06 [launcher.py:186] Available routes are:
+(APIServer pid=2064811) INFO 11-06 23:44:06 [launcher.py:195] Route: /openapi.json, Methods: HEAD, GET
+(APIServer pid=2064811) INFO 11-06 23:44:06 [launcher.py:195] Route: /docs, Methods: HEAD, GET
+(APIServer pid=2064811) INFO 11-06 23:44:06 [launcher.py:195] Route: /docs/oauth2-redirect, Methods: HEAD, GET
+(APIServer pid=2064811) INFO 11-06 23:44:06 [launcher.py:195] Route: /redoc, Methods: HEAD, GET
+(APIServer pid=2064811) INFO 11-06 23:44:06 [launcher.py:195] Route: /metrics, Methods: GET
+(APIServer pid=2064811) INFO 11-06 23:44:06 [launcher.py:195] Route: /v1/chat/completions/render, Methods: POST
+(APIServer pid=2064811) INFO 11-06 23:44:06 [launcher.py:195] Route: /v1/messages/render, Methods: POST
+(APIServer pid=2064811) INFO 11-06 23:44:06 [launcher.py:195] Route: /v1/completions/render, Methods: POST
+(APIServer pid=2064811) INFO 11-06 23:44:06 [launcher.py:195] Route: /v1/responses/render, Methods: POST
+(APIServer pid=2064811) INFO 11-06 23:44:06 [launcher.py:195] Route: /v1/chat/completions/derender, Methods: POST
+(APIServer pid=2064811) INFO 11-06 23:44:06 [launcher.py:195] Route: /v1/completions/derender, Methods: POST
+(APIServer pid=2064811) INFO 11-06 23:44:06 [launcher.py:195] Route: /inference/v1/generate, Methods: POST
+(APIServer pid=2064811) INFO 11-06 23:44:06 [launcher.py:195] Route: /inference/v1/abort_requests, Methods: POST
+INFO:     Started server process [2064811]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:47308 - "GET /v1/models HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47322 - "GET /v1/models HTTP/1.1" 200 OK
+/workspace/envs/iluvatar-gate-gems55-20261106/lib/python3.12/site-packages/vllm/entrypoints/openai/chat_completion/protocol.py:662: DeprecationWarning: max_tokens is deprecated in favor of the max_completion_tokens field
+  max_output_tokens = self.max_tokens
+/workspace/envs/iluvatar-gate-gems55-20261106/lib/python3.12/site-packages/vllm/entrypoints/openai/chat_completion/serving.py:347: DeprecationWarning: max_tokens is deprecated in favor of the max_completion_tokens field
+  else request.max_tokens,
+(Worker_TP0 pid=2065154) WARNING 11-06 23:44:13 [jit_monitor.py:140] Triton kernel JIT compilation during inference: fill_scalar_func_kernel_rank_1. This causes a latency spike; consider extending warmup to cover this shape/config.
+(Worker_TP0 pid=2065154) WARNING 11-06 23:44:13 [jit_monitor.py:140] Triton kernel JIT compilation during inference: gt_func_scalar_kernel_rank_1. This causes a latency spike; consider extending warmup to cover this shape/config.
+(Worker_TP0 pid=2065154) WARNING 11-06 23:44:13 [jit_monitor.py:140] Triton kernel JIT compilation during inference: _copy_kernel_kernel_rank_1. This causes a latency spike; consider extending warmup to cover this shape/config.
+(Worker_TP0 pid=2065154) WARNING 11-06 23:44:13 [jit_monitor.py:140] Triton kernel JIT compilation during inference: add_func_tensor_scalar_kernel_rank_1. This causes a latency spike; consider extending warmup to cover this shape/config.
+(Worker_TP0 pid=2065154) WARNING 11-06 23:44:13 [jit_monitor.py:140] Triton kernel JIT compilation during inference: rsqrt_func_kernel_rank_1. This causes a latency spike; consider extending warmup to cover this shape/config.
+(Worker_TP0 pid=2065154) WARNING 11-06 23:44:13 [jit_monitor.py:140] Triton kernel JIT compilation during inference: _index_jit_function. This causes a latency spike; consider extending warmup to cover this shape/config.
+(Worker_TP0 pid=2065154) WARNING 11-06 23:44:13 [jit_monitor.py:140] Triton kernel JIT compilation during inference: bitwise_not_func_kernel_rank_1. This causes a latency spike; consider extending warmup to cover this shape/config.
+(Worker_TP0 pid=2065154) WARNING 11-06 23:44:13 [jit_monitor.py:140] Triton kernel JIT compilation during inference: reduce_then_scan_root_scan_kernel_row. This causes a latency spike; consider extending warmup to cover this shape/config.
+(Worker_TP0 pid=2065154) WARNING 11-06 23:44:13 [jit_monitor.py:140] Triton kernel JIT compilation during inference: nonzero_kernel. This causes a latency spike; consider extending warmup to cover this shape/config.
+(Worker_TP0 pid=2065154) WARNING 11-06 23:44:13 [jit_monitor.py:140] Triton kernel JIT compilation during inference: _index_put_jit_function. This causes a latency spike; consider extending warmup to cover this shape/config.
+(Worker_TP0 pid=2065154) WARNING 11-06 23:44:13 [jit_monitor.py:140] Triton kernel JIT compilation during inference: mul_generic_nd_kernel. This causes a latency spike; consider extending warmup to cover this shape/config.
+(Worker_TP0 pid=2065154) WARNING 11-06 23:44:13 [jit_monitor.py:140] Triton kernel JIT compilation during inference: _to_copy_func_kernel_rank_3. This causes a latency spike; consider extending warmup to cover this shape/config.
+/workspace/envs/iluvatar-gate-gems55-20261106/lib/python3.12/site-packages/flag_gems/utils/libentry.py:413: RuntimeWarning: active Triton backend does not provide a registered replay benchmarker; falling back to event timing
+  resolved_benchmark = resolve_benchmarker(
+/workspace/envs/iluvatar-gate-gems55-20261106/lib/python3.12/site-packages/flag_gems/utils/libentry.py:413: RuntimeWarning: active Triton backend does not provide a registered replay benchmarker; falling back to event timing
+  resolved_benchmark = resolve_benchmarker(
+/workspace/envs/iluvatar-gate-gems55-20261106/lib/python3.12/site-packages/flag_gems/utils/libentry.py:413: RuntimeWarning: active Triton backend does not provide a registered replay benchmarker; falling back to event timing
+  resolved_benchmark = resolve_benchmarker(
+(Worker_TP0 pid=2065154) WARNING 11-06 23:44:13 [jit_monitor.py:140] Triton kernel JIT compilation during inference: _copy_kernel_kernel_rank_2. This causes a latency spike; consider extending warmup to cover this shape/config.
+/workspace/envs/iluvatar-gate-gems55-20261106/lib/python3.12/site-packages/flag_gems/utils/libentry.py:413: RuntimeWarning: active Triton backend does not provide a registered replay benchmarker; falling back to event timing
+  resolved_benchmark = resolve_benchmarker(
+(Worker_TP0 pid=2065154) WARNING 11-06 23:44:13 [jit_monitor.py:140] Triton kernel JIT compilation during inference: _index_linearized_jit_function. This causes a latency spike; consider extending warmup to cover this shape/config.
+(Worker_TP0 pid=2065154) WARNING 11-06 23:44:13 [jit_monitor.py:140] Triton kernel JIT compilation during inference: kernel_unified_attention. This causes a latency spike; consider extending warmup to cover this shape/config.
+(APIServer pid=2064811) INFO 11-06 23:44:17 [loggers.py:335] Engine 000: Avg prompt throughput: 5.4 tokens/s, Avg generation throughput: 0.5 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.4%, Prefix cache hit rate: 0.0%
+(APIServer pid=2064811) INFO 11-06 23:44:27 [loggers.py:335] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 1.8 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.4%, Prefix cache hit rate: 0.0%
+(APIServer pid=2064811) INFO 11-06 23:44:37 [loggers.py:335] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 1.8 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.4%, Prefix cache hit rate: 0.0%
+(APIServer pid=2064811) INFO 11-06 23:44:47 [loggers.py:335] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 1.7 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.4%, Prefix cache hit rate: 0.0%
+(APIServer pid=2064811) INFO 11-06 23:44:57 [loggers.py:335] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 1.8 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.4%, Prefix cache hit rate: 0.0%
+(APIServer pid=2064811) INFO 11-06 23:45:07 [loggers.py:335] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 1.8 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.4%, Prefix cache hit rate: 0.0%
+(APIServer pid=2064811) INFO 11-06 23:45:17 [loggers.py:335] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 1.8 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.4%, Prefix cache hit rate: 0.0%
+(APIServer pid=2064811) INFO 11-06 23:45:27 [loggers.py:335] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 1.8 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.4%, Prefix cache hit rate: 0.0%
+(APIServer pid=2064811) INFO 11-06 23:45:37 [loggers.py:335] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 1.7 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.4%, Prefix cache hit rate: 0.0%
+(APIServer pid=2064811) INFO 11-06 23:45:47 [loggers.py:335] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 1.8 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.4%, Prefix cache hit rate: 0.0%
+(APIServer pid=2064811) INFO 11-06 23:45:57 [loggers.py:335] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 1.8 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.4%, Prefix cache hit rate: 0.0%
+(APIServer pid=2064811) INFO 11-06 23:46:07 [loggers.py:335] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 1.8 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.4%, Prefix cache hit rate: 0.0%
+(APIServer pid=2064811) INFO 11-06 23:46:17 [loggers.py:335] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 1.8 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.4%, Prefix cache hit rate: 0.0%
+(APIServer pid=2064811) INFO 11-06 23:46:27 [loggers.py:335] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 1.8 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.4%, Prefix cache hit rate: 0.0%
+(APIServer pid=2064811) INFO 11-06 23:46:37 [loggers.py:335] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 1.8 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.4%, Prefix cache hit rate: 0.0%
+(APIServer pid=2064811) INFO 11-06 23:46:47 [loggers.py:335] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 1.7 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.4%, Prefix cache hit rate: 0.0%
+(APIServer pid=2064811) INFO 11-06 23:46:57 [loggers.py:335] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 1.8 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.4%, Prefix cache hit rate: 0.0%
+(APIServer pid=2064811) INFO 11-06 23:47:07 [loggers.py:335] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 1.8 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.4%, Prefix cache hit rate: 0.0%
+(APIServer pid=2064811) INFO 11-06 23:47:17 [loggers.py:335] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 1.8 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.4%, Prefix cache hit rate: 0.0%
+INFO:     127.0.0.1:47324 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(Worker_TP0 pid=2065154) WARNING 11-06 23:47:18 [jit_monitor.py:140] Triton kernel JIT compilation during inference: sub_func_kernel_rank_1. This causes a latency spike; consider extending warmup to cover this shape/config.
+/workspace/envs/iluvatar-gate-gems55-20261106/lib/python3.12/site-packages/flag_gems/utils/libentry.py:413: RuntimeWarning: active Triton backend does not provide a registered replay benchmarker; falling back to event timing
+  resolved_benchmark = resolve_benchmarker(
+/workspace/envs/iluvatar-gate-gems55-20261106/lib/python3.12/site-packages/flag_gems/utils/libentry.py:413: RuntimeWarning: active Triton backend does not provide a registered replay benchmarker; falling back to event timing
+  resolved_benchmark = resolve_benchmarker(
+/workspace/envs/iluvatar-gate-gems55-20261106/lib/python3.12/site-packages/flag_gems/utils/libentry.py:413: RuntimeWarning: active Triton backend does not provide a registered replay benchmarker; falling back to event timing
+  resolved_benchmark = resolve_benchmarker(
+/workspace/envs/iluvatar-gate-gems55-20261106/lib/python3.12/site-packages/flag_gems/utils/libentry.py:413: RuntimeWarning: active Triton backend does not provide a registered replay benchmarker; falling back to event timing
+  resolved_benchmark = resolve_benchmarker(
+(Worker_TP0 pid=2065154) WARNING 11-06 23:47:21 [jit_monitor.py:140] Triton kernel JIT compilation during inference: reduce_segments. This causes a latency spike; consider extending warmup to cover this shape/config.
+INFO:     127.0.0.1:46614 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46624 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46636 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46672 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46600 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46658 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46660 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(Worker_TP0 pid=2065154) WARNING 11-06 23:47:24 [jit_monitor.py:140] Triton kernel JIT compilation during inference: _copy_kernel_kernel_rank_3. This causes a latency spike; consider extending warmup to cover this shape/config.
+INFO:     127.0.0.1:46652 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=2064811) INFO 11-06 23:47:27 [loggers.py:335] Engine 000: Avg prompt throughput: 20.3 tokens/s, Avg generation throughput: 2.2 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.0%, Prefix cache hit rate: 0.0%
+(Worker_TP0 pid=2065154) WARNING 11-06 23:47:27 [jit_monitor.py:140] Triton kernel JIT compilation during inference: _to_copy_func_kernel_rank_1. This causes a latency spike; consider extending warmup to cover this shape/config.
+(Worker_TP0 pid=2065154) WARNING 11-06 23:47:27 [jit_monitor.py:140] Triton kernel JIT compilation during inference: add_func_kernel_rank_3. This causes a latency spike; consider extending warmup to cover this shape/config.
+(Worker_TP0 pid=2065154) WARNING 11-06 23:47:27 [jit_monitor.py:140] Triton kernel JIT compilation during inference: gelu_tanh_kernel_rank_1. This causes a latency spike; consider extending warmup to cover this shape/config.
+/workspace/envs/iluvatar-gate-gems55-20261106/lib/python3.12/site-packages/flag_gems/utils/libentry.py:413: RuntimeWarning: active Triton backend does not provide a registered replay benchmarker; falling back to event timing
+  resolved_benchmark = resolve_benchmarker(
+/workspace/envs/iluvatar-gate-gems55-20261106/lib/python3.12/site-packages/flag_gems/utils/libentry.py:413: RuntimeWarning: active Triton backend does not provide a registered replay benchmarker; falling back to event timing
+  resolved_benchmark = resolve_benchmarker(
+/workspace/envs/iluvatar-gate-gems55-20261106/lib/python3.12/site-packages/flag_gems/utils/libentry.py:413: RuntimeWarning: active Triton backend does not provide a registered replay benchmarker; falling back to event timing
+  resolved_benchmark = resolve_benchmarker(
+/workspace/envs/iluvatar-gate-gems55-20261106/lib/python3.12/site-packages/flag_gems/utils/libentry.py:413: RuntimeWarning: active Triton backend does not provide a registered replay benchmarker; falling back to event timing
+  resolved_benchmark = resolve_benchmarker(
+/workspace/envs/iluvatar-gate-gems55-20261106/lib/python3.12/site-packages/flag_gems/utils/libentry.py:413: RuntimeWarning: active Triton backend does not provide a registered replay benchmarker; falling back to event timing
+  resolved_benchmark = resolve_benchmarker(
+/workspace/envs/iluvatar-gate-gems55-20261106/lib/python3.12/site-packages/flag_gems/utils/libentry.py:413: RuntimeWarning: active Triton backend does not provide a registered replay benchmarker; falling back to event timing
+  resolved_benchmark = resolve_benchmarker(
+/workspace/envs/iluvatar-gate-gems55-20261106/lib/python3.12/site-packages/flag_gems/utils/libentry.py:413: RuntimeWarning: active Triton backend does not provide a registered replay benchmarker; falling back to event timing
+  resolved_benchmark = resolve_benchmarker(
+/workspace/envs/iluvatar-gate-gems55-20261106/lib/python3.12/site-packages/flag_gems/utils/libentry.py:413: RuntimeWarning: active Triton backend does not provide a registered replay benchmarker; falling back to event timing
+  resolved_benchmark = resolve_benchmarker(
+INFO:     127.0.0.1:57384 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(Worker_TP0 pid=2065154) WARNING 11-06 23:47:33 [jit_monitor.py:140] Triton kernel JIT compilation during inference: arange_func. This causes a latency spike; consider extending warmup to cover this shape/config.
+(Worker_TP0 pid=2065154) WARNING 11-06 23:47:33 [jit_monitor.py:140] Triton kernel JIT compilation during inference: cat_copy_func_kernel_4. This causes a latency spike; consider extending warmup to cover this shape/config.
+/workspace/envs/iluvatar-gate-gems55-20261106/lib/python3.12/site-packages/flag_gems/utils/libentry.py:413: RuntimeWarning: active Triton backend does not provide a registered replay benchmarker; falling back to event timing
+  resolved_benchmark = resolve_benchmarker(
+/workspace/envs/iluvatar-gate-gems55-20261106/lib/python3.12/site-packages/flag_gems/utils/libentry.py:413: RuntimeWarning: active Triton backend does not provide a registered replay benchmarker; falling back to event timing
+  resolved_benchmark = resolve_benchmarker(
+/workspace/envs/iluvatar-gate-gems55-20261106/lib/python3.12/site-packages/flag_gems/utils/libentry.py:413: RuntimeWarning: active Triton backend does not provide a registered replay benchmarker; falling back to event timing
+  resolved_benchmark = resolve_benchmarker(
+/workspace/envs/iluvatar-gate-gems55-20261106/lib/python3.12/site-packages/flag_gems/utils/libentry.py:413: RuntimeWarning: active Triton backend does not provide a registered replay benchmarker; falling back to event timing
+  resolved_benchmark = resolve_benchmarker(
+(APIServer pid=2064811) INFO 11-06 23:47:37 [loggers.py:335] Engine 000: Avg prompt throughput: 106.2 tokens/s, Avg generation throughput: 0.7 tokens/s, Running: 7 reqs, Waiting: 1 reqs, GPU KV cache usage: 2.7%, Prefix cache hit rate: 0.0%, MM cache hit rate: 11.1%
+(Worker_TP0 pid=2065154) WARNING 11-06 23:47:37 [jit_monitor.py:140] Triton kernel JIT compilation during inference: sub_func_tensor_scalar_kernel_rank_1. This causes a latency spike; consider extending warmup to cover this shape/config.
+/workspace/envs/iluvatar-gate-gems55-20261106/lib/python3.12/site-packages/flag_gems/utils/libentry.py:413: RuntimeWarning: active Triton backend does not provide a registered replay benchmarker; falling back to event timing
+  resolved_benchmark = resolve_benchmarker(
+/workspace/envs/iluvatar-gate-gems55-20261106/lib/python3.12/site-packages/flag_gems/utils/libentry.py:413: RuntimeWarning: active Triton backend does not provide a registered replay benchmarker; falling back to event timing
+  resolved_benchmark = resolve_benchmarker(
+/workspace/envs/iluvatar-gate-gems55-20261106/lib/python3.12/site-packages/flag_gems/utils/libentry.py:413: RuntimeWarning: active Triton backend does not provide a registered replay benchmarker; falling back to event timing
+  resolved_benchmark = resolve_benchmarker(
+/workspace/envs/iluvatar-gate-gems55-20261106/lib/python3.12/site-packages/flag_gems/utils/libentry.py:413: RuntimeWarning: active Triton backend does not provide a registered replay benchmarker; falling back to event timing
+  resolved_benchmark = resolve_benchmarker(
+INFO:     127.0.0.1:55022 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55044 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55046 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55058 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55028 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55020 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=2064811) INFO 11-06 23:47:47 [loggers.py:335] Engine 000: Avg prompt throughput: 239.4 tokens/s, Avg generation throughput: 3.0 tokens/s, Running: 2 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.8%, Prefix cache hit rate: 0.0%, MM cache hit rate: 11.1%
+INFO:     127.0.0.1:55006 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54992 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40638 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40642 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40644 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40656 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40686 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=2064811) INFO 11-06 23:47:57 [loggers.py:335] Engine 000: Avg prompt throughput: 87.9 tokens/s, Avg generation throughput: 1.9 tokens/s, Running: 3 reqs, Waiting: 0 reqs, GPU KV cache usage: 1.2%, Prefix cache hit rate: 0.0%, MM cache hit rate: 38.5%
+INFO:     127.0.0.1:40684 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40668 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40672 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(EngineCore pid=2064977) INFO 11-06 23:48:02 [core.py:1454] [shutdown] EngineCore: trigger received signal=SIGTERM
+(APIServer pid=2064811) INFO 11-06 23:48:02 [launcher.py:254] [shutdown] API server: shutdown triggered
+(APIServer pid=2064811) INFO 11-06 23:48:02 [launcher.py:270] [shutdown] API server: stopping engine client mode=abort timeout=0s
+(APIServer pid=2064811) INFO 11-06 23:48:02 [core_client.py:770] [shutdown] MPClient: start timeout=0s
+(APIServer pid=2064811) INFO 11-06 23:48:02 [core_client.py:772] [shutdown] MPClient: stopping engine manager
+(APIServer pid=2064811) INFO 11-06 23:48:02 [utils.py:628] [shutdown] Process manager: send sigterm to process EngineCore
+(EngineCore pid=2064977) INFO 11-06 23:48:02 [core.py:1454] [shutdown] EngineCore: trigger received signal=SIGTERM
+(APIServer pid=2064811) WARNING 11-06 23:48:02 [utils.py:648] [shutdown] Process manager: force killing remaining processes count=1
+(APIServer pid=2064811) WARNING 11-06 23:48:02 [utils.py:653] [shutdown] Process manager: force killing remaining process EngineCore pid 2064977
+(APIServer pid=2064811) WARNING 11-06 23:48:02 [system_utils.py:225] [shutdown] force killing sub process VLLM::Worker_TP0 pid 2065154
+(APIServer pid=2064811) WARNING 11-06 23:48:02 [system_utils.py:225] [shutdown] force killing sub process VLLM::Worker_TP1 pid 2065155
+(APIServer pid=2064811) WARNING 11-06 23:48:02 [system_utils.py:225] [shutdown] force killing sub process VLLM::Worker_TP2 pid 2065156
+(APIServer pid=2064811) WARNING 11-06 23:48:02 [system_utils.py:225] [shutdown] force killing sub process VLLM::Worker_TP3 pid 2065157
+(APIServer pid=2064811) INFO 11-06 23:48:02 [core_client.py:774] [shutdown] MPClient: engine manager stopped
+(APIServer pid=2064811) INFO 11-06 23:48:02 [core_client.py:775] [shutdown] MPClient: cleaning up background resources
+(APIServer pid=2064811) INFO 11-06 23:48:02 [core_client.py:777] [shutdown] MPClient: complete
+(APIServer pid=2064811) INFO 11-06 23:48:02 [launcher.py:279] [shutdown] API server: engine client stopped
+(APIServer pid=2064811) INFO 11-06 23:48:02 [launcher.py:282] [shutdown] API server: signalling HTTP server shutdown
+(APIServer pid=2064811) INFO 11-06 23:48:02 [launcher.py:304] [shutdown] API server: shutting down FastAPI HTTP server
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+/usr/local/lib/python3.12/asyncio/runners.py:118: ResourceWarning: Unclosed context <zmq.Context() at 0x7d9d3e5ca210>
+  return self._loop.run_until_complete(task)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/usr/local/lib/python3.12/multiprocessing/resource_tracker.py:279: UserWarning: resource_tracker: There appear to be 4304 leaked semaphore objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '
+/usr/local/lib/python3.12/multiprocessing/resource_tracker.py:279: UserWarning: resource_tracker: There appear to be 6 leaked shared_memory objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '

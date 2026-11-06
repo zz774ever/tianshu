@@ -1,0 +1,11 @@
+vllm 0.32.0+empty requires oss-harmony, which is not installed.
+xgrammar 0.2.3 requires triton, which is not installed.
+vllm 0.32.0+empty has requirement compressed-tensors==0.17.0, but you have compressed-tensors 0.15.0.1.
+vllm 0.32.0+empty has requirement fastapi[standard]<0.137.0,>=0.133.0, but you have fastapi 0.139.2.
+vllm 0.32.0+empty has requirement huggingface_hub>=1.31.0, but you have huggingface-hub 1.24.0.
+vllm 0.32.0+empty has requirement mcp<3.0.0,>=2.0.0, but you have mcp 1.28.1.
+vllm 0.32.0+empty has requirement mistral_common[image]>=1.11.6, but you have mistral-common 1.11.3.
+vllm 0.32.0+empty has requirement opencv-python-headless>=4.13.0, but you have opencv-python-headless 4.11.0.86.
+vllm 0.32.0+empty has requirement tokenizers>=0.23.2, but you have tokenizers 0.22.2.
+vllm 0.32.0+empty has requirement transformers<5.20.0,>=5.16.1, but you have transformers 5.14.1.
+vllm 0.32.0+empty has requirement xgrammar==0.2.8; platform_machine == "x86_64" or platform_machine == "aarch64" or platform_machine == "arm64" or platform_machine == "s390x" or platform_machine == "ppc64le", but you have xgrammar 0.2.3.
