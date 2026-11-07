@@ -1,0 +1,18 @@
+/usr/local/lib/python3.12/site-packages/flaggems_vllm/ops/FLA/parallel_nsa.py:39: ImportWarning: Flash Attention is not installed. Please install it via `pip install flash-attn --no-build-isolation`
+  warnings.warn(
+{"rows": 1, "phase": "eager", "max_abs": 0.0009765625, "mean_abs": 9.55536961555481e-07}
+{"rows": 1, "phase": "replay-0", "max_abs": 0.0, "mean_abs": 0.0}
+{"rows": 1, "phase": "replay-1", "max_abs": 0.0, "mean_abs": 0.0}
+{"rows": 1, "phase": "replay-2", "max_abs": 1.52587890625e-05, "mean_abs": 7.450580596923828e-09}
+{"rows": 2, "phase": "eager", "max_abs": 0.0, "mean_abs": 0.0}
+{"rows": 2, "phase": "replay-0", "max_abs": 4.76837158203125e-07, "mean_abs": 1.1641532182693481e-10}
+{"rows": 2, "phase": "replay-1", "max_abs": 0.0, "mean_abs": 0.0}
+{"rows": 2, "phase": "replay-2", "max_abs": 1.1920928955078125e-07, "mean_abs": 2.9103830456733704e-11}
+{"rows": 4, "phase": "eager", "max_abs": 0.000244140625, "mean_abs": 2.9802322387695312e-08}
+{"rows": 4, "phase": "replay-0", "max_abs": 0.001953125, "mean_abs": 2.384185791015625e-07}
+{"rows": 4, "phase": "replay-1", "max_abs": 0.001953125, "mean_abs": 2.4121254682540894e-07}
+{"rows": 4, "phase": "replay-2", "max_abs": 0.0, "mean_abs": 0.0}
+{"rows": 8, "phase": "eager", "max_abs": 6.103515625e-05, "mean_abs": 3.725290298461914e-09}
+{"rows": 8, "phase": "replay-0", "max_abs": 0.0001220703125, "mean_abs": 1.0659277904778719e-08}
+{"rows": 8, "phase": "replay-1", "max_abs": 0.001953125, "mean_abs": 2.4097971618175507e-07}
+{"rows": 8, "phase": "replay-2", "max_abs": 0.00390625, "mean_abs": 3.6141136661171913e-07}

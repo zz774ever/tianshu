@@ -1,0 +1,50 @@
+{"round": "single-before", "index": 0, "text": "42", "strict_number": true}
+{"round": "batch-0", "index": 0, "text": "42", "strict_number": true}
+{"round": "batch-0", "index": 1, "text": "Paris", "strict_number": null}
+{"round": "batch-0", "index": 2, "text": "Cold", "strict_number": null}
+{"round": "batch-0", "index": 3, "text": "7", "strict_number": true}
+{"round": "batch-0", "index": 7, "text": " Green", "strict_number": null}
+{"round": "batch-0", "index": 6, "text": "30", "strict_number": true}
+{"round": "batch-0", "index": 5, "text": "Pacific Ocean", "strict_number": null}
+{"round": "batch-0", "index": 4, "text": "H\u2082O", "strict_number": null}
+{"round": "batch-1", "index": 0, "text": "42", "strict_number": true}
+{"round": "batch-1", "index": 1, "text": "Paris", "strict_number": null}
+{"round": "batch-1", "index": 7, "text": " Green", "strict_number": null}
+{"round": "batch-1", "index": 3, "text": "7", "strict_number": true}
+{"round": "batch-1", "index": 2, "text": "Cold", "strict_number": null}
+{"round": "batch-1", "index": 6, "text": "30", "strict_number": true}
+{"round": "batch-1", "index": 5, "text": "Pacific Ocean", "strict_number": null}
+{"round": "batch-1", "index": 4, "text": "H\u2082O", "strict_number": null}
+{"round": "batch-2", "index": 0, "text": "42", "strict_number": true}
+{"round": "batch-2", "index": 1, "text": "Paris", "strict_number": null}
+{"round": "batch-2", "index": 7, "text": " Green", "strict_number": null}
+{"round": "batch-2", "index": 3, "text": "7", "strict_number": true}
+{"round": "batch-2", "index": 2, "text": "Cold", "strict_number": null}
+{"round": "batch-2", "index": 6, "text": "30", "strict_number": true}
+{"round": "batch-2", "index": 5, "text": "Pacific Ocean", "strict_number": null}
+{"round": "batch-2", "index": 4, "text": "H\u2082O", "strict_number": null}
+{"round": "reversed", "index": 7, "text": " Green", "strict_number": null}
+{"round": "reversed", "index": 1, "text": "Paris", "strict_number": null}
+{"round": "reversed", "index": 3, "text": "7", "strict_number": true}
+{"round": "reversed", "index": 2, "text": "Cold", "strict_number": null}
+{"round": "reversed", "index": 6, "text": "30", "strict_number": true}
+{"round": "reversed", "index": 0, "text": "42", "strict_number": true}
+{"round": "reversed", "index": 5, "text": "Pacific Ocean", "strict_number": null}
+{"round": "reversed", "index": 4, "text": "H\u2082O", "strict_number": null}
+{"round": "arithmetic-last", "index": 1, "text": "Paris", "strict_number": null}
+{"round": "arithmetic-last", "index": 2, "text": "Cold", "strict_number": null}
+{"round": "arithmetic-last", "index": 7, "text": " Green", "strict_number": null}
+{"round": "arithmetic-last", "index": 3, "text": "7", "strict_number": true}
+{"round": "arithmetic-last", "index": 0, "text": "42", "strict_number": true}
+{"round": "arithmetic-last", "index": 5, "text": "Pacific Ocean", "strict_number": null}
+{"round": "arithmetic-last", "index": 6, "text": "30", "strict_number": true}
+{"round": "arithmetic-last", "index": 4, "text": "H\u2082O", "strict_number": null}
+{"round": "identical-arithmetic", "index": 0, "text": "42", "strict_number": true}
+{"round": "identical-arithmetic", "index": 0, "text": "42", "strict_number": true}
+{"round": "identical-arithmetic", "index": 0, "text": "42", "strict_number": true}
+{"round": "identical-arithmetic", "index": 0, "text": "42", "strict_number": true}
+{"round": "identical-arithmetic", "index": 0, "text": "42", "strict_number": true}
+{"round": "identical-arithmetic", "index": 0, "text": "42", "strict_number": true}
+{"round": "identical-arithmetic", "index": 0, "text": "42", "strict_number": true}
+{"round": "identical-arithmetic", "index": 0, "text": "42", "strict_number": true}
+{"round": "single-after", "index": 0, "text": "42", "strict_number": true}

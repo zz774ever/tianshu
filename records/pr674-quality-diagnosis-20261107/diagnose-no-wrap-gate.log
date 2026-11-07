@@ -1,0 +1,51 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.11, pytest-8.4.1, pluggy-1.6.0 -- /usr/local/bin/python
+metadata: {'Python': '3.12.11', 'Platform': 'Linux-5.4.0-148-generic-x86_64-with-glibc2.39', 'Packages': {'pytest': '8.4.1', 'pluggy': '1.6.0'}, 'Plugins': {'timeout': '2.4.0', 'anyio': '4.14.2', 'json-report': '1.5.0', 'metadata': '3.1.1', 'cov': '7.1.0'}}
+rootdir: /opt/vllm-plugin-FL
+configfile: pyproject.toml
+plugins: timeout-2.4.0, anyio-4.14.2, json-report-1.5.0, metadata-3.1.1, cov-7.1.0
+collecting ... collected 2 items
+
+test_text.py::test_text_single PASSED
+test_text.py::test_text_concurrent_8 Adaptation gate failed
+  Scenario: text_concurrent_8
+  Model: qwen-gate
+  Endpoint: http://127.0.0.1:8145/v1
+  Result: /results/quality-diagnosis/no-wrap-gate/Qwen3.6-35B-A3B/port-8145/text_concurrent_8.json
+  Failed requests: 1/8
+    - text-01: failed checks: expected_semantics, expected_order; output: '4inda'
+FAILED
+
+=================================== FAILURES ===================================
+____________________________ test_text_concurrent_8 ____________________________
+test_text.py:11: in test_text_concurrent_8
+    run_case("text_concurrent_8")
+case_utils.py:406: in run_case
+    raise AssertionError(f"Quality gate failed; inspect {destination}")
+E   AssertionError: Quality gate failed; inspect /results/quality-diagnosis/no-wrap-gate/Qwen3.6-35B-A3B/port-8145/text_concurrent_8.json
+=========================== short test summary info ============================
+FAILED test_text.py::test_text_concurrent_8 - AssertionError: Quality gate failed; inspect /results/quality-diagnosis/no-wrap-gate/Qwen3.6-35B-A3B/port-8145/text_concurrent_8.json
+========================= 1 failed, 1 passed in 5.86s ==========================
+============================= test session starts ==============================
+platform linux -- Python 3.12.11, pytest-8.4.1, pluggy-1.6.0 -- /usr/local/bin/python
+metadata: {'Python': '3.12.11', 'Platform': 'Linux-5.4.0-148-generic-x86_64-with-glibc2.39', 'Packages': {'pytest': '8.4.1', 'pluggy': '1.6.0'}, 'Plugins': {'timeout': '2.4.0', 'anyio': '4.14.2', 'json-report': '1.5.0', 'metadata': '3.1.1', 'cov': '7.1.0'}}
+rootdir: /opt/vllm-plugin-FL
+configfile: pyproject.toml
+plugins: timeout-2.4.0, anyio-4.14.2, json-report-1.5.0, metadata-3.1.1, cov-7.1.0
+collecting ... collected 2 items
+
+test_image.py::test_image_single PASSED
+test_image.py::test_image_concurrent_8 PASSED
+
+============================== 2 passed in 7.83s ===============================
+============================= test session starts ==============================
+platform linux -- Python 3.12.11, pytest-8.4.1, pluggy-1.6.0 -- /usr/local/bin/python
+metadata: {'Python': '3.12.11', 'Platform': 'Linux-5.4.0-148-generic-x86_64-with-glibc2.39', 'Packages': {'pytest': '8.4.1', 'pluggy': '1.6.0'}, 'Plugins': {'timeout': '2.4.0', 'anyio': '4.14.2', 'json-report': '1.5.0', 'metadata': '3.1.1', 'cov': '7.1.0'}}
+rootdir: /opt/vllm-plugin-FL
+configfile: pyproject.toml
+plugins: timeout-2.4.0, anyio-4.14.2, json-report-1.5.0, metadata-3.1.1, cov-7.1.0
+collecting ... collected 1 item
+
+test_mix_text_image.py::test_mix_text_image_concurrent_8 PASSED
+
+============================== 1 passed in 4.87s ===============================

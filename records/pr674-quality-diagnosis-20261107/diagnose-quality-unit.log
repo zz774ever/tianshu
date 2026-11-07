@@ -1,0 +1,11 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.11, pytest-8.4.1, pluggy-1.6.0
+rootdir: /workspace/pr674-quality-diagnosis-20261107
+configfile: pyproject.toml
+plugins: timeout-2.4.0, json-report-1.5.0, metadata-3.1.1, cov-7.1.0, anyio-4.14.2
+collected 22 items
+
+tests/unit_tests/test_adaptation_gate_quality.py ...........             [ 50%]
+tests/unit_tests/test_iluvatar_compile_passes.py ...........             [100%]
+
+============================== 22 passed in 1.09s ==============================

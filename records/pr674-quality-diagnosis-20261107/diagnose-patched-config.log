@@ -1,0 +1,25 @@
+/usr/local/lib/python3.12/site-packages/flag_gems/utils/libentry.py:730: DeprecationWarning: use_cuda_graph is deprecated; use benchmark_mode='replay' or benchmark_mode='event'
+  super().__init__(*args, **kwargs)
+/usr/local/lib/python3.12/site-packages/flag_gems/utils/libentry.py:413: RuntimeWarning: active Triton backend does not provide a registered replay benchmarker; falling back to event timing
+  resolved_benchmark = resolve_benchmarker(
+[Note] No specialized common operators were found for the iluvatar, generic common operators will be used by default.
+/usr/local/lib/python3.12/site-packages/torch/jit/_script.py:362: DeprecationWarning: `torch.jit.script_method` is deprecated. Please switch to `torch.compile` or `torch.export`.
+  warnings.warn(
+Failed to import from vllm._C: ModuleNotFoundError("No module named 'vllm._C'")
+[2026-11-07 10:18:46] [INFO] [vllm_fl.dispatch.backends.vendor.iluvatar.iluvatar] patch_sampler_compile_for_iluvatar: unwrapped topk_topp_sampler.compiled_random_sample
+[2026-11-07 10:18:46] [INFO] [vllm_fl.dispatch.backends.vendor.iluvatar.iluvatar] patch_sampler_compile_for_iluvatar: unwrapped logprobs.batched_count_greater_than
+[2026-11-07 10:18:46] [INFO] [vllm_fl.dispatch.backends.vendor.iluvatar.iluvatar] patch_torch_inductor_for_iluvatar: backend '['iluvatar']' already supports target='cuda', no GPUTarget remap needed.
+(MainProcess pid=63637) WARNING 11-07 10:18:46 [interface.py:1457] Unknown vLLM environment variable detected: VLLM_FL_FLAGOS_BLACKLIST_APPEND
+(MainProcess pid=63637) INFO 11-07 10:19:03 [model.py:733] Resolved architecture: Qwen3_5MoeForConditionalGeneration
+(MainProcess pid=63637) INFO 11-07 10:19:03 [model.py:2152] Using max model len 32768
+(MainProcess pid=63637) INFO 11-07 10:19:04 [scheduler.py:307] Chunked prefill is enabled with max_num_batched_tokens=2048.
+(MainProcess pid=63637) INFO 11-07 10:19:04 [config.py:688] Mamba cache mode is set to 'align' for Qwen3_5MoeForConditionalGeneration by default when prefix caching is enabled
+(MainProcess pid=63637) INFO 11-07 10:19:04 [kernel.py:467] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native'], gelu_and_mul_sparse=['native'])
+Disabling Inductor buffer reuse for Iluvatar Qwen3.5 MoE full graphs after output corruption; compilation and graph capture remain enabled.
+{"model": "Qwen3.6-35B-A3B", "compilation_mode": "VLLM_COMPILE", "cudagraph_mode": "FULL_AND_PIECEWISE", "capture_sizes": [1, 2, 4, 8, 16, 32], "ir_enable_torch_wrap": true, "inductor_compile_config": {"enable_auto_functionalized_v2": false, "size_asserts": false, "alignment_asserts": false, "scalar_asserts": false, "combo_kernels": true, "benchmark_combo_kernel": true, "allow_buffer_reuse": false, "inplace_buffers": false}, "passed": true}
+(MainProcess pid=63637) WARNING 11-07 10:19:04 [interface.py:1457] Unknown vLLM environment variable detected: VLLM_FL_FLAGOS_BLACKLIST_APPEND
+(MainProcess pid=63637) INFO 11-07 10:19:21 [model.py:733] Resolved architecture: Qwen3_5ForConditionalGeneration
+(MainProcess pid=63637) INFO 11-07 10:19:21 [model.py:2152] Using max model len 32768
+(MainProcess pid=63637) INFO 11-07 10:19:22 [config.py:688] Mamba cache mode is set to 'align' for Qwen3_5ForConditionalGeneration by default when prefix caching is enabled
+(MainProcess pid=63637) INFO 11-07 10:19:22 [kernel.py:467] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native'], gelu_and_mul_sparse=['native'])
+{"model": "Qwen3.6-27B", "compilation_mode": "VLLM_COMPILE", "cudagraph_mode": "FULL_AND_PIECEWISE", "capture_sizes": [1, 2, 4, 8, 16, 32], "ir_enable_torch_wrap": true, "inductor_compile_config": {"enable_auto_functionalized_v2": false, "size_asserts": false, "alignment_asserts": false, "scalar_asserts": false, "combo_kernels": true, "benchmark_combo_kernel": true}, "passed": true}

@@ -1,0 +1,6063 @@
+[
+  {
+    "round": "single-before",
+    "index": 0,
+    "prompt": "Compute 19 + 23. Reply with the number only.",
+    "text": "42",
+    "checks": {
+      "non_empty": true,
+      "minimum_length": true,
+      "expected_semantics": true,
+      "expected_order": true,
+      "no_bang_triplet": true,
+      "no_mojibake": true,
+      "no_control_characters": true,
+      "no_long_character_run": true,
+      "no_repeated_word_run": true,
+      "no_repeated_phrase": true
+    },
+    "strict_number": true,
+    "response": {
+      "id": "chatcmpl-999928c5205b6960",
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": {
+            "content": [
+              {
+                "token": "4",
+                "bytes": [
+                  52
+                ],
+                "logprob": -1.0609570381348021e-05,
+                "top_logprobs": [
+                  {
+                    "token": "4",
+                    "bytes": [
+                      52
+                    ],
+                    "logprob": -1.0609570381348021e-05
+                  },
+                  {
+                    "token": "5",
+                    "bytes": [
+                      53
+                    ],
+                    "logprob": -12.87501049041748
+                  },
+                  {
+                    "token": "1",
+                    "bytes": [
+                      49
+                    ],
+                    "logprob": -13.00001049041748
+                  },
+                  {
+                    "token": "2",
+                    "bytes": [
+                      50
+                    ],
+                    "logprob": -13.37501049041748
+                  },
+                  {
+                    "token": "3",
+                    "bytes": [
+                      51
+                    ],
+                    "logprob": -13.62501049041748
+                  }
+                ]
+              },
+              {
+                "token": "2",
+                "bytes": [
+                  50
+                ],
+                "logprob": -2.002696055569686e-05,
+                "top_logprobs": [
+                  {
+                    "token": "2",
+                    "bytes": [
+                      50
+                    ],
+                    "logprob": -2.002696055569686e-05
+                  },
+                  {
+                    "token": "0",
+                    "bytes": [
+                      48
+                    ],
+                    "logprob": -12.125020027160645
+                  },
+                  {
+                    "token": "3",
+                    "bytes": [
+                      51
+                    ],
+                    "logprob": -12.750020027160645
+                  },
+                  {
+                    "token": "6",
+                    "bytes": [
+                      54
+                    ],
+                    "logprob": -12.750020027160645
+                  },
+                  {
+                    "token": "<|im_end|>",
+                    "bytes": [
+                      60,
+                      124,
+                      105,
+                      109,
+                      95,
+                      101,
+                      110,
+                      100,
+                      124,
+                      62
+                    ],
+                    "logprob": -12.750020027160645
+                  }
+                ]
+              },
+              {
+                "token": "<|im_end|>",
+                "bytes": [
+                  60,
+                  124,
+                  105,
+                  109,
+                  95,
+                  101,
+                  110,
+                  100,
+                  124,
+                  62
+                ],
+                "logprob": -3.480850500636734e-05,
+                "top_logprobs": [
+                  {
+                    "token": "<|im_end|>",
+                    "bytes": [
+                      60,
+                      124,
+                      105,
+                      109,
+                      95,
+                      101,
+                      110,
+                      100,
+                      124,
+                      62
+                    ],
+                    "logprob": -3.480850500636734e-05
+                  },
+                  {
+                    "token": "<|endoftext|>",
+                    "bytes": [
+                      60,
+                      124,
+                      101,
+                      110,
+                      100,
+                      111,
+                      102,
+                      116,
+                      101,
+                      120,
+                      116,
+                      124,
+                      62
+                    ],
+                    "logprob": -10.37503433227539
+                  },
+                  {
+                    "token": "\n",
+                    "bytes": [
+                      10
+                    ],
+                    "logprob": -13.00003433227539
+                  },
+                  {
+                    "token": "0",
+                    "bytes": [
+                      48
+                    ],
+                    "logprob": -14.62503433227539
+                  },
+                  {
+                    "token": ".",
+                    "bytes": [
+                      46
+                    ],
+                    "logprob": -14.87503433227539
+                  }
+                ]
+              }
+            ],
+            "refusal": null
+          },
+          "message": {
+            "content": "42",
+            "refusal": null,
+            "role": "assistant",
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "tool_calls": null,
+            "reasoning": null
+          },
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "created": 1794016542,
+      "model": "qwen-gate",
+      "object": "chat.completion",
+      "moderation": null,
+      "service_tier": null,
+      "system_fingerprint": "vllm-0.32.0+empty-tp4-8fb7bd9e",
+      "usage": {
+        "completion_tokens": 3,
+        "prompt_tokens": 27,
+        "total_tokens": 30,
+        "completion_tokens_details": null,
+        "prompt_tokens_details": null
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null
+    }
+  },
+  {
+    "round": "batch-0",
+    "index": 1,
+    "prompt": "Name the capital of France. Reply with the city only.",
+    "text": "Paris",
+    "checks": {
+      "non_empty": true,
+      "minimum_length": true,
+      "expected_semantics": true,
+      "expected_order": true,
+      "no_bang_triplet": true,
+      "no_mojibake": true,
+      "no_control_characters": true,
+      "no_long_character_run": true,
+      "no_repeated_word_run": true,
+      "no_repeated_phrase": true
+    },
+    "strict_number": null,
+    "response": {
+      "id": "chatcmpl-a4a6821ef5faf7be",
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": {
+            "content": [
+              {
+                "token": "Paris",
+                "bytes": [
+                  80,
+                  97,
+                  114,
+                  105,
+                  115
+                ],
+                "logprob": -0.0002811751910485327,
+                "top_logprobs": [
+                  {
+                    "token": "Paris",
+                    "bytes": [
+                      80,
+                      97,
+                      114,
+                      105,
+                      115
+                    ],
+                    "logprob": -0.0002811751910485327
+                  },
+                  {
+                    "token": " Paris",
+                    "bytes": [
+                      32,
+                      80,
+                      97,
+                      114,
+                      105,
+                      115
+                    ],
+                    "logprob": -8.50028133392334
+                  },
+                  {
+                    "token": "Par",
+                    "bytes": [
+                      80,
+                      97,
+                      114
+                    ],
+                    "logprob": -10.00028133392334
+                  },
+                  {
+                    "token": "巴黎",
+                    "bytes": [
+                      229,
+                      183,
+                      180,
+                      233,
+                      187,
+                      142
+                    ],
+                    "logprob": -11.37528133392334
+                  },
+                  {
+                    "token": "The",
+                    "bytes": [
+                      84,
+                      104,
+                      101
+                    ],
+                    "logprob": -12.75028133392334
+                  }
+                ]
+              },
+              {
+                "token": "<|im_end|>",
+                "bytes": [
+                  60,
+                  124,
+                  105,
+                  109,
+                  95,
+                  101,
+                  110,
+                  100,
+                  124,
+                  62
+                ],
+                "logprob": -7.962863310240209e-05,
+                "top_logprobs": [
+                  {
+                    "token": "<|im_end|>",
+                    "bytes": [
+                      60,
+                      124,
+                      105,
+                      109,
+                      95,
+                      101,
+                      110,
+                      100,
+                      124,
+                      62
+                    ],
+                    "logprob": -7.962863310240209e-05
+                  },
+                  {
+                    "token": ".",
+                    "bytes": [
+                      46
+                    ],
+                    "logprob": -10.000079154968262
+                  },
+                  {
+                    "token": "\n",
+                    "bytes": [
+                      10
+                    ],
+                    "logprob": -10.500079154968262
+                  },
+                  {
+                    "token": "</",
+                    "bytes": [
+                      60,
+                      47
+                    ],
+                    "logprob": -13.875079154968262
+                  },
+                  {
+                    "token": "<|endoftext|>",
+                    "bytes": [
+                      60,
+                      124,
+                      101,
+                      110,
+                      100,
+                      111,
+                      102,
+                      116,
+                      101,
+                      120,
+                      116,
+                      124,
+                      62
+                    ],
+                    "logprob": -14.125079154968262
+                  }
+                ]
+              }
+            ],
+            "refusal": null
+          },
+          "message": {
+            "content": "Paris",
+            "refusal": null,
+            "role": "assistant",
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "tool_calls": null,
+            "reasoning": null
+          },
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "created": 1794016543,
+      "model": "qwen-gate",
+      "object": "chat.completion",
+      "moderation": null,
+      "service_tier": null,
+      "system_fingerprint": "vllm-0.32.0+empty-tp4-8fb7bd9e",
+      "usage": {
+        "completion_tokens": 2,
+        "prompt_tokens": 24,
+        "total_tokens": 26,
+        "completion_tokens_details": null,
+        "prompt_tokens_details": null
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null
+    }
+  },
+  {
+    "round": "batch-0",
+    "index": 0,
+    "prompt": "Compute 19 + 23. Reply with the number only.",
+    "text": "42",
+    "checks": {
+      "non_empty": true,
+      "minimum_length": true,
+      "expected_semantics": true,
+      "expected_order": true,
+      "no_bang_triplet": true,
+      "no_mojibake": true,
+      "no_control_characters": true,
+      "no_long_character_run": true,
+      "no_repeated_word_run": true,
+      "no_repeated_phrase": true
+    },
+    "strict_number": true,
+    "response": {
+      "id": "chatcmpl-a7dbb305cb3ef7b5",
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": {
+            "content": [
+              {
+                "token": "4",
+                "bytes": [
+                  52
+                ],
+                "logprob": -1.2874520507466514e-05,
+                "top_logprobs": [
+                  {
+                    "token": "4",
+                    "bytes": [
+                      52
+                    ],
+                    "logprob": -1.2874520507466514e-05
+                  },
+                  {
+                    "token": "5",
+                    "bytes": [
+                      53
+                    ],
+                    "logprob": -12.937512397766113
+                  },
+                  {
+                    "token": "2",
+                    "bytes": [
+                      50
+                    ],
+                    "logprob": -13.187512397766113
+                  },
+                  {
+                    "token": "1",
+                    "bytes": [
+                      49
+                    ],
+                    "logprob": -13.250012397766113
+                  },
+                  {
+                    "token": " ",
+                    "bytes": [
+                      32
+                    ],
+                    "logprob": -13.312512397766113
+                  }
+                ]
+              },
+              {
+                "token": "2",
+                "bytes": [
+                  50
+                ],
+                "logprob": -2.586808113846928e-05,
+                "top_logprobs": [
+                  {
+                    "token": "2",
+                    "bytes": [
+                      50
+                    ],
+                    "logprob": -2.586808113846928e-05
+                  },
+                  {
+                    "token": "3",
+                    "bytes": [
+                      51
+                    ],
+                    "logprob": -11.750025749206543
+                  },
+                  {
+                    "token": "0",
+                    "bytes": [
+                      48
+                    ],
+                    "logprob": -12.000025749206543
+                  },
+                  {
+                    "token": "6",
+                    "bytes": [
+                      54
+                    ],
+                    "logprob": -12.500025749206543
+                  },
+                  {
+                    "token": "1",
+                    "bytes": [
+                      49
+                    ],
+                    "logprob": -13.000025749206543
+                  }
+                ]
+              },
+              {
+                "token": "<|im_end|>",
+                "bytes": [
+                  60,
+                  124,
+                  105,
+                  109,
+                  95,
+                  101,
+                  110,
+                  100,
+                  124,
+                  62
+                ],
+                "logprob": -5.304672595229931e-05,
+                "top_logprobs": [
+                  {
+                    "token": "<|im_end|>",
+                    "bytes": [
+                      60,
+                      124,
+                      105,
+                      109,
+                      95,
+                      101,
+                      110,
+                      100,
+                      124,
+                      62
+                    ],
+                    "logprob": -5.304672595229931e-05
+                  },
+                  {
+                    "token": "<|endoftext|>",
+                    "bytes": [
+                      60,
+                      124,
+                      101,
+                      110,
+                      100,
+                      111,
+                      102,
+                      116,
+                      101,
+                      120,
+                      116,
+                      124,
+                      62
+                    ],
+                    "logprob": -10.000053405761719
+                  },
+                  {
+                    "token": "\n",
+                    "bytes": [
+                      10
+                    ],
+                    "logprob": -12.125053405761719
+                  },
+                  {
+                    "token": "0",
+                    "bytes": [
+                      48
+                    ],
+                    "logprob": -14.062553405761719
+                  },
+                  {
+                    "token": ".",
+                    "bytes": [
+                      46
+                    ],
+                    "logprob": -14.187553405761719
+                  }
+                ]
+              }
+            ],
+            "refusal": null
+          },
+          "message": {
+            "content": "42",
+            "refusal": null,
+            "role": "assistant",
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "tool_calls": null,
+            "reasoning": null
+          },
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "created": 1794016543,
+      "model": "qwen-gate",
+      "object": "chat.completion",
+      "moderation": null,
+      "service_tier": null,
+      "system_fingerprint": "vllm-0.32.0+empty-tp4-8fb7bd9e",
+      "usage": {
+        "completion_tokens": 3,
+        "prompt_tokens": 27,
+        "total_tokens": 30,
+        "completion_tokens_details": null,
+        "prompt_tokens_details": null
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null
+    }
+  },
+  {
+    "round": "batch-0",
+    "index": 2,
+    "prompt": "Give the opposite of hot. Reply with one word.",
+    "text": "Cold",
+    "checks": {
+      "non_empty": true,
+      "minimum_length": true,
+      "expected_semantics": true,
+      "expected_order": true,
+      "no_bang_triplet": true,
+      "no_mojibake": true,
+      "no_control_characters": true,
+      "no_long_character_run": true,
+      "no_repeated_word_run": true,
+      "no_repeated_phrase": true
+    },
+    "strict_number": null,
+    "response": {
+      "id": "chatcmpl-91482a1ec6afc6cb",
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": {
+            "content": [
+              {
+                "token": "Cold",
+                "bytes": [
+                  67,
+                  111,
+                  108,
+                  100
+                ],
+                "logprob": -0.2169947624206543,
+                "top_logprobs": [
+                  {
+                    "token": "Cold",
+                    "bytes": [
+                      67,
+                      111,
+                      108,
+                      100
+                    ],
+                    "logprob": -0.2169947624206543
+                  },
+                  {
+                    "token": "cold",
+                    "bytes": [
+                      99,
+                      111,
+                      108,
+                      100
+                    ],
+                    "logprob": -1.7169947624206543
+                  },
+                  {
+                    "token": " Cold",
+                    "bytes": [
+                      32,
+                      67,
+                      111,
+                      108,
+                      100
+                    ],
+                    "logprob": -4.716994762420654
+                  },
+                  {
+                    "token": " cold",
+                    "bytes": [
+                      32,
+                      99,
+                      111,
+                      108,
+                      100
+                    ],
+                    "logprob": -5.591994762420654
+                  },
+                  {
+                    "token": "Cool",
+                    "bytes": [
+                      67,
+                      111,
+                      111,
+                      108
+                    ],
+                    "logprob": -6.341994762420654
+                  }
+                ]
+              },
+              {
+                "token": "<|im_end|>",
+                "bytes": [
+                  60,
+                  124,
+                  105,
+                  109,
+                  95,
+                  101,
+                  110,
+                  100,
+                  124,
+                  62
+                ],
+                "logprob": -0.0006075443816371262,
+                "top_logprobs": [
+                  {
+                    "token": "<|im_end|>",
+                    "bytes": [
+                      60,
+                      124,
+                      105,
+                      109,
+                      95,
+                      101,
+                      110,
+                      100,
+                      124,
+                      62
+                    ],
+                    "logprob": -0.0006075443816371262
+                  },
+                  {
+                    "token": ".",
+                    "bytes": [
+                      46
+                    ],
+                    "logprob": -7.625607490539551
+                  },
+                  {
+                    "token": "\n",
+                    "bytes": [
+                      10
+                    ],
+                    "logprob": -9.12560749053955
+                  },
+                  {
+                    "token": "\\n",
+                    "bytes": [
+                      92,
+                      110
+                    ],
+                    "logprob": -14.06310749053955
+                  },
+                  {
+                    "token": "**",
+                    "bytes": [
+                      42,
+                      42
+                    ],
+                    "logprob": -14.12560749053955
+                  }
+                ]
+              }
+            ],
+            "refusal": null
+          },
+          "message": {
+            "content": "Cold",
+            "refusal": null,
+            "role": "assistant",
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "tool_calls": null,
+            "reasoning": null
+          },
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "created": 1794016543,
+      "model": "qwen-gate",
+      "object": "chat.completion",
+      "moderation": null,
+      "service_tier": null,
+      "system_fingerprint": "vllm-0.32.0+empty-tp4-8fb7bd9e",
+      "usage": {
+        "completion_tokens": 2,
+        "prompt_tokens": 23,
+        "total_tokens": 25,
+        "completion_tokens_details": null,
+        "prompt_tokens_details": null
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null
+    }
+  },
+  {
+    "round": "batch-0",
+    "index": 7,
+    "prompt": "What color results from mixing blue and yellow paint? Reply with one word.",
+    "text": " Green",
+    "checks": {
+      "non_empty": true,
+      "minimum_length": true,
+      "expected_semantics": true,
+      "expected_order": true,
+      "no_bang_triplet": true,
+      "no_mojibake": true,
+      "no_control_characters": true,
+      "no_long_character_run": true,
+      "no_repeated_word_run": true,
+      "no_repeated_phrase": true
+    },
+    "strict_number": null,
+    "response": {
+      "id": "chatcmpl-a823ba81e7d47ed0",
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": {
+            "content": [
+              {
+                "token": " Green",
+                "bytes": [
+                  32,
+                  71,
+                  114,
+                  101,
+                  101,
+                  110
+                ],
+                "logprob": -0.5849332809448242,
+                "top_logprobs": [
+                  {
+                    "token": " Green",
+                    "bytes": [
+                      32,
+                      71,
+                      114,
+                      101,
+                      101,
+                      110
+                    ],
+                    "logprob": -0.5849332809448242
+                  },
+                  {
+                    "token": "Green",
+                    "bytes": [
+                      71,
+                      114,
+                      101,
+                      101,
+                      110
+                    ],
+                    "logprob": -0.8349332809448242
+                  },
+                  {
+                    "token": " green",
+                    "bytes": [
+                      32,
+                      103,
+                      114,
+                      101,
+                      101,
+                      110
+                    ],
+                    "logprob": -5.334933280944824
+                  },
+                  {
+                    "token": "green",
+                    "bytes": [
+                      103,
+                      114,
+                      101,
+                      101,
+                      110
+                    ],
+                    "logprob": -5.584933280944824
+                  },
+                  {
+                    "token": " Blue",
+                    "bytes": [
+                      32,
+                      66,
+                      108,
+                      117,
+                      101
+                    ],
+                    "logprob": -9.459933280944824
+                  }
+                ]
+              },
+              {
+                "token": "<|im_end|>",
+                "bytes": [
+                  60,
+                  124,
+                  105,
+                  109,
+                  95,
+                  101,
+                  110,
+                  100,
+                  124,
+                  62
+                ],
+                "logprob": -0.00012408917245920748,
+                "top_logprobs": [
+                  {
+                    "token": "<|im_end|>",
+                    "bytes": [
+                      60,
+                      124,
+                      105,
+                      109,
+                      95,
+                      101,
+                      110,
+                      100,
+                      124,
+                      62
+                    ],
+                    "logprob": -0.00012408917245920748
+                  },
+                  {
+                    "token": ".",
+                    "bytes": [
+                      46
+                    ],
+                    "logprob": -9.125123977661133
+                  },
+                  {
+                    "token": "\n",
+                    "bytes": [
+                      10
+                    ],
+                    "logprob": -11.750123977661133
+                  },
+                  {
+                    "token": "\n\n",
+                    "bytes": [
+                      10,
+                      10
+                    ],
+                    "logprob": -13.750123977661133
+                  },
+                  {
+                    "token": "!",
+                    "bytes": [
+                      33
+                    ],
+                    "logprob": -14.125123977661133
+                  }
+                ]
+              }
+            ],
+            "refusal": null
+          },
+          "message": {
+            "content": " Green",
+            "refusal": null,
+            "role": "assistant",
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "tool_calls": null,
+            "reasoning": null
+          },
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "created": 1794016543,
+      "model": "qwen-gate",
+      "object": "chat.completion",
+      "moderation": null,
+      "service_tier": null,
+      "system_fingerprint": "vllm-0.32.0+empty-tp4-8fb7bd9e",
+      "usage": {
+        "completion_tokens": 2,
+        "prompt_tokens": 27,
+        "total_tokens": 29,
+        "completion_tokens_details": null,
+        "prompt_tokens_details": null
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null
+    }
+  },
+  {
+    "round": "batch-0",
+    "index": 3,
+    "prompt": "How many days are in one week? Reply with the number only.",
+    "text": "7",
+    "checks": {
+      "non_empty": true,
+      "minimum_length": true,
+      "expected_semantics": true,
+      "expected_order": true,
+      "no_bang_triplet": true,
+      "no_mojibake": true,
+      "no_control_characters": true,
+      "no_long_character_run": true,
+      "no_repeated_word_run": true,
+      "no_repeated_phrase": true
+    },
+    "strict_number": true,
+    "response": {
+      "id": "chatcmpl-acd642ba494b3071",
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": {
+            "content": [
+              {
+                "token": "7",
+                "bytes": [
+                  55
+                ],
+                "logprob": -0.00014280252798926085,
+                "top_logprobs": [
+                  {
+                    "token": "7",
+                    "bytes": [
+                      55
+                    ],
+                    "logprob": -0.00014280252798926085
+                  },
+                  {
+                    "token": " ",
+                    "bytes": [
+                      32
+                    ],
+                    "logprob": -9.875143051147461
+                  },
+                  {
+                    "token": "<think>",
+                    "bytes": [
+                      60,
+                      116,
+                      104,
+                      105,
+                      110,
+                      107,
+                      62
+                    ],
+                    "logprob": -10.375143051147461
+                  },
+                  {
+                    "token": "0",
+                    "bytes": [
+                      48
+                    ],
+                    "logprob": -10.937643051147461
+                  },
+                  {
+                    "token": "Seven",
+                    "bytes": [
+                      83,
+                      101,
+                      118,
+                      101,
+                      110
+                    ],
+                    "logprob": -11.937643051147461
+                  }
+                ]
+              },
+              {
+                "token": "<|im_end|>",
+                "bytes": [
+                  60,
+                  124,
+                  105,
+                  109,
+                  95,
+                  101,
+                  110,
+                  100,
+                  124,
+                  62
+                ],
+                "logprob": -7.867782187531702e-06,
+                "top_logprobs": [
+                  {
+                    "token": "<|im_end|>",
+                    "bytes": [
+                      60,
+                      124,
+                      105,
+                      109,
+                      95,
+                      101,
+                      110,
+                      100,
+                      124,
+                      62
+                    ],
+                    "logprob": -7.867782187531702e-06
+                  },
+                  {
+                    "token": ".",
+                    "bytes": [
+                      46
+                    ],
+                    "logprob": -12.750007629394531
+                  },
+                  {
+                    "token": "\n",
+                    "bytes": [
+                      10
+                    ],
+                    "logprob": -12.875007629394531
+                  },
+                  {
+                    "token": " days",
+                    "bytes": [
+                      32,
+                      100,
+                      97,
+                      121,
+                      115
+                    ],
+                    "logprob": -14.750007629394531
+                  },
+                  {
+                    "token": "<|endoftext|>",
+                    "bytes": [
+                      60,
+                      124,
+                      101,
+                      110,
+                      100,
+                      111,
+                      102,
+                      116,
+                      101,
+                      120,
+                      116,
+                      124,
+                      62
+                    ],
+                    "logprob": -15.062507629394531
+                  }
+                ]
+              }
+            ],
+            "refusal": null
+          },
+          "message": {
+            "content": "7",
+            "refusal": null,
+            "role": "assistant",
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "tool_calls": null,
+            "reasoning": null
+          },
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "created": 1794016543,
+      "model": "qwen-gate",
+      "object": "chat.completion",
+      "moderation": null,
+      "service_tier": null,
+      "system_fingerprint": "vllm-0.32.0+empty-tp4-8fb7bd9e",
+      "usage": {
+        "completion_tokens": 2,
+        "prompt_tokens": 26,
+        "total_tokens": 28,
+        "completion_tokens_details": null,
+        "prompt_tokens_details": null
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null
+    }
+  },
+  {
+    "round": "batch-0",
+    "index": 5,
+    "prompt": "Name Earth's largest ocean. Reply with the ocean name only.",
+    "text": "Pacific Ocean",
+    "checks": {
+      "non_empty": true,
+      "minimum_length": true,
+      "expected_semantics": true,
+      "expected_order": true,
+      "no_bang_triplet": true,
+      "no_mojibake": true,
+      "no_control_characters": true,
+      "no_long_character_run": true,
+      "no_repeated_word_run": true,
+      "no_repeated_phrase": true
+    },
+    "strict_number": null,
+    "response": {
+      "id": "chatcmpl-85426f05a3c38af8",
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": {
+            "content": [
+              {
+                "token": "Pacific",
+                "bytes": [
+                  80,
+                  97,
+                  99,
+                  105,
+                  102,
+                  105,
+                  99
+                ],
+                "logprob": -0.0006968930247239769,
+                "top_logprobs": [
+                  {
+                    "token": "Pacific",
+                    "bytes": [
+                      80,
+                      97,
+                      99,
+                      105,
+                      102,
+                      105,
+                      99
+                    ],
+                    "logprob": -0.0006968930247239769
+                  },
+                  {
+                    "token": " Pacific",
+                    "bytes": [
+                      32,
+                      80,
+                      97,
+                      99,
+                      105,
+                      102,
+                      105,
+                      99
+                    ],
+                    "logprob": -7.750696659088135
+                  },
+                  {
+                    "token": "The",
+                    "bytes": [
+                      84,
+                      104,
+                      101
+                    ],
+                    "logprob": -9.000697135925293
+                  },
+                  {
+                    "token": "太平洋",
+                    "bytes": [
+                      229,
+                      164,
+                      170,
+                      229,
+                      185,
+                      179,
+                      230,
+                      180,
+                      139
+                    ],
+                    "logprob": -10.250697135925293
+                  },
+                  {
+                    "token": "O",
+                    "bytes": [
+                      79
+                    ],
+                    "logprob": -10.625697135925293
+                  }
+                ]
+              },
+              {
+                "token": " Ocean",
+                "bytes": [
+                  32,
+                  79,
+                  99,
+                  101,
+                  97,
+                  110
+                ],
+                "logprob": -0.020661015063524246,
+                "top_logprobs": [
+                  {
+                    "token": " Ocean",
+                    "bytes": [
+                      32,
+                      79,
+                      99,
+                      101,
+                      97,
+                      110
+                    ],
+                    "logprob": -0.020661015063524246
+                  },
+                  {
+                    "token": "<|im_end|>",
+                    "bytes": [
+                      60,
+                      124,
+                      105,
+                      109,
+                      95,
+                      101,
+                      110,
+                      100,
+                      124,
+                      62
+                    ],
+                    "logprob": -3.8956611156463623
+                  },
+                  {
+                    "token": "Ocean",
+                    "bytes": [
+                      79,
+                      99,
+                      101,
+                      97,
+                      110
+                    ],
+                    "logprob": -10.395661354064941
+                  },
+                  {
+                    "token": "<|endoftext|>",
+                    "bytes": [
+                      60,
+                      124,
+                      101,
+                      110,
+                      100,
+                      111,
+                      102,
+                      116,
+                      101,
+                      120,
+                      116,
+                      124,
+                      62
+                    ],
+                    "logprob": -10.645661354064941
+                  },
+                  {
+                    "token": "\n",
+                    "bytes": [
+                      10
+                    ],
+                    "logprob": -11.145661354064941
+                  }
+                ]
+              },
+              {
+                "token": "<|im_end|>",
+                "bytes": [
+                  60,
+                  124,
+                  105,
+                  109,
+                  95,
+                  101,
+                  110,
+                  100,
+                  124,
+                  62
+                ],
+                "logprob": -6.067568756407127e-05,
+                "top_logprobs": [
+                  {
+                    "token": "<|im_end|>",
+                    "bytes": [
+                      60,
+                      124,
+                      105,
+                      109,
+                      95,
+                      101,
+                      110,
+                      100,
+                      124,
+                      62
+                    ],
+                    "logprob": -6.067568756407127e-05
+                  },
+                  {
+                    "token": ".",
+                    "bytes": [
+                      46
+                    ],
+                    "logprob": -10.25006103515625
+                  },
+                  {
+                    "token": "\n",
+                    "bytes": [
+                      10
+                    ],
+                    "logprob": -10.75006103515625
+                  },
+                  {
+                    "token": "<|endoftext|>",
+                    "bytes": [
+                      60,
+                      124,
+                      101,
+                      110,
+                      100,
+                      111,
+                      102,
+                      116,
+                      101,
+                      120,
+                      116,
+                      124,
+                      62
+                    ],
+                    "logprob": -14.56256103515625
+                  },
+                  {
+                    "token": ",",
+                    "bytes": [
+                      44
+                    ],
+                    "logprob": -14.68756103515625
+                  }
+                ]
+              }
+            ],
+            "refusal": null
+          },
+          "message": {
+            "content": "Pacific Ocean",
+            "refusal": null,
+            "role": "assistant",
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "tool_calls": null,
+            "reasoning": null
+          },
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "created": 1794016543,
+      "model": "qwen-gate",
+      "object": "chat.completion",
+      "moderation": null,
+      "service_tier": null,
+      "system_fingerprint": "vllm-0.32.0+empty-tp4-8fb7bd9e",
+      "usage": {
+        "completion_tokens": 3,
+        "prompt_tokens": 25,
+        "total_tokens": 28,
+        "completion_tokens_details": null,
+        "prompt_tokens_details": null
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null
+    }
+  },
+  {
+    "round": "batch-0",
+    "index": 6,
+    "prompt": "Compute 5 multiplied by 6. Reply with the number only.",
+    "text": "30",
+    "checks": {
+      "non_empty": true,
+      "minimum_length": true,
+      "expected_semantics": true,
+      "expected_order": true,
+      "no_bang_triplet": true,
+      "no_mojibake": true,
+      "no_control_characters": true,
+      "no_long_character_run": true,
+      "no_repeated_word_run": true,
+      "no_repeated_phrase": true
+    },
+    "strict_number": true,
+    "response": {
+      "id": "chatcmpl-ab2e6160946f6ee2",
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": {
+            "content": [
+              {
+                "token": "3",
+                "bytes": [
+                  51
+                ],
+                "logprob": -0.0001776060671545565,
+                "top_logprobs": [
+                  {
+                    "token": "3",
+                    "bytes": [
+                      51
+                    ],
+                    "logprob": -0.0001776060671545565
+                  },
+                  {
+                    "token": "<think>",
+                    "bytes": [
+                      60,
+                      116,
+                      104,
+                      105,
+                      110,
+                      107,
+                      62
+                    ],
+                    "logprob": -9.250177383422852
+                  },
+                  {
+                    "token": "5",
+                    "bytes": [
+                      53
+                    ],
+                    "logprob": -10.250177383422852
+                  },
+                  {
+                    "token": "<|im_end|>",
+                    "bytes": [
+                      60,
+                      124,
+                      105,
+                      109,
+                      95,
+                      101,
+                      110,
+                      100,
+                      124,
+                      62
+                    ],
+                    "logprob": -11.500177383422852
+                  },
+                  {
+                    "token": "6",
+                    "bytes": [
+                      54
+                    ],
+                    "logprob": -12.125177383422852
+                  }
+                ]
+              },
+              {
+                "token": "0",
+                "bytes": [
+                  48
+                ],
+                "logprob": -3.909988299710676e-05,
+                "top_logprobs": [
+                  {
+                    "token": "0",
+                    "bytes": [
+                      48
+                    ],
+                    "logprob": -3.909988299710676e-05
+                  },
+                  {
+                    "token": "<|im_end|>",
+                    "bytes": [
+                      60,
+                      124,
+                      105,
+                      109,
+                      95,
+                      101,
+                      110,
+                      100,
+                      124,
+                      62
+                    ],
+                    "logprob": -10.375039100646973
+                  },
+                  {
+                    "token": "5",
+                    "bytes": [
+                      53
+                    ],
+                    "logprob": -12.500039100646973
+                  },
+                  {
+                    "token": "6",
+                    "bytes": [
+                      54
+                    ],
+                    "logprob": -13.625039100646973
+                  },
+                  {
+                    "token": "4",
+                    "bytes": [
+                      52
+                    ],
+                    "logprob": -14.312539100646973
+                  }
+                ]
+              },
+              {
+                "token": "<|im_end|>",
+                "bytes": [
+                  60,
+                  124,
+                  105,
+                  109,
+                  95,
+                  101,
+                  110,
+                  100,
+                  124,
+                  62
+                ],
+                "logprob": -1.0967194612021558e-05,
+                "top_logprobs": [
+                  {
+                    "token": "<|im_end|>",
+                    "bytes": [
+                      60,
+                      124,
+                      105,
+                      109,
+                      95,
+                      101,
+                      110,
+                      100,
+                      124,
+                      62
+                    ],
+                    "logprob": -1.0967194612021558e-05
+                  },
+                  {
+                    "token": ".",
+                    "bytes": [
+                      46
+                    ],
+                    "logprob": -12.25001049041748
+                  },
+                  {
+                    "token": "\n",
+                    "bytes": [
+                      10
+                    ],
+                    "logprob": -12.37501049041748
+                  },
+                  {
+                    "token": "0",
+                    "bytes": [
+                      48
+                    ],
+                    "logprob": -14.31251049041748
+                  },
+                  {
+                    "token": "3",
+                    "bytes": [
+                      51
+                    ],
+                    "logprob": -16.187511444091797
+                  }
+                ]
+              }
+            ],
+            "refusal": null
+          },
+          "message": {
+            "content": "30",
+            "refusal": null,
+            "role": "assistant",
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "tool_calls": null,
+            "reasoning": null
+          },
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "created": 1794016543,
+      "model": "qwen-gate",
+      "object": "chat.completion",
+      "moderation": null,
+      "service_tier": null,
+      "system_fingerprint": "vllm-0.32.0+empty-tp4-8fb7bd9e",
+      "usage": {
+        "completion_tokens": 3,
+        "prompt_tokens": 26,
+        "total_tokens": 29,
+        "completion_tokens_details": null,
+        "prompt_tokens_details": null
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null
+    }
+  },
+  {
+    "round": "batch-0",
+    "index": 4,
+    "prompt": "Give the chemical formula for water. Reply with the formula only.",
+    "text": "H₂O",
+    "checks": {
+      "non_empty": true,
+      "minimum_length": true,
+      "expected_semantics": true,
+      "expected_order": true,
+      "no_bang_triplet": true,
+      "no_mojibake": true,
+      "no_control_characters": true,
+      "no_long_character_run": true,
+      "no_repeated_word_run": true,
+      "no_repeated_phrase": true
+    },
+    "strict_number": null,
+    "response": {
+      "id": "chatcmpl-82509d33f368fc0d",
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": {
+            "content": [
+              {
+                "token": "H",
+                "bytes": [
+                  72
+                ],
+                "logprob": -0.028674498200416565,
+                "top_logprobs": [
+                  {
+                    "token": "H",
+                    "bytes": [
+                      72
+                    ],
+                    "logprob": -0.028674498200416565
+                  },
+                  {
+                    "token": "$",
+                    "bytes": [
+                      36
+                    ],
+                    "logprob": -3.903674602508545
+                  },
+                  {
+                    "token": "$\\",
+                    "bytes": [
+                      36,
+                      92
+                    ],
+                    "logprob": -5.653674602508545
+                  },
+                  {
+                    "token": " H",
+                    "bytes": [
+                      32,
+                      72
+                    ],
+                    "logprob": -5.778674602508545
+                  },
+                  {
+                    "token": "$$",
+                    "bytes": [
+                      36,
+                      36
+                    ],
+                    "logprob": -8.028674125671387
+                  }
+                ]
+              },
+              {
+                "token": "₂",
+                "bytes": [
+                  226,
+                  130,
+                  130
+                ],
+                "logprob": -0.3578929603099823,
+                "top_logprobs": [
+                  {
+                    "token": "₂",
+                    "bytes": [
+                      226,
+                      130,
+                      130
+                    ],
+                    "logprob": -0.3578929603099823
+                  },
+                  {
+                    "token": "2",
+                    "bytes": [
+                      50
+                    ],
+                    "logprob": -1.2328929901123047
+                  },
+                  {
+                    "token": "$_",
+                    "bytes": [
+                      36,
+                      95
+                    ],
+                    "logprob": -4.732892990112305
+                  },
+                  {
+                    "token": "<",
+                    "bytes": [
+                      60
+                    ],
+                    "logprob": -8.482892990112305
+                  },
+                  {
+                    "token": "_",
+                    "bytes": [
+                      95
+                    ],
+                    "logprob": -8.607892990112305
+                  }
+                ]
+              },
+              {
+                "token": "O",
+                "bytes": [
+                  79
+                ],
+                "logprob": -1.2874520507466514e-05,
+                "top_logprobs": [
+                  {
+                    "token": "O",
+                    "bytes": [
+                      79
+                    ],
+                    "logprob": -1.2874520507466514e-05
+                  },
+                  {
+                    "token": "",
+                    "bytes": [],
+                    "logprob": -12.375012397766113
+                  },
+                  {
+                    "token": "₀",
+                    "bytes": [
+                      226,
+                      130,
+                      128
+                    ],
+                    "logprob": -12.625012397766113
+                  },
+                  {
+                    "token": "0",
+                    "bytes": [
+                      48
+                    ],
+                    "logprob": -13.125012397766113
+                  },
+                  {
+                    "token": "<|im_end|>",
+                    "bytes": [
+                      60,
+                      124,
+                      105,
+                      109,
+                      95,
+                      101,
+                      110,
+                      100,
+                      124,
+                      62
+                    ],
+                    "logprob": -14.000012397766113
+                  }
+                ]
+              },
+              {
+                "token": "<|im_end|>",
+                "bytes": [
+                  60,
+                  124,
+                  105,
+                  109,
+                  95,
+                  101,
+                  110,
+                  100,
+                  124,
+                  62
+                ],
+                "logprob": -0.00012516192509792745,
+                "top_logprobs": [
+                  {
+                    "token": "<|im_end|>",
+                    "bytes": [
+                      60,
+                      124,
+                      105,
+                      109,
+                      95,
+                      101,
+                      110,
+                      100,
+                      124,
+                      62
+                    ],
+                    "logprob": -0.00012516192509792745
+                  },
+                  {
+                    "token": "\n",
+                    "bytes": [
+                      10
+                    ],
+                    "logprob": -9.37512493133545
+                  },
+                  {
+                    "token": ".",
+                    "bytes": [
+                      46
+                    ],
+                    "logprob": -11.75012493133545
+                  },
+                  {
+                    "token": "\n\n",
+                    "bytes": [
+                      10,
+                      10
+                    ],
+                    "logprob": -11.81262493133545
+                  },
+                  {
+                    "token": "",
+                    "bytes": [],
+                    "logprob": -12.50012493133545
+                  }
+                ]
+              }
+            ],
+            "refusal": null
+          },
+          "message": {
+            "content": "H₂O",
+            "refusal": null,
+            "role": "assistant",
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "tool_calls": null,
+            "reasoning": null
+          },
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "created": 1794016543,
+      "model": "qwen-gate",
+      "object": "chat.completion",
+      "moderation": null,
+      "service_tier": null,
+      "system_fingerprint": "vllm-0.32.0+empty-tp4-8fb7bd9e",
+      "usage": {
+        "completion_tokens": 4,
+        "prompt_tokens": 25,
+        "total_tokens": 29,
+        "completion_tokens_details": null,
+        "prompt_tokens_details": null
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null
+    }
+  },
+  {
+    "round": "batch-1",
+    "index": 1,
+    "prompt": "Name the capital of France. Reply with the city only.",
+    "text": "Paris",
+    "checks": {
+      "non_empty": true,
+      "minimum_length": true,
+      "expected_semantics": true,
+      "expected_order": true,
+      "no_bang_triplet": true,
+      "no_mojibake": true,
+      "no_control_characters": true,
+      "no_long_character_run": true,
+      "no_repeated_word_run": true,
+      "no_repeated_phrase": true
+    },
+    "strict_number": null,
+    "response": {
+      "id": "chatcmpl-825e91021dd06c8c",
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": {
+            "content": [
+              {
+                "token": "Paris",
+                "bytes": [
+                  80,
+                  97,
+                  114,
+                  105,
+                  115
+                ],
+                "logprob": -0.00026663561584427953,
+                "top_logprobs": [
+                  {
+                    "token": "Paris",
+                    "bytes": [
+                      80,
+                      97,
+                      114,
+                      105,
+                      115
+                    ],
+                    "logprob": -0.00026663561584427953
+                  },
+                  {
+                    "token": " Paris",
+                    "bytes": [
+                      32,
+                      80,
+                      97,
+                      114,
+                      105,
+                      115
+                    ],
+                    "logprob": -8.625267028808594
+                  },
+                  {
+                    "token": "Par",
+                    "bytes": [
+                      80,
+                      97,
+                      114
+                    ],
+                    "logprob": -9.875267028808594
+                  },
+                  {
+                    "token": "巴黎",
+                    "bytes": [
+                      229,
+                      183,
+                      180,
+                      233,
+                      187,
+                      142
+                    ],
+                    "logprob": -11.375267028808594
+                  },
+                  {
+                    "token": "London",
+                    "bytes": [
+                      76,
+                      111,
+                      110,
+                      100,
+                      111,
+                      110
+                    ],
+                    "logprob": -12.500267028808594
+                  }
+                ]
+              },
+              {
+                "token": "<|im_end|>",
+                "bytes": [
+                  60,
+                  124,
+                  105,
+                  109,
+                  95,
+                  101,
+                  110,
+                  100,
+                  124,
+                  62
+                ],
+                "logprob": -0.0002675890573300421,
+                "top_logprobs": [
+                  {
+                    "token": "<|im_end|>",
+                    "bytes": [
+                      60,
+                      124,
+                      105,
+                      109,
+                      95,
+                      101,
+                      110,
+                      100,
+                      124,
+                      62
+                    ],
+                    "logprob": -0.0002675890573300421
+                  },
+                  {
+                    "token": "<|endoftext|>",
+                    "bytes": [
+                      60,
+                      124,
+                      101,
+                      110,
+                      100,
+                      111,
+                      102,
+                      116,
+                      101,
+                      120,
+                      116,
+                      124,
+                      62
+                    ],
+                    "logprob": -8.75026798248291
+                  },
+                  {
+                    "token": "\n",
+                    "bytes": [
+                      10
+                    ],
+                    "logprob": -9.50026798248291
+                  },
+                  {
+                    "token": ".",
+                    "bytes": [
+                      46
+                    ],
+                    "logprob": -10.50026798248291
+                  },
+                  {
+                    "token": "  \n",
+                    "bytes": [
+                      32,
+                      32,
+                      10
+                    ],
+                    "logprob": -13.56276798248291
+                  }
+                ]
+              }
+            ],
+            "refusal": null
+          },
+          "message": {
+            "content": "Paris",
+            "refusal": null,
+            "role": "assistant",
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "tool_calls": null,
+            "reasoning": null
+          },
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "created": 1794016547,
+      "model": "qwen-gate",
+      "object": "chat.completion",
+      "moderation": null,
+      "service_tier": null,
+      "system_fingerprint": "vllm-0.32.0+empty-tp4-8fb7bd9e",
+      "usage": {
+        "completion_tokens": 2,
+        "prompt_tokens": 24,
+        "total_tokens": 26,
+        "completion_tokens_details": null,
+        "prompt_tokens_details": null
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null
+    }
+  },
+  {
+    "round": "batch-1",
+    "index": 0,
+    "prompt": "Compute 19 + 23. Reply with the number only.",
+    "text": "4a",
+    "checks": {
+      "non_empty": true,
+      "minimum_length": true,
+      "expected_semantics": false,
+      "expected_order": false,
+      "no_bang_triplet": true,
+      "no_mojibake": true,
+      "no_control_characters": true,
+      "no_long_character_run": true,
+      "no_repeated_word_run": true,
+      "no_repeated_phrase": true
+    },
+    "strict_number": false,
+    "response": {
+      "id": "chatcmpl-b90887799fa96230",
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": {
+            "content": [
+              {
+                "token": "4",
+                "bytes": [
+                  52
+                ],
+                "logprob": -1.0609570381348021e-05,
+                "top_logprobs": [
+                  {
+                    "token": "4",
+                    "bytes": [
+                      52
+                    ],
+                    "logprob": -1.0609570381348021e-05
+                  },
+                  {
+                    "token": "5",
+                    "bytes": [
+                      53
+                    ],
+                    "logprob": -12.93751049041748
+                  },
+                  {
+                    "token": "1",
+                    "bytes": [
+                      49
+                    ],
+                    "logprob": -13.12501049041748
+                  },
+                  {
+                    "token": "3",
+                    "bytes": [
+                      51
+                    ],
+                    "logprob": -13.62501049041748
+                  },
+                  {
+                    "token": "2",
+                    "bytes": [
+                      50
+                    ],
+                    "logprob": -13.68751049041748
+                  }
+                ]
+              },
+              {
+                "token": "a",
+                "bytes": [
+                  97
+                ],
+                "logprob": -5.509121417999268,
+                "top_logprobs": [
+                  {
+                    "token": "a",
+                    "bytes": [
+                      97
+                    ],
+                    "logprob": -5.509121417999268
+                  },
+                  {
+                    "token": "nal",
+                    "bytes": [
+                      110,
+                      97,
+                      108
+                    ],
+                    "logprob": -5.571621417999268
+                  },
+                  {
+                    "token": "itt",
+                    "bytes": [
+                      105,
+                      116,
+                      116
+                    ],
+                    "logprob": -5.759121417999268
+                  },
+                  {
+                    "token": "E",
+                    "bytes": [
+                      69
+                    ],
+                    "logprob": -5.852871417999268
+                  },
+                  {
+                    "token": "on",
+                    "bytes": [
+                      111,
+                      110
+                    ],
+                    "logprob": -6.040371417999268
+                  }
+                ]
+              },
+              {
+                "token": "<|im_end|>",
+                "bytes": [
+                  60,
+                  124,
+                  105,
+                  109,
+                  95,
+                  101,
+                  110,
+                  100,
+                  124,
+                  62
+                ],
+                "logprob": -0.18169665336608887,
+                "top_logprobs": [
+                  {
+                    "token": "<|im_end|>",
+                    "bytes": [
+                      60,
+                      124,
+                      105,
+                      109,
+                      95,
+                      101,
+                      110,
+                      100,
+                      124,
+                      62
+                    ],
+                    "logprob": -0.18169665336608887
+                  },
+                  {
+                    "token": ".",
+                    "bytes": [
+                      46
+                    ],
+                    "logprob": -3.181696653366089
+                  },
+                  {
+                    "token": ")",
+                    "bytes": [
+                      41
+                    ],
+                    "logprob": -3.619196653366089
+                  },
+                  {
+                    "token": "2",
+                    "bytes": [
+                      50
+                    ],
+                    "logprob": -3.619196653366089
+                  },
+                  {
+                    "token": "1",
+                    "bytes": [
+                      49
+                    ],
+                    "logprob": -3.744196653366089
+                  }
+                ]
+              }
+            ],
+            "refusal": null
+          },
+          "message": {
+            "content": "4a",
+            "refusal": null,
+            "role": "assistant",
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "tool_calls": null,
+            "reasoning": null
+          },
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "created": 1794016547,
+      "model": "qwen-gate",
+      "object": "chat.completion",
+      "moderation": null,
+      "service_tier": null,
+      "system_fingerprint": "vllm-0.32.0+empty-tp4-8fb7bd9e",
+      "usage": {
+        "completion_tokens": 3,
+        "prompt_tokens": 27,
+        "total_tokens": 30,
+        "completion_tokens_details": null,
+        "prompt_tokens_details": null
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null
+    }
+  },
+  {
+    "round": "batch-1",
+    "index": 3,
+    "prompt": "How many days are in one week? Reply with the number only.",
+    "text": "7",
+    "checks": {
+      "non_empty": true,
+      "minimum_length": true,
+      "expected_semantics": true,
+      "expected_order": true,
+      "no_bang_triplet": true,
+      "no_mojibake": true,
+      "no_control_characters": true,
+      "no_long_character_run": true,
+      "no_repeated_word_run": true,
+      "no_repeated_phrase": true
+    },
+    "strict_number": true,
+    "response": {
+      "id": "chatcmpl-92cd2e1562d40937",
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": {
+            "content": [
+              {
+                "token": "7",
+                "bytes": [
+                  55
+                ],
+                "logprob": -0.00024375328212045133,
+                "top_logprobs": [
+                  {
+                    "token": "7",
+                    "bytes": [
+                      55
+                    ],
+                    "logprob": -0.00024375328212045133
+                  },
+                  {
+                    "token": " ",
+                    "bytes": [
+                      32
+                    ],
+                    "logprob": -9.250244140625
+                  },
+                  {
+                    "token": "<think>",
+                    "bytes": [
+                      60,
+                      116,
+                      104,
+                      105,
+                      110,
+                      107,
+                      62
+                    ],
+                    "logprob": -9.375244140625
+                  },
+                  {
+                    "token": "0",
+                    "bytes": [
+                      48
+                    ],
+                    "logprob": -11.250244140625
+                  },
+                  {
+                    "token": "<|im_end|>",
+                    "bytes": [
+                      60,
+                      124,
+                      105,
+                      109,
+                      95,
+                      101,
+                      110,
+                      100,
+                      124,
+                      62
+                    ],
+                    "logprob": -11.250244140625
+                  }
+                ]
+              },
+              {
+                "token": "<|im_end|>",
+                "bytes": [
+                  60,
+                  124,
+                  105,
+                  109,
+                  95,
+                  101,
+                  110,
+                  100,
+                  124,
+                  62
+                ],
+                "logprob": -9.65590606938349e-06,
+                "top_logprobs": [
+                  {
+                    "token": "<|im_end|>",
+                    "bytes": [
+                      60,
+                      124,
+                      105,
+                      109,
+                      95,
+                      101,
+                      110,
+                      100,
+                      124,
+                      62
+                    ],
+                    "logprob": -9.65590606938349e-06
+                  },
+                  {
+                    "token": "\n",
+                    "bytes": [
+                      10
+                    ],
+                    "logprob": -12.500009536743164
+                  },
+                  {
+                    "token": ".",
+                    "bytes": [
+                      46
+                    ],
+                    "logprob": -12.812509536743164
+                  },
+                  {
+                    "token": " days",
+                    "bytes": [
+                      32,
+                      100,
+                      97,
+                      121,
+                      115
+                    ],
+                    "logprob": -14.312509536743164
+                  },
+                  {
+                    "token": "days",
+                    "bytes": [
+                      100,
+                      97,
+                      121,
+                      115
+                    ],
+                    "logprob": -15.000009536743164
+                  }
+                ]
+              }
+            ],
+            "refusal": null
+          },
+          "message": {
+            "content": "7",
+            "refusal": null,
+            "role": "assistant",
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "tool_calls": null,
+            "reasoning": null
+          },
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "created": 1794016547,
+      "model": "qwen-gate",
+      "object": "chat.completion",
+      "moderation": null,
+      "service_tier": null,
+      "system_fingerprint": "vllm-0.32.0+empty-tp4-8fb7bd9e",
+      "usage": {
+        "completion_tokens": 2,
+        "prompt_tokens": 26,
+        "total_tokens": 28,
+        "completion_tokens_details": null,
+        "prompt_tokens_details": null
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null
+    }
+  },
+  {
+    "round": "batch-1",
+    "index": 2,
+    "prompt": "Give the opposite of hot. Reply with one word.",
+    "text": "Cold",
+    "checks": {
+      "non_empty": true,
+      "minimum_length": true,
+      "expected_semantics": true,
+      "expected_order": true,
+      "no_bang_triplet": true,
+      "no_mojibake": true,
+      "no_control_characters": true,
+      "no_long_character_run": true,
+      "no_repeated_word_run": true,
+      "no_repeated_phrase": true
+    },
+    "strict_number": null,
+    "response": {
+      "id": "chatcmpl-b0bef31e790797d8",
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": {
+            "content": [
+              {
+                "token": "Cold",
+                "bytes": [
+                  67,
+                  111,
+                  108,
+                  100
+                ],
+                "logprob": -0.2396789789199829,
+                "top_logprobs": [
+                  {
+                    "token": "Cold",
+                    "bytes": [
+                      67,
+                      111,
+                      108,
+                      100
+                    ],
+                    "logprob": -0.2396789789199829
+                  },
+                  {
+                    "token": "cold",
+                    "bytes": [
+                      99,
+                      111,
+                      108,
+                      100
+                    ],
+                    "logprob": -1.614678978919983
+                  },
+                  {
+                    "token": " Cold",
+                    "bytes": [
+                      32,
+                      67,
+                      111,
+                      108,
+                      100
+                    ],
+                    "logprob": -4.864678859710693
+                  },
+                  {
+                    "token": " cold",
+                    "bytes": [
+                      32,
+                      99,
+                      111,
+                      108,
+                      100
+                    ],
+                    "logprob": -5.614678859710693
+                  },
+                  {
+                    "token": "Cool",
+                    "bytes": [
+                      67,
+                      111,
+                      111,
+                      108
+                    ],
+                    "logprob": -6.364678859710693
+                  }
+                ]
+              },
+              {
+                "token": "<|im_end|>",
+                "bytes": [
+                  60,
+                  124,
+                  105,
+                  109,
+                  95,
+                  101,
+                  110,
+                  100,
+                  124,
+                  62
+                ],
+                "logprob": -0.0006740205571986735,
+                "top_logprobs": [
+                  {
+                    "token": "<|im_end|>",
+                    "bytes": [
+                      60,
+                      124,
+                      105,
+                      109,
+                      95,
+                      101,
+                      110,
+                      100,
+                      124,
+                      62
+                    ],
+                    "logprob": -0.0006740205571986735
+                  },
+                  {
+                    "token": ".",
+                    "bytes": [
+                      46
+                    ],
+                    "logprob": -7.500674247741699
+                  },
+                  {
+                    "token": "\n",
+                    "bytes": [
+                      10
+                    ],
+                    "logprob": -9.1256742477417
+                  },
+                  {
+                    "token": "\\n",
+                    "bytes": [
+                      92,
+                      110
+                    ],
+                    "logprob": -13.8131742477417
+                  },
+                  {
+                    "token": "**",
+                    "bytes": [
+                      42,
+                      42
+                    ],
+                    "logprob": -14.0631742477417
+                  }
+                ]
+              }
+            ],
+            "refusal": null
+          },
+          "message": {
+            "content": "Cold",
+            "refusal": null,
+            "role": "assistant",
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "tool_calls": null,
+            "reasoning": null
+          },
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "created": 1794016547,
+      "model": "qwen-gate",
+      "object": "chat.completion",
+      "moderation": null,
+      "service_tier": null,
+      "system_fingerprint": "vllm-0.32.0+empty-tp4-8fb7bd9e",
+      "usage": {
+        "completion_tokens": 2,
+        "prompt_tokens": 23,
+        "total_tokens": 25,
+        "completion_tokens_details": null,
+        "prompt_tokens_details": null
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null
+    }
+  },
+  {
+    "round": "batch-1",
+    "index": 7,
+    "prompt": "What color results from mixing blue and yellow paint? Reply with one word.",
+    "text": " Green",
+    "checks": {
+      "non_empty": true,
+      "minimum_length": true,
+      "expected_semantics": true,
+      "expected_order": true,
+      "no_bang_triplet": true,
+      "no_mojibake": true,
+      "no_control_characters": true,
+      "no_long_character_run": true,
+      "no_repeated_word_run": true,
+      "no_repeated_phrase": true
+    },
+    "strict_number": null,
+    "response": {
+      "id": "chatcmpl-8815eafc3f6ed760",
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": {
+            "content": [
+              {
+                "token": " Green",
+                "bytes": [
+                  32,
+                  71,
+                  114,
+                  101,
+                  101,
+                  110
+                ],
+                "logprob": -0.5849466323852539,
+                "top_logprobs": [
+                  {
+                    "token": " Green",
+                    "bytes": [
+                      32,
+                      71,
+                      114,
+                      101,
+                      101,
+                      110
+                    ],
+                    "logprob": -0.5849466323852539
+                  },
+                  {
+                    "token": "Green",
+                    "bytes": [
+                      71,
+                      114,
+                      101,
+                      101,
+                      110
+                    ],
+                    "logprob": -0.8349466323852539
+                  },
+                  {
+                    "token": " green",
+                    "bytes": [
+                      32,
+                      103,
+                      114,
+                      101,
+                      101,
+                      110
+                    ],
+                    "logprob": -5.334946632385254
+                  },
+                  {
+                    "token": "green",
+                    "bytes": [
+                      103,
+                      114,
+                      101,
+                      101,
+                      110
+                    ],
+                    "logprob": -5.584946632385254
+                  },
+                  {
+                    "token": " Blue",
+                    "bytes": [
+                      32,
+                      66,
+                      108,
+                      117,
+                      101
+                    ],
+                    "logprob": -9.334946632385254
+                  }
+                ]
+              },
+              {
+                "token": "<|im_end|>",
+                "bytes": [
+                  60,
+                  124,
+                  105,
+                  109,
+                  95,
+                  101,
+                  110,
+                  100,
+                  124,
+                  62
+                ],
+                "logprob": -0.00012587709352374077,
+                "top_logprobs": [
+                  {
+                    "token": "<|im_end|>",
+                    "bytes": [
+                      60,
+                      124,
+                      105,
+                      109,
+                      95,
+                      101,
+                      110,
+                      100,
+                      124,
+                      62
+                    ],
+                    "logprob": -0.00012587709352374077
+                  },
+                  {
+                    "token": ".",
+                    "bytes": [
+                      46
+                    ],
+                    "logprob": -9.125125885009766
+                  },
+                  {
+                    "token": "\n",
+                    "bytes": [
+                      10
+                    ],
+                    "logprob": -11.625125885009766
+                  },
+                  {
+                    "token": "\n\n",
+                    "bytes": [
+                      10,
+                      10
+                    ],
+                    "logprob": -13.750125885009766
+                  },
+                  {
+                    "token": "!",
+                    "bytes": [
+                      33
+                    ],
+                    "logprob": -14.062625885009766
+                  }
+                ]
+              }
+            ],
+            "refusal": null
+          },
+          "message": {
+            "content": " Green",
+            "refusal": null,
+            "role": "assistant",
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "tool_calls": null,
+            "reasoning": null
+          },
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "created": 1794016547,
+      "model": "qwen-gate",
+      "object": "chat.completion",
+      "moderation": null,
+      "service_tier": null,
+      "system_fingerprint": "vllm-0.32.0+empty-tp4-8fb7bd9e",
+      "usage": {
+        "completion_tokens": 2,
+        "prompt_tokens": 27,
+        "total_tokens": 29,
+        "completion_tokens_details": null,
+        "prompt_tokens_details": null
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null
+    }
+  },
+  {
+    "round": "batch-1",
+    "index": 5,
+    "prompt": "Name Earth's largest ocean. Reply with the ocean name only.",
+    "text": "Pacific Ocean",
+    "checks": {
+      "non_empty": true,
+      "minimum_length": true,
+      "expected_semantics": true,
+      "expected_order": true,
+      "no_bang_triplet": true,
+      "no_mojibake": true,
+      "no_control_characters": true,
+      "no_long_character_run": true,
+      "no_repeated_word_run": true,
+      "no_repeated_phrase": true
+    },
+    "strict_number": null,
+    "response": {
+      "id": "chatcmpl-955f1a33f75ba33c",
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": {
+            "content": [
+              {
+                "token": "Pacific",
+                "bytes": [
+                  80,
+                  97,
+                  99,
+                  105,
+                  102,
+                  105,
+                  99
+                ],
+                "logprob": -0.0007541911327280104,
+                "top_logprobs": [
+                  {
+                    "token": "Pacific",
+                    "bytes": [
+                      80,
+                      97,
+                      99,
+                      105,
+                      102,
+                      105,
+                      99
+                    ],
+                    "logprob": -0.0007541911327280104
+                  },
+                  {
+                    "token": " Pacific",
+                    "bytes": [
+                      32,
+                      80,
+                      97,
+                      99,
+                      105,
+                      102,
+                      105,
+                      99
+                    ],
+                    "logprob": -7.625754356384277
+                  },
+                  {
+                    "token": "The",
+                    "bytes": [
+                      84,
+                      104,
+                      101
+                    ],
+                    "logprob": -9.000754356384277
+                  },
+                  {
+                    "token": "太平洋",
+                    "bytes": [
+                      229,
+                      164,
+                      170,
+                      229,
+                      185,
+                      179,
+                      230,
+                      180,
+                      139
+                    ],
+                    "logprob": -10.250754356384277
+                  },
+                  {
+                    "token": "O",
+                    "bytes": [
+                      79
+                    ],
+                    "logprob": -10.625754356384277
+                  }
+                ]
+              },
+              {
+                "token": " Ocean",
+                "bytes": [
+                  32,
+                  79,
+                  99,
+                  101,
+                  97,
+                  110
+                ],
+                "logprob": -0.023360280320048332,
+                "top_logprobs": [
+                  {
+                    "token": " Ocean",
+                    "bytes": [
+                      32,
+                      79,
+                      99,
+                      101,
+                      97,
+                      110
+                    ],
+                    "logprob": -0.023360280320048332
+                  },
+                  {
+                    "token": "<|im_end|>",
+                    "bytes": [
+                      60,
+                      124,
+                      105,
+                      109,
+                      95,
+                      101,
+                      110,
+                      100,
+                      124,
+                      62
+                    ],
+                    "logprob": -3.773360252380371
+                  },
+                  {
+                    "token": "Ocean",
+                    "bytes": [
+                      79,
+                      99,
+                      101,
+                      97,
+                      110
+                    ],
+                    "logprob": -10.460860252380371
+                  },
+                  {
+                    "token": "<|endoftext|>",
+                    "bytes": [
+                      60,
+                      124,
+                      101,
+                      110,
+                      100,
+                      111,
+                      102,
+                      116,
+                      101,
+                      120,
+                      116,
+                      124,
+                      62
+                    ],
+                    "logprob": -10.710860252380371
+                  },
+                  {
+                    "token": "\n",
+                    "bytes": [
+                      10
+                    ],
+                    "logprob": -11.085860252380371
+                  }
+                ]
+              },
+              {
+                "token": "<|im_end|>",
+                "bytes": [
+                  60,
+                  124,
+                  105,
+                  109,
+                  95,
+                  101,
+                  110,
+                  100,
+                  124,
+                  62
+                ],
+                "logprob": -7.080780778778717e-05,
+                "top_logprobs": [
+                  {
+                    "token": "<|im_end|>",
+                    "bytes": [
+                      60,
+                      124,
+                      105,
+                      109,
+                      95,
+                      101,
+                      110,
+                      100,
+                      124,
+                      62
+                    ],
+                    "logprob": -7.080780778778717e-05
+                  },
+                  {
+                    "token": ".",
+                    "bytes": [
+                      46
+                    ],
+                    "logprob": -10.000070571899414
+                  },
+                  {
+                    "token": "\n",
+                    "bytes": [
+                      10
+                    ],
+                    "logprob": -10.750070571899414
+                  },
+                  {
+                    "token": "<|endoftext|>",
+                    "bytes": [
+                      60,
+                      124,
+                      101,
+                      110,
+                      100,
+                      111,
+                      102,
+                      116,
+                      101,
+                      120,
+                      116,
+                      124,
+                      62
+                    ],
+                    "logprob": -14.562570571899414
+                  },
+                  {
+                    "token": ",",
+                    "bytes": [
+                      44
+                    ],
+                    "logprob": -14.750070571899414
+                  }
+                ]
+              }
+            ],
+            "refusal": null
+          },
+          "message": {
+            "content": "Pacific Ocean",
+            "refusal": null,
+            "role": "assistant",
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "tool_calls": null,
+            "reasoning": null
+          },
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "created": 1794016547,
+      "model": "qwen-gate",
+      "object": "chat.completion",
+      "moderation": null,
+      "service_tier": null,
+      "system_fingerprint": "vllm-0.32.0+empty-tp4-8fb7bd9e",
+      "usage": {
+        "completion_tokens": 3,
+        "prompt_tokens": 25,
+        "total_tokens": 28,
+        "completion_tokens_details": null,
+        "prompt_tokens_details": null
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null
+    }
+  },
+  {
+    "round": "batch-1",
+    "index": 6,
+    "prompt": "Compute 5 multiplied by 6. Reply with the number only.",
+    "text": "30",
+    "checks": {
+      "non_empty": true,
+      "minimum_length": true,
+      "expected_semantics": true,
+      "expected_order": true,
+      "no_bang_triplet": true,
+      "no_mojibake": true,
+      "no_control_characters": true,
+      "no_long_character_run": true,
+      "no_repeated_word_run": true,
+      "no_repeated_phrase": true
+    },
+    "strict_number": true,
+    "response": {
+      "id": "chatcmpl-bcbe7ba05bb93780",
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": {
+            "content": [
+              {
+                "token": "3",
+                "bytes": [
+                  51
+                ],
+                "logprob": -0.00019476900342851877,
+                "top_logprobs": [
+                  {
+                    "token": "3",
+                    "bytes": [
+                      51
+                    ],
+                    "logprob": -0.00019476900342851877
+                  },
+                  {
+                    "token": "<think>",
+                    "bytes": [
+                      60,
+                      116,
+                      104,
+                      105,
+                      110,
+                      107,
+                      62
+                    ],
+                    "logprob": -9.125194549560547
+                  },
+                  {
+                    "token": "5",
+                    "bytes": [
+                      53
+                    ],
+                    "logprob": -10.250194549560547
+                  },
+                  {
+                    "token": "<|im_end|>",
+                    "bytes": [
+                      60,
+                      124,
+                      105,
+                      109,
+                      95,
+                      101,
+                      110,
+                      100,
+                      124,
+                      62
+                    ],
+                    "logprob": -11.437694549560547
+                  },
+                  {
+                    "token": "6",
+                    "bytes": [
+                      54
+                    ],
+                    "logprob": -12.062694549560547
+                  }
+                ]
+              },
+              {
+                "token": "0",
+                "bytes": [
+                  48
+                ],
+                "logprob": -3.5523738915799186e-05,
+                "top_logprobs": [
+                  {
+                    "token": "0",
+                    "bytes": [
+                      48
+                    ],
+                    "logprob": -3.5523738915799186e-05
+                  },
+                  {
+                    "token": "<|im_end|>",
+                    "bytes": [
+                      60,
+                      124,
+                      105,
+                      109,
+                      95,
+                      101,
+                      110,
+                      100,
+                      124,
+                      62
+                    ],
+                    "logprob": -10.500035285949707
+                  },
+                  {
+                    "token": "5",
+                    "bytes": [
+                      53
+                    ],
+                    "logprob": -12.625035285949707
+                  },
+                  {
+                    "token": "6",
+                    "bytes": [
+                      54
+                    ],
+                    "logprob": -13.500035285949707
+                  },
+                  {
+                    "token": "4",
+                    "bytes": [
+                      52
+                    ],
+                    "logprob": -14.250035285949707
+                  }
+                ]
+              },
+              {
+                "token": "<|im_end|>",
+                "bytes": [
+                  60,
+                  124,
+                  105,
+                  109,
+                  95,
+                  101,
+                  110,
+                  100,
+                  124,
+                  62
+                ],
+                "logprob": -1.156323378381785e-05,
+                "top_logprobs": [
+                  {
+                    "token": "<|im_end|>",
+                    "bytes": [
+                      60,
+                      124,
+                      105,
+                      109,
+                      95,
+                      101,
+                      110,
+                      100,
+                      124,
+                      62
+                    ],
+                    "logprob": -1.156323378381785e-05
+                  },
+                  {
+                    "token": ".",
+                    "bytes": [
+                      46
+                    ],
+                    "logprob": -12.250011444091797
+                  },
+                  {
+                    "token": "\n",
+                    "bytes": [
+                      10
+                    ],
+                    "logprob": -12.250011444091797
+                  },
+                  {
+                    "token": "0",
+                    "bytes": [
+                      48
+                    ],
+                    "logprob": -14.312511444091797
+                  },
+                  {
+                    "token": "<|endoftext|>",
+                    "bytes": [
+                      60,
+                      124,
+                      101,
+                      110,
+                      100,
+                      111,
+                      102,
+                      116,
+                      101,
+                      120,
+                      116,
+                      124,
+                      62
+                    ],
+                    "logprob": -16.312511444091797
+                  }
+                ]
+              }
+            ],
+            "refusal": null
+          },
+          "message": {
+            "content": "30",
+            "refusal": null,
+            "role": "assistant",
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "tool_calls": null,
+            "reasoning": null
+          },
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "created": 1794016547,
+      "model": "qwen-gate",
+      "object": "chat.completion",
+      "moderation": null,
+      "service_tier": null,
+      "system_fingerprint": "vllm-0.32.0+empty-tp4-8fb7bd9e",
+      "usage": {
+        "completion_tokens": 3,
+        "prompt_tokens": 26,
+        "total_tokens": 29,
+        "completion_tokens_details": null,
+        "prompt_tokens_details": null
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null
+    }
+  },
+  {
+    "round": "batch-1",
+    "index": 4,
+    "prompt": "Give the chemical formula for water. Reply with the formula only.",
+    "text": "H₂O",
+    "checks": {
+      "non_empty": true,
+      "minimum_length": true,
+      "expected_semantics": true,
+      "expected_order": true,
+      "no_bang_triplet": true,
+      "no_mojibake": true,
+      "no_control_characters": true,
+      "no_long_character_run": true,
+      "no_repeated_word_run": true,
+      "no_repeated_phrase": true
+    },
+    "strict_number": null,
+    "response": {
+      "id": "chatcmpl-96de6f1b7a8e8cf1",
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": {
+            "content": [
+              {
+                "token": "H",
+                "bytes": [
+                  72
+                ],
+                "logprob": -0.028622716665267944,
+                "top_logprobs": [
+                  {
+                    "token": "H",
+                    "bytes": [
+                      72
+                    ],
+                    "logprob": -0.028622716665267944
+                  },
+                  {
+                    "token": "$",
+                    "bytes": [
+                      36
+                    ],
+                    "logprob": -3.903622627258301
+                  },
+                  {
+                    "token": "$\\",
+                    "bytes": [
+                      36,
+                      92
+                    ],
+                    "logprob": -5.653622627258301
+                  },
+                  {
+                    "token": " H",
+                    "bytes": [
+                      32,
+                      72
+                    ],
+                    "logprob": -5.778622627258301
+                  },
+                  {
+                    "token": "$$",
+                    "bytes": [
+                      36,
+                      36
+                    ],
+                    "logprob": -8.0286226272583
+                  }
+                ]
+              },
+              {
+                "token": "₂",
+                "bytes": [
+                  226,
+                  130,
+                  130
+                ],
+                "logprob": -0.35684260725975037,
+                "top_logprobs": [
+                  {
+                    "token": "₂",
+                    "bytes": [
+                      226,
+                      130,
+                      130
+                    ],
+                    "logprob": -0.35684260725975037
+                  },
+                  {
+                    "token": "2",
+                    "bytes": [
+                      50
+                    ],
+                    "logprob": -1.2318426370620728
+                  },
+                  {
+                    "token": "$_",
+                    "bytes": [
+                      36,
+                      95
+                    ],
+                    "logprob": -4.856842517852783
+                  },
+                  {
+                    "token": "<",
+                    "bytes": [
+                      60
+                    ],
+                    "logprob": -8.481842994689941
+                  },
+                  {
+                    "token": "_",
+                    "bytes": [
+                      95
+                    ],
+                    "logprob": -8.669342994689941
+                  }
+                ]
+              },
+              {
+                "token": "O",
+                "bytes": [
+                  79
+                ],
+                "logprob": -1.490105023549404e-05,
+                "top_logprobs": [
+                  {
+                    "token": "O",
+                    "bytes": [
+                      79
+                    ],
+                    "logprob": -1.490105023549404e-05
+                  },
+                  {
+                    "token": "",
+                    "bytes": [],
+                    "logprob": -12.250015258789062
+                  },
+                  {
+                    "token": "₀",
+                    "bytes": [
+                      226,
+                      130,
+                      128
+                    ],
+                    "logprob": -12.375015258789062
+                  },
+                  {
+                    "token": "0",
+                    "bytes": [
+                      48
+                    ],
+                    "logprob": -13.000015258789062
+                  },
+                  {
+                    "token": "<|im_end|>",
+                    "bytes": [
+                      60,
+                      124,
+                      105,
+                      109,
+                      95,
+                      101,
+                      110,
+                      100,
+                      124,
+                      62
+                    ],
+                    "logprob": -13.875015258789062
+                  }
+                ]
+              },
+              {
+                "token": "<|im_end|>",
+                "bytes": [
+                  60,
+                  124,
+                  105,
+                  109,
+                  95,
+                  101,
+                  110,
+                  100,
+                  124,
+                  62
+                ],
+                "logprob": -0.00012432756193447858,
+                "top_logprobs": [
+                  {
+                    "token": "<|im_end|>",
+                    "bytes": [
+                      60,
+                      124,
+                      105,
+                      109,
+                      95,
+                      101,
+                      110,
+                      100,
+                      124,
+                      62
+                    ],
+                    "logprob": -0.00012432756193447858
+                  },
+                  {
+                    "token": "\n",
+                    "bytes": [
+                      10
+                    ],
+                    "logprob": -9.375123977661133
+                  },
+                  {
+                    "token": ".",
+                    "bytes": [
+                      46
+                    ],
+                    "logprob": -11.750123977661133
+                  },
+                  {
+                    "token": "\n\n",
+                    "bytes": [
+                      10,
+                      10
+                    ],
+                    "logprob": -11.812623977661133
+                  },
+                  {
+                    "token": "",
+                    "bytes": [],
+                    "logprob": -12.562623977661133
+                  }
+                ]
+              }
+            ],
+            "refusal": null
+          },
+          "message": {
+            "content": "H₂O",
+            "refusal": null,
+            "role": "assistant",
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "tool_calls": null,
+            "reasoning": null
+          },
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "created": 1794016547,
+      "model": "qwen-gate",
+      "object": "chat.completion",
+      "moderation": null,
+      "service_tier": null,
+      "system_fingerprint": "vllm-0.32.0+empty-tp4-8fb7bd9e",
+      "usage": {
+        "completion_tokens": 4,
+        "prompt_tokens": 25,
+        "total_tokens": 29,
+        "completion_tokens_details": null,
+        "prompt_tokens_details": null
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null
+    }
+  },
+  {
+    "round": "batch-2",
+    "index": 1,
+    "prompt": "Name the capital of France. Reply with the city only.",
+    "text": "Paris",
+    "checks": {
+      "non_empty": true,
+      "minimum_length": true,
+      "expected_semantics": true,
+      "expected_order": true,
+      "no_bang_triplet": true,
+      "no_mojibake": true,
+      "no_control_characters": true,
+      "no_long_character_run": true,
+      "no_repeated_word_run": true,
+      "no_repeated_phrase": true
+    },
+    "strict_number": null,
+    "response": {
+      "id": "chatcmpl-8c6ffe6c0c1932d0",
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": {
+            "content": [
+              {
+                "token": "Paris",
+                "bytes": [
+                  80,
+                  97,
+                  114,
+                  105,
+                  115
+                ],
+                "logprob": -0.0003406421164982021,
+                "top_logprobs": [
+                  {
+                    "token": "Paris",
+                    "bytes": [
+                      80,
+                      97,
+                      114,
+                      105,
+                      115
+                    ],
+                    "logprob": -0.0003406421164982021
+                  },
+                  {
+                    "token": " Paris",
+                    "bytes": [
+                      32,
+                      80,
+                      97,
+                      114,
+                      105,
+                      115
+                    ],
+                    "logprob": -8.250340461730957
+                  },
+                  {
+                    "token": "Par",
+                    "bytes": [
+                      80,
+                      97,
+                      114
+                    ],
+                    "logprob": -10.000340461730957
+                  },
+                  {
+                    "token": "巴黎",
+                    "bytes": [
+                      229,
+                      183,
+                      180,
+                      233,
+                      187,
+                      142
+                    ],
+                    "logprob": -11.375340461730957
+                  },
+                  {
+                    "token": "London",
+                    "bytes": [
+                      76,
+                      111,
+                      110,
+                      100,
+                      111,
+                      110
+                    ],
+                    "logprob": -12.500340461730957
+                  }
+                ]
+              },
+              {
+                "token": "<|im_end|>",
+                "bytes": [
+                  60,
+                  124,
+                  105,
+                  109,
+                  95,
+                  101,
+                  110,
+                  100,
+                  124,
+                  62
+                ],
+                "logprob": -9.655486064730212e-05,
+                "top_logprobs": [
+                  {
+                    "token": "<|im_end|>",
+                    "bytes": [
+                      60,
+                      124,
+                      105,
+                      109,
+                      95,
+                      101,
+                      110,
+                      100,
+                      124,
+                      62
+                    ],
+                    "logprob": -9.655486064730212e-05
+                  },
+                  {
+                    "token": "\n",
+                    "bytes": [
+                      10
+                    ],
+                    "logprob": -9.750096321105957
+                  },
+                  {
+                    "token": ".",
+                    "bytes": [
+                      46
+                    ],
+                    "logprob": -10.375096321105957
+                  },
+                  {
+                    "token": "</",
+                    "bytes": [
+                      60,
+                      47
+                    ],
+                    "logprob": -13.562596321105957
+                  },
+                  {
+                    "token": "<|endoftext|>",
+                    "bytes": [
+                      60,
+                      124,
+                      101,
+                      110,
+                      100,
+                      111,
+                      102,
+                      116,
+                      101,
+                      120,
+                      116,
+                      124,
+                      62
+                    ],
+                    "logprob": -14.375096321105957
+                  }
+                ]
+              }
+            ],
+            "refusal": null
+          },
+          "message": {
+            "content": "Paris",
+            "refusal": null,
+            "role": "assistant",
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "tool_calls": null,
+            "reasoning": null
+          },
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "created": 1794016547,
+      "model": "qwen-gate",
+      "object": "chat.completion",
+      "moderation": null,
+      "service_tier": null,
+      "system_fingerprint": "vllm-0.32.0+empty-tp4-8fb7bd9e",
+      "usage": {
+        "completion_tokens": 2,
+        "prompt_tokens": 24,
+        "total_tokens": 26,
+        "completion_tokens_details": null,
+        "prompt_tokens_details": null
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null
+    }
+  },
+  {
+    "round": "batch-2",
+    "index": 7,
+    "prompt": "What color results from mixing blue and yellow paint? Reply with one word.",
+    "text": " Green",
+    "checks": {
+      "non_empty": true,
+      "minimum_length": true,
+      "expected_semantics": true,
+      "expected_order": true,
+      "no_bang_triplet": true,
+      "no_mojibake": true,
+      "no_control_characters": true,
+      "no_long_character_run": true,
+      "no_repeated_word_run": true,
+      "no_repeated_phrase": true
+    },
+    "strict_number": null,
+    "response": {
+      "id": "chatcmpl-8a9484f68f6d4552",
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": {
+            "content": [
+              {
+                "token": " Green",
+                "bytes": [
+                  32,
+                  71,
+                  114,
+                  101,
+                  101,
+                  110
+                ],
+                "logprob": -0.4835028052330017,
+                "top_logprobs": [
+                  {
+                    "token": " Green",
+                    "bytes": [
+                      32,
+                      71,
+                      114,
+                      101,
+                      101,
+                      110
+                    ],
+                    "logprob": -0.4835028052330017
+                  },
+                  {
+                    "token": "Green",
+                    "bytes": [
+                      71,
+                      114,
+                      101,
+                      101,
+                      110
+                    ],
+                    "logprob": -0.9835028052330017
+                  },
+                  {
+                    "token": " green",
+                    "bytes": [
+                      32,
+                      103,
+                      114,
+                      101,
+                      101,
+                      110
+                    ],
+                    "logprob": -5.2335028648376465
+                  },
+                  {
+                    "token": "green",
+                    "bytes": [
+                      103,
+                      114,
+                      101,
+                      101,
+                      110
+                    ],
+                    "logprob": -5.6085028648376465
+                  },
+                  {
+                    "token": " Blue",
+                    "bytes": [
+                      32,
+                      66,
+                      108,
+                      117,
+                      101
+                    ],
+                    "logprob": -9.358502388000488
+                  }
+                ]
+              },
+              {
+                "token": "<|im_end|>",
+                "bytes": [
+                  60,
+                  124,
+                  105,
+                  109,
+                  95,
+                  101,
+                  110,
+                  100,
+                  124,
+                  62
+                ],
+                "logprob": -0.0001110968878492713,
+                "top_logprobs": [
+                  {
+                    "token": "<|im_end|>",
+                    "bytes": [
+                      60,
+                      124,
+                      105,
+                      109,
+                      95,
+                      101,
+                      110,
+                      100,
+                      124,
+                      62
+                    ],
+                    "logprob": -0.0001110968878492713
+                  },
+                  {
+                    "token": ".",
+                    "bytes": [
+                      46
+                    ],
+                    "logprob": -9.250110626220703
+                  },
+                  {
+                    "token": "\n",
+                    "bytes": [
+                      10
+                    ],
+                    "logprob": -11.750110626220703
+                  },
+                  {
+                    "token": "\n\n",
+                    "bytes": [
+                      10,
+                      10
+                    ],
+                    "logprob": -13.875110626220703
+                  },
+                  {
+                    "token": "!",
+                    "bytes": [
+                      33
+                    ],
+                    "logprob": -14.125110626220703
+                  }
+                ]
+              }
+            ],
+            "refusal": null
+          },
+          "message": {
+            "content": " Green",
+            "refusal": null,
+            "role": "assistant",
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "tool_calls": null,
+            "reasoning": null
+          },
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "created": 1794016547,
+      "model": "qwen-gate",
+      "object": "chat.completion",
+      "moderation": null,
+      "service_tier": null,
+      "system_fingerprint": "vllm-0.32.0+empty-tp4-8fb7bd9e",
+      "usage": {
+        "completion_tokens": 2,
+        "prompt_tokens": 27,
+        "total_tokens": 29,
+        "completion_tokens_details": null,
+        "prompt_tokens_details": null
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null
+    }
+  },
+  {
+    "round": "batch-2",
+    "index": 3,
+    "prompt": "How many days are in one week? Reply with the number only.",
+    "text": "7",
+    "checks": {
+      "non_empty": true,
+      "minimum_length": true,
+      "expected_semantics": true,
+      "expected_order": true,
+      "no_bang_triplet": true,
+      "no_mojibake": true,
+      "no_control_characters": true,
+      "no_long_character_run": true,
+      "no_repeated_word_run": true,
+      "no_repeated_phrase": true
+    },
+    "strict_number": true,
+    "response": {
+      "id": "chatcmpl-948dd2009f0f09b4",
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": {
+            "content": [
+              {
+                "token": "7",
+                "bytes": [
+                  55
+                ],
+                "logprob": -0.0001454247540095821,
+                "top_logprobs": [
+                  {
+                    "token": "7",
+                    "bytes": [
+                      55
+                    ],
+                    "logprob": -0.0001454247540095821
+                  },
+                  {
+                    "token": " ",
+                    "bytes": [
+                      32
+                    ],
+                    "logprob": -9.875144958496094
+                  },
+                  {
+                    "token": "<think>",
+                    "bytes": [
+                      60,
+                      116,
+                      104,
+                      105,
+                      110,
+                      107,
+                      62
+                    ],
+                    "logprob": -10.125144958496094
+                  },
+                  {
+                    "token": "0",
+                    "bytes": [
+                      48
+                    ],
+                    "logprob": -11.187644958496094
+                  },
+                  {
+                    "token": "Seven",
+                    "bytes": [
+                      83,
+                      101,
+                      118,
+                      101,
+                      110
+                    ],
+                    "logprob": -12.000144958496094
+                  }
+                ]
+              },
+              {
+                "token": "<|im_end|>",
+                "bytes": [
+                  60,
+                  124,
+                  105,
+                  109,
+                  95,
+                  101,
+                  110,
+                  100,
+                  124,
+                  62
+                ],
+                "logprob": -7.033323527139146e-06,
+                "top_logprobs": [
+                  {
+                    "token": "<|im_end|>",
+                    "bytes": [
+                      60,
+                      124,
+                      105,
+                      109,
+                      95,
+                      101,
+                      110,
+                      100,
+                      124,
+                      62
+                    ],
+                    "logprob": -7.033323527139146e-06
+                  },
+                  {
+                    "token": ".",
+                    "bytes": [
+                      46
+                    ],
+                    "logprob": -12.875006675720215
+                  },
+                  {
+                    "token": "\n",
+                    "bytes": [
+                      10
+                    ],
+                    "logprob": -13.000006675720215
+                  },
+                  {
+                    "token": " days",
+                    "bytes": [
+                      32,
+                      100,
+                      97,
+                      121,
+                      115
+                    ],
+                    "logprob": -14.875006675720215
+                  },
+                  {
+                    "token": "<|endoftext|>",
+                    "bytes": [
+                      60,
+                      124,
+                      101,
+                      110,
+                      100,
+                      111,
+                      102,
+                      116,
+                      101,
+                      120,
+                      116,
+                      124,
+                      62
+                    ],
+                    "logprob": -15.125006675720215
+                  }
+                ]
+              }
+            ],
+            "refusal": null
+          },
+          "message": {
+            "content": "7",
+            "refusal": null,
+            "role": "assistant",
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "tool_calls": null,
+            "reasoning": null
+          },
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "created": 1794016547,
+      "model": "qwen-gate",
+      "object": "chat.completion",
+      "moderation": null,
+      "service_tier": null,
+      "system_fingerprint": "vllm-0.32.0+empty-tp4-8fb7bd9e",
+      "usage": {
+        "completion_tokens": 2,
+        "prompt_tokens": 26,
+        "total_tokens": 28,
+        "completion_tokens_details": null,
+        "prompt_tokens_details": null
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null
+    }
+  },
+  {
+    "round": "batch-2",
+    "index": 2,
+    "prompt": "Give the opposite of hot. Reply with one word.",
+    "text": "Cold",
+    "checks": {
+      "non_empty": true,
+      "minimum_length": true,
+      "expected_semantics": true,
+      "expected_order": true,
+      "no_bang_triplet": true,
+      "no_mojibake": true,
+      "no_control_characters": true,
+      "no_long_character_run": true,
+      "no_repeated_word_run": true,
+      "no_repeated_phrase": true
+    },
+    "strict_number": null,
+    "response": {
+      "id": "chatcmpl-b18a474a28ca26dd",
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": {
+            "content": [
+              {
+                "token": "Cold",
+                "bytes": [
+                  67,
+                  111,
+                  108,
+                  100
+                ],
+                "logprob": -0.21751968562602997,
+                "top_logprobs": [
+                  {
+                    "token": "Cold",
+                    "bytes": [
+                      67,
+                      111,
+                      108,
+                      100
+                    ],
+                    "logprob": -0.21751968562602997
+                  },
+                  {
+                    "token": "cold",
+                    "bytes": [
+                      99,
+                      111,
+                      108,
+                      100
+                    ],
+                    "logprob": -1.7175196409225464
+                  },
+                  {
+                    "token": " Cold",
+                    "bytes": [
+                      32,
+                      67,
+                      111,
+                      108,
+                      100
+                    ],
+                    "logprob": -4.717519760131836
+                  },
+                  {
+                    "token": " cold",
+                    "bytes": [
+                      32,
+                      99,
+                      111,
+                      108,
+                      100
+                    ],
+                    "logprob": -5.467519760131836
+                  },
+                  {
+                    "token": "Cool",
+                    "bytes": [
+                      67,
+                      111,
+                      111,
+                      108
+                    ],
+                    "logprob": -6.342519760131836
+                  }
+                ]
+              },
+              {
+                "token": "<|im_end|>",
+                "bytes": [
+                  60,
+                  124,
+                  105,
+                  109,
+                  95,
+                  101,
+                  110,
+                  100,
+                  124,
+                  62
+                ],
+                "logprob": -0.0005828827270306647,
+                "top_logprobs": [
+                  {
+                    "token": "<|im_end|>",
+                    "bytes": [
+                      60,
+                      124,
+                      105,
+                      109,
+                      95,
+                      101,
+                      110,
+                      100,
+                      124,
+                      62
+                    ],
+                    "logprob": -0.0005828827270306647
+                  },
+                  {
+                    "token": ".",
+                    "bytes": [
+                      46
+                    ],
+                    "logprob": -7.625582695007324
+                  },
+                  {
+                    "token": "\n",
+                    "bytes": [
+                      10
+                    ],
+                    "logprob": -9.375582695007324
+                  },
+                  {
+                    "token": "**",
+                    "bytes": [
+                      42,
+                      42
+                    ],
+                    "logprob": -14.000582695007324
+                  },
+                  {
+                    "token": "<|endoftext|>",
+                    "bytes": [
+                      60,
+                      124,
+                      101,
+                      110,
+                      100,
+                      111,
+                      102,
+                      116,
+                      101,
+                      120,
+                      116,
+                      124,
+                      62
+                    ],
+                    "logprob": -14.125582695007324
+                  }
+                ]
+              }
+            ],
+            "refusal": null
+          },
+          "message": {
+            "content": "Cold",
+            "refusal": null,
+            "role": "assistant",
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "tool_calls": null,
+            "reasoning": null
+          },
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "created": 1794016547,
+      "model": "qwen-gate",
+      "object": "chat.completion",
+      "moderation": null,
+      "service_tier": null,
+      "system_fingerprint": "vllm-0.32.0+empty-tp4-8fb7bd9e",
+      "usage": {
+        "completion_tokens": 2,
+        "prompt_tokens": 23,
+        "total_tokens": 25,
+        "completion_tokens_details": null,
+        "prompt_tokens_details": null
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null
+    }
+  },
+  {
+    "round": "batch-2",
+    "index": 0,
+    "prompt": "Compute 19 + 23. Reply with the number only.",
+    "text": "4 excerise",
+    "checks": {
+      "non_empty": true,
+      "minimum_length": true,
+      "expected_semantics": false,
+      "expected_order": false,
+      "no_bang_triplet": true,
+      "no_mojibake": true,
+      "no_control_characters": true,
+      "no_long_character_run": true,
+      "no_repeated_word_run": true,
+      "no_repeated_phrase": true
+    },
+    "strict_number": false,
+    "response": {
+      "id": "chatcmpl-b76fb8495bdeb2e8",
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": {
+            "content": [
+              {
+                "token": "4",
+                "bytes": [
+                  52
+                ],
+                "logprob": -9.536697689327411e-06,
+                "top_logprobs": [
+                  {
+                    "token": "4",
+                    "bytes": [
+                      52
+                    ],
+                    "logprob": -9.536697689327411e-06
+                  },
+                  {
+                    "token": "1",
+                    "bytes": [
+                      49
+                    ],
+                    "logprob": -13.062509536743164
+                  },
+                  {
+                    "token": "5",
+                    "bytes": [
+                      53
+                    ],
+                    "logprob": -13.125009536743164
+                  },
+                  {
+                    "token": "2",
+                    "bytes": [
+                      50
+                    ],
+                    "logprob": -13.312509536743164
+                  },
+                  {
+                    "token": "3",
+                    "bytes": [
+                      51
+                    ],
+                    "logprob": -13.750009536743164
+                  }
+                ]
+              },
+              {
+                "token": " excer",
+                "bytes": [
+                  32,
+                  101,
+                  120,
+                  99,
+                  101,
+                  114
+                ],
+                "logprob": -4.5090203285217285,
+                "top_logprobs": [
+                  {
+                    "token": " excer",
+                    "bytes": [
+                      32,
+                      101,
+                      120,
+                      99,
+                      101,
+                      114
+                    ],
+                    "logprob": -4.5090203285217285
+                  },
+                  {
+                    "token": " realiz",
+                    "bytes": [
+                      32,
+                      114,
+                      101,
+                      97,
+                      108,
+                      105,
+                      122
+                    ],
+                    "logprob": -4.8840203285217285
+                  },
+                  {
+                    "token": "inama",
+                    "bytes": [
+                      105,
+                      110,
+                      97,
+                      109,
+                      97
+                    ],
+                    "logprob": -5.7590203285217285
+                  },
+                  {
+                    "token": "erche",
+                    "bytes": [
+                      101,
+                      114,
+                      99,
+                      104,
+                      101
+                    ],
+                    "logprob": -5.8215203285217285
+                  },
+                  {
+                    "token": "edly",
+                    "bytes": [
+                      101,
+                      100,
+                      108,
+                      121
+                    ],
+                    "logprob": -5.9465203285217285
+                  }
+                ]
+              },
+              {
+                "token": "ise",
+                "bytes": [
+                  105,
+                  115,
+                  101
+                ],
+                "logprob": -0.6063660979270935,
+                "top_logprobs": [
+                  {
+                    "token": "ise",
+                    "bytes": [
+                      105,
+                      115,
+                      101
+                    ],
+                    "logprob": -0.6063660979270935
+                  },
+                  {
+                    "token": "<|im_end|>",
+                    "bytes": [
+                      60,
+                      124,
+                      105,
+                      109,
+                      95,
+                      101,
+                      110,
+                      100,
+                      124,
+                      62
+                    ],
+                    "logprob": -2.1688661575317383
+                  },
+                  {
+                    "token": "ption",
+                    "bytes": [
+                      112,
+                      116,
+                      105,
+                      111,
+                      110
+                    ],
+                    "logprob": -2.4813661575317383
+                  },
+                  {
+                    "token": "is",
+                    "bytes": [
+                      105,
+                      115
+                    ],
+                    "logprob": -3.6688661575317383
+                  },
+                  {
+                    "token": "4",
+                    "bytes": [
+                      52
+                    ],
+                    "logprob": -4.231366157531738
+                  }
+                ]
+              },
+              {
+                "token": "<|im_end|>",
+                "bytes": [
+                  60,
+                  124,
+                  105,
+                  109,
+                  95,
+                  101,
+                  110,
+                  100,
+                  124,
+                  62
+                ],
+                "logprob": -0.317434161901474,
+                "top_logprobs": [
+                  {
+                    "token": "<|im_end|>",
+                    "bytes": [
+                      60,
+                      124,
+                      105,
+                      109,
+                      95,
+                      101,
+                      110,
+                      100,
+                      124,
+                      62
+                    ],
+                    "logprob": -0.317434161901474
+                  },
+                  {
+                    "token": "4",
+                    "bytes": [
+                      52
+                    ],
+                    "logprob": -3.004934072494507
+                  },
+                  {
+                    "token": "\n",
+                    "bytes": [
+                      10
+                    ],
+                    "logprob": -3.129934072494507
+                  },
+                  {
+                    "token": "1",
+                    "bytes": [
+                      49
+                    ],
+                    "logprob": -4.067434310913086
+                  },
+                  {
+                    "token": " ",
+                    "bytes": [
+                      32
+                    ],
+                    "logprob": -4.379934310913086
+                  }
+                ]
+              }
+            ],
+            "refusal": null
+          },
+          "message": {
+            "content": "4 excerise",
+            "refusal": null,
+            "role": "assistant",
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "tool_calls": null,
+            "reasoning": null
+          },
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "created": 1794016547,
+      "model": "qwen-gate",
+      "object": "chat.completion",
+      "moderation": null,
+      "service_tier": null,
+      "system_fingerprint": "vllm-0.32.0+empty-tp4-8fb7bd9e",
+      "usage": {
+        "completion_tokens": 4,
+        "prompt_tokens": 27,
+        "total_tokens": 31,
+        "completion_tokens_details": null,
+        "prompt_tokens_details": null
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null
+    }
+  },
+  {
+    "round": "batch-2",
+    "index": 5,
+    "prompt": "Name Earth's largest ocean. Reply with the ocean name only.",
+    "text": "Pacific Ocean",
+    "checks": {
+      "non_empty": true,
+      "minimum_length": true,
+      "expected_semantics": true,
+      "expected_order": true,
+      "no_bang_triplet": true,
+      "no_mojibake": true,
+      "no_control_characters": true,
+      "no_long_character_run": true,
+      "no_repeated_word_run": true,
+      "no_repeated_phrase": true
+    },
+    "strict_number": null,
+    "response": {
+      "id": "chatcmpl-9b67016933155c7f",
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": {
+            "content": [
+              {
+                "token": "Pacific",
+                "bytes": [
+                  80,
+                  97,
+                  99,
+                  105,
+                  102,
+                  105,
+                  99
+                ],
+                "logprob": -0.000700466800481081,
+                "top_logprobs": [
+                  {
+                    "token": "Pacific",
+                    "bytes": [
+                      80,
+                      97,
+                      99,
+                      105,
+                      102,
+                      105,
+                      99
+                    ],
+                    "logprob": -0.000700466800481081
+                  },
+                  {
+                    "token": " Pacific",
+                    "bytes": [
+                      32,
+                      80,
+                      97,
+                      99,
+                      105,
+                      102,
+                      105,
+                      99
+                    ],
+                    "logprob": -7.7507004737854
+                  },
+                  {
+                    "token": "The",
+                    "bytes": [
+                      84,
+                      104,
+                      101
+                    ],
+                    "logprob": -9.000699996948242
+                  },
+                  {
+                    "token": "太平洋",
+                    "bytes": [
+                      229,
+                      164,
+                      170,
+                      229,
+                      185,
+                      179,
+                      230,
+                      180,
+                      139
+                    ],
+                    "logprob": -10.250699996948242
+                  },
+                  {
+                    "token": "O",
+                    "bytes": [
+                      79
+                    ],
+                    "logprob": -10.625699996948242
+                  }
+                ]
+              },
+              {
+                "token": " Ocean",
+                "bytes": [
+                  32,
+                  79,
+                  99,
+                  101,
+                  97,
+                  110
+                ],
+                "logprob": -0.02064746804535389,
+                "top_logprobs": [
+                  {
+                    "token": " Ocean",
+                    "bytes": [
+                      32,
+                      79,
+                      99,
+                      101,
+                      97,
+                      110
+                    ],
+                    "logprob": -0.02064746804535389
+                  },
+                  {
+                    "token": "<|im_end|>",
+                    "bytes": [
+                      60,
+                      124,
+                      105,
+                      109,
+                      95,
+                      101,
+                      110,
+                      100,
+                      124,
+                      62
+                    ],
+                    "logprob": -3.8956475257873535
+                  },
+                  {
+                    "token": "Ocean",
+                    "bytes": [
+                      79,
+                      99,
+                      101,
+                      97,
+                      110
+                    ],
+                    "logprob": -10.520647048950195
+                  },
+                  {
+                    "token": "<|endoftext|>",
+                    "bytes": [
+                      60,
+                      124,
+                      101,
+                      110,
+                      100,
+                      111,
+                      102,
+                      116,
+                      101,
+                      120,
+                      116,
+                      124,
+                      62
+                    ],
+                    "logprob": -10.770647048950195
+                  },
+                  {
+                    "token": "\n",
+                    "bytes": [
+                      10
+                    ],
+                    "logprob": -11.270647048950195
+                  }
+                ]
+              },
+              {
+                "token": "<|im_end|>",
+                "bytes": [
+                  60,
+                  124,
+                  105,
+                  109,
+                  95,
+                  101,
+                  110,
+                  100,
+                  124,
+                  62
+                ],
+                "logprob": -6.294052582234144e-05,
+                "top_logprobs": [
+                  {
+                    "token": "<|im_end|>",
+                    "bytes": [
+                      60,
+                      124,
+                      105,
+                      109,
+                      95,
+                      101,
+                      110,
+                      100,
+                      124,
+                      62
+                    ],
+                    "logprob": -6.294052582234144e-05
+                  },
+                  {
+                    "token": ".",
+                    "bytes": [
+                      46
+                    ],
+                    "logprob": -10.125062942504883
+                  },
+                  {
+                    "token": "\n",
+                    "bytes": [
+                      10
+                    ],
+                    "logprob": -10.875062942504883
+                  },
+                  {
+                    "token": "<|endoftext|>",
+                    "bytes": [
+                      60,
+                      124,
+                      101,
+                      110,
+                      100,
+                      111,
+                      102,
+                      116,
+                      101,
+                      120,
+                      116,
+                      124,
+                      62
+                    ],
+                    "logprob": -14.562562942504883
+                  },
+                  {
+                    "token": ",",
+                    "bytes": [
+                      44
+                    ],
+                    "logprob": -14.625062942504883
+                  }
+                ]
+              }
+            ],
+            "refusal": null
+          },
+          "message": {
+            "content": "Pacific Ocean",
+            "refusal": null,
+            "role": "assistant",
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "tool_calls": null,
+            "reasoning": null
+          },
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "created": 1794016547,
+      "model": "qwen-gate",
+      "object": "chat.completion",
+      "moderation": null,
+      "service_tier": null,
+      "system_fingerprint": "vllm-0.32.0+empty-tp4-8fb7bd9e",
+      "usage": {
+        "completion_tokens": 3,
+        "prompt_tokens": 25,
+        "total_tokens": 28,
+        "completion_tokens_details": null,
+        "prompt_tokens_details": null
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null
+    }
+  },
+  {
+    "round": "batch-2",
+    "index": 6,
+    "prompt": "Compute 5 multiplied by 6. Reply with the number only.",
+    "text": "30",
+    "checks": {
+      "non_empty": true,
+      "minimum_length": true,
+      "expected_semantics": true,
+      "expected_order": true,
+      "no_bang_triplet": true,
+      "no_mojibake": true,
+      "no_control_characters": true,
+      "no_long_character_run": true,
+      "no_repeated_word_run": true,
+      "no_repeated_phrase": true
+    },
+    "strict_number": true,
+    "response": {
+      "id": "chatcmpl-b79180201a3eba2d",
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": {
+            "content": [
+              {
+                "token": "3",
+                "bytes": [
+                  51
+                ],
+                "logprob": -0.0002083561266772449,
+                "top_logprobs": [
+                  {
+                    "token": "3",
+                    "bytes": [
+                      51
+                    ],
+                    "logprob": -0.0002083561266772449
+                  },
+                  {
+                    "token": "<think>",
+                    "bytes": [
+                      60,
+                      116,
+                      104,
+                      105,
+                      110,
+                      107,
+                      62
+                    ],
+                    "logprob": -9.000207901000977
+                  },
+                  {
+                    "token": "5",
+                    "bytes": [
+                      53
+                    ],
+                    "logprob": -10.250207901000977
+                  },
+                  {
+                    "token": "<|im_end|>",
+                    "bytes": [
+                      60,
+                      124,
+                      105,
+                      109,
+                      95,
+                      101,
+                      110,
+                      100,
+                      124,
+                      62
+                    ],
+                    "logprob": -11.437707901000977
+                  },
+                  {
+                    "token": "6",
+                    "bytes": [
+                      54
+                    ],
+                    "logprob": -12.062707901000977
+                  }
+                ]
+              },
+              {
+                "token": "0",
+                "bytes": [
+                  48
+                ],
+                "logprob": -3.6000557884108275e-05,
+                "top_logprobs": [
+                  {
+                    "token": "0",
+                    "bytes": [
+                      48
+                    ],
+                    "logprob": -3.6000557884108275e-05
+                  },
+                  {
+                    "token": "<|im_end|>",
+                    "bytes": [
+                      60,
+                      124,
+                      105,
+                      109,
+                      95,
+                      101,
+                      110,
+                      100,
+                      124,
+                      62
+                    ],
+                    "logprob": -10.500036239624023
+                  },
+                  {
+                    "token": "5",
+                    "bytes": [
+                      53
+                    ],
+                    "logprob": -12.500036239624023
+                  },
+                  {
+                    "token": "6",
+                    "bytes": [
+                      54
+                    ],
+                    "logprob": -13.375036239624023
+                  },
+                  {
+                    "token": "4",
+                    "bytes": [
+                      52
+                    ],
+                    "logprob": -14.312536239624023
+                  }
+                ]
+              },
+              {
+                "token": "<|im_end|>",
+                "bytes": [
+                  60,
+                  124,
+                  105,
+                  109,
+                  95,
+                  101,
+                  110,
+                  100,
+                  124,
+                  62
+                ],
+                "logprob": -1.2278481335670222e-05,
+                "top_logprobs": [
+                  {
+                    "token": "<|im_end|>",
+                    "bytes": [
+                      60,
+                      124,
+                      105,
+                      109,
+                      95,
+                      101,
+                      110,
+                      100,
+                      124,
+                      62
+                    ],
+                    "logprob": -1.2278481335670222e-05
+                  },
+                  {
+                    "token": "\n",
+                    "bytes": [
+                      10
+                    ],
+                    "logprob": -12.125012397766113
+                  },
+                  {
+                    "token": ".",
+                    "bytes": [
+                      46
+                    ],
+                    "logprob": -12.250012397766113
+                  },
+                  {
+                    "token": "0",
+                    "bytes": [
+                      48
+                    ],
+                    "logprob": -14.125012397766113
+                  },
+                  {
+                    "token": "<|endoftext|>",
+                    "bytes": [
+                      60,
+                      124,
+                      101,
+                      110,
+                      100,
+                      111,
+                      102,
+                      116,
+                      101,
+                      120,
+                      116,
+                      124,
+                      62
+                    ],
+                    "logprob": -15.812512397766113
+                  }
+                ]
+              }
+            ],
+            "refusal": null
+          },
+          "message": {
+            "content": "30",
+            "refusal": null,
+            "role": "assistant",
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "tool_calls": null,
+            "reasoning": null
+          },
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "created": 1794016547,
+      "model": "qwen-gate",
+      "object": "chat.completion",
+      "moderation": null,
+      "service_tier": null,
+      "system_fingerprint": "vllm-0.32.0+empty-tp4-8fb7bd9e",
+      "usage": {
+        "completion_tokens": 3,
+        "prompt_tokens": 26,
+        "total_tokens": 29,
+        "completion_tokens_details": null,
+        "prompt_tokens_details": null
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null
+    }
+  },
+  {
+    "round": "batch-2",
+    "index": 4,
+    "prompt": "Give the chemical formula for water. Reply with the formula only.",
+    "text": "H₂O",
+    "checks": {
+      "non_empty": true,
+      "minimum_length": true,
+      "expected_semantics": true,
+      "expected_order": true,
+      "no_bang_triplet": true,
+      "no_mojibake": true,
+      "no_control_characters": true,
+      "no_long_character_run": true,
+      "no_repeated_word_run": true,
+      "no_repeated_phrase": true
+    },
+    "strict_number": null,
+    "response": {
+      "id": "chatcmpl-809d144e6a0d3620",
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": {
+            "content": [
+              {
+                "token": "H",
+                "bytes": [
+                  72
+                ],
+                "logprob": -0.028270484879612923,
+                "top_logprobs": [
+                  {
+                    "token": "H",
+                    "bytes": [
+                      72
+                    ],
+                    "logprob": -0.028270484879612923
+                  },
+                  {
+                    "token": "$",
+                    "bytes": [
+                      36
+                    ],
+                    "logprob": -3.9032704830169678
+                  },
+                  {
+                    "token": "$\\",
+                    "bytes": [
+                      36,
+                      92
+                    ],
+                    "logprob": -5.653270721435547
+                  },
+                  {
+                    "token": " H",
+                    "bytes": [
+                      32,
+                      72
+                    ],
+                    "logprob": -5.903270721435547
+                  },
+                  {
+                    "token": "$$",
+                    "bytes": [
+                      36,
+                      36
+                    ],
+                    "logprob": -8.028270721435547
+                  }
+                ]
+              },
+              {
+                "token": "₂",
+                "bytes": [
+                  226,
+                  130,
+                  130
+                ],
+                "logprob": -0.3219597041606903,
+                "top_logprobs": [
+                  {
+                    "token": "₂",
+                    "bytes": [
+                      226,
+                      130,
+                      130
+                    ],
+                    "logprob": -0.3219597041606903
+                  },
+                  {
+                    "token": "2",
+                    "bytes": [
+                      50
+                    ],
+                    "logprob": -1.3219597339630127
+                  },
+                  {
+                    "token": "$_",
+                    "bytes": [
+                      36,
+                      95
+                    ],
+                    "logprob": -4.821959495544434
+                  },
+                  {
+                    "token": "<",
+                    "bytes": [
+                      60
+                    ],
+                    "logprob": -8.509459495544434
+                  },
+                  {
+                    "token": "_",
+                    "bytes": [
+                      95
+                    ],
+                    "logprob": -8.571959495544434
+                  }
+                ]
+              },
+              {
+                "token": "O",
+                "bytes": [
+                  79
+                ],
+                "logprob": -1.4066597032069694e-05,
+                "top_logprobs": [
+                  {
+                    "token": "O",
+                    "bytes": [
+                      79
+                    ],
+                    "logprob": -1.4066597032069694e-05
+                  },
+                  {
+                    "token": "",
+                    "bytes": [],
+                    "logprob": -12.375014305114746
+                  },
+                  {
+                    "token": "₀",
+                    "bytes": [
+                      226,
+                      130,
+                      128
+                    ],
+                    "logprob": -12.500014305114746
+                  },
+                  {
+                    "token": "0",
+                    "bytes": [
+                      48
+                    ],
+                    "logprob": -13.000014305114746
+                  },
+                  {
+                    "token": "<|im_end|>",
+                    "bytes": [
+                      60,
+                      124,
+                      105,
+                      109,
+                      95,
+                      101,
+                      110,
+                      100,
+                      124,
+                      62
+                    ],
+                    "logprob": -13.750014305114746
+                  }
+                ]
+              },
+              {
+                "token": "<|im_end|>",
+                "bytes": [
+                  60,
+                  124,
+                  105,
+                  109,
+                  95,
+                  101,
+                  110,
+                  100,
+                  124,
+                  62
+                ],
+                "logprob": -0.00012468514614738524,
+                "top_logprobs": [
+                  {
+                    "token": "<|im_end|>",
+                    "bytes": [
+                      60,
+                      124,
+                      105,
+                      109,
+                      95,
+                      101,
+                      110,
+                      100,
+                      124,
+                      62
+                    ],
+                    "logprob": -0.00012468514614738524
+                  },
+                  {
+                    "token": "\n",
+                    "bytes": [
+                      10
+                    ],
+                    "logprob": -9.37512493133545
+                  },
+                  {
+                    "token": ".",
+                    "bytes": [
+                      46
+                    ],
+                    "logprob": -11.75012493133545
+                  },
+                  {
+                    "token": "\n\n",
+                    "bytes": [
+                      10,
+                      10
+                    ],
+                    "logprob": -11.75012493133545
+                  },
+                  {
+                    "token": "",
+                    "bytes": [],
+                    "logprob": -12.56262493133545
+                  }
+                ]
+              }
+            ],
+            "refusal": null
+          },
+          "message": {
+            "content": "H₂O",
+            "refusal": null,
+            "role": "assistant",
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "tool_calls": null,
+            "reasoning": null
+          },
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "created": 1794016547,
+      "model": "qwen-gate",
+      "object": "chat.completion",
+      "moderation": null,
+      "service_tier": null,
+      "system_fingerprint": "vllm-0.32.0+empty-tp4-8fb7bd9e",
+      "usage": {
+        "completion_tokens": 4,
+        "prompt_tokens": 25,
+        "total_tokens": 29,
+        "completion_tokens_details": null,
+        "prompt_tokens_details": null
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null
+    }
+  },
+  {
+    "round": "single-after",
+    "index": 0,
+    "prompt": "Compute 19 + 23. Reply with the number only.",
+    "text": "42",
+    "checks": {
+      "non_empty": true,
+      "minimum_length": true,
+      "expected_semantics": true,
+      "expected_order": true,
+      "no_bang_triplet": true,
+      "no_mojibake": true,
+      "no_control_characters": true,
+      "no_long_character_run": true,
+      "no_repeated_word_run": true,
+      "no_repeated_phrase": true
+    },
+    "strict_number": true,
+    "response": {
+      "id": "chatcmpl-a2fed0d8f94a0d85",
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": {
+            "content": [
+              {
+                "token": "4",
+                "bytes": [
+                  52
+                ],
+                "logprob": -1.0013530300057027e-05,
+                "top_logprobs": [
+                  {
+                    "token": "4",
+                    "bytes": [
+                      52
+                    ],
+                    "logprob": -1.0013530300057027e-05
+                  },
+                  {
+                    "token": "5",
+                    "bytes": [
+                      53
+                    ],
+                    "logprob": -12.875009536743164
+                  },
+                  {
+                    "token": "1",
+                    "bytes": [
+                      49
+                    ],
+                    "logprob": -13.250009536743164
+                  },
+                  {
+                    "token": "3",
+                    "bytes": [
+                      51
+                    ],
+                    "logprob": -13.625009536743164
+                  },
+                  {
+                    "token": "2",
+                    "bytes": [
+                      50
+                    ],
+                    "logprob": -13.687509536743164
+                  }
+                ]
+              },
+              {
+                "token": "2",
+                "bytes": [
+                  50
+                ],
+                "logprob": -1.9550132492440753e-05,
+                "top_logprobs": [
+                  {
+                    "token": "2",
+                    "bytes": [
+                      50
+                    ],
+                    "logprob": -1.9550132492440753e-05
+                  },
+                  {
+                    "token": "3",
+                    "bytes": [
+                      51
+                    ],
+                    "logprob": -11.875019073486328
+                  },
+                  {
+                    "token": "0",
+                    "bytes": [
+                      48
+                    ],
+                    "logprob": -12.500019073486328
+                  },
+                  {
+                    "token": "6",
+                    "bytes": [
+                      54
+                    ],
+                    "logprob": -12.750019073486328
+                  },
+                  {
+                    "token": "<|im_end|>",
+                    "bytes": [
+                      60,
+                      124,
+                      105,
+                      109,
+                      95,
+                      101,
+                      110,
+                      100,
+                      124,
+                      62
+                    ],
+                    "logprob": -13.187519073486328
+                  }
+                ]
+              },
+              {
+                "token": "<|im_end|>",
+                "bytes": [
+                  60,
+                  124,
+                  105,
+                  109,
+                  95,
+                  101,
+                  110,
+                  100,
+                  124,
+                  62
+                ],
+                "logprob": -3.6238969187252223e-05,
+                "top_logprobs": [
+                  {
+                    "token": "<|im_end|>",
+                    "bytes": [
+                      60,
+                      124,
+                      105,
+                      109,
+                      95,
+                      101,
+                      110,
+                      100,
+                      124,
+                      62
+                    ],
+                    "logprob": -3.6238969187252223e-05
+                  },
+                  {
+                    "token": "<|endoftext|>",
+                    "bytes": [
+                      60,
+                      124,
+                      101,
+                      110,
+                      100,
+                      111,
+                      102,
+                      116,
+                      101,
+                      120,
+                      116,
+                      124,
+                      62
+                    ],
+                    "logprob": -10.375036239624023
+                  },
+                  {
+                    "token": "\n",
+                    "bytes": [
+                      10
+                    ],
+                    "logprob": -12.625036239624023
+                  },
+                  {
+                    "token": ".",
+                    "bytes": [
+                      46
+                    ],
+                    "logprob": -14.312536239624023
+                  },
+                  {
+                    "token": "0",
+                    "bytes": [
+                      48
+                    ],
+                    "logprob": -14.500036239624023
+                  }
+                ]
+              }
+            ],
+            "refusal": null
+          },
+          "message": {
+            "content": "42",
+            "refusal": null,
+            "role": "assistant",
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "tool_calls": null,
+            "reasoning": null
+          },
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "created": 1794016548,
+      "model": "qwen-gate",
+      "object": "chat.completion",
+      "moderation": null,
+      "service_tier": null,
+      "system_fingerprint": "vllm-0.32.0+empty-tp4-8fb7bd9e",
+      "usage": {
+        "completion_tokens": 3,
+        "prompt_tokens": 27,
+        "total_tokens": 30,
+        "completion_tokens_details": null,
+        "prompt_tokens_details": null
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null
+    }
+  }
+]

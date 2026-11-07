@@ -1,0 +1,15 @@
+/usr/local/lib/python3.12/site-packages/flaggems_vllm/ops/FLA/parallel_nsa.py:39: ImportWarning: Flash Attention is not installed. Please install it via `pip install flash-attn --no-build-isolation`
+  warnings.warn(
+{"op": "moe_align", "rows": 1, "replays": 5, "passed": true}
+{"op": "topk_softmax", "rows": 1, "replays": 5, "passed": true}
+{"op": "moe_align", "rows": 2, "replays": 5, "passed": true}
+{"op": "topk_softmax", "rows": 2, "replays": 5, "passed": true}
+{"op": "moe_align", "rows": 4, "replays": 5, "passed": true}
+{"op": "topk_softmax", "rows": 4, "replays": 5, "passed": true}
+{"op": "moe_align", "rows": 8, "replays": 5, "passed": true}
+{"op": "topk_softmax", "rows": 8, "replays": 5, "passed": true}
+{"op": "moe_align", "rows": 16, "replays": 5, "passed": true}
+{"op": "topk_softmax", "rows": 16, "replays": 5, "passed": true}
+{"op": "moe_align", "rows": 32, "replays": 5, "passed": true}
+{"op": "topk_softmax", "rows": 32, "replays": 5, "passed": true}
+{"summary": [{"op": "moe_align", "rows": 1, "replays": 5, "passed": true}, {"op": "topk_softmax", "rows": 1, "replays": 5, "passed": true}, {"op": "moe_align", "rows": 2, "replays": 5, "passed": true}, {"op": "topk_softmax", "rows": 2, "replays": 5, "passed": true}, {"op": "moe_align", "rows": 4, "replays": 5, "passed": true}, {"op": "topk_softmax", "rows": 4, "replays": 5, "passed": true}, {"op": "moe_align", "rows": 8, "replays": 5, "passed": true}, {"op": "topk_softmax", "rows": 8, "replays": 5, "passed": true}, {"op": "moe_align", "rows": 16, "replays": 5, "passed": true}, {"op": "topk_softmax", "rows": 16, "replays": 5, "passed": true}, {"op": "moe_align", "rows": 32, "replays": 5, "passed": true}, {"op": "topk_softmax", "rows": 32, "replays": 5, "passed": true}]}
