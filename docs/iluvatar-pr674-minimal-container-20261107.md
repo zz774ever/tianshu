@@ -304,3 +304,619 @@ bash /opt/gate/run-four.sh
 - compressed-tensors、fastapi、huggingface-hub、mcp、mistral-common、opencv-python-headless、tokenizers、transformers、xgrammar 与 vLLM 0.32.0 的版本声明不一致。
 
 本轮目标是以最小安装改动复现指定 gate，保留基础镜像已经使用的普通依赖集合。核心导入和 GPU 分配通过不代表 `pip check` 通过；即使四轮 gate 全通过，也只证明本文固定版本组合覆盖到的文本、图片、混合请求路径。本轮不据此宣称所有 vLLM 功能或这些包的通用兼容性均已验证。
+
+## 11. 安装、环境检查及测试脚本全文
+
+完整命令顺序见第 12 节；失败原因、复测风险及证据边界见第 13 节。
+
+本节直接嵌入本轮交付的脚本内容，便于只打开本文即可审阅。独立脚本仍在仓库的 `tools/minimal-gate-container-20261107/`；插件原始三个脚本来自固定提交 `7a94aeec80fbb795d5596569eb7d40cfe5460106`。文档补充不修改脚本、不改变测试判定，不重建已导出的镜像，因此第 8 节镜像及输入包 SHA256 仍然有效。
+
+`/input` 是安装输入包的挂载目录，不是基础镜像自带目录。其内容由 `gate-install-inputs-20261107.tar` 解包得到，包含本节前五个脚本、归档、wheel、`SHA256SUMS` 和 `provenance.json`。仅复制安装脚本而缺少这些输入，无法完成安装。`install-stack.sh` 会把运行所需脚本复制到容器内 `/opt/gate`；从已打包镜像启动则这些文件已经存在，无需再执行安装脚本。
+
+环境脚本默认使用四张卡 `4,5,6,7`；其他机器执行前设置 `export GATE_DEVICES=实际四张空闲卡`，不要只改 CUDA 或 CoreX 两个可见设备变量中的一个。`inspect-env.py --cuda --stack` 的作用是核验版本、导入路径、四卡分配和 Graph 能力，它不证明模型输出质量，也不代替 gate。
+
+`run-one.sh` 负责启动原始服务脚本、等服务就绪、执行原始 `run_test.sh`、记录结果、停止该轮服务。`run-four.sh` 顺序调用四轮；由于开启 `set -e`，其中一轮失败就停止，必须看退出码和 JSON，不能只看日志最后一个 PASSED。
+
+### 11.1 `/input/install-stack.sh`
+
+```bash
+#!/usr/bin/env bash
+set -euo pipefail
+source /input/gate-env.sh
+unset PYTHONPATH PIP_CONSTRAINT VLLM_VENDOR
+export PIP_NO_CACHE_DIR=1
+export PIP_INDEX_URL=https://pypi.tuna.tsinghua.edu.cn/simple
+test "$(python -c 'from importlib.metadata import version; print(version("torch"))')" = 2.10.0+corex.4.5.0
+mkdir -p /opt/gate /opt/FlagCX /tmp/gate-build
+cp /input/gate-env.sh /input/run-one.sh /input/run-four.sh /input/inspect-env.py /opt/gate/
+cp /input/SHA256SUMS /input/provenance.json /opt/gate/
+cd /input
+sha256sum -c SHA256SUMS
+python -m pip install --no-deps 'wheel==0.48.0'
+python -m pip install --no-deps '/input/flagtree-0.7.0+iluvatar3.6-cp312-cp312-linux_x86_64.whl'
+tar -xzf /input/vllm-v0.32.0.tar.gz -C /tmp/gate-build
+VLLM_TARGET_DEVICE=empty VLLM_VERSION_OVERRIDE=0.32.0+empty python -m pip install --no-build-isolation --no-deps /tmp/gate-build/vllm-0.32.0
+tar -xzf /input/FlagGems-v5.5.0.dev0.tar.gz -C /tmp/gate-build
+SETUPTOOLS_SCM_PRETEND_VERSION=5.5.0.dev0 python -m pip install --no-deps /tmp/gate-build/FlagGems-5.5.0.dev0
+tar -xzf /input/FlagGems-vllm-b434eaf.tar.gz -C /tmp/gate-build
+python -m pip install --no-build-isolation --no-deps /tmp/gate-build/FlagGems-vllm-b434eafb1715849d1019ddcd480c5fc39461665c
+tar -xzf /input/vllm-plugin-FL-7a94aee.tar.gz -C /opt
+SETUPTOOLS_SCM_PRETEND_VERSION=0.0.0+g7a94aeec8 python -m pip install --no-build-isolation --no-deps -e /opt/vllm-plugin-FL
+tar -xzf /input/FlagCX-runtime-6143384.tar.gz -C /opt/FlagCX
+rm -rf /tmp/gate-build
+printf '%s\n' STACK_INSTALL_COMPLETE
+```
+
+### 11.2 `/opt/gate/gate-env.sh`
+
+```bash
+#!/usr/bin/env bash
+export CUDA_VISIBLE_DEVICES=${GATE_DEVICES:-4,5,6,7}
+export COREX_VISIBLE_DEVICES="$CUDA_VISIBLE_DEVICES"
+export VLLM_PLUGINS=fl
+export USE_FLAGGEMS=1
+export GEMS_VENDOR=iluvatar
+export FLAGCX_PATH=/opt/FlagCX
+export PYTHONPATH=/opt/vllm-plugin-FL
+export LD_LIBRARY_PATH=/opt/FlagCX/build/lib:/usr/local/corex/lib64:/usr/local/openmpi/lib:/usr/local/lib
+if [[ -f /run/iluvatar-host-driver/libcuda.so.1 ]]; then
+    export LD_LIBRARY_PATH="/run/iluvatar-host-driver:$LD_LIBRARY_PATH"
+fi
+export VLLM_FL_FLAGOS_BLACKLIST_APPEND=slice,mm,mm_out
+export PYTHONUNBUFFERED=1
+export PYTHONDONTWRITEBYTECODE=1
+export TENSOR_PARALLEL_SIZE=4
+export MAX_MODEL_LEN=32768
+export VLLM_EXECUTE_MODEL_TIMEOUT_SECONDS=7200
+export SERVICE_TIMEOUT=1800
+export REQUEST_TIMEOUT=600
+export NO_PROXY=localhost,127.0.0.1
+export no_proxy="$NO_PROXY"
+export PYTEST_ADDOPTS='-p no:cacheprovider'
+export PORT=${PORT:-8145}
+unset VIRTUAL_ENV BASE_URL VLLM_FL_ILUVATAR_MROPE_IMPL
+```
+
+### 11.3 `/opt/gate/inspect-env.py`
+
+```python
+import ctypes
+import json
+import os
+import platform
+import sys
+from importlib import metadata
+from pathlib import Path
+
+packages = [
+    'torch', 'vllm', 'vllm-plugin-fl', 'flag-gems', 'flaggems-vllm', 'flagtree',
+    'setuptools', 'setuptools-scm', 'wheel', 'numpy', 'transformers', 'tokenizers',
+    'huggingface-hub', 'compressed-tensors', 'fastapi', 'starlette', 'pydantic',
+    'mcp', 'mistral-common', 'opencv-python-headless', 'xgrammar', 'openai',
+    'pillow', 'pytest', 'apache-tvm-ffi', 'model-hosting-container-standards',
+    'safetensors', 'aiohttp', 'requests', 'httpx', 'uvicorn', 'einops',
+    'packaging', 'pybind11', 'PyYAML', 'sqlalchemy', 'modelscope',
+]
+versions = {}
+for name in packages:
+    try:
+        versions[name] = metadata.version(name)
+    except metadata.PackageNotFoundError:
+        versions[name] = None
+print(json.dumps({'python': sys.version, 'executable': sys.executable,
+                  'prefix': sys.prefix, 'base_prefix': sys.base_prefix,
+                  'platform': platform.platform(), 'packages': versions}, indent=2), flush=True)
+assert sys.prefix == sys.base_prefix
+if '--cuda' in sys.argv:
+    import torch
+    print('torch_import', torch.__file__, flush=True)
+    print('cuda_available', torch.cuda.is_available(), flush=True)
+    print('cuda_device_count', torch.cuda.device_count(), flush=True)
+    assert torch.cuda.is_available()
+    assert torch.cuda.device_count() == 4
+    for index in range(torch.cuda.device_count()):
+        assert torch.ones(1, device=f'cuda:{index}').cpu().item() == 1
+    print('CUDA_ALLOCATION_PASS', flush=True)
+    values = torch.ones(1, device='cuda')
+    torch.cuda.synchronize()
+    graph = torch.cuda.CUDAGraph()
+    stream = torch.cuda.Stream()
+    with torch.cuda.graph(graph, stream=stream):
+        output = values + 1
+    graph.replay()
+    torch.cuda.synchronize()
+    assert output.item() == 2
+    print('CUDA_GRAPH_CAPTURE_REPLAY_PASS', flush=True)
+    libraries = sorted({line.split()[-1] for line in Path('/proc/self/maps').read_text().splitlines()
+                        if any(name in line for name in ['libcudart.so', 'libcuda.so', 'libixthunk.so'])})
+    print(json.dumps({'loaded_runtime_libraries': libraries}, indent=2), flush=True)
+if '--stack' in sys.argv:
+    import flag_gems
+    import torch
+    import triton
+    import vllm
+    import vllm_fl
+    from vllm_fl.distributed.device_communicators import flagcx
+
+    expected = {'vllm': '0.32.0+empty', 'torch': '2.10.0+corex.4.5.0',
+                'flagtree': '0.7.0+iluvatar3.6', 'flag-gems': '5.5.0.dev0',
+                'flaggems-vllm': '0.3.0.dev1'}
+    for name, version in expected.items():
+        assert versions[name] == version, (name, versions[name], version)
+    assert Path(vllm_fl.__file__).is_relative_to('/opt/vllm-plugin-FL')
+    assert hasattr(triton._C.libtriton, 'iluvatar')
+    ctypes.CDLL(os.environ['FLAGCX_PATH'] + '/build/lib/libflagcx.so')
+    assert flagcx._flagcx_available
+    print(json.dumps({'modules': {module.__name__: module.__file__
+                                for module in [torch, vllm, vllm_fl, flag_gems, triton]}}, indent=2))
+    print('STACK_CHECK_PASS', flush=True)
+```
+
+### 11.4 `/opt/gate/run-one.sh`
+
+```bash
+#!/usr/bin/env bash
+set -euo pipefail
+source /opt/gate/gate-env.sh
+mode=${1:?Usage: bash /opt/gate/run-one.sh graph-or-eager /models/model-directory}
+export MODEL_PATH=${2:?Model directory is required}
+[[ "$mode" == graph || "$mode" == eager ]]
+test -f "$MODEL_PATH/config.json"
+export SERVED_MODEL_NAME=qwen-gate
+export BASE_URL="http://127.0.0.1:$PORT/v1"
+run_dir="/results/$(basename "$MODEL_PATH")-$mode"
+mkdir "$run_dir"
+export RESULTS_DIR="$run_dir/results"
+export SERVER_PID_FILE="$run_dir/server.pid"
+export VLLM_CACHE_ROOT="$run_dir/compile-cache"
+export TRITON_CACHE_DIR="$run_dir/triton-cache"
+export TORCHINDUCTOR_CACHE_DIR="$run_dir/inductor-cache"
+if [[ "$mode" == graph ]]; then
+    export GRAPH_COMPILATION_CONFIG='{"cudagraph_capture_sizes":[1,2,4,8,16,32]}'
+else
+    unset GRAPH_COMPILATION_CONFIG
+fi
+python - <<'PY'
+import os
+import socket
+with socket.socket() as probe:
+    probe.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    probe.bind(('127.0.0.1', int(os.environ['PORT'])))
+PY
+date -Is > "$run_dir/started-at.txt"
+printf '%s\n' "model=$MODEL_PATH" "devices=$CUDA_VISIBLE_DEVICES" "mode=$mode" "graph_config=${GRAPH_COMPILATION_CONFIG:-enforce-eager}" "blacklist=$VLLM_FL_FLAGOS_BLACKLIST_APPEND" > "$run_dir/settings.txt"
+server=''
+cleanup() {
+    if [[ -n "$server" ]]; then
+        kill -TERM -- "-$server" 2>/dev/null || true
+        for ((attempt=0; attempt<30; attempt++)); do
+            if ! kill -0 -- "-$server" 2>/dev/null; then break; fi
+            sleep 1
+        done
+        if kill -0 -- "-$server" 2>/dev/null; then
+            kill -KILL -- "-$server" 2>/dev/null || true
+        fi
+        wait "$server" 2>/dev/null || true
+        server=''
+    fi
+}
+trap cleanup EXIT
+trap 'exit 130' INT
+trap 'exit 143' TERM
+cd /opt/vllm-plugin-FL
+setsid bash "tools/adaptation-gate-cases/run_serve_$mode.sh" > "$run_dir/server.log" 2>&1 &
+server=$!
+deadline=$((SECONDS+SERVICE_TIMEOUT))
+ready=0
+while (( SECONDS < deadline )); do
+    if ! kill -0 "$server" 2>/dev/null; then break; fi
+    if curl --silent --fail "$BASE_URL/models" > "$run_dir/models.json" 2>/dev/null; then
+        kill -0 "$server"
+        ready=1
+        break
+    fi
+    sleep 5
+done
+status=1
+if (( ready == 1 )); then
+    date -Is > "$run_dir/ready-at.txt"
+    status=0
+    bash tools/adaptation-gate-cases/run_test.sh > "$run_dir/tests.log" 2>&1 || status=$?
+fi
+printf '%s\n' "$status" > "$run_dir/gate-exit-code.txt"
+date -Is > "$run_dir/gate-finished-at.txt"
+if (( status == 0 )); then
+    python - "$RESULTS_DIR" <<'PY' > "$run_dir/summary.json" || status=$?
+import json
+import sys
+from pathlib import Path
+
+expected = {'text_single':1, 'text_concurrent_8':8, 'image_single':1, 'image_concurrent_8':8, 'mixed_concurrent_8':8}
+cases = {}
+for path in Path(sys.argv[1]).rglob('*.json'):
+    document = json.loads(path.read_text())
+    scenario = document['case']['scenario']
+    assert scenario not in cases
+    cases[scenario] = document['summary']
+    assert all(output['passed'] for output in document['output'])
+assert set(cases) == set(expected), cases
+for name, count in expected.items():
+    assert cases[name]['passed'] and cases[name]['request_count'] == count
+    assert cases[name]['passed_count'] == count
+print(json.dumps({'passed': True, 'requests': 26, 'cases': cases}, indent=2))
+PY
+fi
+cleanup
+date -Is > "$run_dir/finished-at.txt"
+printf '%s\n' "$status" > "$run_dir/exit-code.txt"
+printf 'Finished: mode=%s model=%s exit=%s results=%s\n' "$mode" "$(basename "$MODEL_PATH")" "$status" "$run_dir"
+exit "$status"
+```
+
+### 11.5 `/opt/gate/run-four.sh`
+
+```bash
+#!/usr/bin/env bash
+set -euo pipefail
+for model in Qwen3.6-27B Qwen3.6-35B-A3B; do
+    for mode in graph eager; do
+        bash /opt/gate/run-one.sh "$mode" "/models/$model"
+    done
+done
+printf '%s\n' FOUR_ROUNDS_COMPLETE
+```
+
+### 11.6 插件原始 `run_serve_graph.sh`
+
+```bash
+#!/usr/bin/env bash
+# Example: MODEL_PATH=/models/Qwen3.6-27B PORT=8001 ./run_serve_graph.sh
+
+set -euo pipefail
+
+if [[ $# -ne 0 ]]; then
+    echo "Usage: MODEL_PATH=/path/to/model PORT=8001 $0" >&2
+    exit 2
+fi
+
+model_path=${MODEL_PATH:-}
+port=${PORT:-}
+script_dir=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
+
+if [[ -z "$model_path" || -z "$port" ]]; then
+    echo "MODEL_PATH and PORT are required." >&2
+    echo "Usage: MODEL_PATH=/path/to/model PORT=8001 $0" >&2
+    exit 2
+fi
+if [[ ! -d "$model_path" ]]; then
+    echo "Model directory does not exist: $model_path" >&2
+    exit 2
+fi
+if [[ ! "$port" =~ ^[0-9]+$ ]] || (( 10#$port < 1 || 10#$port > 65535 )); then
+    echo "Port must be an integer from 1 to 65535: $port" >&2
+    exit 2
+fi
+served_model_name=${SERVED_MODEL_NAME:-$model_path}
+if [[ -z ${VLLM_PLUGINS+x} ]]; then
+    export VLLM_PLUGINS=fl
+fi
+printf '%s\n' "$$" >"${SERVER_PID_FILE:-$script_dir/.server.pid}"
+
+compilation_args=()
+if [[ -n ${GRAPH_COMPILATION_CONFIG:-} ]]; then
+    compilation_args+=(--compilation-config "$GRAPH_COMPILATION_CONFIG")
+fi
+
+exec vllm serve "$model_path" \
+    --served-model-name "$served_model_name" \
+    --host 127.0.0.1 \
+    --port "$((10#$port))" \
+    --tensor-parallel-size "${TENSOR_PARALLEL_SIZE:-2}" \
+    --max-model-len "${MAX_MODEL_LEN:-32768}" \
+    --allowed-local-media-path "$script_dir/images" \
+    --trust-remote-code \
+    "${compilation_args[@]}"
+```
+
+### 11.7 插件原始 `run_serve_eager.sh`
+
+```bash
+#!/usr/bin/env bash
+# Example: MODEL_PATH=/models/Qwen3.6-27B PORT=8000 ./run_serve_eager.sh
+
+set -euo pipefail
+
+if [[ $# -ne 0 ]]; then
+    echo "Usage: MODEL_PATH=/path/to/model PORT=8000 $0" >&2
+    exit 2
+fi
+
+model_path=${MODEL_PATH:-}
+port=${PORT:-}
+script_dir=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
+
+if [[ -z "$model_path" || -z "$port" ]]; then
+    echo "MODEL_PATH and PORT are required." >&2
+    echo "Usage: MODEL_PATH=/path/to/model PORT=8000 $0" >&2
+    exit 2
+fi
+if [[ ! -d "$model_path" ]]; then
+    echo "Model directory does not exist: $model_path" >&2
+    exit 2
+fi
+if [[ ! "$port" =~ ^[0-9]+$ ]] || (( 10#$port < 1 || 10#$port > 65535 )); then
+    echo "Port must be an integer from 1 to 65535: $port" >&2
+    exit 2
+fi
+served_model_name=${SERVED_MODEL_NAME:-$model_path}
+if [[ -z ${VLLM_PLUGINS+x} ]]; then
+    export VLLM_PLUGINS=fl
+fi
+printf '%s\n' "$$" >"${SERVER_PID_FILE:-$script_dir/.server.pid}"
+
+exec vllm serve "$model_path" \
+    --served-model-name "$served_model_name" \
+    --host 127.0.0.1 \
+    --port "$((10#$port))" \
+    --tensor-parallel-size "${TENSOR_PARALLEL_SIZE:-2}" \
+    --max-model-len "${MAX_MODEL_LEN:-32768}" \
+    --allowed-local-media-path "$script_dir/images" \
+    --trust-remote-code \
+    --enforce-eager
+```
+
+### 11.8 插件原始 `run_test.sh`
+
+```bash
+#!/usr/bin/env bash
+# Example: MODEL_PATH=/models/Qwen3.6-27B PORT=8000 ./run_test.sh
+
+set -uo pipefail
+
+if [[ $# -ne 0 ]]; then
+    echo "Usage: MODEL_PATH=/path/to/model PORT=8000 $0" >&2
+    exit 2
+fi
+
+script_dir=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
+model_path=${MODEL_PATH:-}
+served_model_name=${SERVED_MODEL_NAME:-}
+port=${PORT:-}
+service_timeout=${SERVICE_TIMEOUT:-1800}
+server_pid_file=${SERVER_PID_FILE:-"$script_dir/.server.pid"}
+
+if [[ -z "$served_model_name" && -z "$model_path" ]] || [[ -z "$port" ]]; then
+    echo "SERVED_MODEL_NAME or MODEL_PATH, and PORT are required." >&2
+    echo "Usage: MODEL_PATH=/path/to/model PORT=8000 $0" >&2
+    exit 2
+fi
+if [[ ! "$port" =~ ^[0-9]+$ ]] || (( 10#$port < 1 || 10#$port > 65535 )); then
+    echo "Port must be an integer from 1 to 65535: $port" >&2
+    exit 2
+fi
+port=$((10#$port))
+base_url=${BASE_URL:-"http://127.0.0.1:$port/v1"}
+
+deadline=$((SECONDS + service_timeout))
+until curl --silent --fail "$base_url/models" >/dev/null 2>&1; do
+    if [[ -r "$server_pid_file" ]]; then
+        read -r server_pid <"$server_pid_file"
+        if [[ "$server_pid" =~ ^[0-9]+$ ]] && ! kill -0 "$server_pid" 2>/dev/null; then
+            echo "Service process $server_pid exited before becoming ready." >&2
+            exit 1
+        fi
+    fi
+    if (( SECONDS >= deadline )); then
+        echo "Service was not ready within ${service_timeout}s: $base_url" >&2
+        exit 1
+    fi
+    sleep 5
+done
+
+export MODEL_PATH="$model_path"
+export PORT="$port"
+export BASE_URL="$base_url"
+export RESULTS_DIR=${RESULTS_DIR:-"$script_dir/results"}
+
+cd "$script_dir" || exit 1
+status=0
+pytest -sv test_text.py || status=1
+pytest -sv test_image.py || status=1
+pytest -sv test_mix_text_image.py || status=1
+exit "$status"
+```
+
+## 12. 本轮实际执行命令与手动复测命令
+
+### 12.1 安装和四轮测试的实际入口
+
+以下是本机外层容器执行的实际测试顺序。这里的 `docker-local.sh` 只负责连接本机独立 Docker socket，不是其他普通宿主机必须安装的工具。普通宿主机使用 `docker exec` 替换 `bash "$ROOT/docker-local.sh" exec`，容器名改成自己的即可。新建容器步骤见第 3 节，本机专用驱动挂载见第 9 节。
+
+```bash
+ROOT=/workspace/minimal-gate-container-20261107
+CONTAINER=fl-gate-minimal-20261107
+
+bash "$ROOT/docker-local.sh" exec "$CONTAINER" bash /input/install-stack.sh \
+  > "$ROOT/evidence/install-stack.log" 2>&1
+
+bash "$ROOT/docker-local.sh" exec "$CONTAINER" bash -c \
+  'source /opt/gate/gate-env.sh; python /opt/gate/inspect-env.py --cuda --stack' \
+  > "$ROOT/evidence/final-environment-with-graph-check.log" 2>&1
+
+bash "$ROOT/docker-local.sh" exec "$CONTAINER" bash /opt/gate/run-four.sh \
+  > "$ROOT/evidence/four-rounds.log" 2>&1
+```
+
+说明：安装期间的 `run-four.sh` 是随后单独复制进 `/opt/gate` 的，交付版安装脚本已把它加入复制列表。本节第 11 节展示的是最终交付脚本。本轮 Graph 能力检查是在第 9 节运行库对照后补充的；原始检查、失败日志与最终检查分别保留，不把安装中的修订过程写成一次全部成功。
+
+本轮 `run-four.sh` 在 35B Graph 质量失败后返回 1，因此 35B Eager 没有自动执行。实际随后单独运行：
+
+```bash
+bash "$ROOT/docker-local.sh" exec "$CONTAINER" \
+  bash /opt/gate/run-one.sh eager /models/Qwen3.6-35B-A3B \
+  > "$ROOT/evidence/35b-eager-runner.log" 2>&1
+```
+
+完成首次四轮后，保存首次汇总和失败目录，再单独复测 35B Graph：
+
+```bash
+python "$ROOT/summarize-results.py" > "$ROOT/evidence/first-complete-summary.log"
+cp "$ROOT/evidence/final-summary.json" "$ROOT/evidence/first-complete-summary.json"
+
+mv "$ROOT/evidence/Qwen3.6-35B-A3B-graph" \
+   "$ROOT/evidence/Qwen3.6-35B-A3B-graph-first-quality-failure"
+
+bash "$ROOT/docker-local.sh" exec "$CONTAINER" \
+  bash /opt/gate/run-one.sh graph /models/Qwen3.6-35B-A3B \
+  > "$ROOT/evidence/35b-graph-repeat-runner.log" 2>&1
+
+python "$ROOT/summarize-results.py" > "$ROOT/evidence/final-summary.log"
+```
+
+这是本轮已有记录的执行历史。其他机器首次复测只运行四轮，不要提前执行移动失败目录或重跑命令。任一命令失败时先检查对应日志和退出码，再决定后续操作；不要把“重复运行到通过”当作通过标准。
+
+### 12.2 已有打包环境，在容器内顺序运行
+
+从第 8 节打包镜像创建容器后进入 Bash。结果挂载目录必须是新目录；先检查环境，成功后再运行测试：
+
+```bash
+export GATE_DEVICES=2,3,4,5
+export PORT=8145
+source /opt/gate/gate-env.sh
+python /opt/gate/inspect-env.py --cuda --stack
+```
+
+确认打印 `CUDA_ALLOCATION_PASS`、`CUDA_GRAPH_CAPTURE_REPLAY_PASS`、`STACK_CHECK_PASS`，且命令退出码为 0。然后运行：
+
+```bash
+bash /opt/gate/run-four.sh
+echo "四轮执行退出码：$?"
+```
+
+如果希望每轮结束后自己查看结果，使用以下四条命令替代 `run-four.sh`，不要把两种方式在同一结果目录重复执行：
+
+```bash
+bash /opt/gate/run-one.sh graph /models/Qwen3.6-27B
+echo "27B Graph 退出码：$?"
+bash /opt/gate/run-one.sh eager /models/Qwen3.6-27B
+echo "27B Eager 退出码：$?"
+bash /opt/gate/run-one.sh graph /models/Qwen3.6-35B-A3B
+echo "35B Graph 退出码：$?"
+bash /opt/gate/run-one.sh eager /models/Qwen3.6-35B-A3B
+echo "35B Eager 退出码：$?"
+```
+
+`run-one.sh` 将服务和 pytest 输出写入 `/results/模型名-模式/server.log`、`tests.log`，终端只打印轮次结束摘要。等待期间在另一个终端查看这些日志即可，不要因当前终端没有刷屏就认为暂停。
+
+### 12.3 不使用封装脚本时，服务端和客户端实际命令
+
+这是一轮测试的手动替代方式，便于清楚看到究竟启动了什么。与第 12.2 节二选一，不要对同一端口同时启动两个服务。
+
+终端 A（进入容器后）：
+
+```bash
+export GATE_DEVICES=2,3,4,5
+export PORT=8145
+source /opt/gate/gate-env.sh
+cd /opt/vllm-plugin-FL
+export MODEL_PATH=/models/Qwen3.6-27B
+export SERVED_MODEL_NAME=qwen-gate
+export RESULTS_DIR=/results/manual-27b-graph
+export SERVER_PID_FILE="$RESULTS_DIR/server.pid"
+export VLLM_CACHE_ROOT="$RESULTS_DIR/compile-cache"
+export TRITON_CACHE_DIR="$RESULTS_DIR/triton-cache"
+export TORCHINDUCTOR_CACHE_DIR="$RESULTS_DIR/inductor-cache"
+mkdir "$RESULTS_DIR"
+export GRAPH_COMPILATION_CONFIG='{"cudagraph_capture_sizes":[1,2,4,8,16,32]}'
+bash tools/adaptation-gate-cases/run_serve_graph.sh
+```
+
+终端 B（进入同一个容器后）：
+
+```bash
+export GATE_DEVICES=2,3,4,5
+export PORT=8145
+source /opt/gate/gate-env.sh
+cd /opt/vllm-plugin-FL
+export MODEL_PATH=/models/Qwen3.6-27B
+export SERVED_MODEL_NAME=qwen-gate
+export RESULTS_DIR=/results/manual-27b-graph
+export SERVER_PID_FILE="$RESULTS_DIR/server.pid"
+set -o pipefail
+bash tools/adaptation-gate-cases/run_test.sh 2>&1 | tee "$RESULTS_DIR/tests.log"
+echo "gate 退出码：$?"
+```
+
+客户端会等待服务就绪。测试结束后，在终端 A 按 Ctrl+C，等该轮 worker 退出、四张卡释放后再开始下一轮。Eager 时把两端结果目录改为新的 `/results/manual-27b-eager`，服务端取消 `GRAPH_COMPILATION_CONFIG` 并执行：
+
+```bash
+unset GRAPH_COMPILATION_CONFIG
+bash tools/adaptation-gate-cases/run_serve_eager.sh
+```
+
+35B 时两端同时将 `MODEL_PATH` 改为 `/models/Qwen3.6-35B-A3B`，并分别使用新的 `/results/manual-35b-graph` 或 `/results/manual-35b-eager`。确保两端的端口、模型别名、结果目录、PID 文件一致。
+
+Graph 服务最终执行的是 `vllm serve`，模型路径和参数如下（这里给出 27B 的展开形式，原始脚本全文见第 11.6 节）：
+
+```bash
+vllm serve /models/Qwen3.6-27B \
+  --served-model-name qwen-gate \
+  --host 127.0.0.1 \
+  --port 8145 \
+  --tensor-parallel-size 4 \
+  --max-model-len 32768 \
+  --allowed-local-media-path /opt/vllm-plugin-FL/tools/adaptation-gate-cases/images \
+  --trust-remote-code \
+  --compilation-config '{"cudagraph_capture_sizes":[1,2,4,8,16,32]}'
+```
+
+Eager 使用同样的基础参数，将最后的 `--compilation-config ...` 替换为 `--enforce-eager`。客户端原始 `run_test.sh` 就绪后依次执行：
+
+```bash
+cd /opt/vllm-plugin-FL/tools/adaptation-gate-cases
+pytest -sv test_text.py
+pytest -sv test_image.py
+pytest -sv test_mix_text_image.py
+```
+
+直接运行这三条 pytest 命令时，需自行确认服务就绪并分别检查退出码；推荐继续使用原始 `run_test.sh`，它会等待服务并汇总失败状态。
+
+## 13. 为什么一条不通过，我自己复测会不会失败
+
+**可能失败，当前没有证据保证你复测必过，也无法据此估计失败概率。** 已打包的是本轮实际环境，不是已经解决所有质量问题的版本。首次 35B Graph 的一条错误回答尚未完成根因定位；第二次达到原始 gate 的通过条件，不能推导为问题已经消失。
+
+### 13.1 确定发生了什么
+
+| 对照 | 请求/输出 | 当前原始 gate |
+| --- | --- | --- |
+| 35B Graph 首次 text concurrent 8 | `Compute 19 + 23. Reply with the number only.` → `4ally` | 失败 |
+| 同一次服务，后续 mixed concurrent 8 中同题 | → `42` | 通过 |
+| 同配置重启服务后的完整 Graph 复测，同题 | → `4\n                    \n42` | 通过，但有多余字符 |
+| 35B Eager 首次完整 gate | 26/26 | 通过 |
+
+失败请求的服务正常响应，`finish_reason=stop`，生成 3 tokens，没有请求异常或超时。失败的是 `expected_semantics` 和 `expected_order`：归一化后的字符串里找不到预期项 `42`。因此这是实际输出内容未满足断言，不是安装失败、OOM 或 pytest 没连上服务。
+
+复测通过有明确边界：当前 `quality_checks` 对 `required_terms=["42"]` 使用字符串查找，能找到预期项并满足顺序就通过这两项检查。它没有把该题的“number only”实现为 `text.strip() == "42"`。所以 `4\n                    \n42` 可以通过现有 gate，却没有严格遵守提示词格式。本轮没有为消除失败修改测试，也没有把带多余字符的回答描述为完全正确。
+
+### 13.2 目前能定位到哪里
+
+已定位到“35B MoE 模型、Graph 模式、8 路文本并发的某次输出异常”这一现象，**尚未定位到具体算子、层或上游缺陷**。同题在 mixed 场景中正确，重新启动服务后输出也变化，因此至少说明结果与这次执行路径/状态存在关联；它不能单独证明 CUDA Graph、MoE 算子、调度器或任何一个依赖就是根因。
+
+下一步若要修复，需对相同请求比较 Graph/Eager 的 token/logits，进一步隔离批处理形状、Graph 回放、MoE 路由及计算路径，直至定位差异。本轮按“最小 gate 复现”范围没有展开这些数值定位，不能编造已确认的根因。
+
+另一个已明确定位的故障是第 9 节的 Graph 启动运行库问题：镜像原装 libcudart 在本机的最小捕获调用中失败，匹配运行库对照后成功。它发生在服务就绪前，且已通过运行库对照处理；`4ally` 是随后服务正常启动后的输出质量失败。两件事有不同的直接证据，目前没有证据把它们归为同一个根因。
+
+已采取的 `slice,mm,mm_out` 排除在失败轮和复测轮中完全一致，未通过追加排除项修复该题。版本检查、库哈希一致、环境检查成功，只能排查一部分环境差异，不能证明模型推理的每条路径都正确。已有 `pip check` 的 12 项声明问题也尚未被证明与这条输出有关。
+
+### 13.3 你复测时怎样判断
+
+1. 先运行 `inspect-env.py --cuda --stack`。失败就先处理导入、版本或驱动/运行库问题；通过后再加载模型。
+2. 使用新的结果挂载目录执行四轮原始 gate，保留每轮的 `tests.log`、`server.log` 和原始请求 JSON。Graph 使用本文指定 capture sizes，保留同样的算子排除设置。
+3. 任一轮退出码非 0，都应报告为该次失败。环境检查通过并不保证 gate 必过；换机器后内核驱动、库文件、设备、编译路径、并发执行顺序等也可能不同。
+4. 如果四轮均通过，可以报告“本次现有 gate 104/104”，同时说明本环境历史出现过 35B Graph 质量失败。若还关心严格答案格式，直接查看原始 `text`；检查通过不代表格式完美。
+5. 如果再次出现 `4ally`、缺失预期答案或多余字符，保留第一次原始结果再做一次同配置对照。多余字符即使未触发当前 gate，也应单独记录。不要删除首次结果后只保留成功复测。
+6. 不要靠降低并发、关闭 Graph、缩短测试输出或放宽预期项来报告相同 gate 已通过；这些变更只能作为后续定位实验，需单独标明条件。
+
+当前只有一次失败的 35B Graph 完整轮次和一次复测，样本不足，不能声称“偶发概率很低”或“你大概率不会遇到”。如后续用户要求严格格式断言或深入定位，应作为明确的新变更保留新旧测试结果，本轮文档补充不改原始 gate。
+
+
