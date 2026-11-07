@@ -1,0 +1,95 @@
+From https://gh-proxy.org/https://github.com/flagos-ai/vllm-plugin-FL
+ * branch            refs/pull/674/head -> FETCH_HEAD
+75ba2ffc9f610b28b0bd9345423ffd0d9c871842
+ docs/usage/iluvatar.md                           | 73 +++++++++++++++++++++++-
+ tests/unit_tests/test_adaptation_gate_quality.py | 45 +++++++++++++++
+ tests/unit_tests/test_iluvatar_compile_passes.py | 70 ++++++++++++++++++++++-
+ tools/adaptation-gate-cases/case_utils.py        | 18 +++++-
+ vllm_fl/platform.py                              | 13 +++++
+ 5 files changed, 212 insertions(+), 7 deletions(-)
+diff --git a/tools/adaptation-gate-cases/case_utils.py b/tools/adaptation-gate-cases/case_utils.py
+index 00869ff..fec4e5e 100644
+--- a/tools/adaptation-gate-cases/case_utils.py
++++ b/tools/adaptation-gate-cases/case_utils.py
+@@ -89,12 +89,15 @@ IMAGE_TASKS = (
+ 
+ def text_request(request_id: str, index: int) -> dict[str, Any]:
+     prompt, required = TEXT_TASKS[index]
+-    return {
++    request = {
+         "request_id": request_id,
+         "kind": "text",
+         "messages": [{"role": "user", "content": prompt}],
+         "required_terms": list(required),
+     }
++    if index in (0, 3, 6):
++        request["expected_exact"] = required[0]
++    return request
+ 
+ 
+ def llm_details_request() -> dict[str, Any]:
+@@ -203,7 +206,10 @@ def has_repeated_word_run(text: str) -> bool:
+ 
+ 
+ def quality_checks(
+-    text: str, required_terms: list[str], min_length: int = 1
++    text: str,
++    required_terms: list[str],
++    min_length: int = 1,
++    expected_exact: str | None = None,
+ ) -> dict[str, bool]:
+     normalized = normalized_text(text)
+     positions: list[int] = []
+@@ -220,7 +226,7 @@ def quality_checks(
+         chr(0x00E2) + chr(0x20AC),
+         chr(0x00EF) + chr(0x00BF) + chr(0x00BD),
+     )
+-    return {
++    checks = {
+         "non_empty": bool(normalized),
+         "minimum_length": len(text.strip()) >= min_length,
+         "expected_semantics": all(position >= 0 for position in positions),
+@@ -235,6 +241,11 @@ def quality_checks(
+         "no_repeated_word_run": not has_repeated_word_run(text),
+         "no_repeated_phrase": not has_repeated_phrase(text),
+     }
++    if expected_exact is not None:
++        checks["exact_answer"] = (
++            unicodedata.normalize("NFKC", text).strip() == expected_exact
++        )
++    return checks
+ 
+ 
+ def resolve_served_model_name() -> str:
+@@ -268,6 +279,7 @@ async def execute_request(
+             text,
+             request["required_terms"],
+             min_length=int(request.get("min_length", 1)),
++            expected_exact=request.get("expected_exact"),
+         )
+         return {
+             "request_id": request["request_id"],
+diff --git a/vllm_fl/platform.py b/vllm_fl/platform.py
+index e3b4bee..5d14ab4 100644
+--- a/vllm_fl/platform.py
++++ b/vllm_fl/platform.py
+@@ -588,6 +588,19 @@ class PlatformFL(Platform):
+         if getattr(cls, "vendor_name", None) == "iluvatar":
+             compilation_config.cudagraph_mm_encoder = False
+             compilation_config.use_inductor_graph_partition = True
++            hf_text_config = getattr(model_config, "hf_text_config", None)
++            if (
++                getattr(hf_text_config, "model_type", None) == "qwen3_5_moe_text"
++                and compilation_config.backend == "inductor"
++                and compilation_config.mode != CompilationMode.NONE
++                and compilation_config.cudagraph_mode.has_full_cudagraphs()
++            ):
++                compilation_config.inductor_compile_config["inplace_buffers"] = False
++                logger.warning_once(
++                    "Disabling Inductor inplace buffers for Iluvatar Qwen3.5 MoE "
++                    "full graphs after output corruption; compilation and "
++                    "graph capture remain enabled."
++                )
+             _pc = getattr(compilation_config, "pass_config", None)
+             if _pc is not None:
+                 _pc.fuse_rope_kvcache_cat_mla = False

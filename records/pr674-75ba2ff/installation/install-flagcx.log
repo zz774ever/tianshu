@@ -1,0 +1,90 @@
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: is subject to change. To configure the initial branch name to use in all
+hint: of your new repositories, which will suppress this warning, call:
+hint: 
+hint: 	git config --global init.defaultBranch <name>
+hint: 
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint: 
+hint: 	git branch -m <name>
+Initialized empty Git repository in /workspace/gate-src/FlagCX/.git/
+From https://gh-proxy.org/https://github.com/flagos-ai/FlagCX
+ * branch            6143384797219733aee89bd3118b2cb184ad4959 -> FETCH_HEAD
+HEAD is now at 6143384 [MLU] Fix setup for build (#362)
+Submodule 'third-party/json' (https://github.com/nlohmann/json.git) registered for path 'third-party/json'
+Cloning into '/workspace/gate-src/FlagCX/third-party/json'...
+From https://gh-proxy.org/https://github.com/nlohmann/json
+ * branch            a0e9fb1e638cfbb5b8b556b7c51eaa81977bad48 -> FETCH_HEAD
+Submodule path 'third-party/json': checked out 'a0e9fb1e638cfbb5b8b556b7c51eaa81977bad48'
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/flagcx.o
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/adaptor/adaptor.o
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/adaptor/device/cann_adaptor.o
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/adaptor/device/cuda_adaptor.o
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/adaptor/device/ducuda_adaptor.o
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/adaptor/device/hip_adaptor.o
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/adaptor/device/ixcuda_adaptor.o
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/adaptor/device/kunlunxin_adaptor.o
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/adaptor/device/maca_adaptor.o
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/adaptor/device/mlu_adaptor.o
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/adaptor/device/musa_adaptor.o
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/adaptor/device/tsmicro_adaptor.o
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/adaptor/ccl/bootstrap_adaptor.o
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/adaptor/ccl/cncl_adaptor.o
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/adaptor/ccl/dunccl_adaptor.o
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/adaptor/ccl/gloo_adaptor.o
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/adaptor/ccl/hccl_adaptor.o
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/adaptor/ccl/ixnccl_adaptor.o
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/adaptor/ccl/mccl_adaptor.o
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/adaptor/ccl/mpi_adaptor.o
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/adaptor/ccl/musa_mccl_adaptor.o
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/adaptor/ccl/nccl_adaptor.o
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/adaptor/ccl/rccl_adaptor.o
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/adaptor/ccl/tccl_adaptor.o
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/adaptor/ccl/xccl_adaptor.o
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/adaptor/net/ib_common.o
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/adaptor/net/ibrc_adaptor.o
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/adaptor/net/ibuc_adaptor.o
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/adaptor/net/ibuc_retrans.o
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/adaptor/net/socket_adaptor.o
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/adaptor/net/ucx_adaptor.o
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/adaptor/tuner/mccl_tuner.o
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/adaptor/tuner/nccl_tuner.o
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/adaptor/tuner/tuner.o
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/adaptor/tuner/tuner_util.o
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/adaptor/tuner/xccl_tuner.o
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/runner/c2c_algo.o
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/runner/homo_runner.o
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/runner/host_runner.o
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/runner/hybrid_runner.o
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/runner/runner.o
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/runner/uni_runner.o
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/runner/uni_runner_impl.o
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/core/cluster.o
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/core/cost_model.o
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/core/flagcx_hetero.o
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/core/flagcx_kernel_host.o
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/core/flagcx_reduce_kernel_host.o
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/core/flagcx_tuner.o
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/core/group.o
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/core/init.o
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/core/ipcsocket.o
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/core/launch_kernel.o
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/core/net.o
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/core/p2p.o
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/core/paths.o
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/core/proxy.o
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/core/reg_pool.o
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/core/socket.o
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/core/topo.o
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/core/transport.o
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/core/xml.o
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/service/bootstrap.o
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/service/debug.o
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/service/ibvsymbols.o
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/service/ibvwrap.o
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/service/load_devapi.o
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/service/param.o
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/service/shmutils.o
+Compiling /workspace/gate-src/FlagCX/build/obj/flagcx/service/utils.o
+Linking   /workspace/gate-src/FlagCX/build/lib/libflagcx.so

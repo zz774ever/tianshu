@@ -1,0 +1,43 @@
+{
+  "round": "35b-graph",
+  "model": "Qwen3.6-35B-A3B",
+  "mode": "graph",
+  "ready": true,
+  "gate_exit_code": 0,
+  "startup_seconds": 520.14,
+  "test_seconds": 78.78,
+  "requests": 26,
+  "passed": 26,
+  "numeric_outputs": [
+    {
+      "scenario": "mixed_concurrent_8",
+      "request_id": "text-01",
+      "text": "42",
+      "strict_number": true
+    },
+    {
+      "scenario": "mixed_concurrent_8",
+      "request_id": "text-04",
+      "text": "7",
+      "strict_number": true
+    },
+    {
+      "scenario": "text_concurrent_8",
+      "request_id": "text-01",
+      "text": "42",
+      "strict_number": true
+    },
+    {
+      "scenario": "text_concurrent_8",
+      "request_id": "text-04",
+      "text": "7",
+      "strict_number": true
+    },
+    {
+      "scenario": "text_concurrent_8",
+      "request_id": "text-07",
+      "text": "30",
+      "strict_number": true
+    }
+  ]
+}

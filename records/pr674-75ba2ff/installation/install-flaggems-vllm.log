@@ -1,0 +1,30 @@
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: is subject to change. To configure the initial branch name to use in all
+hint: of your new repositories, which will suppress this warning, call:
+hint: 
+hint: 	git config --global init.defaultBranch <name>
+hint: 
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint: 
+hint: 	git branch -m <name>
+Initialized empty Git repository in /workspace/gate-src/FlagGems-vllm/.git/
+From https://gh-proxy.org/https://github.com/flagos-ai/FlagGems-vllm
+ * branch            b434eafb1715849d1019ddcd480c5fc39461665c -> FETCH_HEAD
+HEAD is now at b434eaf [NVIDIA][Mega] Add Hopper Triton TLE MegaMoE candidate (#774)
+Looking in indexes: https://pypi.tuna.tsinghua.edu.cn/simple
+Processing ./.
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Building wheels for collected packages: flaggems_vllm
+  Building wheel for flaggems_vllm (pyproject.toml): started
+  Building wheel for flaggems_vllm (pyproject.toml): finished with status 'done'
+  Created wheel for flaggems_vllm: filename=flaggems_vllm-0.3.0.dev1-py3-none-any.whl size=1918850 sha256=17f8dfa6fd2c95b6b5d5843791b7f7d8f911f4f57cfaf989ba424665d4f03144
+  Stored in directory: /root/.cache/pip/wheels/a0/db/78/9665989dd6e512801c703ae534649c6fac30d8f30022e464df
+Successfully built flaggems_vllm
+Installing collected packages: flaggems_vllm
+Successfully installed flaggems_vllm-0.3.0.dev1
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+
+[notice] A new release of pip is available: 26.1.2 -> 26.3
+[notice] To update, run: pip install --upgrade pip

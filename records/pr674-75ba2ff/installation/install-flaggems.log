@@ -1,0 +1,38 @@
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: is subject to change. To configure the initial branch name to use in all
+hint: of your new repositories, which will suppress this warning, call:
+hint: 
+hint: 	git config --global init.defaultBranch <name>
+hint: 
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint: 
+hint: 	git branch -m <name>
+Initialized empty Git repository in /workspace/gate-src/FlagGems/.git/
+From https://gh-proxy.org/https://github.com/flagos-ai/FlagGems
+ * branch            2bcfe2656dad0b654077fcfe7d66e6a93542afab -> FETCH_HEAD
+HEAD is now at 2bcfe26 fix fft's res_out (#4802)
+Looking in indexes: https://pypi.tuna.tsinghua.edu.cn/simple
+Processing ./.
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Building wheels for collected packages: flag_gems
+  Building wheel for flag_gems (pyproject.toml): started
+  Building wheel for flag_gems (pyproject.toml): finished with status 'done'
+  Created wheel for flag_gems: filename=flag_gems-5.5.0.dev0-py3-none-any.whl size=9297673 sha256=92bf863ccdd67f9ba59aa2c96e6e54c7240783eb21a0483e99efd8648676e7b0
+  Stored in directory: /tmp/pip-ephem-wheel-cache-jlfkeqs8/wheels/3a/61/68/8d7b143c0b54321c23cab4751aa257aedfc11190f411db1ce4
+Successfully built flag_gems
+Installing collected packages: flag_gems
+  Attempting uninstall: flag_gems
+    Found existing installation: flag_gems 5.3.5
+    Uninstalling flag_gems-5.3.5:
+      Successfully uninstalled flag_gems-5.3.5
+Successfully installed flag_gems-5.5.0.dev0
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+
+[notice] A new release of pip is available: 26.1.2 -> 26.3
+[notice] To update, run: pip install --upgrade pip

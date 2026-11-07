@@ -1,0 +1,38 @@
+Cloning into '/workspace/gate-src/vllm'...
+Note: switching to '5df63a7203cdb9328d824a27b682e77c7b9928be'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+
+  git switch -c <new-branch-name>
+
+Or undo this operation with:
+
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+
+Looking in indexes: https://pypi.tuna.tsinghua.edu.cn/simple
+Processing ./.
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Building wheels for collected packages: vllm
+  Building wheel for vllm (pyproject.toml): started
+  Building wheel for vllm (pyproject.toml): finished with status 'done'
+  Created wheel for vllm: filename=vllm-0.32.0+empty-cp312-cp312-linux_x86_64.whl size=11188468 sha256=67eace6ff77430f08a99980e355e740eda582e2870a229a70662fc58cfe22ded
+  Stored in directory: /tmp/pip-ephem-wheel-cache-thv1kcid/wheels/31/36/2d/8be18e5259973a925481d5cbe8d9ed0e9429c398572feda1d0
+Successfully built vllm
+Installing collected packages: vllm
+  Attempting uninstall: vllm
+    Found existing installation: vllm 0.28.0+empty
+    Uninstalling vllm-0.28.0+empty:
+      Successfully uninstalled vllm-0.28.0+empty
+Successfully installed vllm-0.32.0+empty
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+
+[notice] A new release of pip is available: 26.1.2 -> 26.3
+[notice] To update, run: pip install --upgrade pip

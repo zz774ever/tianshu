@@ -4,7 +4,7 @@
 平台：天数 Iluvatar BI-V150  
 模型：Qwen3.6-27B、Qwen3.6-35B-A3B
 
-使用系统 Python，不创建 venv。只运行仓库原有的 `tools/adaptation-gate-cases`，不使用自定义安装或测试脚本，不包含后续兼容补丁。
+使用系统 Python，不创建 venv。只运行仓库原有的 `tools/adaptation-gate-cases`，不使用自定义安装或测试脚本。固定到已合入平台兼容处理和严格数字检查的 PR 提交，不追加本地源码修改。
 
 ## 1. 环境版本
 
@@ -15,7 +15,7 @@
 | Python | 镜像内系统 Python 3.12.11 |
 | PyTorch | 镜像内 `2.10.0+corex.4.5.0`，保留 |
 | vLLM | `0.32.0+empty` |
-| vllm-plugin-FL | `7a94aeec80fbb795d5596569eb7d40cfe5460106` |
+| vllm-plugin-FL | `75ba2ffc9f610b28b0bd9345423ffd0d9c871842` |
 | FlagGems | `5.5.0.dev0`，`2bcfe2656dad0b654077fcfe7d66e6a93542afab` |
 | FlagGems-vllm | `0.3.0.dev1`，`b434eafb1715849d1019ddcd480c5fc39461665c` |
 | FlagTree | `0.7.0+iluvatar3.6`，提供天数 Triton 后端 |
@@ -26,6 +26,7 @@
 ## 2. 创建容器
 
 在宿主机执行。将模型挂载的源目录改为目标机器上的实际目录。
+下面包含本机必需的驱动库挂载；其他驱动正常的机器删掉 `host-driver` 那一行。
 
 ```bash
 docker pull harbor.baai.ac.cn/plugin/vllm-plugin-fl@sha256:eb904d40a92e9769f358f4d81c8043acfbc30b1b077f0a31210be6316ec0cf18
@@ -34,6 +35,7 @@ docker run --shm-size=32g -itd \
   --privileged --net=host \
   -v /dev:/dev \
   -v /mnt/share/user_homes/models:/models:ro \
+  -v /workspace/minimal-gate-container-20261107/host-driver:/run/iluvatar-host-driver:ro \
   --name fl_gate_032 \
   --entrypoint /bin/bash \
   harbor.baai.ac.cn/plugin/vllm-plugin-fl@sha256:eb904d40a92e9769f358f4d81c8043acfbc30b1b077f0a31210be6316ec0cf18
@@ -51,6 +53,7 @@ docker exec -it fl_gate_032 bash
 unset PYTHONPATH PIP_CONSTRAINT VLLM_VENDOR
 export PIP_INDEX_URL=https://pypi.tuna.tsinghua.edu.cn/simple
 mkdir -p /workspace/gate-src
+git config --global url."https://gh-proxy.org/https://github.com/".insteadOf "https://github.com/"
 
 python -m pip install --no-deps 'wheel==0.48.0'
 
@@ -73,9 +76,11 @@ VLLM_TARGET_DEVICE=empty VLLM_VERSION_OVERRIDE=0.32.0+empty \
 ### 3.3 FlagGems 5.5.0.dev0
 
 ```bash
-git clone https://github.com/flagos-ai/FlagGems.git /workspace/gate-src/FlagGems
+git init /workspace/gate-src/FlagGems
 cd /workspace/gate-src/FlagGems
-git checkout --detach 2bcfe2656dad0b654077fcfe7d66e6a93542afab
+git remote add origin https://github.com/flagos-ai/FlagGems.git
+git fetch --depth 1 origin 2bcfe2656dad0b654077fcfe7d66e6a93542afab
+git checkout --detach FETCH_HEAD
 
 SETUPTOOLS_SCM_PRETEND_VERSION=5.5.0.dev0 \
   python -m pip install --no-deps .
@@ -84,9 +89,11 @@ SETUPTOOLS_SCM_PRETEND_VERSION=5.5.0.dev0 \
 ### 3.4 FlagGems-vllm
 
 ```bash
-git clone https://github.com/flagos-ai/FlagGems-vllm.git /workspace/gate-src/FlagGems-vllm
+git init /workspace/gate-src/FlagGems-vllm
 cd /workspace/gate-src/FlagGems-vllm
-git checkout --detach b434eafb1715849d1019ddcd480c5fc39461665c
+git remote add origin https://github.com/flagos-ai/FlagGems-vllm.git
+git fetch --depth 1 origin b434eafb1715849d1019ddcd480c5fc39461665c
+git checkout --detach FETCH_HEAD
 python -m pip install --no-build-isolation --no-deps .
 ```
 
@@ -95,12 +102,13 @@ python -m pip install --no-build-isolation --no-deps .
 固定到本次测试提交，不跟随 PR 后续更新。
 
 ```bash
-git clone --no-checkout https://github.com/flagos-ai/vllm-plugin-FL.git /workspace/gate-src/vllm-plugin-FL
+git init /workspace/gate-src/vllm-plugin-FL
 cd /workspace/gate-src/vllm-plugin-FL
-git fetch origin refs/pull/674/head
-git checkout --detach 7a94aeec80fbb795d5596569eb7d40cfe5460106
+git remote add origin https://github.com/flagos-ai/vllm-plugin-FL.git
+git fetch --depth 1 origin 75ba2ffc9f610b28b0bd9345423ffd0d9c871842
+git checkout --detach FETCH_HEAD
 
-SETUPTOOLS_SCM_PRETEND_VERSION=0.0.0+g7a94aeec8 \
+SETUPTOOLS_SCM_PRETEND_VERSION=0.0.0+g75ba2ffc9 \
   python -m pip install --no-build-isolation --no-deps -e .
 ```
 
@@ -108,12 +116,14 @@ SETUPTOOLS_SCM_PRETEND_VERSION=0.0.0+g7a94aeec8 \
 
 ### 3.6 FlagCX
 
-新机器没有现成 FlagCX 时，在容器内编译；本轮实测使用的是同提交已编译的运行库。
+在容器内编译 FlagCX；下面命令已在本机新容器实际编译成功。
 
 ```bash
-git clone https://github.com/flagos-ai/FlagCX.git /workspace/gate-src/FlagCX
+git init /workspace/gate-src/FlagCX
 cd /workspace/gate-src/FlagCX
-git checkout --detach 6143384797219733aee89bd3118b2cb184ad4959
+git remote add origin https://github.com/flagos-ai/FlagCX.git
+git fetch --depth 1 origin 6143384797219733aee89bd3118b2cb184ad4959
+git checkout --detach FETCH_HEAD
 git submodule update --init --depth 1 third-party/json
 
 make -j4 USE_ILUVATAR_COREX=1 \
@@ -122,19 +132,22 @@ make -j4 USE_ILUVATAR_COREX=1 \
 
 ## 4. 服务端环境与检查
 
-终端 A 在容器内执行。`2,3,4,5` 必须是四张空闲卡，`8132` 必须是空闲端口。
+终端 A 在容器内执行。本次用空闲的 `4,5,6,7` 四张卡；按实际占用调整，`8132` 必须是空闲端口。
 
 ```bash
 cd /workspace/gate-src/vllm-plugin-FL
 
-export CUDA_VISIBLE_DEVICES=2,3,4,5
-export COREX_VISIBLE_DEVICES=2,3,4,5
+export CUDA_VISIBLE_DEVICES=4,5,6,7
+export COREX_VISIBLE_DEVICES=4,5,6,7
 export VLLM_PLUGINS=fl
 export USE_FLAGGEMS=1
 export GEMS_VENDOR=iluvatar
 export FLAGCX_PATH=/workspace/gate-src/FlagCX
 export PYTHONPATH=/workspace/gate-src/vllm-plugin-FL
 export LD_LIBRARY_PATH="$FLAGCX_PATH/build/lib:/usr/local/corex/lib64:/usr/local/openmpi/lib:/usr/local/lib"
+if [ -f /run/iluvatar-host-driver/libcuda.so.1 ]; then
+  export LD_LIBRARY_PATH="/run/iluvatar-host-driver:$LD_LIBRARY_PATH"
+fi
 export VLLM_FL_FLAGOS_BLACKLIST_APPEND=slice,mm,mm_out
 export PYTHONUNBUFFERED=1
 export PYTHONDONTWRITEBYTECODE=1
@@ -184,6 +197,7 @@ unset BASE_URL
 ## 6. 四轮测试
 
 每轮先在 A 启动服务，再在 B 执行测试。B 结束后，在 A 按 `Ctrl+C`，等 worker 退出、显存释放，再启动下一轮。
+下面为每轮设置独立编译缓存；再次从冷缓存复测时换一个新的缓存目录。
 
 ### 6.1 Qwen3.6-27B Eager
 
@@ -191,6 +205,9 @@ unset BASE_URL
 
 ```bash
 export MODEL_PATH=/models/Qwen3.6-27B
+export VLLM_CACHE_ROOT=/workspace/gate-cache/27b-eager/compile-cache
+export TRITON_CACHE_DIR=/workspace/gate-cache/27b-eager/triton-cache
+export TORCHINDUCTOR_CACHE_DIR=/workspace/gate-cache/27b-eager/inductor-cache
 bash tools/adaptation-gate-cases/run_serve_eager.sh
 ```
 
@@ -209,6 +226,9 @@ echo "gate 退出码：$?"
 
 ```bash
 export MODEL_PATH=/models/Qwen3.6-27B
+export VLLM_CACHE_ROOT=/workspace/gate-cache/27b-graph/compile-cache
+export TRITON_CACHE_DIR=/workspace/gate-cache/27b-graph/triton-cache
+export TORCHINDUCTOR_CACHE_DIR=/workspace/gate-cache/27b-graph/inductor-cache
 bash tools/adaptation-gate-cases/run_serve_graph.sh
 ```
 
@@ -227,6 +247,9 @@ echo "gate 退出码：$?"
 
 ```bash
 export MODEL_PATH=/models/Qwen3.6-35B-A3B
+export VLLM_CACHE_ROOT=/workspace/gate-cache/35b-eager/compile-cache
+export TRITON_CACHE_DIR=/workspace/gate-cache/35b-eager/triton-cache
+export TORCHINDUCTOR_CACHE_DIR=/workspace/gate-cache/35b-eager/inductor-cache
 bash tools/adaptation-gate-cases/run_serve_eager.sh
 ```
 
@@ -245,6 +268,9 @@ echo "gate 退出码：$?"
 
 ```bash
 export MODEL_PATH=/models/Qwen3.6-35B-A3B
+export VLLM_CACHE_ROOT=/workspace/gate-cache/35b-graph/compile-cache
+export TRITON_CACHE_DIR=/workspace/gate-cache/35b-graph/triton-cache
+export TORCHINDUCTOR_CACHE_DIR=/workspace/gate-cache/35b-graph/inductor-cache
 bash tools/adaptation-gate-cases/run_serve_graph.sh
 ```
 
@@ -270,7 +296,7 @@ echo "gate 退出码：$?"
 
 每轮应显示 5 个 pytest 用例通过、退出码为 `0`，对应 26 个请求；四轮共 104 个请求。JSON 保存在终端 B 的 `$RESULTS_ROOT` 下。再次复测时使用新的结果根目录，保留上次结果。
 
-**已知限制：此未打补丁版本的 35B 编译 Graph 曾出现错误回答；原数字检查还可能放过含额外字符的答案。因此本教程不承诺四轮必过，数字题需同时查看 JSON 中的原始回答。**
+该提交对天数 Qwen MoE 的编译 Graph 自动设置 `inplace_buffers=false`，数字文本题增加完整答案检查。命令行仍只指定 capture sizes，无需额外导出两个缓冲区开关。每次复测仍以本次退出码和 JSON 为准。
 
 ## 8. 换机器需要改什么
 
@@ -282,4 +308,51 @@ echo "gate 退出码：$?"
 | 容器名 | 第 2、5 节的 `fl_gate_032` |
 | 驱动库 | 正常机器使用原有匹配驱动，不照抄其他机器的覆盖文件 |
 
-本机曾额外使用匹配的 `libcuda.so.1`、`libixthunk.so`、`libcudart.so.10.2` 只读挂载以解决初始化和 Graph 捕获失败。这是本机专用处理，未加入以上通用命令；新机器检查失败时需按实际报错处理。
+第 2 节本机专用挂载提供匹配的 `libcuda.so.1`、`libixthunk.so`、`libcudart.so.10.2`，用于解决初始化和 Graph 捕获失败。其他驱动正常的机器省略该挂载；不要复制本机库文件替换其他机器的驱动。
+
+## 9. 本次实际复测结果与终端输出图片
+
+2026-11-07，在同一个系统 Python 测试容器内，将插件更新到 `75ba2ff` 后完成以下四轮。依赖按第 3 节命令安装，包括现场编译 FlagCX；源码无本地修改。GPU 使用 `4,5,6,7`，端口 `8132`，TP=4。Graph 命令行只传本文的 capture sizes。
+
+| 模型 / 模式 | 通过请求 | 退出码 | 启动至就绪 | 请求测试耗时 |
+|---|---:|---:|---:|---:|
+| 27B Eager | 26/26 | 0 | 410 秒 | 316 秒 |
+| 27B Graph | 26/26 | 0 | 470 秒 | 67 秒 |
+| 35B-A3B Eager | 26/26 | 0 | 410 秒 | 182 秒 |
+| 35B-A3B Graph | 26/26 | 0 | 520 秒 | 79 秒 |
+
+合计 **20/20 场景、104/104 请求通过**，其中文本 52、图片 52；104 条响应均为 `finish_reason=stop`，20 次数字完整答案检查全部通过。另有 31 项相关单元测试通过。本次结果不代表其他环境或长期运行必然通过。
+
+下图由本轮真实终端日志渲染，清楚标注来源和退出码，不是桌面截图。原始日志和请求 JSON 保存在 [本轮记录目录](../records/pr674-75ba2ff/)。
+
+### 27B Eager
+
+![27B Eager 测试通过](images/pr674-75ba2ff/27b-eager.png)
+
+[完整测试日志](../records/pr674-75ba2ff/gates/27b-eager/tests.log)
+
+### 27B Graph
+
+![27B Graph 测试通过](images/pr674-75ba2ff/27b-graph.png)
+
+[完整测试日志](../records/pr674-75ba2ff/gates/27b-graph/tests.log)
+
+### 35B-A3B Eager
+
+![35B Eager 测试通过](images/pr674-75ba2ff/35b-eager.png)
+
+[完整测试日志](../records/pr674-75ba2ff/gates/35b-eager/tests.log)
+
+### 35B-A3B Graph
+
+![35B Graph 测试通过](images/pr674-75ba2ff/35b-graph.png)
+
+[完整测试日志](../records/pr674-75ba2ff/gates/35b-graph/tests.log)
+
+### 安装版本与单元测试
+
+![实际安装版本](images/pr674-75ba2ff/versions.png)
+
+![31 项单元测试通过](images/pr674-75ba2ff/unit-tests.png)
+
+[四轮汇总 JSON](../records/pr674-75ba2ff/validation-summary.json) · [最终逐项核验](../records/pr674-75ba2ff/final-verification.json)

@@ -1,0 +1,14 @@
+75ba2ffc9f610b28b0bd9345423ffd0d9c871842
+Name: torch
+Version: 2.10.0+corex.4.5.0
+Name: vllm
+Version: 0.32.0+empty
+Name: vllm-plugin-fl
+Version: 0.0.0+g75ba2ffc9
+Editable project location: /workspace/gate-src/vllm-plugin-FL
+Name: flag_gems
+Version: 5.5.0.dev0
+Name: flaggems_vllm
+Version: 0.3.0.dev1
+Name: flagtree
+Version: 0.7.0+iluvatar3.6

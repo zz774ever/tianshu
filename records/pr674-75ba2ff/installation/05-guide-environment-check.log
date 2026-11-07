@@ -1,0 +1,76 @@
+Name: torch
+Version: 2.10.0+corex.4.5.0
+Summary: Tensors and Dynamic neural networks in Python with strong GPU acceleration
+Home-page: https://pytorch.org
+Author: 
+Author-email: PyTorch Team <packages@pytorch.org>
+License: BSD-3-Clause
+Location: /usr/local/lib/python3.12/site-packages
+Requires: filelock, fsspec, jinja2, networkx, setuptools, sympy, typing-extensions
+Required-by: compressed-tensors, torchaudio, torchvision, xgrammar
+---
+Name: vllm
+Version: 0.32.0+empty
+Summary: A high-throughput and memory-efficient inference and serving engine for LLMs
+Home-page: https://github.com/vllm-project/vllm
+Author: vLLM Team
+Author-email: 
+License-Expression: Apache-2.0
+Location: /usr/local/lib/python3.12/site-packages
+Requires: aiohttp, anthropic, blake3, cachetools, cbor2, cloudpickle, compressed-tensors, depyf, einops, fastapi, filelock, huggingface_hub, ijson, jsonschema, lark, llguidance, lm-format-enforcer, mcp, mistral_common, model-hosting-container-standards, msgspec, ninja, numpy, openai, opencv-python-headless, opentelemetry-api, opentelemetry-exporter-otlp, opentelemetry-sdk, opentelemetry-semantic-conventions-ai, oss-harmony, outlines_core, partial-json-parser, pillow, prometheus-fastapi-instrumentator, prometheus_client, protobuf, psutil, py-cpuinfo, pybase64, pydantic, python-json-logger, pyyaml, pyzmq, regex, requests, safetensors, sentencepiece, setproctitle, setuptools, six, starlette, tiktoken, tokenizers, tqdm, transformers, typing_extensions, watchfiles, xgrammar
+Required-by: 
+---
+Name: vllm-plugin-fl
+Version: 0.0.0+g7a94aeec8
+Summary: A vLLM plugin built on the FlagOS unified multi-chip backend
+Home-page: https://github.com/flagos-ai/vllm-plugin-FL
+Author: 
+Author-email: 
+License-Expression: Apache-2.0
+Location: /usr/local/lib/python3.12/site-packages
+Editable project location: /workspace/gate-src/vllm-plugin-FL
+Requires: modelscope, pyyaml
+Required-by: 
+---
+Name: flag_gems
+Version: 5.5.0.dev0
+Summary: FlagGems is a function library written in Triton language.
+Home-page: 
+Author: 
+Author-email: Zhixin Li <strongspoon@outlook.com>, Tongxin Bai <waffle.bai@gmail.com>, Yuming Huang <jokmingwong@gmail.com>, Feiyu Chen <iclementine@outlook.com>, Ruilin Yang <rlyanger01@gmail.com>, Zhen Wang <516310189@qq.com>, Hui Guo <sunnycase@live.cn>, Xiaoyan Liu <18811205590@163.com>, Chunlie Men <menchunlei@163.com>, Hang Xiao <vincent.xiao.me@gmail.com>, Yiqun Huang <huangyiqun@mail.bnu.edu.cn>, Jinjin Tian <kiddyjinjin@gmail.com>, Yang Zheng <zhengyang_pku@163.com>, Jinjie Liu <sgjzfzzf@gmail.com>
+License: Apache Software License
+Location: /usr/local/lib/python3.12/site-packages
+Requires: numpy, packaging, PyYAML, sqlalchemy
+Required-by: flaggems_vllm
+---
+Name: flaggems_vllm
+Version: 0.3.0.dev1
+Summary: FlagGems-vllm is a deep neural network function library written in Triton.
+Home-page: https://github.com/flagos-ai/FlagGems-vllm
+Author: 
+Author-email: Bin Zhang <842884726@qq.com>, Bingjie Wang <xxx@xxx.com>
+License: Apache Software License
+Location: /usr/local/lib/python3.12/site-packages
+Requires: flag-gems, packaging, pybind11, PyYAML, sqlalchemy
+Required-by: 
+---
+Name: flagtree
+Version: 0.7.0+iluvatar3.6
+Summary: A unified compiler supporting multiple AI chip backends for custom Deep Learning operations, which is forked from triton-lang/triton.
+Home-page: https://github.com/flagos-ai/FlagTree/
+Author: FlagOS
+Author-email: contact@flagos.io
+License: MIT
+Location: /usr/local/lib/python3.12/site-packages
+Requires: 
+Required-by: 
+/usr/local/lib/python3.12/site-packages/torch/__init__.py
+True 4
+[1.0, 1.0, 1.0, 1.0]
+/usr/local/lib/python3.12/site-packages/vllm/__init__.py
+/workspace/gate-src/vllm-plugin-FL/vllm_fl/__init__.py
+/usr/local/lib/python3.12/site-packages/flag_gems/utils/libentry.py:730: DeprecationWarning: use_cuda_graph is deprecated; use benchmark_mode='replay' or benchmark_mode='event'
+  super().__init__(*args, **kwargs)
+/usr/local/lib/python3.12/site-packages/flag_gems/utils/libentry.py:413: RuntimeWarning: active Triton backend does not provide a registered replay benchmarker; falling back to event timing
+  resolved_benchmark = resolve_benchmarker(
+FlagCX PASS

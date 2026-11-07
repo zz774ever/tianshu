@@ -1,0 +1,30 @@
+{
+  "object": "list",
+  "data": [
+    {
+      "id": "qwen",
+      "object": "model",
+      "created": 1794034455,
+      "owned_by": "vllm",
+      "root": "/models/Qwen3.6-35B-A3B",
+      "parent": null,
+      "max_model_len": 32768,
+      "permission": [
+        {
+          "id": "modelperm-89c1cc6718c76f9e",
+          "object": "model_permission",
+          "created": 1794034455,
+          "allow_create_engine": false,
+          "allow_sampling": true,
+          "allow_logprobs": true,
+          "allow_search_indices": false,
+          "allow_view": true,
+          "allow_fine_tuning": false,
+          "organization": "*",
+          "group": null,
+          "is_blocking": false
+        }
+      ]
+    }
+  ]
+}

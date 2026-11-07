@@ -1,0 +1,20 @@
+{
+  "commit": "75ba2ffc9f610b28b0bd9345423ffd0d9c871842",
+  "rounds": 4,
+  "scenarios": 20,
+  "passed_requests": 104,
+  "request_kinds": {
+    "text": 52,
+    "image": 52
+  },
+  "finish_reasons": {
+    "stop": 104
+  },
+  "exact_answer_checks_passed": 20,
+  "all_gate_exit_codes": [
+    0,
+    0,
+    0,
+    0
+  ]
+}
